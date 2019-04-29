@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="linenumbering.scope">
+  <refmeta>
+    <refentrytitle>linenumbering.scope</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>linenumbering.scope</parameter></refname>
+    <refpurpose>Templates on which the global linenumbering setup applies</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/linenumbering.scope.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>List of the templates for which the
+    <parameter>linenumbering.default</parameter> 
+    parameter applies. The list
+    separator is a space. For example, when the parameter is set to 
+    "screen programlisting", the two other linenumbering parameters will have
+    effects only on <sgmltag>screen</sgmltag> and
+    <sgmltag>programlisting</sgmltag> templates.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>linenumbering.default</parameter>, <parameter>linenumbering.everyNth</parameter>.</para>
+  </refsection>
+</refentry>

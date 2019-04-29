@@ -1,0 +1,13 @@
+  <section><title>Document Revisions</title>
+  <para>
+   The attribute <sgmltag>revisionflag</sgmltag> is usefull to identify the changes between two revisions of a document. This information is managed by dblatex, that adds revision bars in the margin of the paragraphs changed, such like in this <phrase revisionflag="changed">paragraph</phrase>.
+  </para>
+  <para>
+   Adding the revision flags can be manual, but its is tedious and error prone. The <ulink url="http://sourceforge.net/projects/diffmk/">diffmk</ulink> tool by Norman Walsh can do the work for you. See <ulink url="http://www.sagehill.net/docbookxsl/Changebars.html"/> for more details about how to use it.
+  </para>
+<note><para>
+With old changebar packages the revision bars only appear when using the "dvips"
+driver. This limitation has been fixed with changebar greater or equal 
+to v3.5c.
+</para></note>
+  </section>

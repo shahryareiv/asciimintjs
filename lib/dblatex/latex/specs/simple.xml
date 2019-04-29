@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ======================================================= -->
+<!-- Dblatex configuration file example                      -->
+<!-- ======================================================= -->
+<config xmlns="http://dblatex.sourceforge.net/config">
+  <latex>
+    <texinputs>..//</texinputs>
+    <texstyle use="dbsimple"/>
+    <backend use="pdftex"/>
+  </latex>
+</config>

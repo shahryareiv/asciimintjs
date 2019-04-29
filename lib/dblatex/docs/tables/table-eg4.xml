@@ -1,0 +1,39 @@
+<informaltable>
+<!-- Example with morerows -->
+<tgroup cols="4" colsep="1" rowsep="1" align="left">
+<colspec colname="c1" colwidth="*"/>
+<colspec align="left" colwidth="2.5cm"/>
+<colspec align="right" colwidth="5cm"/>
+<colspec align="center" colwidth="3cm"/>
+<thead>
+<row>
+<entry>Column 1</entry>
+<entry>Column 2</entry>
+<entry>Column 3</entry>
+<entry>Column 4</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry morerows="3">cell on 4 lines
+</entry><entry>simple cell
+</entry><entry morerows="1">cell on 2 lines
+</entry><entry>cell without morerow attribute
+</entry></row>
+<row>
+<entry>cell in column 2
+</entry><entry morerows="1">cell on 2
+lines
+</entry></row>
+<row>
+<entry morerows="1">left aligned on 2 lines
+</entry><entry>cell in line 3, column 3
+</entry></row>
+<row>
+<entry>4 cm column width
+</entry><entry>last cell in column 4
+</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+

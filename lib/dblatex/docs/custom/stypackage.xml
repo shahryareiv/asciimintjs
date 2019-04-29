@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<informaltable>
+<tgroup cols="2" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<thead>
+<row>
+<entry>Package</entry>
+<entry>Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center" valign="top">dbk_core</entry>
+<entry align="center" valign="top">Core LaTeX definitions and macros needed for
+DocBook</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+

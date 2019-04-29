@@ -1,0 +1,112 @@
+<chapter>
+<title>FAQ</title>
+<para>The purpose of this mini FAQ is to give some tips about how customizing or
+tweaking the PDF output.</para>
+
+<simplesect><title>My images are too big. What can I do?</title>
+
+<para>When an image is included via <sgmltag>imagedata</sgmltag> with no
+scaling attributes (e.g, width, height, contentwidth) it is its
+natural size that is used.</para>
+<para>One can change individually the size of an  <sgmltag>imagedata</sgmltag>
+by defining its attributes (see <citation>TDG</citation> for more details). One can
+also use the parameter imagedata.default.scale to apply a
+systematic scaling rule on every image that has no explicit attribute.
+</para>
+<para>The parameter imagedata.default.scale can take:</para>
+<itemizedlist>
+<listitem>
+<para>The default predefined value "pagebound": the image natural size is used,
+up to the page boundaries. That is, if an image natural width is greater than the
+page width its size is proportionally reduced
+so that it is contained in the page. The same control is done for height.</para>
+</listitem>
+<listitem>
+<para>Any combination of valid \includegraphics options. For example
+</para>
+<variablelist>
+<varlistentry><term>imagedata.default.scale=scale=40%</term>
+<listitem>
+<para>The scale 40% is applied on the images.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>imagedata.default.scale=width=40%,height=3in</term>
+<listitem>
+<para>This example is weird but shows that several options can be used. In this
+case the image width is 40% of the page width, and the height is fixed to 3
+inches. The risk to have an anamorphous result is very high here.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</simplesect>
+
+<simplesect><title>How can I have the PDF fit to height by default?</title>
+<para>The behaviour of the PDF file when opened by a reader like Acrobat Reader
+can be customized with the parameter latex.hyperparam. See <xref
+linkend="sec-hyperparam"/> for
+more details about this parameter.
+</para>
+<para>To answer precisely to the question, set the parameter with the option
+"pdfstartview=FitV".</para>
+</simplesect>
+
+<simplesect><title>How can I have all the PDF hyperlinks in blue color?</title>
+<para>Same answer than for the previous question.</para>
+<para>For this particular case, set the parameter with the options
+"linktocpage,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue".</para>
+</simplesect>
+
+<simplesect><title>How can I remove that stupid float rules?</title>
+<para>If you wonder about this, you propably use the db2latex style. To remove
+the rules, you need to patch the db2latex.sty. You can:</para>
+
+<itemizedlist>
+<listitem>
+<para>Simply remove the floatstyle definition for the floats for which you don't want
+the rules.</para>
+</listitem>
+<listitem>
+<para>Explicitely use the plain floatstyle. Note that using this explicit style
+does not allow to change the float title position anymore. The plain style
+always put the title at the bottom of the float.</para>
+</listitem>
+</itemizedlist>
+</simplesect>
+
+<simplesect><title>My long tables don't split in several pages. Why?</title>
+<para>A formal table (<sgmltag>table</sgmltag> element) is put in a float, so
+that it can have a numbered caption and placed by tex at the best place. The
+limitation is that a float cannot split over several pages.</para>
+<para>For long tables that need to split, use <sgmltag>informaltable</sgmltag>
+instead.</para>
+</simplesect>
+
+<simplesect><title>I cannot put a table in an example.</title>
+<para>A formal table (<sgmltag>table</sgmltag> element) is put in a float, and 
+cannot be put in another float like an example. You can use an <sgmltag>informaltable</sgmltag> instead.</para>
+</simplesect>
+
+<simplesect><title>I cannot compile my cyrillic document. Why?</title>
+<para>A document using some characters different from the roman alphabet may face some troubles, because latex natively handles only latin1 encoding.</para>
+<para>Try the different unicode supports provided by dblatex:
+
+<itemizedlist>
+<listitem>
+<para>Use the XeTeX backend, a new tex engine that natively supports Unicode
+characters: <literal>dblatex -b xetex file.xml</literal>.</para>
+</listitem>
+<listitem>
+<para>Ask for using the latex unicode support by setting the <parameter>latex.encoding</parameter>=utf8 parameter: <literal>dblatex -P latex.encoding=utf8 file.xml</literal>.</para>
+</listitem>
+<listitem>
+<para>Use the Passivetex extensions by setting the <parameter>latex.unicode.use</parameter>=1 parameter: <literal>dblatex -P latex.unicode.use=1 file.xml</literal>.</para>
+</listitem>
+</itemizedlist>
+
+</para>
+<para>See <xref linkend="sec-doc-encode"/> for more details.</para>
+</simplesect>
+
+</chapter>

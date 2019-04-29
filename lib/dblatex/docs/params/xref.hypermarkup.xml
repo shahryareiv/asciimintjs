@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="xref.hypermarkup">
+  <refmeta>
+    <refentrytitle>xref.hypermarkup</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>xref.hypermarkup</parameter></refname>
+    <refpurpose>Wrap the entire the <sgmltag>xref</sgmltag> markups with an hyperlink?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/xref.hypermarkup.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When set to 1, the whole cross reference markup produced for an
+    <sgmltag>xref</sgmltag> is converted to an hyperlink.</para>
+    <para>When not set, the default latex hyperlinking is done, that usually
+    means that only the reference numbers are hot.</para>
+  </refsection>
+</refentry>

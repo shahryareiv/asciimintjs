@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="imageobjectco.hide">
+  <refmeta>
+    <refentrytitle>imageobjectco.hide</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>imageobjectco.hide</parameter></refname>
+    <refpurpose>Hide the callout markups on the image</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/imageobjectco.hide.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When set to 1 the callout numbered circles are not drawn on the image.
+Only the anchors are put, allowing callout list items to jump at the
+referenced position on the image. The purpose of this parameter is to allow
+the use of images that already contain the callout numbers (like for GIMP
+manual).</para>
+  </refsection>
+</refentry>

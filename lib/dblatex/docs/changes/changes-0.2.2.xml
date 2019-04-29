@@ -1,0 +1,28 @@
+<itemizedlist>
+<listitem><para>BibTeX support added. See <olink targetdoc="usermanual" targetptr="sec-bibtex"/> for more
+details.</para></listitem>
+
+<listitem><para>A better bibliography support, and natbib citation styles can be
+used (see <phrase output="pdf"><olink targetdoc="usermanual" targetptr="sec-natbib"/></phrase><phrase output="html"><ulink url="../manual/index.html">The User Manual</ulink></phrase>).</para></listitem>
+
+<listitem><para>Some table improvements:
+  <itemizedlist>
+  <listitem><para>Formal tables accross several pages are possible when setting
+  the <parameter>table.in.float</parameter> parameter to 0. The limitation is
+  that the caption must be on the top of the table.</para></listitem>
+
+  <listitem><para>Automatic table width allowed when setting the 
+  <parameter>newtbl.autowidth</parameter> parameter to default or all.</para>
+  </listitem>
+
+  <listitem><para>Footnotes in tables are possible.</para></listitem>
+
+  <listitem><para>Basic <sgmltag>programlisting</sgmltag>/<sgmltag>screen</sgmltag>
+  support in tables.</para></listitem>
+  </itemizedlist>
+</para>
+</listitem>
+
+<listitem><para>A number of bug fixes.</para></listitem>
+
+</itemizedlist>

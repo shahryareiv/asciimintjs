@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="show.comments">
+  <refmeta>
+    <refentrytitle>show.comments</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>show.comments</parameter></refname>
+    <refpurpose>Display <sgmltag>remark</sgmltag> elements?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/show.comments.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>If non-zero, comments will be displayed, otherwise they
+are suppressed.  Comments here refers to the <sgmltag>remark</sgmltag> element
+(which was called <literal>comment</literal> prior to DocBook
+4.0), not XML comments (&lt;-- like this --&gt;) which are
+unavailable.
+</para>
+<note><para>Dblatex uses the PDF Text Annotations capabilities to handle
+comments and remarks.</para></note>
+  </refsection>
+</refentry>

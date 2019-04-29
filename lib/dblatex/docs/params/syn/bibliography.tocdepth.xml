@@ -1,0 +1,1 @@
+<xsl:param name="bibliography.tocdepth">5</xsl:param>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="beginpage.as.pagebreak">
+  <refmeta>
+    <refentrytitle>beginpage.as.pagebreak</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>beginpage.as.pagebreak</parameter></refname>
+    <refpurpose>Force a page break when set to 1. Otherwise
+    <sgmltag>beginpage</sgmltag> does nothing.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/beginpage.as.pagebreak.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+<para>The legacy behaviour of dblatex is that it inserts a page break when <sgmltag>beginpage</sgmltag> appears. You can keep this behaviour by setting this parameter to 1 (default value) or inhibit it by setting to 0.</para>
+  </refsection>
+</refentry>

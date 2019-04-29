@@ -1,0 +1,29 @@
+<itemizedlist>
+<listitem>
+  <para>The newtbl implementation now handles some tricky row spanning cells.
+  Moreover it becomes the default table implementation used.</para>
+</listitem>
+<listitem>
+  <para>Equations without title are now latex equations (not formula in a
+  float).</para>
+</listitem>
+<listitem>
+  <para>Xref to <sgmltag>varlistentry</sgmltag> or <sgmltag>term</sgmltag> is
+  possible.</para>
+</listitem>
+<listitem>
+<para>the following parameters are added:</para>
+<variablelist>
+<varlistentry>
+<term>make.year.ranges</term>
+<term>make.single.year.ranges</term>
+  <listitem>
+  <para>Change the rendering of year ranges in a copyright.</para>
+  </listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+</itemizedlist>

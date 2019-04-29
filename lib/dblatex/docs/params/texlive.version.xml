@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="texlive.version">
+  <refmeta>
+    <refentrytitle>texlive.version</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>texlive.version</parameter></refname>
+    <refpurpose>Version of the installed Tex Live Distribution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/texlive.version.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The version number is used to adapt the tex output. For instance the
+    URL output depends on the url package behaviour that differs from one
+    release to another.</para>
+  </refsection>
+</refentry>

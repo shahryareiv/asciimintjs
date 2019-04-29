@@ -1,0 +1,20 @@
+<itemizedlist>
+<listitem>
+  <para>Images can now have their default dimension limited to a specified maximum
+  dimension (can be lower than the page bounderies).</para>
+</listitem>
+<listitem>
+<para>the following parameter is added:</para>
+<variablelist>
+<varlistentry>
+<term>glossterm.auto.link</term>
+  <listitem>
+  <para>Makes glossterms link to their glossary definition.</para>
+  </listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+</itemizedlist>

@@ -1,0 +1,1 @@
+<xsl:param name="literal.width.ignore">0</xsl:param>

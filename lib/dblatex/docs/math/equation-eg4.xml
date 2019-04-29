@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE para PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<para>The formula <xref linkend="eq-with-no-title"/> below:
+  <equation id="eq-with-no-title">
+    <alt>C = \alpha + \beta Y^{\gamma} + \epsilon</alt>
+    <graphic fileref="figures/eq4"/>
+  </equation>
+is displayed as a latex equation with its own equation numbering.
+Its XML source is:</para>

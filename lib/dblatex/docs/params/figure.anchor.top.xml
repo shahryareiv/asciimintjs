@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="figure.anchor.top">
+  <refmeta>
+    <refentrytitle>figure.anchor.top</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>figure.anchor.top</parameter></refname>
+    <refpurpose>Cross reference anchor on top of the <sgmltag>figure</sgmltag> float</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/figure.anchor.top.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>By default the anchor of a formal figure is where the figure title
+    appears. It means that a link to the figure points after the
+    image when the title is below the image, and at the top of the image when
+    the title is on the top.
+    This parameter allows to put the anchor at the top of the image even if the
+    title is below the figure.</para>
+    <para>Note that it is not possible to have the anchor below the image
+    if the title is on the top.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>figure.title.top</parameter></para>
+  </refsection>
+</refentry>

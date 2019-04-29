@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Fix Debian bug #792898: the PDF metadata setup is improved. The PDF
+Subject field is now filled with the data contained by the elements
+<sgmltag>subject</sgmltag>. The PDF Keywords field is filled with
+<sgmltag>keyword</sgmltag> of the document.</para>
+</listitem>
+
+<listitem>
+<para>Fix Debian bug #684772 and SF bug #85: the <sgmltag>label</sgmltag>
+attribute of the formal headings (e.g. <sgmltag>chapter</sgmltag>,
+<sgmltag>sect1</sgmltag> to <sgmltag>sect5</sgmltag>,
+<sgmltag>section</sgmltag>) is used by <command>dblatex</command> to:
+
+<itemizedlist>
+<listitem>
+<para>Force a section counter when the label is set to an integer.</para>
+</listitem>
+<listitem>
+<para>Make a chapter unnumbered when the label is set to an empty string.</para>
+</listitem>
+</itemizedlist>
+
+<phrase output="pdf">See <olink targetdoc="usermanual" targetptr="sec-section-num"/> for more details.</phrase></para>
+</listitem>
+
+<listitem>
+<para>Fix Debian bug #793077: allow to put a figure anchor at the top even if
+the caption is at the bottom, thanks to the parameter
+<parameter>figure.anchor.top</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters <parameter>body.font.family</parameter>,
+<parameter>sans.font.family</parameter>, and
+<parameter>monospace.font.family</parameter> to mimic FO parameters, for xetex
+font setup.</para>
+</listitem>
+
+<listitem>
+<para>Other Debian bug fixed: #766945.</para>
+</listitem>
+</itemizedlist>

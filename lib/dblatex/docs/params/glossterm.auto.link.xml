@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="glossterm.auto.link">
+  <refmeta>
+    <refentrytitle>glossterm.auto.link</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>glossterm.auto.link</parameter></refname>
+    <refpurpose>Generate links from glossterm to glossentry automatically?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/glossterm.auto.link.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When set to 1, the glossterms in the document are linked to their
+definition in the glossary.</para>
+  </refsection>
+</refentry>

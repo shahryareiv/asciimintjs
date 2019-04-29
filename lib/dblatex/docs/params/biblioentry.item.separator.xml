@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="biblioentry.item.separator">
+  <refmeta>
+    <refentrytitle>biblioentry.item.separator</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>biblioentry.item.separator</parameter></refname>
+    <refpurpose>Text to separate bibliography entries</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/biblioentry.item.separator.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>Text to separate bibliography entries.</para>
+  </refsection>
+</refentry>

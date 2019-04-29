@@ -1,0 +1,1 @@
+<xsl:param name="draft.mode">maybe</xsl:param>

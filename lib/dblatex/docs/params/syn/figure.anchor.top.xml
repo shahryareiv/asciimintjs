@@ -1,0 +1,1 @@
+<xsl:param name="figure.anchor.top" select="$figure.title.top"/>

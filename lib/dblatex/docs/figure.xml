@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+  <section id="sec-figinclude">
+   <title>
+   Figure Inclusion
+  </title>
+   <section>
+    <title>
+    Presentation
+   </title>
+   <para>
+    The expected format of the included figures depends on the backend driver used:
+   </para>
+   <variablelist>
+    <varlistentry>
+    <term>
+    dvips:
+</term><listitem><para>EPS format is required.
+    </para>
+   </listitem>
+   </varlistentry>
+    <varlistentry>
+    <term>
+    pdftex:
+</term><listitem><para>PDF or PNG format is required.
+    </para>
+   </listitem>
+   </varlistentry>
+   </variablelist>
+   <para>
+    In order to be able to use both backends, it is wise to not write the suffix of the file that references the figure. The suffix will be deduced from the backend used.
+   </para>
+   <para>
+    The figures must either already exists in the expected format, or must be able to be converted on the fly.
+   </para>
+<example><title>Figure inclusion</title>
+   <programlisting>
+<![CDATA[<figure id="fig-exemple1"> 
+]]><![CDATA[  <title>Components</title> 
+]]><![CDATA[  <mediaobject>
+]]><![CDATA[    <imageobject> 
+]]><![CDATA[      <imagedata fileref="path/figure1" align="center" scale="70"> 
+]]><![CDATA[    </imageobject> 
+]]><![CDATA[  </mediaobject>
+]]><![CDATA[</figure>
+]]>   </programlisting>
+</example>
+   </section>
+   <section id="sec-figconv">
+    <title>
+    Converting on the fly
+   </title>
+   <para>When it is needed dblatex tries to automatically convert the figures to
+   the expected format (i.e. EPS or PDF). The principle is to detect the original
+   figure format from the suffix of the fileref attribute. If no suffix is given,
+   the tool checks if a file whose basename is conformant with the
+   fileref attribute and with one of the predefined suffixes exists (that is, ".eps",
+   ".fig", ".pdf", or ".png"). If such a file exists, conversion is done from the
+   original format found.
+   </para>
+   <para>
+    The option <option>-f <replaceable>fig_format</replaceable></option> allows to specify the default included figures format (<replaceable>fig_format</replaceable>), that will be used when automatic format scanning gives no result. Then, the tool converts the figures from the specified format to the expected one.
+   </para>
+   <para>
+    If the specified format is unknown, no conversion is done. The supported formats are:
+   </para>
+   <variablelist>
+    <varlistentry>
+    <term>
+    fig:
+</term><listitem><para>native format of the figures produced by XFig.
+    </para>
+   </listitem>
+   </varlistentry>
+    <varlistentry>
+    <term>
+    eps:
+</term><listitem><para>Encapsulated PostScript format. This format shall be specified only when using the pdftex backend.
+    </para>
+   </listitem>
+   </varlistentry>
+   </variablelist>
+<example><title>Figure conversion</title>
+   <para>
+    The following command compiles a document that contains figures produced with XFig.
+   </para>
+   <programlisting>
+<![CDATA[% dblatex -f fig mydoc.sgml
+]]>   </programlisting>
+</example>
+   </section>
+   <section id="sec-lookup">
+    <title>
+    Paths Lookup
+   </title>
+   <para>
+    You can use and cumulate the option <option>-I <replaceable>path</replaceable></option> to specify where the figures are. The given paths can be absolute or relative.
+    The paths are added to the document root path.
+   </para>
+<example><title>Figures lookup</title>
+   <para>
+    This example shows how figure lookup is done. Let's consider this document source:
+   </para>
+   <programlisting>
+<![CDATA[<figure id="fig-example1"> 
+]]><![CDATA[  <title>Composants</title> 
+]]><![CDATA[  <mediaobject>
+]]><![CDATA[    <imageobject> 
+]]><![CDATA[      <imagedata fileref="rep1/rep2/figure1" align="center" scale="70"> 
+]]><![CDATA[    </imageobject> 
+]]><![CDATA[  </mediaobject>
+]]><![CDATA[</figure>
+]]>   </programlisting>
+   <para>
+    And the document is compiled like this:
+   </para>
+   <programlisting>
+<![CDATA[% dblatex -I /another/path -I /last/case /initial/path/document.sgml
+]]>   </programlisting>
+   <para>
+    The figure1 lookup is done in the following directories, in respect of the order:
+   </para>
+   <itemizedlist spacing="compact">
+    <listitem>
+    <para>
+    <filename>/initial/path/rep1/rep2</filename> ;
+    </para>
+   </listitem>
+    <listitem>
+    <para>
+    <filename>/another/path/rep1/rep2</filename> ;
+    </para>
+   </listitem>
+    <listitem>
+    <para>
+    <filename>/last/case/rep1/rep2</filename>.
+    </para>
+   </listitem>
+   </itemizedlist>
+</example>
+   </section>
+  </section>

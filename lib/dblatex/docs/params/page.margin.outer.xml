@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry xml:id="page.margin.outer">
+<refmeta>
+<refentrytitle>page.margin.outer</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname><parameter>page.margin.outer</parameter></refname>
+<refpurpose>The outer page margin</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <programlisting>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/page.margin.outer.xml"/></programlisting>
+</refsynopsisdiv>
+
+<refsection><info><title>Description</title></info>
+
+<para>The outer page margin is the distance from non-bound edge of the
+page to the outer edge of the last column of text.</para>
+
+<para>In left-to-right text direction,
+this is the right margin of recto (front side) pages.
+For single-sided output, it is the right margin
+of all pages.</para>
+
+<para>In right-to-left text direction,
+this is the left margin of recto pages.
+For single-sided output, this is the
+left margin of all pages.</para>
+
+</refsection>
+</refentry>

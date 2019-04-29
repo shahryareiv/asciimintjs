@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="xref.with.number.and.title">
+  <refmeta>
+    <refentrytitle>xref.with.number.and.title</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>xref.with.number.and.title</parameter></refname>
+    <refpurpose>Use number and title in cross references</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/xref.with.number.and.title.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>A cross reference may include the number (for example, the number of
+an example or figure) and the <sgmltag>title</sgmltag> which is a required child of some targets. This parameter inserts both the relevant number as well as
+the title into the link.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,42 @@
+<!-- Exemple de table avec des tailles fixes -->
+
+<informaltable>
+<tgroup cols="4" colsep="1" rowsep="1" align="left">
+<colspec colname="c1" colwidth="2cm">
+<colspec align="left" colwidth="2.5cm">
+<colspec align="right" colwidth="5cm">
+<colspec align="center" colwidth="3cm">
+<thead>
+<row>
+<entry>Colonne 1</entry>
+<entry>Colonne 2</entry>
+<entry>Colonne 3</entry>
+<entry>Colonne 4</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center" valign="top">à gauche (au niveau tgroup)
+</entry><entry align="center" valign="top">à gauche
+</entry><entry align="center" valign="top" morerows="1">à droite
+</entry><entry align="center" valign="top">cellule centrée
+</entry></row>
+<row>
+<entry align="center" valign="top">colonne de 2 cm
+</entry><entry align="center" valign="top">colonne de 2,5 cm
+</entry><entry align="center" valign="top" morerows="1">colonne de 4 cm
+</entry></row>
+<row>
+<entry align="center" valign="top">colonne de 2 cm
+</entry><entry align="center" valign="top" morerows="1">colonne de 2,5 cm
+</entry><entry align="center" valign="top">colonne de 4 cm
+</entry></row>
+<row>
+<entry align="center" valign="top">colonne de 2 cm
+</entry><entry align="center" valign="top">colonne de 4 cm
+</entry><entry align="center" valign="top">colonne de 4 cm
+</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+

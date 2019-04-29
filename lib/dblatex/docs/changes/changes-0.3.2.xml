@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Add the HTML table support. See <olink output="pdf"
+targetdoc="usermanual" targetptr="sec-html-table"></olink><ulink output="html"
+url="../manual/sec-table.html#sec-html-table">HTML Tables</ulink> for more
+details.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters:</para>
+
+<itemizedlist>
+<listitem>
+<para><parameter>default.table.rules</parameter>: parameter related to the new
+HTML table support.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+
+<listitem>
+<para>Improve the <filename>setup.py</filename> script in order to be able to
+build and distribute a dblatex egg package. See <olink output="pdf"
+targetdoc="usermanual" targetptr="sec-install-pypi"></olink><ulink output="html"
+url="../manual/sec-install-unix.html#sec-install-pypi">PyPI Install</ulink> for more
+details.</para>
+</listitem>
+
+<listitem>
+<para>Full support of the <option>--quiet</option> option.</para>
+</listitem>
+
+<listitem>
+<para>Add the ability to pass a user defined index style file to dblatex
+through the option <option>--indexstyle</option>.</para>
+</listitem>
+
+<listitem>
+<para>Make dblatex working in paranoid mode in order to function correctly
+with the TexLive 2010 distribution (output files only in the current
+directory).</para>
+</listitem>
+
+<listitem>
+<para>Some bug fixes.</para>
+</listitem>
+</itemizedlist>

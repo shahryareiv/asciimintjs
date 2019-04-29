@@ -1,0 +1,1 @@
+<xsl:param name="latex.output.revhistory">1</xsl:param>

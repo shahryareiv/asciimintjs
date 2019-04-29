@@ -1,0 +1,36 @@
+<informaltable>
+<!-- Table with fixed and unspecified column widths -->
+<tgroup cols="5" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<colspec align="left" colwidth="4cm"/>
+<colspec align="right" colwidth="5cm"/>
+<colspec align="center"/>
+<colspec align="center" colwidth="3cm"/>
+<thead>
+<row>
+<entry>Column 1</entry>
+<entry>Column 2</entry>
+<entry>Column 3</entry>
+<entry>Column 4</entry>
+<entry>Column 5</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>left aligned (tgroup order)
+</entry><entry>left aligned
+</entry><entry>right aligned
+</entry><entry>centered cell
+</entry><entry>in the centre
+</entry></row>
+<row>
+<entry>no specified width
+</entry><entry>4 cm column width
+</entry><entry>5 cm column width
+</entry><entry>no width
+</entry><entry>3 cm column width
+</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+

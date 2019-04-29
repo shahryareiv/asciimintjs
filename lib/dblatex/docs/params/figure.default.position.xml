@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="figure.default.position">
+  <refmeta>
+    <refentrytitle>figure.default.position</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>figure.default.position</parameter></refname>
+    <refpurpose>Figure float placement policy</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/figure.default.position.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Default figure float placement algorithm to apply. The default
+parameter value is [htbp] meaning that latex tries to place the figure where
+it occurs first (h, here), then at the top of the page (t), at the bottom of
+the page (b), and finally on the next page (p).</para>
+  </refsection>
+</refentry>

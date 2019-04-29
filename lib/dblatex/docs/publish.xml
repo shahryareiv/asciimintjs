@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section id="sec-pub-output">
+<title>Publishing Outputs</title>
+
+<section>
+<title>Publishing a single document</title>
+
+<para>The default publishing document units are: <sgmltag>article</sgmltag>
+and <sgmltag>book</sgmltag>. The output file name is optionnaly specified by
+the <option>-o</option> option.</para>
+
+<para>You can also publish an article or book subset, i.e. you can run dblatex
+on an XML input whose root element is a <sgmltag>chapter</sgmltag>, a
+<sgmltag>section</sgmltag>, or anything else. In this case, dblatex wraps the
+root element in an <sgmltag>article</sgmltag> or in a <sgmltag>book</sgmltag>
+and print out a warning. The output subset does not contain any front matter
+data found in an article or in a book (cover page, revision history, etc.),
+but it can contain some back matter materials like an index.</para>
+
+<programlisting>$ dblatex subset.xml 
+Build the book set list...
+Build the listings...
+XSLT stylesheets DocBook - LaTeX 2e (0.2.11)
+===================================================
+Warning: the root element is not an article nor a book
+Warning: element section(sec-subset) wrapped with article
+Build subset.pdf
+...
+   </programlisting>
+</section>
+
+<section id="sec-book-set">
+<title>Publishing a Set of Books</title>
+
+<para>When the document root element is a <sgmltag>set</sgmltag>, and when
+<parameter>set.book.num</parameter> is set to '<literal>all</literal>',
+dblatex ouputs a file per book contained in the set (and in the nested sets).
+In this case the <option>-o</option> option is ignored, and only the
+<option>-O</option> option is taken into account to specify the output
+directory that will contain the generated files.</para>
+
+<para>Instead of building all the books, the user can publish a single book
+from the set, by setting the <parameter>set.book.num</parameter> parameter to
+the absolute position of the book in the set(s). By default
+<parameter>set.book.num</parameter> is set to 1 to publish only the first
+book.</para>
+
+<para>The output file names are the book identifiers when
+<parameter>use.id.as.filename</parameter> is non zero, and when an identifier
+exists. If one of the two conditions are not met, the filename pattern is
+"<filename>book<replaceable>&lt;position in set&gt;</replaceable></filename>".
+</para>
+
+<para>Example: given the following set:</para>
+
+<para><programlisting language="XML">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;!-- setfile.xml. An example of set. All the books have an @id except one --&gt;
+
+&lt;!DOCTYPE set PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd"&gt;
+&lt;set lang="en" id="a_set" xmlns:xi="http://www.w3.org/2001/XInclude"&gt;
+&lt;title&gt;Set Title&lt;/title&gt;
+  &lt;set&gt;
+    &lt;xi:include href="book1.xml"/&gt;   &lt;!-- book #1 --&gt;
+    &lt;xi:include href="book2.xml"/&gt;   &lt;!-- book #2 --&gt;
+    &lt;xi:include href="book3.xml"/&gt;   &lt;!-- book #3 --&gt;
+  &lt;/set&gt;
+  &lt;set&gt;
+    &lt;set&gt;
+      &lt;xi:include href="bookA.xml"/&gt; &lt;!-- book #4 --&gt;
+      &lt;xi:include href="bookB.xml"/&gt; &lt;!-- book #5 --&gt;
+    &lt;/set&gt;
+    &lt;set&gt;
+      &lt;xi:include href="bookC.xml"/&gt; &lt;!-- book #6 --&gt;
+    &lt;/set&gt;
+  &lt;/set&gt;
+  &lt;set&gt;
+    &lt;xi:include href="book4.xml"/&gt;   &lt;!-- book #7 --&gt;
+    &lt;!-- The following book, at 8th position in the sets, has no @id --&gt;
+    &lt;xi:include href="book5.xml"/&gt;   &lt;!-- book #8 --&gt;
+    &lt;xi:include href="book6.xml"/&gt;   &lt;!-- book #9 --&gt;
+  &lt;/set&gt;
+&lt;/set&gt;</programlisting>Publishing this set produces 9 books in the
+<filename>pdfdir</filename> directory:</para>
+
+<programlisting>$ dblatex -O./pdfdir -Pset.book.num=all -Puse.id.as.filename=1 setfile.xml
+Build the book set list...
+Build the listings...
+XSLT stylesheets DocBook - LaTeX 2e (0.2.11)
+===================================================
+Output all the books from the set
+Writing sec1-mybook.rtex for book(sec1-mybook)
+Writing sec2-mybook.rtex for book(sec2-mybook)
+Writing sec3-mybook.rtex for book(sec3-mybook)
+Writing secA-mybook.rtex for book(secA-mybook)
+Writing book8.rtex for book
+Writing secC-mybook.rtex for book(secC-mybook)
+Writing sec4-mybook.rtex for book(sec4-mybook)
+Writing sec5-mybook.rtex for book(sec5-mybook)
+Writing sec6-mybook.rtex for book(sec6-mybook)
+...
+Files successfully built in '/path/to/set/pdfdir':
+sec1-mybook.pdf
+sec2-mybook.pdf
+sec3-mybook.pdf
+sec4-mybook.pdf
+book8.pdf
+sec6-mybook.pdf
+secA-mybook.pdf
+secB-mybook.pdf
+secC-mybook.pdf</programlisting>
+
+<para></para>
+</section>
+</section>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<table border="1" width="100%" rules="all" id="tbl-html">
+  <caption>An HTML Table</caption>
+  <colgroup span="2" valign="top" align="right">
+    <?dblatex bgcolor="red"?>
+  </colgroup>
+  <colgroup valign="bottom" align="left" width="5%">
+    <col align="right" span="2"/>
+    <col valign="top"/>
+  </colgroup>
+  <colgroup width="0*"><?dblatex bgcolor="yellow"?></colgroup>
+  <colgroup valign="bottom" align="left" width="15%"/>
+  <colgroup valign="bottom" align="left" width="10%"/>
+  <thead>
+    <tr> <td width="10%">Head A1</td><td>Head B1</td><td>Head C1</td> </tr>
+  </thead>
+  <tfoot>
+    <tr> <td width="10%">Foot A1</td><td>Foot B1</td><td>Foot C1</td> </tr>
+  </tfoot>
+
+  <tr>
+    <td width="10%">A1</td><td>B1</td><td>C1</td>
+  </tr>
+  <tr>
+    <td>A2</td><td bgcolor="yellow">B2</td><td colspan="3" rowspan="3">C-E2</td><td>F2</td>
+  </tr>
+  <tr>
+    <td>A3</td><td width="25.3">B3</td><td>F3</td><td rowspan="2">G3</td><td rowspan="3">H3</td>
+  </tr>
+  <tr>
+    <td>A4</td><td>B4</td><td>F4</td><td>G4</td>
+  </tr>
+  <tr>
+    <td>A5</td><td>B5</td><td width="5%">C5</td><td>D5</td>
+  </tr>
+  <tr bgcolor="blue">
+    <td>A6</td><td>B6</td><td>C6</td><td>D6</td><td>E6</td><td bgcolor="green">F6</td>
+  </tr>
+</table>

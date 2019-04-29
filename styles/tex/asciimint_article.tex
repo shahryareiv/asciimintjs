@@ -1,0 +1,99 @@
+
+\input{config.tex}
+\PassOptionsToPackage{authoryear}{natbib}
+\documentclass[a4paper,nobib,justified,notoc,table]{tufte-handout}%b5paper %notoc = my style!
+\usepackage{asciimint}
+
+
+%We only accept PDF! (then PNG!)
+\DeclareGraphicsExtensions{.pdf}%,.png
+
+%----------------------
+% Font Specifications
+%----------------------
+\ifxetex%
+    \RequirePackage[cmintegrals,cmbraces]{newtxmath}
+    \RequirePackage{ebgaramond-maths}  
+    \defaultfontfeatures{Mapping=tex-text, Numbers=Lining}   
+    \setmainfont[Contextuals=NoAlternate]{EB Garamond}%lining vs OldStyle
+    \setsansfont{Gill Sans}[BoldFont={* Bold}]  
+\else
+    \RequirePackage[lining]{ebgaramond}
+    \RequirePackage[cmintegrals,cmbraces]{newtxmath}
+    \RequirePackage{ebgaramond-maths}   %[lining]
+	\RequirePackage{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif    
+\fi
+
+
+
+
+%MAGICBEGINGLS
+\input{MAGICPLACEHOLDERGLS}
+%MAGICENDGLS
+
+%\fontencoding{T1}\fontfamily{gill}\fontseries{m}\fontshape{n}\selectfont 
+\providecommand{\thetopic}{}
+\providecommand{\thetopicNoHyphen}{}
+%MAGICBEGINTTL
+\renewcommand{\thetopic}{MAGICPLACEHOLDERTTL}%{\confTitle} %\linespread{3}\selectfont 
+\renewcommand{\thetopicNoHyphen}{MAGICPLACEHOLDERTTL}%{\confTitle}
+%MAGICENDTTL
+\title{\thetopic}%\protect\endnotemark[1]
+
+%MAGICBEGINAUT
+\author{MAGICPLACEHOLDERAUT}%\confAuthor%\protect\endnotemark[2
+%MAGICENDAUT
+
+
+\date{}%\today
+%MAGICBEGINDAT
+\date{MAGICPLACEHOLDERDAT}%\confAuthor%\protect\endnotemark[2
+%MAGICENDDAT
+
+
+\cfoot{}%Disables foot page numbers
+
+
+% \hypersetup{  
+% 	pdfauthor={\confAuthor},
+% 	pdfcopyright={\confCopyright},
+% 	pdftitle={\thetopicNoHyphen},
+% 	pdfkeywords={\confKeywords}
+% }
+
+\setcounter{secnumdepth}{2}%\confNumberingLevel
+
+%\myMarginInfo{last update: \today, email: sei@bth.se} %COMMENT THIS in submission!
+
+
+%% We do not need these, asciidoc translator does it automatically
+%\bibliographystyle{\bibliographyStyle} % plainnat
+%MAGICBEGINSRC
+%\bibliography{MAGICPLACEHOLDERBIB}
+\amBibFile{MAGICPLACEHOLDERBIB}%library.bib
+%MAGICENDSRC
+
+\begin{document}
+
+	%\mytitle
+	\amArticleTitle%
+
+	% NO MAIN MATTER in ARTICLE? \mainmatter %this fixes running headers
+
+
+	%MAGICBEGINSRC
+	\input{MAGICPLACEHOLDERSRC}
+	%MAGICENDSRC
+
+	% \endnotetext[1]{Last update: \today} 
+	% \endnotetext[2]{shahryar@eivazzadeh.com} 
+
+%% References with BibTeX database:
+	%MAGICBEGINSRC
+	% \bibliographystyle{\bibliographyStyle} % plainnat
+	%MAGICENDSRC
+	% \bibliography{MAGICPLACEHOLDERBIB}
+
+\end{document}
+
+

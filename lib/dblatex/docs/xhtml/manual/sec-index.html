@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Creating an Index</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="ch03.html" title="Chapter 3. Using dblatex" /><link rel="prev" href="sec-verbatim.html" title="Extending the Verbatim Rendering" /><link rel="next" href="ch03s13.html" title="Writing a Bibliography" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Creating an Index</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-verbatim.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Using dblatex</th><td width="20%" align="right"> <a accesskey="n" href="ch03s13.html">Next</a></td></tr></table><hr /></div><div class="section" title="Creating an Index"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sec-index"></a>Creating an Index</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="sec-index.html#sec-index-locale">Internationalized Indexes</a></span></dt></dl></div><p>
+   An index is automatically generated if some index entries (<code class="sgmltag-element">indexterm</code>), telling the terms to put in the index, are written in the document. The <code class="sgmltag-element">keyword</code> elements are not printed but are also added to the index.
+  </p><div class="example"><a id="idp4638200"></a><p class="title"><strong>Example 3.11. Index Entry</strong></p><div class="example-contents"><pre class="programlisting">
+&lt;para&gt;In this paragraph is described the function 
+&lt;function&gt;strcpy&lt;/function&gt;&lt;indexterm&gt;&lt;primary&gt;strcpy&lt;/primary&gt;&lt;/indexterm&gt;.
+&lt;/para&gt;
+  </pre></div></div><br class="example-break" /><p>
+   The index is put at the end of the document. It is not possible to put it somewhere else.
+  </p><div class="section" title="Internationalized Indexes"><div class="titlepage"><div><div><h3 class="title"><a id="sec-index-locale"></a>Internationalized Indexes</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="sec-index.html#sec-index-tools">Indexing Tools</a></span></dt><dt><span class="section"><a href="sec-index.html#idp2895016">Index Sorting</a></span></dt></dl></div><div class="section" title="Indexing Tools"><div class="titlepage"><div><div><h4 class="title"><a id="sec-index-tools"></a>Indexing Tools</h4></div></div></div><p><span class="command"><strong>Makeindex</strong></span> is used by default to build the index. It works fine for latin charset but it is not
+suited for other charsets and UTF-8 encoding. Moreover its sorting rule is
+not suited for many languages.</p><p>Therefore dblatex gives the possibility to use
+<span class="command"><strong>xindy</strong></span> that allows internationalized indexing. When xindy
+is used, the sorting language used is deduced from the Docbook document lang.
+If the document lang has no correspondance for xindy, or if you want to force
+the use of a specific sorting language, you can specify the sorting language
+to use. With Xindy you can
+also provide your own sort rules, but see the official Xindy documentation
+for more details.</p><p>A parameter is provided to use xindy instead of makeindex:
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><em class="parameter"><code>latex.index.tool</code></em>=xindy tells dblatex 
+to use xindy instead of makeindex (default).</p></li></ul></div><p>
+</p><p>A typical use is then:
+</p><pre class="screen">
+dblatex -P latex.index.tool=xindy file.xml
+</pre><p>
+</p></div><div class="section" title="Index Sorting"><div class="titlepage"><div><div><h4 class="title"><a id="idp2895016"></a>Index Sorting</h4></div></div></div><p><span class="command"><strong>Makeindex</strong></span> has very few methods to change its
+index sorting rules, except the <code class="option">-g</code> and <code class="option">-L</code> options which are not very hepfull in a DocBook context. On the contrary <span class="command"><strong>xindy</strong></span> can sort the index according to
+a specific language.</p><p>When xindy is used as index tool, <span class="command"><strong>dblatex</strong></span> passes to
+xindy through the xindy <code class="option">-L</code> option
+the language name corresponding to the <code class="literal">lang</code> attribute of the
+document. If the document has no language or if <span class="command"><strong>xindy</strong></span>
+does not support the document language, the default sorting is applied. In this
+case you can use the following parameter:
+
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><em class="parameter"><code>latex.index.language</code></em> specifies the
+language used to sort the indexes. Currently this parameter is relevant
+only for xindy. The language set must be known by xindy (see the xindy
+documentation). When not set (or empty) the sorting language to apply
+is deduced from the document lang.</p></li></ul></div><p>
+</p><p>The parameter can be used like any other like this:
+</p><pre class="screen">
+dblatex -P latex.index.language=german-din file.xml
+</pre><p>
+
+But it can also be used through an XSL configuration file to provide new mapping
+rules between ISO lang codes and known xindy languages, or override the current
+mapping done by dblatex as shown in <a class="xref" href="sec-index.html#xsl-index-lang" title="Example 3.12. XSL Index Language Setup">Example 3.12, “XSL Index Language Setup”</a>.
+</p><div class="example"><a id="xsl-index-lang"></a><p class="title"><strong>Example 3.12. XSL Index Language Setup</strong></p><div class="example-contents"><p>By default dblatex maps the <code class="literal">de</code> lang
+code to the language named <code class="literal">german-din</code>, and has no
+correspondance to map <code class="literal">cy</code> (Welsh) or <code class="literal">eu</code>
+(Basque). The following setup provides a mapping for these cases:
+</p><pre class="programlisting">
+&lt;xsl:param name="latex.index.tool"&gt;xindy&lt;/xsl:param&gt;
+
+&lt;xsl:param name="latex.index.language"&gt;
+  &lt;xsl:variable name="lang"&gt;
+    &lt;xsl:call-template name="l10n.language"&gt;
+      &lt;xsl:with-param name="target" select="(/set|/book|/article)[1]"/&gt;
+      &lt;xsl:with-param name="xref-context" select="true()"/&gt;
+    &lt;/xsl:call-template&gt;
+  &lt;/xsl:variable&gt;
+
+  &lt;!-- Define Xindy lang to use in specific cases --&gt;
+  &lt;xsl:choose&gt;
+  &lt;xsl:when test="$lang='de'"&gt;german-duden&lt;/xsl:when&gt;
+  &lt;xsl:when test="$lang='cy'"&gt;english&lt;/xsl:when&gt;
+  &lt;xsl:when test="$lang='eu'"&gt;french&lt;/xsl:when&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:param&gt;
+ </pre></div></div><br class="example-break" /></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-verbatim.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s13.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Extending the Verbatim Rendering </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Writing a Bibliography</td></tr></table></div></body></html>

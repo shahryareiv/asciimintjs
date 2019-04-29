@@ -1,0 +1,16 @@
+<xsl:attribute-set name="endnotes.properties.default">
+  <xsl:attribute name="package">endnotes</xsl:attribute>
+
+  <!-- No header: endnotes are embedded in another section -->
+  <xsl:attribute name="heading">\mbox{}\par</xsl:attribute>
+
+  <!-- Show end notes as a numbered list -->
+  <xsl:attribute name="font-size">\normalsize</xsl:attribute>
+  <xsl:attribute name="note-format">%
+  \leftskip=1.8em\noindent
+  \makebox[0pt][r]{\theenmark.~~\rule{0pt}{\baselineskip}}\ignorespaces
+  </xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="endnotes.properties"
+                   use-attribute-sets="endnotes.properties.default"/>

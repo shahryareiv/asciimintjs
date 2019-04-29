@@ -1,0 +1,54 @@
+<informaltable>
+<tgroup cols="4" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<thead>
+<row>
+<entry>Keyword</entry>
+<entry>Value</entry>
+<entry>Corresponding option</entry>
+<entry>Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>TexInputs</entry>
+<entry>Directories</entry>
+<entry>--texinputs</entry>
+<entry>Defines extra path to add to TEXINPUTS</entry>
+</row>
+<row>
+<entry>TexStyle</entry>
+<entry>Latex package name</entry>
+<entry>--texstyle</entry>
+<entry>Defines the LaTeX style package to use.</entry>
+</row>
+<row>
+<entry>TexPost</entry>
+<entry>Script file name</entry>
+<entry>--texpost</entry>
+<entry>Defines the LaTeX post process script to use.</entry>
+</row>
+<row>
+<entry>XslParam</entry>
+<entry>Parameter file name</entry>
+<entry>-p</entry>
+<entry>Defines the parameter file to use.</entry>
+</row>
+<row>
+<entry>FigInputs</entry>
+<entry>Directories</entry>
+<entry>-I</entry>
+<entry>Defines the extra figures path.</entry>
+</row>
+<row>
+<entry>Options</entry>
+<entry>Command line options</entry>
+<entry>None</entry>
+<entry>Lists command options to use by default when using the tool. The
+options specified by the parameter are directly passed to
+<command>dblatex</command></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+

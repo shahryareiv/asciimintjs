@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="endnotes.properties">
+  <refmeta>
+    <refentrytitle>endnotes.properties</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>endnotes.properties</parameter></refname>
+    <refpurpose>Properties of the latex package <package>endnotes</package> setup</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/endnotes.properties.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+<para>These properties are used to configure the <package>endnotes</package>
+package when the foonotes are printed as endnotes.
+Each attribute defines the content of the setup macros of the package.
+The user should always override the attributes of
+<sgmltag>endnotes.properties</sgmltag> and leave
+<sgmltag>endnotes.properties.default</sgmltag> untouched.
+See <xref linkend="sec-footnote-endnote"/> for
+more details.</para>
+
+  </refsection>
+    <refsection>
+    <title>See Also</title>
+    <para><parameter>footnote.as.endnote</parameter></para>
+  </refsection>
+
+</refentry>

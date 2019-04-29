@@ -1,0 +1,87 @@
+<itemizedlist>
+<listitem>
+<para>
+Better <sgmltag>figure</sgmltag> and <sgmltag>informalfigure</sgmltag>
+rendering:</para>
+<itemizedlist>
+<listitem>
+<para>Caption and title are printed separately, in a consistent way.</para>
+</listitem>
+<listitem>
+<para>Default image scaling is possible.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<para>Better <sgmltag>programlisting</sgmltag> and <sgmltag>screen</sgmltag>
+rendering:</para>
+<itemizedlist>
+<listitem>
+<para>All the attributes are supported</para>
+</listitem>
+<listitem>
+<para>A default verbatim layout is provided. The text is put in a framed box
+with a yellow background color.</para>
+</listitem>
+<listitem>
+<para>Long lines are wrapped.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<para>Minor improvements:</para>
+<itemizedlist>
+<listitem>
+<para>A breakline is forced after a <sgmltag>term</sgmltag> when it is immediately
+followed by a list.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<para>the following parameters are added:</para>
+<variablelist>
+<varlistentry><term>imagedata.default.scale</term>
+<listitem>
+<para>It defines the default scaling rule to
+apply on every <sgmltag>imagedata</sgmltag> that contains no scaling
+attribute.</para>
+<para>By default the parameter is set to 'pagebound', that is the images keep
+their natural size up to the page boundaries.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>figure.title.top</term>
+<listitem>
+<para>Set to 1 it specifies to put the title above
+the image. By default it is set to 0 (title below).</para>
+<note><para>This parameter has no effect if an explicit float
+style is used for the figures (e.g. ruled style), since the title position is
+then fixed by the chosen style.</para></note>
+</listitem>
+</varlistentry>
+<varlistentry><term>mediaobject.caption.style</term>
+<listitem>
+<para>Font style applied to the caption text. Default is slanted.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>literal.width.ignore</term>
+<listitem>
+<para>Set to 1 the programlisting and screen width attribute is ignored.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>literal.layout.options</term>
+<listitem>
+<para>Overwrite the default verbatim layout options.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>seg.item.separator</term>
+<listitem>
+<para>Defines the separator to use between several
+<sgmltag>segitem</sgmltag>s.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<para>Some bug fixes.</para>
+</listitem>
+</itemizedlist>

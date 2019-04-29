@@ -1,0 +1,1 @@
+<xsl:param name="latex.style">docbook</xsl:param>

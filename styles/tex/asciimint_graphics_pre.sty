@@ -1,0 +1,36 @@
+%-----------------------------------------------
+%Shahryar Graphics package (pre), configuration of graphics and tikz  things
+%use this (RequirePackage) before documentclass, do not forget to use asciimint_graphics then after
+%-----------------------------------------------
+
+\ProvidesPackage{asciimint_graphics_pre}[2017/09/13 Shahryar]
+
+\PassOptionsToPackage{cmyk,usenames,dvipsnames,svgnames,table}{xcolor}%cmyk print ready
+
+
+%I have the same in asciimint.sty
+\RequirePackage{ifpdf}
+\RequirePackage{ifxetex}
+\RequirePackage{ifluatex}
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
+
+%FIX luatex problem with standalone%
+\ifluatex
+	\RequirePackage{shellesc}                % implement \write18
+	\RequirePackage{pdftexcmds}              % fake \pdfshellescape so
+	\makeatletter                            % standalone knows about it
+	  \let\pdfshellescape\pdf@shellescape
+	\makeatother
+	\RequirePackage{luatex85}%remedy of luatex for standalone (for a while)
+\fi
+
+

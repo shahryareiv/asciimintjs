@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="segmentedlist.as.table">
+  <refmeta>
+    <refentrytitle>segmentedlist.as.table</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>segmentedlist.as.table</parameter></refname>
+    <refpurpose>Format segmented lists as tables?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/segmentedlist.as.table.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>If non-zero, <tag>segmentedlist</tag>s will be formatted as
+    tables. If you want a local setup for a specific segmentedlist you can use
+    the list-presentation Processing Instruction instead.</para>
+    <para>When formatted as table, some table Processing Instructions can be
+    used to customize the rendering.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <xref linkend="pi-dblatex_list-presentation"/>
+      </listitem>
+      <listitem>
+        <para>Inline presentation:
+        <itemizedlist>
+          <listitem><xref linkend="seg.item.separator" /></listitem>
+        </itemizedlist>
+        </para>
+      </listitem>
+      <listitem>
+        <para>Table presentation:
+        <itemizedlist>
+          <listitem><xref linkend="sec-table-width" /></listitem>
+          <listitem><xref linkend="newtbl.autowidth"/></listitem>
+          <listitem><xref linkend="default.table.width"/></listitem>
+          <listitem><xref linkend="pi-dblatex_colwidth"/></listitem>
+          <listitem><xref linkend="pi-dblatex_autowidth"/></listitem>
+          <listitem><xref linkend="pi-dblatex_table-width"/></listitem>
+        </itemizedlist>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

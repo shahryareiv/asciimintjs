@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using Processing Instructions</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="sec-custom.html" title="Chapter 4. Customization" /><link rel="prev" href="sec-param-value.html" title="Setting Command line Parameters" /><link rel="next" href="ch04s04.html" title="XSL User Stylesheet" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Using Processing Instructions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-param-value.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Customization</th><td width="20%" align="right"> <a accesskey="n" href="ch04s04.html">Next</a></td></tr></table><hr /></div><div class="section" title="Using Processing Instructions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sec-pi-usage"></a>Using Processing Instructions</h2></div></div></div><p>Dblatex has Processing Instructions (PI) which can modify the default 
+  document formatting. Usually these instructions alter the
+  output formatting of specific DocBook elements, like table cells.
+</p><p>To alter formatting globally it is better to set an
+  appropriate <a class="link" href="sec-custom.html#sec-param" title="Using XSL Parameters">stylesheet
+  parameter</a>.</p><p>Processing instructions are written
+  <code class="literal">&lt;?</code><em class="replaceable"><code>name</code></em>
+  <em class="replaceable"><code>content</code></em> <code class="literal">?&gt;</code>.  Most
+  often <em class="replaceable"><code>content</code></em> will have the form of one or more
+  XML attributes with a value, as follows:
+  <code class="literal">&lt;?</code><em class="replaceable"><code>name</code></em>
+  <em class="replaceable"><code>attribute</code></em><code class="literal">="</code><em class="replaceable"><code>value</code></em><code class="literal">" ?&gt;</code>.</p><p>The list of the available Processing Instructions are given in <a class="xref" href="sec-pis.html" title="Appendix B. Dblatex Processing Instruction Reference">Appendix B, <em>Dblatex Processing Instruction Reference</em></a>.</p><p>Here is an example of a PI used in a table:</p><div class="example"><a id="idp5681376"></a><p class="title"><strong>Example 4.1. Table width specified with a Processing Instruction</strong></p><div class="example-contents"><a id="lst-table-autowidth"></a><pre class="programlisting">&lt;informaltable&gt;<span class="bold"><strong>&lt;?dblatex table-width="autowidth.column: 1 3"?&gt;</strong></span>
+  &lt;tgroup cols="4" colsep="1" rowsep="1" align="left"&gt;
+  &lt;colspec colname="c1"/&gt;                 &lt;!-- automatic width is applied to column #1 --&gt;
+  &lt;colspec align="left" colwidth="*"/&gt;
+  &lt;colspec align="right" colwidth="5cm"/&gt; &lt;!-- automatic width is applied to column #3 --&gt;
+  &lt;colspec align="center" colwidth="3cm"/&gt;
+  ...
+&lt;/informaltable&gt;
+</pre></div></div><br class="example-break" /></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-param-value.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="sec-custom.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Setting Command line Parameters </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> XSL User Stylesheet</td></tr></table></div></body></html>

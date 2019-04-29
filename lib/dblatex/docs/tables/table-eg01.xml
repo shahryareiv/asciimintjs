@@ -1,0 +1,22 @@
+<informaltable>
+<!-- Basic table with two columns -->
+<tgroup cols="2" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<colspec align="center"/>
+<thead>
+<row>
+<entry>Column 1</entry>
+<entry>Column 2</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>left aligned</entry>
+<entry>centered cell</entry></row>
+<row>
+<entry>no specified width</entry>
+<entry>idem</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+

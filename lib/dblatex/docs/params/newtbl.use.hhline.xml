@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="newtbl.use.hhline">
+  <refmeta>
+    <refentrytitle>newtbl.use.hhline</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>newtbl.use.hhline</parameter></refname>
+    <refpurpose>Draw the horizontal lines with the <filename>hhline</filename> package</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/newtbl.use.hhline.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1, use the <filename moreinfo="none">hhline</filename> package to draw the table
+row separators instead of cline. Using <filename moreinfo="none">hhline</filename> seems more
+suited for colored tables.</para>
+  </refsection>
+</refentry>

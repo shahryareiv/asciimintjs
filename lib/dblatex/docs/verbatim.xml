@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section id="sec-verbatim">
+<title>Extending the Verbatim Rendering</title>
+
+<section id="sec-literal-options">
+<title>Dblatex Specific Options</title>
+
+<para>There are few attributes or options specific to
+<command>dblatex</command> to render verbatim blocks:</para>
+
+<itemizedlist>
+<listitem><para>The <sgmltag>role</sgmltag> attribute of
+<sgmltag>screen</sgmltag>, <sgmltag>programlisting</sgmltag>, and
+<sgmltag>literallayout</sgmltag> can take the following special values:
+
+<variablelist>
+<varlistentry>
+<term>wrap</term>
+<listitem>
+<para>The verbatim lines can break and wrap when they are longer than the
+available width. It is the default behaviour.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>overflow</term>
+<listitem>
+<para>The verbatim lines never break and go into the margin when they are too
+long.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>scale</term>
+<listitem>
+<para>The verbatim block is automatically scaled so that the longest line or
+specified column count
+fits in the available page width. See <xref linkend="sec-scale-verbatim"/>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</para></listitem>
+
+<listitem><para>The parameter <parameter>literal.role</parameter> can be used
+to set the default role to apply. By default the value is an empty string.
+</para>
+</listitem>
+
+<listitem><para>The parameter <parameter>literal.class</parameter> can be used
+to set the default <parameter>literallayout</parameter> class when
+no class attribute is given. By default the value is
+<literal>monospaced</literal>.</para></listitem>
+</itemizedlist>
+
+</section>
+<section id="sec-scale-verbatim">
+<title>Scaling Feature</title>
+
+<para>The user can scale the verbatim block so that the longest line fits in 
+the available page width, or so that the page contains at least a specified width expressed in columns.</para>
+
+<para>The scaling feature is enabled when the parameter <parameter>literal.extensions</parameter> is set as follow:
+
+<variablelist>
+<varlistentry>
+<term>scale</term>
+<listitem>
+<para>The scaling is performed only when the <sgmltag>role</sgmltag> attribute
+is set to "scale", or when the <sgmltag>role</sgmltag> attribute is not set and the parameter <parameter>literal.role</parameter> is set to "scale".</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>scale.by.width</term>
+<listitem>
+<para>The scaling is performed when the <sgmltag>role</sgmltag> attribute
+or <parameter>literal.role</parameter> is properly set, or when the attribute
+<sgmltag>width</sgmltag> is set. When width is set the block is scaled so that
+the specified width fits in the page width.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+<para>Here are some listing examples with several attribute combinations producing or not the scaling. In these examples the parameter <parameter>literal.extensions</parameter> is set to "scale.by.width".</para>
+
+<programlisting width="110">
+<![CDATA[<programlisting width="110">
+The listing is scaled and lines are wrapped after 110 characters. Check yourself: 
+
+123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1234567 9 123456789
+0         1         2         3         4         5         6         7         8         9         10        11       
+
+</programlisting>]]>
+</programlisting>
+
+<programlisting width="110" role="overflow">
+<![CDATA[<programlisting width="110" role="overflow">
+There is no scaling because the role has precedence over the width attribute:
+                                                                                                            
+123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1234567 9 123456789
+0         1         2         3         4         5         6         7         8         9         10        11       
+
+</programlisting>]]>
+</programlisting>
+
+<programlisting role="scale">
+<![CDATA[<programlisting role="scale">
+The listing is scaled to display the longest line with no break:
+                                                                                                            
+123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1234567 9 123456789
+0         1         2         3         4         5         6         7         8         9         10        11       
+
+</programlisting>]]>
+</programlisting>
+
+<programlisting width="110" role="scale">
+<![CDATA[<programlisting width="110" role="scale">
+The listing is scaled to fit up to 110 columns, and the lines are wrapped. In this case role is redundant because @width automatically produces scaling.
+                                                                                                            
+123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1234567 9 123456789
+0         1         2         3         4         5         6         7         8         9         10        11       
+
+</programlisting>]]>
+</programlisting>
+</section>
+<section>
+<title>Formatting embedded elements</title>
+
+<para>The programlisting and screen environments are supported by dblatex, but
+the implementation is rather conservative, that is, most of the elements
+embedded in such environments are not rendered like in normal environment
+(e.g. bold, enphasis, etc.). Only the contained text is printed out. For the
+elements whose rendering is lost, <command>dblatex</command> prints out a
+warning message.</para>
+
+<para>For example, let's compile the following programlisting fragment:</para>
+
+<programlisting>&lt;programlisting&gt;
+ 
+zone &lt;replaceable&gt;zone_name&lt;/replaceable&gt; 
+&lt;optional&gt;&lt;replaceable&gt;class&lt;/replaceable&gt;&lt;/optional&gt; { 
+    type delegation-only;
+};    
+ 
+&lt;/programlisting&gt;</programlisting>
+
+<para><command>dblatex</command> warns that the <sgmltag>optional</sgmltag>
+and <sgmltag>replaceable</sgmltag> elements are not supported (i.e. not
+rendered) in the programlisting:</para>
+
+<para><screen>$ dblatex progfrag.xml 
+Build the book set list...
+Build the listings...
+XSLT stylesheets DocBook - LaTeX 2e (devel)
+===================================================
+Warning: the root element is not an article nor a book
+Warning: programlisting wrapped with article
+replaceable not supported in programlisting or screen
+optional not supported in programlisting or screen
+replaceable not supported in programlisting or screen
+replaceable not supported in programlisting or screen
+optional not supported in programlisting or screen
+replaceable not supported in programlisting or screen
+...
+</screen></para>
+
+<para>If you want those elements be formatted in bold, or italic you need to
+override the templates used in <literal>latex.programlisting</literal> mode,
+as follow:</para>
+
+<para><programlisting>&lt;xsl:template match="replaceable|optional" mode="latex.programlisting"&gt;
+   &lt;xsl:param name="co-tagin" select="'&amp;lt;:'"/&gt; <co
+id="co-verb-par1" />
+   &lt;xsl:param name="rnode" select="/"/&gt;          <co id="co-verb-par2" />
+   &lt;xsl:param name="probe" select="0"/&gt;          <co id="co-verb-par3" />
+ 
+   &lt;xsl:call-template name="verbatim.boldseq"&gt; <co id="co-verb-template" />
+     &lt;xsl:with-param name="co-tagin" select="$co-tagin"/&gt;
+     &lt;xsl:with-param name="rnode" select="$rnode"/&gt;
+     &lt;xsl:with-param name="probe" select="$probe"/&gt;
+   &lt;/xsl:call-template&gt;
+&lt;/xsl:template&gt;</programlisting><calloutlist>
+<callout arearefs="co-verb-par1 co-verb-par2 co-verb-par3">
+<para>These parameters are required in <literal>latex.programlisting</literal>
+mode.</para>
+</callout>
+
+<callout arearefs="co-verb-template">
+<para>The predefined template makes bold the verbatim text of the
+element.</para>
+</callout>
+</calloutlist></para>
+
+<para>If formatting setup is not enough, you can also render these elements
+as if they were in a normal environment. To do this, you need to override the
+templates used in <literal>latex.programlisting</literal> mode, as
+follow:</para>
+
+<para><programlisting>&lt;xsl:template match="replaceable|optional" mode="latex.programlisting"&gt;
+   &lt;xsl:param name="co-tagin" select="'&amp;lt;:'"/&gt;
+   &lt;xsl:param name="rnode" select="/"/&gt;
+   &lt;xsl:param name="probe" select="0"/&gt;
+ 
+   &lt;xsl:call-template name="verbatim.embed"&gt; <co id="co-verb-template2" />
+     &lt;xsl:with-param name="co-tagin" select="$co-tagin"/&gt;
+     &lt;xsl:with-param name="rnode" select="$rnode"/&gt;
+     &lt;xsl:with-param name="probe" select="$probe"/&gt;
+   &lt;/xsl:call-template&gt;
+&lt;/xsl:template&gt; </programlisting><calloutlist>
+<callout arearefs="co-verb-template2">
+<para>To enable the normal mode rendering within a verbatim environment, call
+the verbatim.embed template, and pass the mandatory parameters.</para>
+</callout>
+</calloutlist></para>
+
+<para></para>
+</section>
+<section id="sec-literal-env">
+<title>Creating a new Verbatim Environment</title>
+
+<para><command>dblatex</command> heavily relies upon the listing latex package
+to display the <sgmltag>screen</sgmltag>, <sgmltag>programlisting</sgmltag>, and
+<sgmltag>literallayout</sgmltag> blocks.</para>
+
+<para>The global listing setup can be overwritten with
+<parameter>literal.layout.options</parameter> but the user can also provide its
+own listing environment to use instead of the default environment, by using the following procedure:</para>
+<procedure>
+<step><para>Create the new listing environment in a customized latex style, like
+the following example. It is required that the environment name starts with the
+string <literal>"lst"</literal>. If not, <command>dblatex</command> raises an
+error because it cannot recognize it as a special verbatim environment.
+<programlisting language="tex"><![CDATA[
+%%
+%% This style is derivated from the db2latex one
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mystyle}[2012/02/03 My DocBook Style]
+
+%% Just use the original package and pass the options
+\RequirePackageWithOptions{db2latex}
+
+%% New listing environment doing what I want
+\lstnewenvironment{lstblock}[1][]
+  {\lstset{numbers=left,numberstyle=\tiny,float,#1}}
+  {}
+]]></programlisting>
+</para></step>
+<step><para>Specify to <command>dblatex</command> the listing environment name
+through the <parameter>literal.environment</parameter> parameter, either on the
+command line or with a user XSL stylesheet.
+<screen><![CDATA[
+$ dblatex -s mystyle.sty -P literal.environment=lstblock file.xml
+]]></screen>
+
+</para></step>
+</procedure>
+
+</section>
+</section>

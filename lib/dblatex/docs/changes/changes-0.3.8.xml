@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Add the endnotes feature: the <sgmltag>footnote</sgmltag>s can be turned
+to be end notes in the printed document. Some parameters are added to configure
+the endnotes display. <phrase output="pdf">See <olink targetdoc="usermanual"
+          targetptr="sec-footnote-endnote"/> for more details.</phrase></para>
+</listitem>
+<listitem>
+<para>Add an XML configuration file format: it replaces the simple text
+  configuration format. It gives a more consistent setup and more possibilities
+  to configure dblatex, like overriding the commands used to convert images.
+  <phrase output="pdf">See <olink targetdoc="usermanual"
+          targetptr="sec-xml-config"/> for more details.</phrase>
+</para>
+</listitem>
+<listitem>
+<para>Add the parameter <parameter>figure.default.align</parameter> to change
+the default <sgmltag>figure</sgmltag> and <sgmltag>informalfigure</sgmltag>
+alignment.</para>
+</listitem>
+<listitem>
+<para>Add a workaround to fix a Xindy bug appearing when ranges of an index
+overlap.</para>
+</listitem>
+<listitem>
+<para>Add a workaround to fix the incompatibilities between Xindy and the new
+  hyperref when hyperindex is on.</para>
+</listitem>
+<listitem>
+<para>Add the possibility to build a document from a tex file that includes
+  other tex files.</para>
+</listitem>
+<listitem>
+<para>Allow a <sgmltag>segmentedlist</sgmltag> to be formatted as a table if
+the parameter <parameter>segmentedlist.as.table</parameter> is set to '1' or if
+the <sgmltag class="xmlpi">list-presentation</sgmltag> Processing
+Instruction is set to 'table' (Karl O. Pinc patch). Other PIs can be used
+if a segmentedlist is formatted as a table.
+  <phrase output="pdf">See <olink targetdoc="usermanual"
+          targetptr="sec-pi-lists"/> for more details.</phrase></para>
+</listitem>
+<listitem>
+<para>Internal refactoring of Processing Instructions.</para>
+</listitem>
+<listitem>
+<para>Add a 'pdfscan.py' script to find out the fonts and their size used in a
+PDF file, and find out how the PDF is built.</para>
+</listitem>
+<listitem>
+<para>Fix some bugs:
+
+<itemizedlist>
+<listitem><para>Fix a bug when passing a dialect language (e.g. '[5.2]Lua')
+  to <sgmltag>programlisting</sgmltag>.</para>
+</listitem>
+<listitem><para>Link the 'nn' lang to 'norwegian' for Xindy.</para>
+</listitem>
+<listitem>
+<para>Fix the alignment of <sgmltag>imagedata</sgmltag>> that is now handled
+even without an explicit viewport.</para>
+</listitem>
+<listitem>
+<para>Take into account the <sgmltag>caption</sgmltag>> align attribute.</para>
+</listitem>
+<listitem>
+<para>Fix <sgmltag>seealso</sgmltag> in <sgmltag>indexterm</sgmltag>.</para>
+</listitem>
+<listitem>
+<para>Fix a bug about ordered lists that loose their counter in 
+<sgmltag>informaltable</sgmltag>s.</para>
+</listitem>
+<listitem>
+<para>Put the <sgmltag>dedication</sgmltag>s in the book front matter
+(was in the body matter).</para>
+</listitem>
+<listitem>
+<para>Add the <parameter>table.continue.caption</parameter> parameter to fix
+the hardcoded 'continued' caption used for tables covering several pages
+(Ricard Mones patch).</para>
+</listitem>
+<listitem>
+<para>Fix SF bug #102: the figure paths used in windows.</para>
+</listitem>
+<listitem>
+<para>Fix SF bug #111: adapt the file paths used in windows by saxon or
+xsltproc.</para>
+</listitem>
+<listitem>
+<para>Fix dbk_locale.sty to be an ASCII file.</para>
+</listitem>
+<listitem>
+<para>Correctly strip spaces for docbook 5 elements.</para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+
+</itemizedlist>

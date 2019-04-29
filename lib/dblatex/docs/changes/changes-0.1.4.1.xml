@@ -1,0 +1,26 @@
+<itemizedlist>
+<listitem>
+<para>Significant <sgmltag>imagedata</sgmltag> improvement: almost all the
+attributes (align, valign, depth, width, scale, scalefit, contentdepth,
+contentwidth) are correctly managed. However percentage used for both contentdepth and
+contentwidth is not managed (only contentwidth percentage is then applied).</para>
+</listitem>
+<listitem>
+<para>Dblatex tries to automatically detect the image file formats of the
+included graphics, and convert them if necessary (and if possible) to be compatible with
+the TeX backend driver. It is usefull when several image formats are used within the
+same document, in which case the <option>-f
+<replaceable>fig_format</replaceable></option> cannot be used.</para>
+</listitem>
+<listitem>
+<para>The dblatex option <option>-P <replaceable>param=value</replaceable></option> is
+added. One can then set XSL parameter values directly from the command line. This is an alternative to the <option>-p <replaceable>custom.xsl</replaceable></option> option.
+</para>
+</listitem>
+<listitem>
+<para>The <sgmltag>align</sgmltag> attribute is now managed for table cells spanned on
+several columns (i.e. row entries with <sgmltag>nameend</sgmltag> or
+<sgmltag>spanname</sgmltag> attributes).</para>
+</listitem>
+</itemizedlist>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.hyperparam">
+  <refmeta>
+    <refentrytitle>latex.hyperparam</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.hyperparam</parameter></refname>
+    <refpurpose>Options/parameters passed to <filename>hyperref</filename></refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.hyperparam.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection id="sec-hyperparam">
+    <title>Description</title>
+     <para>
+    This parameter gives the options to pass to the LaTeX hyperref package. No validity check is done. 
+   </para>
+   <para>
+    For instance, the Table of Content rendering (link color, etc.) can be changed. Look at the hyperref.sty documentation to know all the hyperref options available. 
+   </para>
+<example><title>Configuring with latex.hyperparam</title>
+   <programlisting>
+<![CDATA[<?xml version='1.0' encoding="iso-8859-1"?>
+]]><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'>
+]]><![CDATA[ 
+]]><![CDATA[<!-- We want TOC links in the titles (not in the page numbers), and blue. 
+]]><![CDATA[ -->
+]]><![CDATA[<xsl:param name="latex.hyperparam">colorlinks,linkcolor=blue</xsl:param>
+]]><![CDATA[
+]]><![CDATA[</xsl:stylesheet>
+]]>   </programlisting>
+</example>
+  </refsection>
+</refentry>

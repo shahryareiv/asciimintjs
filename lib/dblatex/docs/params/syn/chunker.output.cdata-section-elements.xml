@@ -1,0 +1,1 @@
+<xsl:param name="chunker.output.cdata-section-elements" select="''"/>

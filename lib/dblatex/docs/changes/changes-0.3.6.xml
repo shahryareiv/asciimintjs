@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Make dblatex work with <command>Xindy</command>, for xetex and pdftex backends. Xindy is selected through the <parameter>latex.index.tool</parameter> parameter, and it's sorting is aware of the language used that can be set through the <parameter>latex.index.language</parameter> parameter. <phrase output="pdf">See <olink targetdoc="usermanual" targetptr="sec-index-tools"/> for more details.</phrase>. This feature fixes the Debian bug #756386.</para>
+</listitem>
+
+<listitem>
+<para>Allow the Texpost script to be a python plugin. <phrase output="pdf">See <olink targetdoc="usermanual" targetptr="sec-texpost-py"/> for more details.</phrase></para>
+</listitem>
+
+<listitem>
+<para>SF bugs fixed: #74, #110.</para>
+</listitem>
+
+<listitem>
+<para>Debian bugs fixed: #771473, #684393.</para>
+</listitem>
+</itemizedlist>

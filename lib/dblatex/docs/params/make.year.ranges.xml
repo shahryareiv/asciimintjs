@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="make.year.ranges">
+  <refmeta>
+    <refentrytitle>make.year.ranges</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>make.year.ranges</parameter></refname>
+    <refpurpose>Collate copyright years into ranges?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/make.year.ranges.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>If non-zero, copyright years will be collated into ranges. Parameter
+taken from the DocBook XSL stylesheets.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE para PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<para>The formula <xref linkend="eq-with-title"/> below:
+  <equation id="eq-with-title">
+  <title>Simple Formula</title>
+    <alt>\[C = \alpha + \beta Y^{\gamma} + \epsilon\]</alt>
+    <graphic fileref="figures/eq1"/>
+  </equation>
+is displayed in a block with a title. Its XML source is:</para>

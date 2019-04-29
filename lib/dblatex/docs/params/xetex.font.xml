@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="xetex.font">
+  <refmeta>
+    <refentrytitle>xetex.font</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>xetex.font</parameter></refname>
+    <refpurpose>Specifies the fonts that XeTeX must use</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/xetex.font.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Font specification for XeTeX. Meaningful only when the xetex backend
+    is used. By default the parameter sets the XeTeX configuration from the
+    parameters <parameter>body.font.family</parameter>,
+    <parameter>sans.font.family</parameter>, and
+    <parameter>monospace.font.family</parameter> but you can completely
+    override it to define a more complex setup.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>body.font.family</parameter>,
+    <parameter>sans.font.family</parameter>,
+    <parameter>monospace.font.family</parameter></para>
+  </refsection>
+ </refentry>

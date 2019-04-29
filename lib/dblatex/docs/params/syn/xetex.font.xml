@@ -1,0 +1,6 @@
+<xsl:param name="xetex.font">
+  <xsl:value-of select="concat('\setmainfont{',$body.font.family,'}&#10;')"/>
+  <xsl:value-of select="concat('\setsansfont{',$sans.font.family,'}&#10;')"/>
+  <xsl:value-of
+       select="concat('\setmonofont{',$monospace.font.family,'}&#10;')"/>
+</xsl:param>

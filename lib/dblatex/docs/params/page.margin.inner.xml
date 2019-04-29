@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry xml:id="page.margin.inner">
+<refmeta>
+<refentrytitle>page.margin.inner</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname><parameter>page.margin.inner</parameter></refname>
+<refpurpose>The inner page margin</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <programlisting>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/page.margin.inner.xml"/></programlisting>
+</refsynopsisdiv>
+
+<refsection><info><title>Description</title></info>
+
+<para>The inner page margin is the distance from bound edge of the
+page to the first column of text. </para>
+
+<para>The inner page margin is the distance from bound edge of the
+page to the outer edge of the first column of text.</para>
+
+<para>In left-to-right text direction,
+this is the left margin of recto (front side) pages.
+For single-sided output, it is the left margin
+of all pages.</para>
+
+<para>In right-to-left text direction,
+this is the right margin of recto pages.
+For single-sided output, this is the
+right margin of all pages.</para>
+</refsection>
+</refentry>

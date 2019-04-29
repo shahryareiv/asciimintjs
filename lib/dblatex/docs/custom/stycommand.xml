@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<informaltable>
+<tgroup cols="2" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<thead>
+<row>
+<entry>Command</entry>
+<entry>Description</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>\DBKreference</entry>
+<entry>mapped to <sgmltag>pubsnumber</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKsite</entry>
+<entry>mapped to <sgmltag>address</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKcopyright</entry>
+<entry>mapped to <sgmltag>copyright</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKdate</entry>
+<entry>mapped to <sgmltag>date</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKedition</entry>
+<entry>mapped to <sgmltag>edition</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKpubdate</entry>
+<entry>mapped to <sgmltag>pubdate</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKsubtitle</entry>
+<entry>mapped to <sgmltag>subtitle</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKreleaseinfo</entry>
+<entry>mapped to <sgmltag>releaseinfo</sgmltag></entry>
+</row>
+<row>
+<entry>\DBKlegalnotice</entry>
+<entry>environment mapped to a <sgmltag>legalnotice</sgmltag>. The legal notices
+are all put into the \DBKlegalblock command. It is up to the latex stylesheet to
+decide where to put it in the document.</entry>
+</row>
+<row>
+<entry>\DBKlegalblock</entry>
+<entry>wrapper command for the \DBKlegalnotice environments, used by the latex
+stylesheet to decide where to put the legal notices in the document.</entry>
+</row>
+<row>
+<entry>\DBKindexation</entry>
+<entry>This command contains the
+<sgmltag>othercredit</sgmltag> information translated to latex by the XSL.
+This command must be placed where the othercredit shall appear in the
+document.</entry>
+</row>
+<row>
+<entry>\DBKindtable</entry>
+<entry>This environnement must be defined by the
+user to render the <sgmltag>othercredit</sgmltag> list. It can be displayed as
+a table, listitem, description list, or anything that suits your need.
+</entry>
+</row>
+<row>
+<entry>\DBKinditem</entry>
+<entry>This is an <sgmltag>othercredit</sgmltag> item.</entry>
+</row>
+<row>
+<entry>\DBKrevtable</entry>
+<entry>This environnement must be defined by the
+user to render the <sgmltag>revhistory</sgmltag> table. Untill now it is not
+really possible to customize it, since it must be a table with four columns,
+each column for a <sgmltag>revhistory</sgmltag> piece of information.
+</entry>
+</row>
+<row>
+<entry>float example</entry>
+<entry>This float is expected to be defined, and
+is mapped to <sgmltag>example</sgmltag>. It is not defined by default by the
+dbk_core package to allow the user to define its rendering (ruled or not,
+etc.)
+</entry>
+</row>
+<row>
+<entry>float dbequation</entry>
+<entry>This float is expected to be defined, and
+is mapped to <sgmltag>equation</sgmltag>. It is not defined by default by the
+dbk_core package to allow the user to define its rendering (ruled or not,
+etc.)
+</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+

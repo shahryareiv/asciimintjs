@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="annotation.support">
+  <refmeta>
+    <refentrytitle>annotation.support</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>annotation.support</parameter></refname>
+    <refpurpose>Enable the <sgmltag>annotation</sgmltag> support</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/annotation.support.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1 the experimental DocBook 5 <sgmltag>annotation</sgmltag>
+support is enabled.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="co.linkends.show">
+  <refmeta>
+    <refentrytitle>co.linkends.show</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>co.linkends.show</parameter></refname>
+    <refpurpose>Show the references to calloutlist items next to the markup</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/co.linkends.show.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Next to a callout markup the links to the corresponding calloutlist
+items are shown when the parameter is set to 1. Set to 0 the links are not
+shown.</para>
+  </refsection>
+</refentry>

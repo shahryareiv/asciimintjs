@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="http://dblatex.sourceforge.net/config" xmlns="http://relaxng.org/ns/structure/1.0">
+  <start>
+    <ref name="config"/>
+  </start>
+  <define name="config">
+    <element name="config">
+      <optional>
+        <attribute name="version"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="latex"/>
+          <ref name="xslt"/>
+          <ref name="imagedata"/>
+          <ref name="options"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!--
+    <latex> element and children syntaxes 
+    
+  -->
+  <define name="latex">
+    <element name="latex">
+      <empty/>
+      <zeroOrMore>
+        <choice>
+          <ref name="texinputs"/>
+          <ref name="bibinputs"/>
+          <ref name="bstinputs"/>
+          <ref name="backend"/>
+          <ref name="texstyle"/>
+          <ref name="texpost"/>
+          <ref name="indexstyle"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.modname">
+    <attribute name="use"/>
+  </define>
+  <define name="attlist.filepath">
+    <attribute name="fileref"/>
+  </define>
+  <define name="attlist.mod_or_file">
+    <choice>
+      <ref name="attlist.modname"/>
+      <ref name="attlist.filepath"/>
+    </choice>
+  </define>
+  <define name="backend">
+    <element name="backend">
+      <ref name="attlist.modname"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="texstyle">
+    <element name="texstyle">
+      <ref name="attlist.mod_or_file"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="texpost">
+    <element name="texpost">
+      <ref name="attlist.mod_or_file"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="indexstyle">
+    <element name="indexstyle">
+      <ref name="attlist.filepath"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="texinputs">
+    <element name="texinputs">
+      <text/>
+    </element>
+  </define>
+  <define name="bibinputs">
+    <element name="bibinputs">
+      <text/>
+    </element>
+  </define>
+  <define name="bstinputs">
+    <element name="bstinputs">
+      <text/>
+    </element>
+  </define>
+  <!--
+    <xslt> element and children syntaxes 
+    
+  -->
+  <define name="xslt">
+    <element name="xslt">
+      <zeroOrMore>
+        <choice>
+          <ref name="stylesheet"/>
+          <ref name="engine"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="stylesheet">
+    <element name="stylesheet">
+      <ref name="attlist.filepath"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="engine">
+    <element name="engine">
+      <ref name="attlist.engine"/>
+      <optional>
+        <choice>
+          <ref name="commandchain"/>
+          <ref name="command"/>
+        </choice>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.engine">
+    <choice>
+      <ref name="attlist.modname"/>
+      <attribute name="param-format"/>
+    </choice>
+  </define>
+  <!--
+    <imagedata> element and children syntaxes 
+    
+  -->
+  <define name="imagedata">
+    <element name="imagedata">
+      <zeroOrMore>
+        <choice>
+          <ref name="figpath"/>
+          <ref name="figformat"/>
+          <ref name="formatrule"/>
+          <ref name="converter"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="figpath">
+    <element name="figpath">
+      <ref name="attlist.filepath"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="figformat">
+    <element name="figformat">
+      <text/>
+    </element>
+  </define>
+  <define name="formatrule">
+    <element name="formatrule">
+      <ref name="attlist.formatrule"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.formatrule">
+    <optional>
+      <attribute name="dst"/>
+    </optional>
+    <optional>
+      <attribute name="docformat">
+        <choice>
+          <value>dvi</value>
+          <value>ps</value>
+          <value>pdf</value>
+          <value>*</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="backend"/>
+    </optional>
+  </define>
+  <define name="converter">
+    <element name="converter">
+      <ref name="attlist.converter"/>
+      <choice>
+        <ref name="commandchain"/>
+        <ref name="command"/>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.converter">
+    <optional>
+      <attribute name="src"/>
+    </optional>
+    <optional>
+      <attribute name="dst"/>
+    </optional>
+    <optional>
+      <attribute name="docformat">
+        <choice>
+          <value>dvi</value>
+          <value>ps</value>
+          <value>pdf</value>
+          <value>*</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="backend"/>
+    </optional>
+  </define>
+  <!--
+    General <command> syntax
+    
+  -->
+  <define name="commandchain">
+    <element name="commandchain">
+      <oneOrMore>
+        <ref name="command"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="command">
+    <element name="command">
+      <ref name="attlist.command"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.command">
+    <optional>
+      <attribute name="input"/>
+    </optional>
+    <optional>
+      <attribute name="output"/>
+    </optional>
+    <optional>
+      <attribute name="shell">
+        <choice>
+          <value>0</value>
+          <value>1</value>
+          <value>false</value>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!--
+    <options> syntax
+    
+  -->
+  <define name="options">
+    <element name="options">
+      <text/>
+    </element>
+  </define>
+</grammar>

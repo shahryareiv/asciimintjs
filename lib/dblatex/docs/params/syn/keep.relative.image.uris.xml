@@ -1,0 +1,1 @@
+<xsl:param name="keep.relative.image.uris" select="0"/>

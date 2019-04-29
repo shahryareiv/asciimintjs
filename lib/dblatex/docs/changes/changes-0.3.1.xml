@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Improve the table rendering by adding the support to the tabularx
+environment and improving the automatic column width feature. See 
+<olink output="pdf" targetdoc="usermanual"
+targetptr="sec-autowidth"/><ulink output="html"
+url="../manual/sec-table.html#sec-autowidth">Automatic Width</ulink> and
+<olink output="pdf" targetdoc="usermanual"
+targetptr="sec-tabstyle"/><ulink output="html"
+url="../manual/sec-table.html#sec-tabstyle">Table LaTeX Styles</ulink>
+</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters:</para>
+
+<itemizedlist>
+<listitem>
+<para><parameter>linenumbering.scope</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>linenumbering.default</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>linenumbering.everyNth</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>table.default.tabstyle</parameter>.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+
+</itemizedlist>

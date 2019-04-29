@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.biblio.output">
+  <refmeta>
+    <refentrytitle>latex.biblio.output</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.biblio.output</parameter></refname>
+    <refpurpose>Defines how the BibTeX bibliographic entries are printed out</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.biblio.output.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The available print mode values are:
+    <xi:include href="../biblio.xml"
+                xpointer="xpointer(id('biblio-output-modes'))"
+                xmlns:xi="http://www.w3.org/2001/XInclude" />
+    </para>
+    <para>The default print mode is 'all'.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem><xref linkend="sec-bibtex"/></listitem>
+      <listitem><xref linkend="pi-bibtex" /></listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

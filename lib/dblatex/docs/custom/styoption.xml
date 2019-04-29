@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<informaltable>
+<tgroup cols="2" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<thead>
+<row>
+<entry>Option</entry>
+<entry>Role</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center" valign="top">hyperlink, nohyperlink</entry>
+<entry align="center" valign="top">Indicates if links in the document are provided or not</entry>
+</row>
+<row>
+<entry align="center" valign="top">article, book</entry>
+<entry align="center" valign="top">The document is an <sgmltag>article</sgmltag> or a <sgmltag>book</sgmltag></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>

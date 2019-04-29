@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>dblatex</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="ch03.html#idp5045224" title="Reference" /><link rel="prev" href="ch03.html#idp5045224" title="Reference" /><link rel="next" href="sec-style.html" title="Output Formatting Style" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">dblatex</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html#idp5045224">Prev</a> </td><th width="60%" align="center">Reference</th><td width="20%" align="right"> <a accesskey="n" href="sec-style.html">Next</a></td></tr></table><hr /></div><div class="refentry" title="dblatex"><a id="ref-dblatex"></a><div class="titlepage"></div><div class="refnamediv"><h2><span class="refentrytitle">dblatex</span></h2><p>dblatex — 
+      convert <span class="application">DocBook</span> to
+      <span class="application">LaTeX</span>, <span class="application">DVI</span>,
+      <span class="application">PostScript</span>, and <span class="application">PDF</span>
+    </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">dblatex</code>  [<code class="option">options</code>]  {<em class="replaceable"><code>file</code></em> | -} </p></div></div><div class="refsection" title="Description"><a id="idp4823424"></a><h2>Description</h2><p>
+      <span class="command"><strong>dblatex</strong></span> is a program that transforms your
+      <span class="application">SGML</span>/<span class="application">XML</span>
+      <span class="application">DocBook</span> documents to
+      <span class="application">DVI</span>, <span class="application">PostScript</span> or
+      <span class="application">PDF</span> by translating them into pure
+      <span class="application">LaTeX</span> as a first process.
+      <span class="application">MathML 2.0</span> markups are supported, too.
+      
+    </p></div><div class="refsection" title="Options"><a id="idp12590152"></a><h2>Options</h2><p>
+      A summary of options is included below. 
+    </p><div class="variablelist"><dl><dt><span class="term"><code class="option">-h</code>, </span><span class="term"><code class="option">--help</code></span></dt><dd>Show a help message and exit.</dd><dt><span class="term"><code class="option">-b <em class="replaceable"><code>backend</code></em></code>, </span><span class="term">
+          <code class="option">--backend=<em class="replaceable"><code>backend</code></em></code>
+        </span></dt><dd>
+            Backend driver to use: <em class="parameter"><code>pdftex</code></em> (default),
+            <em class="parameter"><code>dvips</code></em>, or <em class="parameter"><code>xetex</code></em>.
+            <span>
+            See also <a class="xref" href="ch01s05.html#sec-process" title="Backend Drivers">the section called “Backend Drivers”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-B</code>, </span><span class="term"><code class="option">--no-batch</code></span></dt><dd>All the tex output is printed.</dd><dt><span class="term"><code class="option">-c <em class="replaceable"><code>config</code></em></code>, </span><span class="term"><code class="option">-S <em class="replaceable"><code>config</code></em></code>, </span><span class="term"><code class="option">--config=<em class="replaceable"><code>config</code></em></code></span></dt><dd>Configuration file. A configuration file can be used to group
+          all the options and customizations to apply. <span>See
+          <a class="xref" href="sec-specs.html" title="Dblatex Configuration File">the section called “Dblatex Configuration File”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--debug</code></span></dt><dd>
+            Debug mode: Keep the temporary directory in which dblatex actually
+            works. <span><a class="xref" href="sec-custom-latex.html#sec-debug" title="Debugging your Style">the section called “Debugging your Style”</a> explains how
+            you can use it.</span>
+          </dd><dt><span class="term"><code class="option">-D</code>, </span><span class="term"><code class="option">--dump</code></span></dt><dd>
+            Dump the error stack when an error occurs (debug purpose).
+          </dd><dt><span class="term"><code class="option">-e <em class="replaceable"><code>indexstyle</code></em></code>, </span><span class="term"><code class="option">--indexstyle <em class="replaceable"><code>indexstyle</code></em></code></span></dt><dd>
+            Index style file to pass to <span class="command"><strong>makeindex</strong></span> instead of
+            the dblatex default index style.
+          </dd><dt><span class="term"><code class="option">-f <em class="replaceable"><code>figure_format</code></em></code>, </span><span class="term">
+          <code class="option">--fig-format=<em class="replaceable"><code>figure_format</code></em></code>
+        </span></dt><dd>
+            Input figure format: <em class="parameter"><code>fig</code></em>,
+            <em class="parameter"><code>eps</code></em>.  Used when not deduced from figure file
+            extension. <span>See also
+            <a class="xref" href="sec-figinclude.html#sec-figconv" title="Converting on the fly">the section called “
+    Converting on the fly
+   ”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-F <em class="replaceable"><code>input_format</code></em></code>, </span><span class="term">
+          <code class="option">--input-format=<em class="replaceable"><code>input_format</code></em></code>
+        </span></dt><dd>
+            Input file format: <em class="parameter"><code>sgml</code></em>,
+            <em class="parameter"><code>xml</code></em> (default).
+          </dd><dt><span class="term"><code class="option">-i <em class="replaceable"><code>texinputs</code></em></code>, </span><span class="term">
+          <code class="option">--texinputs <em class="replaceable"><code>texinputs</code></em></code>
+        </span></dt><dd>Path added to <code class="envar">TEXINPUTS</code></dd><dt><span class="term"><code class="option">-I <em class="replaceable"><code>figure_path</code></em></code>, </span><span class="term">
+          <code class="option">--fig-path=<em class="replaceable"><code>figure_path</code></em></code>
+        </span></dt><dd>Additional lookup path of the figures. <span>See <a class="xref" href="sec-figinclude.html#sec-lookup" title="Paths Lookup">the section called “
+    Paths Lookup
+   ”</a>.</span></dd><dt><span class="term"><code class="option">-l <em class="replaceable"><code>bst_path</code></em></code>, </span><span class="term">
+          <code class="option">--bst-path=<em class="replaceable"><code>bst_path</code></em></code>
+        </span></dt><dd>Additional lookup path of the BibTeX styles. <span>See <a class="xref" href="ch03s13.html#sec-bibtex" title="Using BibTeX Databases">the section called “Using BibTeX Databases”</a>.</span></dd><dt><span class="term"><code class="option">-L <em class="replaceable"><code>bib_path</code></em></code>, </span><span class="term">
+          <code class="option">--bib-path=<em class="replaceable"><code>bib_path</code></em></code>
+        </span></dt><dd>Additional lookup path of the BibTeX databases. <span>See <a class="xref" href="ch03s13.html#sec-bibtex" title="Using BibTeX Databases">the section called “Using BibTeX Databases”</a>.</span></dd><dt><span class="term"><code class="option">-m <em class="replaceable"><code>xslt</code></em></code>, </span><span class="term">
+          <code class="option">--xslt=<em class="replaceable"><code>xslt</code></em></code>
+        </span></dt><dd>XSLT engine to use. The available engines are:
+          xsltproc (default), 4xslt, saxon.</dd><dt><span class="term"><code class="option">-o <em class="replaceable"><code>output</code></em></code>, </span><span class="term"><code class="option">--output=<em class="replaceable"><code>output</code></em></code></span></dt><dd>
+            Output filename. When not specified, the input filename is used, with
+            the suffix of the output format. The option is ignored if several
+            books are chunked from a set. In this case the <code class="option">-O</code>
+            option is applied instead.
+          </dd><dt><span class="term"><code class="option">-O <em class="replaceable"><code>output_dir</code></em></code>, </span><span class="term"><code class="option">--output-dir=<em class="replaceable"><code>output_dir</code></em></code></span></dt><dd>
+            Output directory of the books built from a set. When not specified,
+            the current working directory is used instead. The option is ignored
+            if a single document is outputed, and the <code class="option">-o</code> is
+            taken into account.
+          </dd><dt><span class="term"><code class="option">-p <em class="replaceable"><code>xsl_user</code></em></code>, </span><span class="term">
+          <code class="option">--xsl-user=<em class="replaceable"><code>xsl_user</code></em></code>
+        </span></dt><dd>
+            An <span class="application">XSL</span> user stylesheet to use. Several
+            user stylesheets can be specified, but the option order is meaningful: a user stylesheet takes precedence over previously defined user stylesheets.
+            <span>See <a class="xref" href="sec-custom.html#sec-param" title="Using XSL Parameters">the section called “Using XSL Parameters”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-P <em class="replaceable"><code>param</code></em>=<em class="replaceable"><code>value</code></em></code>
+        , </span><span class="term">
+          <code class="option">--param=<em class="replaceable"><code>param</code></em>=<em class="replaceable"><code>value</code></em></code>
+        </span></dt><dd>
+            Set an <span class="application">XSL</span> parameter from command line.
+            <span>See <a class="xref" href="sec-param-value.html" title="Setting Command line Parameters">the section called “Setting Command line Parameters”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-q</code>, </span><span class="term"><code class="option">--quiet</code></span></dt><dd>
+            Less verbose, showing only TeX output messages and error messages.
+          </dd><dt><span class="term"><code class="option">-r [<span class="optional">plugin:</span>]<em class="replaceable"><code>script</code></em></code>, </span><span class="term">
+          <code class="option">--texpost=[<span class="optional">plugin:</span>]<em class="replaceable"><code>script</code></em></code>
+        </span></dt><dd>
+            Script called at the very end of the tex compilation. Its role is to
+            modify the tex file or one of the compilation files before the last
+            round. The <em class="replaceable"><code>script</code></em> can be a python plugin.
+            In this case add the prefix term '<code class="literal">plugin:</code>'.
+            <span>See <a class="xref" href="sec-texpost.html" title="Latex post process script">the section called “Latex post process script”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-s <em class="replaceable"><code>latex_style</code></em></code>, </span><span class="term">
+          <code class="option">--texstyle=<em class="replaceable"><code>latex_style</code></em></code>
+        </span></dt><dd>
+            Latex style to apply. It can be a package name, or directly a latex
+            package path. A package name must be without a directory
+            path and without the '.sty' extension. On the contrary,
+            a full latex package path can contain a directory path, but must ends with
+            the '.sty' extension.
+            <span>See <a class="xref" href="sec-custom-latex.html" title="Customized LaTeX style">the section called “Customized LaTeX style”</a>.</span>
+          </dd><dt><span class="term"><code class="option">-t <em class="replaceable"><code>format</code></em></code>, </span><span class="term"><code class="option">--type=<em class="replaceable"><code>format</code></em></code></span></dt><dd>
+            Output format.  Available formats: <em class="parameter"><code>tex</code></em>,
+            <em class="parameter"><code>dvi</code></em>, <em class="parameter"><code>ps</code></em>,
+            <em class="parameter"><code>pdf</code></em> (default).
+          </dd><dt><span class="term"><code class="option">--dvi</code></span></dt><dd>DVI output. Equivalent to <code class="option">-tdvi</code>.</dd><dt><span class="term"><code class="option">--pdf</code></span></dt><dd>PDF output. Equivalent to <code class="option">-tpdf</code>.</dd><dt><span class="term"><code class="option">--ps</code></span></dt><dd>
+            PostScript output. Equivalent to <code class="option">-tps</code>.
+          </dd><dt><span class="term"><code class="option">-T <em class="replaceable"><code>style</code></em></code>, </span><span class="term"><code class="option">--style=<em class="replaceable"><code>style</code></em></code></span></dt><dd>
+            Output style, predefined are: <em class="parameter"><code>db2latex</code></em>,
+            <em class="parameter"><code>simple</code></em>, <em class="parameter"><code>native</code></em>
+            (default). <span>See <a class="xref" href="sec-style.html" title="Output Formatting Style">the section called “Output Formatting Style”</a>.
+            </span>
+          </dd><dt><span class="term"><code class="option">-v</code>, </span><span class="term"><code class="option">--version</code></span></dt><dd>Display the dblatex version.</dd><dt><span class="term"><code class="option">-V</code>, </span><span class="term"><code class="option">--verbose</code></span></dt><dd>Verbose mode, showing the running commands</dd><dt><span class="term"><code class="option">-x <em class="replaceable"><code>xslt_options</code></em></code>, </span><span class="term">
+          <code class="option">--xslt-opts=<em class="replaceable"><code>xslt_options</code></em></code>
+        </span></dt><dd>
+            Arguments directly passed to the <span class="application">XSLT
+            engine</span>
+          </dd><dt><span class="term"><code class="option">-X</code>, </span><span class="term"><code class="option">--no-external</code></span></dt><dd>
+            Disable the external text file support. This support is needed for
+            callouts on external files referenced by <code class="sgmltag-element">textdata</code>
+            or <code class="sgmltag-element">imagedata</code>, but it can be disabled if the document
+            does not contain such callouts. Disabling this support can improve the
+            processing performance for big documents.
+          </dd></dl></div></div><div class="refsection" title="Files and Directories"><a id="idp2596568"></a><h2>Files and Directories</h2><div class="variablelist"><dl><dt><span class="term"><code class="filename">$HOME/.dblatex/</code></span></dt><dd>
+            User configuration directory.
+          </dd><dt><span class="term"><code class="filename">/etc/dblatex/</code></span></dt><dd>
+            System-wide configuration directory.
+          </dd></dl></div><p>The predefined output styles are located in the installed package
+    directory.</p></div><div class="refsection" title="Environment Variables"><a id="idm94064"></a><h2>Environment Variables</h2><div class="variablelist"><dl><dt><span class="term"><code class="envar">DBLATEX_CONFIG_FILES</code></span></dt><dd>
+            Extra configuration directories that may contain some dblatex
+            configuration files.
+          </dd></dl></div></div><div class="refsection" title="Examples"><a id="idp612568"></a><h2>Examples</h2><p>
+      To produce <code class="filename">myfile.pdf</code> from
+      <code class="filename">myfile.xml</code>:
+      </p><pre class="screen">dblatex myfile.xml</pre><p>
+    </p><p>
+      To set some XSL parameters from the command line:
+      </p><pre class="screen">dblatex -P latex.babel.language=de myfile.xml</pre><p>
+    </p><p>
+      To use your XSL stylesheet:
+      </p><pre class="screen">dblatex -p myconfig.xsl myfile.xml</pre><p>
+    </p><p>
+      To use the db2latex output style:
+      </p><pre class="screen">dblatex -T db2latex myfile.xml</pre><p>
+    </p><p>
+      To apply your own latex style:
+      </p><pre class="screen">dblatex -s mystyle myfile.xml
+dblatex -s /path/to/mystyle.sty myfile.xml</pre><p>
+    </p><p>
+      To pass extra arguments to the XSLT engine:
+      </p><pre class="screen">dblatex -x "--path /path/to/load/entity" myfile.xml</pre><p>
+    </p><p>
+      To use <span class="command"><strong>dblatex</strong></span> and profiling:
+      </p><pre class="screen">
+xsltproc --param profile.attribute "'output'" \
+         --param profile.value "'pdf'" \
+         /path/to/profiling/profile.xsl \
+         myfile.xml | dblatex -o myfile.pdf -
+</pre><p>
+    </p><p>
+      To build a set of books:
+      </p><pre class="screen">dblatex -O /path/to/chunk/dir -Pset.book.num=all myfile.xml</pre><p>
+    </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html#idp5045224">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html#idp5045224">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="sec-style.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Reference </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Output Formatting Style</td></tr></table></div></body></html>

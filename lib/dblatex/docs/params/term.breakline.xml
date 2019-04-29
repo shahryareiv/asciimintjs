@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="term.breakline">
+  <refmeta>
+    <refentrytitle>term.breakline</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>term.breakline</parameter></refname>
+    <refpurpose>Put the term description on the next line?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/term.breakline.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1 the item following a term in a variable list is put on the
+next line.</para>
+  </refsection>
+</refentry>

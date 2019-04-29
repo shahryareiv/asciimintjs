@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="set.book.num">
+  <refmeta>
+    <refentrytitle>set.book.num</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>set.book.num</parameter></refname>
+    <refpurpose>Select a single book or all the books to compile from a
+    <sgmltag>set</sgmltag></refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/set.book.num.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When the document root element is a <sgmltag>set</sgmltag> this
+parameter can be used to select the book to print, or to publish all the
+books contained in the set when the value is "all".
+<command moreinfo="none">dblatex</command> can only chunk the set in several books, and is not able to publish several books in a single file.</para>
+<para>See <xref linkend="sec-book-set"/> for more details.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,100 @@
+<itemizedlist>
+<listitem>
+<para>
+<command>dblatex</command> supports the new option
+<option>-T <replaceable>target_style</replaceable></option>. It specifies which latex
+style to use for formatting the output. See <phrase output="pdf"><olink targetdoc="usermanual" targetptr="sec-style"/></phrase><phrase output="html"><ulink url="../manual/ch03s02.html#sec-style">this section</ulink></phrase> for more
+details.</para>
+</listitem>
+<listitem>
+<para>The configure script can select the default latex style to use with the option
+<option>--target</option>. Example:</para>
+<programlisting>
+  ./configure --prefix=/where/to/install --target=db2latex
+</programlisting>
+</listitem>
+<listitem>
+<para>The use of <command>make</command> instead of <command>gmake</command> is now
+detected by configure.</para>
+</listitem>
+<listitem>
+<para>Any document language should be well supported, since babel is now included
+for the related language.</para>
+</listitem>
+<listitem>
+<para>New table support, completely re-written by David Hedley. It is very good and
+no Perl parsing is needed. One can use this new XSL table code by setting the
+parameter newtbl.use=1.</para>
+</listitem>
+<listitem>
+<para>The following XSL parameters are added:</para>
+<variablelist>
+<varlistentry><term>latex.babel.use</term>
+<listitem>
+<para>Set to 1 the babel package corresponding to the document language is
+included. Set to 0 no babel package is included whatever the document language
+is. Default is 1.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>latex.babel.language</term>
+<listitem>
+<para>Empty by default, this parameter forces the use of the specified babel
+language whatever the document language is.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>newtbl.use</term>
+<listitem>
+<para>Set to 1, use the David Hedley table support. By default it is set to
+0.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>figure.note</term>
+<listitem>
+<para>Figure to use to render a <sgmltag>note</sgmltag> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>figure.tip</term>
+<listitem>
+<para>Figure to use to render a <sgmltag>tip</sgmltag> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>figure.important</term>
+<listitem>
+<para>Figure to use to render a <sgmltag>important</sgmltag> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>figure.warning</term>
+<listitem>
+<para>Figure to use to render a <sgmltag>warning</sgmltag> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>figure.caution</term>
+<listitem>
+<para>Figure to use to render a <sgmltag>caution</sgmltag> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<para>XML source files with any extension are correctly handled. Previously one
+needed to give XML files with extension .xml.</para>
+</listitem>
+<listitem>
+<para>Better <sgmltag>footnote</sgmltag> support: it can be used in section titles
+and in <sgmltag>term</sgmltag>s.</para>
+</listitem>
+<listitem>
+<para>Some latex rendering aspects are removed from the XSL stylesheets (they should
+never have been in these stylesheets): \parindent value, \parskip value,
+\thispagestyle{fancy} for pages containing chapters.</para>
+</listitem>
+<listitem>
+<para>Bug fixes.</para>
+</listitem>
+</itemizedlist>
+

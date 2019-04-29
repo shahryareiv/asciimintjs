@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Upgrade to recent Debian scripts (error handlers).</para>
+</listitem>
+
+<listitem>
+<para>Improve the table rendering by adding a table-width Processing Instruction.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters:</para>
+
+<itemizedlist>
+<listitem>
+<para><parameter>default.table.width</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>biblioentry.numbered</parameter>.</para>
+</listitem>
+
+</itemizedlist>
+</listitem>
+
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+
+</itemizedlist>

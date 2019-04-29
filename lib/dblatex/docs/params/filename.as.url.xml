@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="filename.as.url">
+  <refmeta>
+    <refentrytitle>filename.as.url</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>filename.as.url</parameter></refname>
+    <refpurpose>Hyphenate a <sgmltag>filename</sgmltag> like if is was an URL</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/filename.as.url.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1 the <sgmltag>filename</sgmltag>s are handled as URLs, with the
+same hyphenation rules. Set to 0 the <sgmltag>filename</sgmltag> hyphenation
+is forced for each character.</para>
+  </refsection>
+</refentry>

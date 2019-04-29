@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--############################################################################
+    Dblatex - Docbook to LaTeX Publishing
+    ############################################################################
+     
+    This file provides a correspondance between standard ISO lang codes
+    and the languages known by Xindy. This file is used by xindy.py
+-->
+
+<xindylang>
+<map lang="af" name="Afrikaans"/>
+<map lang="am" name="Amharic"/>
+<map lang="ar" name="Arabic"/>
+<map lang="az" name="Azerbaijani"/>
+<map lang="bg" name="Bulgarian" xindylang="bulgarian"/>
+<map lang="bn" name="Bangla"/>
+<map lang="bs" name="Bosnian"/>
+<map lang="ca" name="Catalan"/>
+<map lang="cs" name="Czech" xindylang="czech"/>
+<map lang="cy" name="Welsh"/>
+<map lang="da" name="Danish" xindylang="danish"/>
+<map lang="de" name="German" xindylang="german-din"/>
+<map lang="el" name="Greek" xindylang="greek"/>
+<map lang="en" name="English" xindylang="english"/>
+<map lang="es" name="Spanish" xindylang="spanish-modern"/>
+<map lang="et" name="Estonian" xindylang="estonian"/>
+<map lang="eu" name="Basque"/>
+<map lang="fa" name="Farsi"/>
+<map lang="fi" name="Finnish" xindylang="finnish"/>
+<map lang="fr" name="French" xindylang="french"/>
+<map lang="ga" name="Irish" xindylang="english"/>
+<map lang="gu" name="Gujarati"/>
+<map lang="he" name="Hebrew" xindylang="hebrew"/>
+<map lang="hi" name="Hindi"/>
+<map lang="hr" name="Croatian" xindylang="croatian"/>
+<map lang="hu" name="Hungarian" xindylang="hungarian"/>
+<map lang="id" name="Indonesian"/>
+<map lang="is" name="Icelandic" xindylang="icelandic"/>
+<map lang="it" name="Italian" xindylang="italian"/>
+<map lang="ja" name="Japanese"/>
+<map lang="kn" name="Kannada"/>
+<map lang="ko" name="Korean"/>
+<map lang="la" name="Latin" xindylang="latin"/>
+<map lang="lt" name="Lithuanian" xindylang="lithuanian"/>
+<map lang="lv" name="Latvian" xindylang="latvian"/>
+<map lang="mn" name="Mongolian" xindylang="mongolian"/>
+<map lang="nb" name="Norwegian Bokmål" xindylang="norwegian"/>
+<map lang="nl" name="Dutch"/>
+<map lang="nn" name="Nynorsk" xindylang="norwegian"/>
+<map lang="no" name="Norwegian" xindylang="norwegian"/>
+<map lang="or" name="Oriya"/>
+<map lang="pa" name="Punjabi"/>
+<map lang="pl" name="Polish" xindylang="polish"/>
+<map lang="pt" name="Portuguese" xindylang="portuguese"/>
+<map lang="pt_br" name="Portuguese (Brazil)" xindylang="portuguese"/>
+<map lang="ro" name="Romanian" xindylang="romanian"/>
+<map lang="ru" name="Russian" xindylang="russian"/>
+<map lang="sk" name="Slovak" xindylang="slovak-large"/>
+<map lang="sl" name="Slovenian" xindylang="solvenian"/>
+<map lang="sq" name="Albanian" xindylang="albanian"/>
+<map lang="sr" name="Serbian in Cyrillic script" xindylang="serbian"/>
+<map lang="sr_Latn" name="Serbian in Latin script" xindylang="serbian"/>
+<map lang="sv" name="Swedish" xindylang="swedish"/>
+<map lang="ta" name="Tamil"/>
+<map lang="th" name="Thai"/>
+<map lang="tl" name="Tagalog"/>
+<map lang="tr" name="Turkish" xindylang="turkish"/>
+<map lang="uk" name="Ukrainian" xindylang="ukrainian"/>
+<map lang="vi" name="Vietnamese" xindylang="vietnamese"/>
+<map lang="xh" name="Xhosa"/>
+<map lang="zh_cn" name="Chinese Simplified"/>
+<map lang="zh_tw" name="Chinese (Taiwan)"/>
+</xindylang>

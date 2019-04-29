@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="pdf.annot.options">
+  <refmeta>
+    <refentrytitle>pdf.annot.options</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>pdf.annot.options</parameter></refname>
+    <refpurpose>PDF text annotations rendering options</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/pdf.annot.options.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Options to change how the PDF text annotations should look. The
+supported options are width, height, depth. The options must be comma
+separated like: <literal moreinfo="none">width=5cm,depth=10cm</literal>.</para>
+  </refsection>
+</refentry>

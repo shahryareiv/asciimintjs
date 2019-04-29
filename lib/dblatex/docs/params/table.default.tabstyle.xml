@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="table.default.tabstyle">
+  <refmeta>
+    <refentrytitle>table.default.tabstyle</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>table.default.tabstyle</parameter></refname>
+    <refpurpose>Default table style to apply</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/table.default.tabstyle.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The parameter applies only for <sgmltag>informaltable</sgmltag>s that
+    do not have a <literal>tabstyle</literal> attribute. With dblatex its role
+    is to specify the latex table environment to use, so the set value must be
+    a valid latex environment. The supported values are:
+
+<variablelist>
+<varlistentry>
+<term>longtable</term>
+
+<listitem>
+<para>The default table type used by dblatex, in order to be able to split over several pages. When the parameter is empty and no tabstyle attribute is defined, it is the applied value.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>tabular</term>
+
+<listitem>
+<para>The most usual table type. Such table can only be on a single page.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>tabularx</term>
+
+<listitem>
+<para>An advanced table type that allows to stretch column widths to the available remained page width. Such table can only be on a single page.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+  </para>
+  </refsection>
+</refentry>

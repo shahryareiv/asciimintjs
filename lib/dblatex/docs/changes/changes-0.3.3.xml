@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Remove hard-coded paper size and add some parameters for Page Layout setup. See <olink output="pdf"
+targetdoc="usermanual" targetptr="sec-pagesetup"></olink><ulink output="html"
+url="../manual/sec-pagesetup.html#sec-pagesetup">Page Setup Section</ulink>
+for more details.</para>
+</listitem>
+
+<listitem>
+<para>Add <parameter>literal.environment</parameter> and <parameter>literal.extensions</parameter> parameters to allow the
+  user define its own listing environment. See <olink output="pdf"
+targetdoc="usermanual" targetptr="sec-literal-env"></olink><ulink output="html"
+url="../manual/sec-literal-env.html#sec-literal-env">Verbatim Section</ulink>.</para>
+</listitem>
+
+<listitem>
+<para>Add some formatting features for the literal/verbatim elements, by taking
+into account some specific keywords set to the <sgmltag>role</sgmltag>
+attribute.
+See <olink output="pdf"
+targetdoc="usermanual" targetptr="sec-literal-options"></olink><ulink output="html"
+url="../manual/sec-literal-options.html#sec-literal-options">Verbatim Section</ulink>.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameter <parameter>latex.engine.options</parameter> to be able
+to pass options to the TeX engine backend.</para>
+</listitem>
+
+<listitem>
+<para>Print out warnings about the characters not handled by the selected fonts. Feature usefull in particular when XeTeX backend is used.</para>
+</listitem>
+
+<listitem>
+<para>Improve the display of images.</para>
+</listitem>
+
+<listitem>
+<para>Add the ability to format <sgmltag>ulink</sgmltag> as a block when
+@type='block'.</para>
+</listitem>
+
+<listitem>
+<para>Improve (and fixes some bugs of) the <sgmltag>literallayout</sgmltag>
+rendering. In particular it takes into account the <sgmltag>class</sgmltag>
+attribute, and uses the parameter <parameter>literal.class</parameter> as
+default class to apply.</para>
+</listitem>
+
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+</itemizedlist>

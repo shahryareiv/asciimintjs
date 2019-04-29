@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="funcsynopsis.decoration">
+  <refmeta>
+    <refentrytitle>funcsynopsis.decoration</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>funcsynopsis.decoration</parameter></refname>
+    <refpurpose>Decorate elements of a <sgmltag>funcsynopsis</sgmltag>?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/funcsynopsis.decoration.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>If non-zero, elements of the <sgmltag>funcsynopsis</sgmltag> will be
+decorated (e.g. rendered as bold or italic text). The decoration is controlled by
+templates that can be redefined in a customization layer.
+</para>
+<para>This parameter is taken from the DocBook Project XSL parameters.</para>
+  </refsection>
+</refentry>

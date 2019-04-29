@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="endnotes.heading.command">
+  <refmeta>
+    <refentrytitle>endnotes.heading.command</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>endnotes.heading.command</parameter></refname>
+    <refpurpose>LaTeX command of the endnotes headings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/endnotes.heading.command.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>With this parameter you can provide your own latex macro to make the
+    endnotes headings. If not set, <command>dblatex</command> uses the default
+    sectionning commands like <literal>\section*</literal>,
+    <literal>\subsection*</literal>, and so on. The command takes one
+    parameter that is the title markup of the heading.
+    For more details see <xref linkend="sec-endnotes-group"/>.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>endnotes.heading.groups</parameter></para>
+    <para><parameter>endnotes.heading.command</parameter></para>
+  </refsection>
+</refentry>

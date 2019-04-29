@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="function.parens">
+  <refmeta>
+    <refentrytitle>function.parens</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>function.parens</parameter></refname>
+    <refpurpose>Generate parens after a function?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/function.parens.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>If non-zero, the formatting of a <sgmltag>function</sgmltag> element
+will include generated parentheses.
+</para>
+<para>This parameter is taken from the DocBook Project XSL parameters.</para>
+  </refsection>
+</refentry>

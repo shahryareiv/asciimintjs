@@ -1,0 +1,15 @@
+<itemizedlist>
+<listitem><para>A step towards DocBook 5 support by reusing the DocBook Project
+namespace stripping templates.</para></listitem>
+
+<listitem><para>More consistent console output (use of logging python module).</para></listitem>
+
+<listitem><para>Some bug fixes, including:</para>
+  <itemizedlist>
+  <listitem><para>Fix PostScript output bug introduced in 0.2.3.</para></listitem>
+  <listitem><para>Use of subprocess to handle correctly the latex compilation.</para></listitem>
+  <listitem><para>A general parser/encoding mechanism is added, allowing to
+  encode <sgmltag>programlisting</sgmltag> characters to Latin1.</para></listitem>
+  </itemizedlist>
+</listitem>
+</itemizedlist>

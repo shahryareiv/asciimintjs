@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Release 0.1.5</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Release Notes for dblatex" /><link rel="up" href="index.html" title="Release Notes for dblatex" /><link rel="prev" href="sec-changes-016.html" title="Release 0.1.6" /><link rel="next" href="sec-changes-0141.html" title="Release 0.1.4.1" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Release 0.1.5</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-changes-016.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="sec-changes-0141.html">Next</a></td></tr></table><hr /></div><div class="section" title="Release 0.1.5"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sec-changes-015"></a>Release 0.1.5</h2></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<span class="command"><strong>dblatex</strong></span> supports the new option
+<code class="option">-T <em class="replaceable"><code>target_style</code></em></code>. It specifies which latex
+style to use for formatting the output. See <span><a class="ulink" href="../manual/ch03s02.html#sec-style" target="_top">this section</a></span> for more
+details.</p></li><li class="listitem"><p>The configure script can select the default latex style to use with the option
+<code class="option">--target</code>. Example:</p><pre class="programlisting">
+  ./configure --prefix=/where/to/install --target=db2latex
+</pre></li><li class="listitem"><p>The use of <span class="command"><strong>make</strong></span> instead of <span class="command"><strong>gmake</strong></span> is now
+detected by configure.</p></li><li class="listitem"><p>Any document language should be well supported, since babel is now included
+for the related language.</p></li><li class="listitem"><p>New table support, completely re-written by David Hedley. It is very good and
+no Perl parsing is needed. One can use this new XSL table code by setting the
+parameter newtbl.use=1.</p></li><li class="listitem"><p>The following XSL parameters are added:</p><div class="variablelist"><dl><dt><span class="term">latex.babel.use</span></dt><dd><p>Set to 1 the babel package corresponding to the document language is
+included. Set to 0 no babel package is included whatever the document language
+is. Default is 1.</p></dd><dt><span class="term">latex.babel.language</span></dt><dd><p>Empty by default, this parameter forces the use of the specified babel
+language whatever the document language is.</p></dd><dt><span class="term">newtbl.use</span></dt><dd><p>Set to 1, use the David Hedley table support. By default it is set to
+0.</p></dd><dt><span class="term">figure.note</span></dt><dd><p>Figure to use to render a <code class="sgmltag-element">note</code> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</p></dd><dt><span class="term">figure.tip</span></dt><dd><p>Figure to use to render a <code class="sgmltag-element">tip</code> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</p></dd><dt><span class="term">figure.important</span></dt><dd><p>Figure to use to render a <code class="sgmltag-element">important</code> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</p></dd><dt><span class="term">figure.warning</span></dt><dd><p>Figure to use to render a <code class="sgmltag-element">warning</code> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</p></dd><dt><span class="term">figure.caution</span></dt><dd><p>Figure to use to render a <code class="sgmltag-element">caution</code> block. This parameter is
+added to allow new latex styles to use their own figures in admonitions.</p></dd></dl></div></li><li class="listitem"><p>XML source files with any extension are correctly handled. Previously one
+needed to give XML files with extension .xml.</p></li><li class="listitem"><p>Better <code class="sgmltag-element">footnote</code> support: it can be used in section titles
+and in <code class="sgmltag-element">term</code>s.</p></li><li class="listitem"><p>Some latex rendering aspects are removed from the XSL stylesheets (they should
+never have been in these stylesheets): \parindent value, \parskip value,
+\thispagestyle{fancy} for pages containing chapters.</p></li><li class="listitem"><p>Bug fixes.</p></li></ul></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-changes-016.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="sec-changes-0141.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Release 0.1.6 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Release 0.1.4.1</td></tr></table></div></body></html>

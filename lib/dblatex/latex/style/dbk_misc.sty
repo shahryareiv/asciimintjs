@@ -1,0 +1,162 @@
+%
+% dblatex - Contains miscellaneous latex macros
+%
+%
+
+%%
+%% Redefine the `float' behaviour so that it can split over pages.
+%% Actually there's nothing floating anymore, but the float style is preserved.
+%% The XSLT templates must be redefined to call this macro instead.
+%% - #1: float name
+%% - #2: caption material (including the \caption macro call)
+%%
+%% It assumes that floats are created with \newfloat and it
+%% uses some internal macros of float.sty to emulate the same environment.
+%% It is compatible with \caption redefined by caption.sty.
+%%
+\newenvironment{longfloat}[2]{
+  \@nameuse{fst@#1}%
+  \def\@captype{#1}\setbox\@floatcapt=\vbox{}%
+  \def\@capcontent{#2} % caption material
+  \vspace{2\parskip}\pagebreak[3]
+  \@parboxrestore%
+  \@fs@pre\@fs@iftopcapt%
+    \@capcontent%
+    \ifvoid\@floatcapt\else\unvbox\@floatcapt\par\@fs@mid\fi%
+  \else\fi%
+}{
+  \@fs@iftopcapt\else%
+    \@capcontent%
+    \ifvoid\@floatcapt\else\par\@fs@mid\unvbox\@floatcapt\fi
+  \fi\par\@fs@post\vskip\z@%
+  \vspace{2mm}
+}
+
+
+%%
+%% New listing environment based upon the fancyvrb environment. Its role
+%% is to handle the specific `scale' option.
+%% 
+%% Author: Jean-Côme Charpentier.
+%%
+\RequirePackage{fancyvrb}
+\lstset{fancyvrb=true}
+
+\newbox\lstbox
+\newlength{\lstwidthw}
+
+
+%%% New listing option to scale the listing to fit the page width
+\lst@Key{scale}{true}[t]{\lstKV@SetIf{#1}\lst@ifscale}
+
+%%% Remember the original fancyvrb macro to handle options
+\let\FV@UseKeyValuesOrig\FV@UseKeyValues
+
+\def\code{\FV@Environment{}{lstcode}}
+\def\FVB@lstcode{%
+  % Just dump the listing into a file, skip the options used later
+  \let\FV@UseKeyValues\relax
+  \FVB@VerbatimOut{lst.tmp}}
+
+\def\FVE@lstcode{%
+  \FVE@VerbatimOut
+  \let\FV@UseKeyValues\FV@UseKeyValuesOrig
+  % Now, apply the passed options
+  \expandafter\lstset\expandafter{\FV@KeyValues}
+  % Is there any scaling required?
+  \lst@ifscale
+    \lst@ifbreaklines
+      \lstwidthw=\lst@linewidth
+    \else
+      % Force the style to perform a valid fontsize scaling
+      \lstset{basicstyle=\ttfamily}
+      \begin{lrbox}{\lstbox}
+        \lstinputlisting{lst.tmp}%
+      \end{lrbox}
+      \settowidth{\lstwidthw}{\usebox{\lstbox}}
+    \fi
+    \ifdim\lstwidthw>\linewidth
+      % Compute real width with basic font to perform consistent scaling
+      \lst@ifbreaklines
+        \setlength{\lstwidthw}{\lstwidthw*% 
+                               \ratio{\lstcharwidthb}{\lstcharwidth}}
+      \fi
+      \lstset{basicstyle=\ttfamily}
+      \typeout{Listing width <\the\lstwidthw> scaled to fit in <\the\linewidth>}
+      % Compute the width ratio
+      \edef\r@tio{\the\numexpr \linewidth/(\lstwidthw/1000)-1}%
+      \begingroup
+        \@tempdima\f@size pt
+        \typeout{\the\@tempdima}
+        \@tempdima 0.\r@tio\@tempdima
+        \typeout{\the\@tempdima}
+        % interlignage = 1.2 x font size
+        \@tempdimb 1.2\@tempdima
+        % Redefine the fontsize to apply
+        \fontsize{\@tempdima}{\@tempdimb}%
+        % Print out the listing with this new size
+        \lstinputlisting[linewidth=\linewidth]{lst.tmp}%
+      \endgroup
+    \else
+      % The listing fits in the available width, do nothing special
+      \lstinputlisting{lst.tmp}%
+    \fi
+  \else
+    % No scaling, do as usual
+    \lstinputlisting{lst.tmp}
+  \fi
+  %\strut
+}
+\DefineVerbatimEnvironment{lstcode}{lstcode}{}
+
+% Redefine \lst@DeInit to disable page break after the listing
+\def\lst@DeInit{%
+  \lst@XPrintToken
+  \lst@EOLUpdate
+  \global\advance\lst@newlines\m@ne
+  \lst@ifshowlines
+    \lst@DoNewLines
+  \else
+    \setbox\@tempboxa\vbox{\lst@DoNewLines}%
+  \fi
+  \lst@ifdisplaystyle
+    \par\nobreak
+    \removelastskip
+  \fi
+  \lsthk@ExitVars
+  \everypar{}%
+  \lsthk@DeInit
+  \normalbaselines
+  \normalcolor
+  \lst@MakeCaption b%
+  \lst@ifbox
+    \egroup
+    $%
+    \hss
+    \egroup
+    \vrule\@width\lst@maxwidth\@height\z@\@depth\z@
+  \else
+    \lst@ifdisplaystyle
+      \@tempdima\lst@belowskip
+      \ifdim\@tempdima<\z@
+        \par\nobreak
+        \vspace{-\@tempdima}%
+      \else
+        \par\penalty-50
+        \vspace\lst@belowskip
+      \fi
+    \fi
+  \fi
+  \ifx\lst@multicols\@empty\else
+    \def\lst@next{\global\let\@checkend\@gobble
+      \endmulticols
+      \global\let\@checkend\lst@@checkend
+    }%
+    \expandafter\lst@next
+  \fi
+  \ifx\lst@float\relax\else
+    \expandafter\lst@endfloat
+  \fi
+  \endgroup
+} %$
+

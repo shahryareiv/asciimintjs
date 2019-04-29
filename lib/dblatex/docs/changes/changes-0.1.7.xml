@@ -1,0 +1,129 @@
+<itemizedlist>
+<listitem>
+<para>
+Callouts are now supported:</para>
+<itemizedlist>
+  <listitem>
+  <para>Embedded callout markups <sgmltag>co</sgmltag>s are
+  supported.</para>
+  </listitem>
+  <listitem>
+  <para>The <sgmltag>coref</sgmltag> markups are supported.</para>
+  </listitem>
+  <listitem>
+  <para>Callouts markups defined with <sgmltag>area</sgmltag>s in a 
+  <sgmltag>programlistingco</sgmltag> or <sgmltag>screenco</sgmltag> are
+  supported.</para>
+  </listitem>
+  <listitem>
+  <para>Callouts on external text files (referenced by <sgmltag>textdata</sgmltag>
+  or <sgmltag>imagedata</sgmltag> elements) are supported.</para>
+  </listitem>
+  <listitem>
+  <para><sgmltag>Mediaobjectco</sgmltag>s is supported.</para>
+  </listitem>
+  <listitem>
+  <para>The <sgmltag>calloutlist</sgmltag>s are rendered as description lists
+  where the terms are the callout markups.</para>
+  </listitem>
+  <listitem>
+  <para>The links between the callout markups (defined via <sgmltag>area</sgmltag>s 
+  or <sgmltag>co</sgmltag>s) and the <sgmltag>calloutlist</sgmltag> items (linkends
+  attributes) are handled properly.</para>
+  </listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+  <para><sgmltag>Programlisting</sgmltag> and <sgmltag>screen</sgmltag>
+  improved: external text files referenced via <sgmltag>textdata</sgmltag> or
+  <sgmltag>imagedata</sgmltag> are now supported.</para>
+</listitem>
+<listitem>
+  <para>An <sgmltag>abstract</sgmltag> in an article is now printed.</para>
+</listitem>
+<listitem>
+  <para>The <sgmltag>legalnotice</sgmltag>s are now printed in the native
+  docbook style.</para>
+</listitem>
+<listitem>
+  <para>Better <sgmltag>xref</sgmltag> support. You can now make a
+  cross-reference to an <sgmltag>itemizedlist</sgmltag> with title, and to a
+  <sgmltag>refentry</sgmltag>.</para>
+</listitem>
+<listitem>
+  <para>Hyphenation is forced for text using a typewriter font, and the font is
+  smaller.</para>
+</listitem>
+<listitem>
+  <para>Running <command>dblatex</command> on a root element different from a
+  book or article does not fail anymore, except for <sgmltag>set</sgmltag>.
+  The root element is now wrapped into a <sgmltag>book</sgmltag> or an
+  <sgmltag>article</sgmltag>.</para>
+</listitem>
+<listitem>
+  <para>Minor improvements:</para>
+  <itemizedlist>
+  <listitem>
+  <para>A DBLaTeX logo can be put on the cover page.</para>
+  </listitem>
+  <listitem>
+  <para>The PDF information section can tell that the creator of the document
+  is dblatex.</para>
+  </listitem>
+  </itemizedlist>
+</listitem>
+<listitem>
+<para>the following parameters are added:</para>
+<variablelist>
+<varlistentry><term>co.linkends.show</term>
+  <listitem>
+  <para>Next to a callout markup the links to the corresponding calloutlist
+        items are shown if the parameter is set to 1. Set by default to 1.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>callout.markup.circled</term>
+  <listitem>
+  <para>The callouts referenced in the callout list have the same rendering than
+        the markups in the listing (or graphic), that is, white numbers in black
+        circles. Set to 0 the references are simple numbers. Set to 1 by
+        default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>callout.linkends.hot</term>
+  <listitem>
+  <para>The callouts referenced in the callout list are hot links if the
+  parameter is set to 1. Then, the references are in red such like any
+  other cross-reference link in the document. Set to 1 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>term.breakline</term>
+  <listitem>
+  <para>Set to 1, the item following a term in a variable list is put on the
+  next line. Set to 0 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>doc.pdfcreator.show</term>
+  <listitem>
+  <para>Set to 1, the creator field of the PDF information section says that 
+  dblatex is the creator. Set to 1 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>doc.publisher.show</term>
+  <listitem>
+  <para>Set to 1, the dblatex logo is printed on the cover page of the native
+  docbook style. Set to 0 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>literal.lines.showall</term>
+  <listitem>
+  <para>Set to 1, all the lines in a verbatim environment like programlisting or
+  screen are printed, even if they are empty. Set to 0, the last empty lines are
+  not printed. It is set to 1 by default.</para>
+  </listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<para>Some bug fixes.</para>
+</listitem>
+</itemizedlist>

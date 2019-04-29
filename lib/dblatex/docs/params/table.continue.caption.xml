@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="table.continue.caption">
+  <refmeta>
+    <refentrytitle>table.continue.caption</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>table.continue.caption</parameter></refname>
+    <refpurpose>Caption text for continued table titles</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/table.continue.caption.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Text to display in the second (and following) captions
+of long tables expanding over more than one page. The default parameter
+value is '(continued)' (including the parentheses).</para>
+  </refsection>
+</refentry>

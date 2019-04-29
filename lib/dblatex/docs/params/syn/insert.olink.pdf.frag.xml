@@ -1,0 +1,1 @@
+<xsl:param name="insert.olink.pdf.frag" select="1"/>

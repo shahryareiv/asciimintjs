@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="doc.publisher.show">
+  <refmeta>
+    <refentrytitle>doc.publisher.show</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>doc.publisher.show</parameter></refname>
+    <refpurpose>Print the dblatex logo on the cover page?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/doc.publisher.show.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Print the dblatex logo on the cover page for the native docbook style
+if the parameter is set to 1.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Add basic <sgmltag>biblioref</sgmltag> support. Its specific attributes
+are not handled yet.</para>
+</listitem>
+
+<listitem>
+<para>Allow the appendices to be followed by other sections.</para>
+</listitem>
+
+<listitem>
+<para>Add the ability to convert on the fly SVG figures to PDF through
+<command>inskscape</command>: apply patch #2821475 from David Necas.</para>
+</listitem>
+
+<listitem>
+<para>Improve the ability to format in bold or italic the elements embedded in
+<sgmltag>programlisting</sgmltag>s or <sgmltag>screen</sgmltag>s.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters:</para>
+
+<itemizedlist>
+<listitem>
+<para><parameter>index.tocdepth</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>index.numbered</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>bibliography.tocdepth</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>bibliography.numbered</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>xref.hypermarkup</parameter>.</para>
+</listitem>
+
+</itemizedlist>
+</listitem>
+
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+
+</itemizedlist>

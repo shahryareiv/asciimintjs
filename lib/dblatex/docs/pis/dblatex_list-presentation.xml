@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="pi-dblatex_list-presentation">
+  <refmeta>
+    <refentrytitle>dblatex list-presentation</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><sgmltag class="xmlpi">dblatex
+             <parameter>list-presentation</parameter></sgmltag></refname>
+    <refpurpose>
+    Specifies presentation style for a
+    <sgmltag>segmentedlist</sgmltag></refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><![CDATA[<?dblatex list-presentation="list|table" ?>]]></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Use the <sgmltag class="xmlpi">dblatex list-presentation</sgmltag> PI
+    as a child of a <sgmltag>segmentedlist</sgmltag> to
+    control the presentation style for the list (to cause it, for
+    example, to be displayed as a table).</para>
+
+    <para>The value of <literal>list-presentation</literal> must be one of the
+    following:
+
+    <variablelist>
+      <varlistentry>
+	<term><literal>list</literal></term>
+	<listitem>
+	  <para>Display as a term-by-term list.  The
+	  <sgmltag>segmentedlist</sgmltag>'s <sgmltag>seg</sgmltag>
+	  values are output like <sgmltag>variablelist</sgmltag>
+	  <sgmltag>listitem</sgmltag> values, one per line.  The
+	  <sgmltag>segtitle</sgmltag> values appear as
+	  <sgmltag>variablelist</sgmltag> <sgmltag>term</sgmltag>s
+	  values do.  Unlike a <sgmltag>variablelist</sgmltag>, the
+	  list is formatted without indentation.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term><literal>table</literal></term>
+	<listitem>
+	  <para>Display as a table.  The <sgmltag>segtitle</sgmltag>
+	  values are the column headings.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Context</title>
+    <para>Recognized in the <sgmltag>segmentedlist</sgmltag> element.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <xref linkend="segmentedlist.as.table"/>
+      </listitem>
+      <listitem>
+        <para>Inline presentation:
+        <itemizedlist>
+          <listitem><xref linkend="seg.item.separator" /></listitem>
+        </itemizedlist>
+        </para>
+      </listitem>
+      <listitem>
+        <para>Table presentation:
+        <itemizedlist>
+          <listitem><xref linkend="sec-table-width" /></listitem>
+          <listitem><xref linkend="pi-dblatex_colwidth"/></listitem>
+          <listitem><xref linkend="pi-dblatex_table-width"/></listitem>
+          <listitem><xref linkend="newtbl.autowidth"/></listitem>
+          <listitem><xref linkend="pi-dblatex_autowidth"/></listitem>
+          <listitem><xref linkend="default.table.width"/></listitem>
+        </itemizedlist>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

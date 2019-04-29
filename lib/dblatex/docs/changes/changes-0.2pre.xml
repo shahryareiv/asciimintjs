@@ -1,0 +1,19 @@
+<para>Major release. All the code to transform SGML, call the XSLT, convert the
+figures and finally compile with LaTeX has been re-written from scratch in
+Python, removing Perl and GNU make dependencies. The LaTeX compilation relies on
+a subset of the <ulink url="http://www.pps.jussieu.fr/~beffara/soft/rubber">Rubber</ulink> package. The new implementation is more robust, more consistent, and gives
+the possibility to integrates new features. Some other small improvements are
+included too:
+<itemizedlist>
+<listitem>
+  <para>Some list attributes like <sgmltag>continuation</sgmltag>, <sgmltag>numeration</sgmltag> and <sgmltag>spacing</sgmltag> are now supported.</para>
+</listitem>
+<listitem>
+<para>The <parameter>filename.as.url</parameter> parameter is added to avoid
+forced hyphenation with spurious '-' characters.</para>
+</listitem>
+<listitem>
+<para>Some bug fixes.</para>
+</listitem>
+</itemizedlist>
+</para>

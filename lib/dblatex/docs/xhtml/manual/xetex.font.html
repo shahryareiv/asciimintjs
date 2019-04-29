@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>xetex.font</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="apas19.html" title="Font Families" /><link rel="prev" href="sans.font.family.html" title="sans.font.family" /><link rel="next" href="apas20.html" title="Localization" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">xetex.font</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sans.font.family.html">Prev</a> </td><th width="60%" align="center">Font Families</th><td width="20%" align="right"> <a accesskey="n" href="apas20.html">Next</a></td></tr></table><hr /></div><div class="refentry" title="xetex.font"><a id="xetex.font"></a><div class="titlepage"></div><div class="refnamediv"><h2><span class="refentrytitle">xetex.font</span></h2><p><em class="parameter"><code>xetex.font</code></em> — Specifies the fonts that XeTeX must use</p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><pre class="programlisting">
+      &lt;xsl:param name="xetex.font"&gt;
+  &lt;xsl:value-of select="concat('\setmainfont{',$body.font.family,'}&amp;#10;')"/&gt;
+  &lt;xsl:value-of select="concat('\setsansfont{',$sans.font.family,'}&amp;#10;')"/&gt;
+  &lt;xsl:value-of
+       select="concat('\setmonofont{',$monospace.font.family,'}&amp;#10;')"/&gt;
+&lt;/xsl:param&gt;
+
+    </pre></div><div class="refsection" title="Description"><a id="idm72968"></a><h2>Description</h2><p>Font specification for XeTeX. Meaningful only when the xetex backend
+    is used. By default the parameter sets the XeTeX configuration from the
+    parameters <em class="parameter"><code>body.font.family</code></em>,
+    <em class="parameter"><code>sans.font.family</code></em>, and
+    <em class="parameter"><code>monospace.font.family</code></em> but you can completely
+    override it to define a more complex setup.</p></div><div class="refsection" title="See Also"><a id="idp5757856"></a><h2>See Also</h2><p><em class="parameter"><code>body.font.family</code></em>,
+    <em class="parameter"><code>sans.font.family</code></em>,
+    <em class="parameter"><code>monospace.font.family</code></em></p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sans.font.family.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="apas19.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="apas20.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">sans.font.family </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Localization</td></tr></table></div></body></html>

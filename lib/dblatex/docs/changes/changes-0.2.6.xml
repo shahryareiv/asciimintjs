@@ -1,0 +1,11 @@
+<itemizedlist>
+<listitem><para>It is possible to number and/or put the preface, dedication,
+and colophon sections in the TOC and bookmarks.</para>
+</listitem>
+
+<listitem><para>Add a draft watermark when the document is in draft mode.
+Moreover, the draft mode can be deduced from the document <sgmltag>status</sgmltag>
+attribute.</para></listitem>
+
+<listitem><para>Some other minor improvements and bug fixes.</para></listitem>
+</itemizedlist>

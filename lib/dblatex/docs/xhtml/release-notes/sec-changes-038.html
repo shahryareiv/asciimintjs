@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Release 0.3.8</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Release Notes for dblatex" /><link rel="up" href="index.html" title="Release Notes for dblatex" /><link rel="prev" href="sec-changes-039.html" title="Release 0.3.9" /><link rel="next" href="sec-changes-037.html" title="Release 0.3.7" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Release 0.3.8</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-changes-039.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="sec-changes-037.html">Next</a></td></tr></table><hr /></div><div class="section" title="Release 0.3.8"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sec-changes-038"></a>Release 0.3.8</h2></div></div></div><p>This release fixes some bugs and contains some new features.</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Add the endnotes feature: the <code class="sgmltag-element">footnote</code>s can be turned
+to be end notes in the printed document. Some parameters are added to configure
+the endnotes display. </p></li><li class="listitem"><p>Add an XML configuration file format: it replaces the simple text
+  configuration format. It gives a more consistent setup and more possibilities
+  to configure dblatex, like overriding the commands used to convert images.
+  
+</p></li><li class="listitem"><p>Add the parameter <em class="parameter"><code>figure.default.align</code></em> to change
+the default <code class="sgmltag-element">figure</code> and <code class="sgmltag-element">informalfigure</code>
+alignment.</p></li><li class="listitem"><p>Add a workaround to fix a Xindy bug appearing when ranges of an index
+overlap.</p></li><li class="listitem"><p>Add a workaround to fix the incompatibilities between Xindy and the new
+  hyperref when hyperindex is on.</p></li><li class="listitem"><p>Add the possibility to build a document from a tex file that includes
+  other tex files.</p></li><li class="listitem"><p>Allow a <code class="sgmltag-element">segmentedlist</code> to be formatted as a table if
+the parameter <em class="parameter"><code>segmentedlist.as.table</code></em> is set to '1' or if
+the <code class="sgmltag-xmlpi">&lt;?list-presentation?&gt;</code> Processing
+Instruction is set to 'table' (Karl O. Pinc patch). Other PIs can be used
+if a segmentedlist is formatted as a table.
+  </p></li><li class="listitem"><p>Internal refactoring of Processing Instructions.</p></li><li class="listitem"><p>Add a 'pdfscan.py' script to find out the fonts and their size used in a
+PDF file, and find out how the PDF is built.</p></li><li class="listitem"><p>Fix some bugs:
+
+</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>Fix a bug when passing a dialect language (e.g. '[5.2]Lua')
+  to <code class="sgmltag-element">programlisting</code>.</p></li><li class="listitem"><p>Link the 'nn' lang to 'norwegian' for Xindy.</p></li><li class="listitem"><p>Fix the alignment of <code class="sgmltag-element">imagedata</code>&gt; that is now handled
+even without an explicit viewport.</p></li><li class="listitem"><p>Take into account the <code class="sgmltag-element">caption</code>&gt; align attribute.</p></li><li class="listitem"><p>Fix <code class="sgmltag-element">seealso</code> in <code class="sgmltag-element">indexterm</code>.</p></li><li class="listitem"><p>Fix a bug about ordered lists that loose their counter in 
+<code class="sgmltag-element">informaltable</code>s.</p></li><li class="listitem"><p>Put the <code class="sgmltag-element">dedication</code>s in the book front matter
+(was in the body matter).</p></li><li class="listitem"><p>Add the <em class="parameter"><code>table.continue.caption</code></em> parameter to fix
+the hardcoded 'continued' caption used for tables covering several pages
+(Ricard Mones patch).</p></li><li class="listitem"><p>Fix SF bug #102: the figure paths used in windows.</p></li><li class="listitem"><p>Fix SF bug #111: adapt the file paths used in windows by saxon or
+xsltproc.</p></li><li class="listitem"><p>Fix dbk_locale.sty to be an ASCII file.</p></li><li class="listitem"><p>Correctly strip spaces for docbook 5 elements.</p></li></ul></div><p>
+</p></li></ul></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-changes-039.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="sec-changes-037.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Release 0.3.9 </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Release 0.3.7</td></tr></table></div></body></html>

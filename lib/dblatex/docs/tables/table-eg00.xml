@@ -1,0 +1,18 @@
+<informaltable>
+<!-- Exemple de table avec une colonne -->
+<tgroup cols="1" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<thead>
+<row>
+<entry>Column 1</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>left aligned</entry></row>
+<row>
+<entry>no specified width, so it takes all the page</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+

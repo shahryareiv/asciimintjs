@@ -1,0 +1,1 @@
+<xsl:param name="calloutlist.style" select="'leftmargin=1cm,style=sameline'"/>

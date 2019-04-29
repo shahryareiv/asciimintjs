@@ -1,0 +1,1832 @@
+%-----------------------------------------------%
+%Shahryar latex package, based on tufte class
+%-----------------------------------------------%
+
+\ProvidesPackage{my_tufte_book_v4}[2015/10/14 Shahryar]
+
+%This package provides :
+
+% amIsLTR
+% amIsRTL
+% amIsXepersian
+% amIsTufte
+% amIsMemoir
+
+%\amRed
+%\amBlue
+%\amGray
+%\amDGray
+%\amLGray
+
+%\amAbbreviation
+
+
+%-----------------------------------------------%
+% Internals
+%-----------------------------------------------%
+
+%Would nag about outdated commands
+\RequirePackage{nag}
+
+%Defines NewEnviron command
+\RequirePackage{environ}
+
+%Some programming facilities, such as ifthenelse
+\RequirePackage{etoolbox}
+
+%Detect Xetex or Xelatex 
+\RequirePackage{ifxetex}
+
+\RequirePackage{import}
+
+%One can define hooks
+\RequirePackage{atbegshi}
+
+%Some latex3 features
+\RequirePackage{expl3}
+\RequirePackage{l3regex}
+\RequirePackage{xparse}
+
+%-----------------------------------------------%
+% Option Section (needs etoolbox before)
+%-----------------------------------------------%
+\newbool{amIsLTR}
+\newbool{amIsRTL}
+\newbool{amIsXepersian}
+\newbool{amIsTufte}
+\newbool{amIsMemoir}
+
+\DeclareOption{ltr}{\booltrue{amIsLTR}}
+\DeclareOption{rtl}{\booltrue{amIsRTL}\booltrue{amIsXepersian}}
+\ifboolexpr{bool{amIsLTR} and bool{amIsRTL}}{\PackageError{You specified 'ltr' and 'rtl' at the same time. Choose one!}}{}
+
+\DeclareOption{tufte}{\booltrue{amIsTufte}}
+\DeclareOption{memoir}{\booltrue{amIsMemoir}}
+\ifboolexpr{bool{amIsTufte} and bool{amIsMemoir}}{\PackageError{You specified 'tufte' and 'memoir' at the same time. Choose one!}}{}
+
+\DeclareOption*{\PackageWarning{my_tufte_book_v4}{Unknown ‘\CurrentOption’}}
+\ExecuteOptions{tufte,ltr}
+\ProcessOptions\relax
+
+
+%-----------------------------------------------
+% Font & Typesetting
+%-----------------------------------------------
+
+\RequirePackage{trimclip}
+
+
+
+%PDF/A and PDF/X compatiblity
+\ifxetex%
+  %Creates PDF/A
+  %\RequirePackage[a-1b]{pdfx} %Needs more things for Xelatex, read pdfx packages
+  \RequirePackage{hyperref}%NOTE: not needed when hyperxmp
+  \RequirePackage{hyperxmp}%For RDF things
+\else
+  %Creates PDF/A
+  %\RequirePackage{pdfx}%[pdf15,x-1a]
+  \RequirePackage{hyperref}%NOTE: do not use with pdfx
+  \RequirePackage{hyperxmp}%For RDF things% For the moment. Maybe change to xmpinc later
+  %\RequirePackage{xmpincl}%For RDF things, NOTE: works only in pdflatex
+\fi
+
+%Hyperref excepts to be the last, except for (cleverref,)
+%\RequirePackage{hyperref} %!NOTE: pdfx would load hyperref we only set up things
+%\newcommand*{\fullref}[1]{\hyperref[{#1}]{\ref*{#1} (\emph{\nameref*{#1}})}}
+\hypersetup{hidelinks,bookmarks,pagebackref,backref,plainpages=false}
+%----%\hypersetup{colorlinks,bookmarks,pagebackref,backref,plainpages=false}%makes color links,show bookmark bar, use unicode in toc, backref biblio to text,unicode,
+
+%It makes the text more readable and with font enhancement
+%------%[protrusion=true,expansion=true]
+\RequirePackage[final]{microtype}
+
+%Adds and modifies some font feature selection commands
+\RequirePackage{fontaxes}
+
+% magnify or reduce font according to current size
+\RequirePackage{relsize} 
+
+
+
+%----------------------
+% XETEX mode
+%----------------------
+\ifxetex%
+
+  %------Fix things for Tufte-Latex-------%
+  \providecommand{\allcapsspacing}[2][5]{}
+  \renewcommand{\textls}[2][5]{%
+    \begingroup\addfontfeatures{LetterSpace=#1}#2\endgroup
+  }
+  \providecommand{\allcapsspacing}[1]{}
+  \renewcommand{\allcapsspacing}[1]{\textls[15]{#1}}
+  \providecommand{\smallcapsspacing}[1]{}
+  \renewcommand{\smallcapsspacing}[1]{\textls[10]{#1}}
+  \providecommand{\allcaps}[1]{}
+  \renewcommand{\allcaps}[1]{\textls[15]{\MakeTextUppercase{#1}}}
+  \providecommand{\smallcaps}[1]{}
+  \renewcommand{\smallcaps}[1]{\smallcapsspacing{\scshape\MakeTextLowercase{#1}}}
+  \providecommand{\textsc}[1]{}
+  \renewcommand{\textsc}[1]{\smallcapsspacing{\textsmallcaps{#1}}}
+  %--------End of Fix----------
+  
+
+  \RequirePackage{fontspec}%[T1]
+
+  %------------Begin Font specification for Xetex------------%
+  %     - This is just for suggestions, to do this in your document instead
+  %----------------------------------------------------------%
+
+  %\RequirePackage{mathspec}%Use setmathfont to use similar fonts as text %CLASH with fontspec because of tufte-bidi https://github.com/MorganBauer/tufte-latex/issues/71
+    %\setmathfont{EB Garamond}
+
+
+  % Tufte Book Style for Xelatex (make sure you have the fonts)
+    %--------%\setmainfont[Mapping=tex-text,Numbers=OldStyle]{Bembo}
+    %--------%\setsansfont[Mapping=tex-text,Numbers=OldStyle,Scale=MatchLowercase]{Gill Sans}
+    %--------%\setmonofont[Mapping=tex-text,Scale=MatchLowercase]{DejaVu Sans Mono}  
+
+	%Set my font to Garamond or Platino or MinionPro
+    %--------%\setmainfont[Ligatures=TeX]{TeX Gyre Termes}
+    %--------%\setmainfont{TeX Gyre Pagella}
+    %--------%\setsansfont[Scale=MatchUppercase]{TeX Gyre Heros}
+    %--------%\setmainfont{EB Garamond}
+    %--------%\setmainfont{Gill Sans}[BoldFont={* Bold}]
+    %\RequirePackage[cmintegrals,cmbraces]{newtxmath}
+    %\RequirePackage{ebgaramond-maths}    
+    %\RequirePackage{ebgaramond}
+
+    %Garamond + Gill-Sans
+    %--------%\RequirePackage[cmintegrals,cmbraces]{newtxmath}
+    %--------%\RequirePackage{ebgaramond-maths}  
+    %--------%\defaultfontfeatures{Mapping=tex-text, Numbers=Lining}   
+    %--------%\setmainfont{EB Garamond}%lining vs OldStyle
+    %--------%\setsansfont{Gill Sans}[BoldFont={* Bold}]  
+
+    %Noto
+    %--------%\setmainfont{Noto Serif}
+    %--------%\setsansfont{Noto Sans}
+
+  %------------End of Font Specification------------%
+
+
+\else
+
+%----------------------
+% PDFLatex mode
+%----------------------
+
+
+	\RequirePackage[english]{babel}%UKenglish,english,ngerman
+	\RequirePackage[T1]{fontenc}%,LGRfont encoding for eu and greek, fontenc before inputenc is better
+	\RequirePackage[utf8]{inputenc}%utf8x,utf8,latin1
+  \RequirePackage[verbose]{newunicodechar}%Do not used utf8x in inputenc
+  %\DeclareUnicodeCharacter{0248}{\o}
+  %\newunicodechar{Ø}{\O} 
+  %\newunicodechar{ø}{\o}
+
+
+
+  %------------Begin Font specification for PDFLatex------------%
+  %     - This is just for suggestions, to do this in your document instead
+  %----------------------------------------------------------%  
+
+  %Platino + Optima
+
+
+	%Set my font to Garamond or Platino or MinionPro
+  	%--------%\RequirePackage{tgpagella}
+  	%--------%\RequirePackage[adobe-utopia]{mathdesign}
+  	%--------%\RequirePackage{minionpro}
+  	%--------%\RequirePackage[fullfamily]{MinionPro}
+    %--------%\usepackage{tgtermes}
+  	%--------%\renewcommand*\rmdefault{mdugm}%ppl palatino , mdugm Garamond	
+
+
+
+
+    % Fonts: Tufte Books style
+      % Palatino for main text and math
+      %--------%\RequirePackage[osf,sc]{mathpazo}
+      % Helvetica for sans serif
+      % (scaled to match size of Palatino)
+      %--------%\RequirePackage[scaled=0.90]{helvet}
+      % Bera Mono for monospaced
+      % (scaled to match size of Palatino)
+      %--------%\RequirePackage[scaled=0.85]{beramono}
+
+
+    % Garamond    : NOTE Garamond is not in latex anymore use EB Garamond or use getnonfreefonts-sys (ONLY SYS!) and updmap-sys and getnonfreefonts-sys -r
+    %to get it http://tex.stackexchange.com/questions/255709/why-shouldnt-i-use-getnonfreefonts-to-install-additional-fonts-why-shouldnt-i
+    %problem with scalbe fonts!
+    %\RequirePackage[urw-garamond]{mathdesign}
+    %\RequirePackage{garamondx}%[scaled]lets use scaled to address the problem
+    %\RequirePackage[garamondx,bigdelims]{newtxmath}    
+
+    %Some Garamond    
+  	%\RequirePackage[garamond]{mathdesign}
+  	%\RequirePackage{garamondx}
+
+    %EB Garamond Set %it seems does not support accented characters
+    %--------%\RequirePackage[lining]{ebgaramond}
+    %--------%\RequirePackage[cmintegrals,cmbraces]{newtxmath}
+    %--------%\RequirePackage{ebgaramond-maths}%\RequirePackage[ebgaramond-math]{mathdesign}
+    %--------%\DeclareSymbolFont{numbers}{T1}{EBGaramond-LF}{m}{n}
+    %--------%\SetSymbolFont{numbers}{bold}{T1}{EBGaramond-LF}{bx}{n}
+    \newcommand{\AmStyleMixedLining}{   
+      %--------%\DeclareMathSymbol{0}\mathalpha{numbers}{"30}
+      %--------%\DeclareMathSymbol{1}\mathalpha{numbers}{"31}
+      %--------%\DeclareMathSymbol{2}\mathalpha{numbers}{"32}
+      %--------%\DeclareMathSymbol{3}\mathalpha{numbers}{"33}
+      %--------%\DeclareMathSymbol{4}\mathalpha{numbers}{"34}
+      %--------%\DeclareMathSymbol{5}\mathalpha{numbers}{"35}
+      %--------%\DeclareMathSymbol{6}\mathalpha{numbers}{"36}
+      %--------%\DeclareMathSymbol{7}\mathalpha{numbers}{"37}
+      %--------%\DeclareMathSymbol{8}\mathalpha{numbers}{"38}
+      %--------%\DeclareMathSymbol{9}\mathalpha{numbers}{"39} 
+    }  
+
+    %Noto
+    %--------%\RequirePackage{noto}
+
+
+    \newunicodechar{Ø}{\O} 
+    \newunicodechar{ø}{\o}
+    \newunicodechar{É}{\'{E}} 
+    \newunicodechar{é}{\'{e}}
+    \newunicodechar{Ã}{\~{A}} 
+    \newunicodechar{ã}{\~{a}}
+    \newunicodechar{τ}{\texttau}
+    \newunicodechar{Τ}{\Texttau}
+    \newunicodechar{ρ}{\textrho}
+    \newunicodechar{Ρ}{\Textrho}
+
+
+
+  %  \RequirePackage{relsize}
+  %  \AtBeginDocument{\larger}
+  %  \RequirePackage[sfdefault]{gillius2}    %some times for images
+
+  	
+\fi
+
+\RequirePackage{marginfix}
+
+%-----------------------------------------------
+% Layout
+%-----------------------------------------------
+
+%Layout 
+\RequirePackage{geometry}
+
+%Varwidth environment
+\RequirePackage{varwidth}
+
+%---%\RequirePackage{layout}
+
+%---%\RequirePackage{layouts}
+%---%
+%\newcommand{\mypageinfo}{
+%  \printinunitsof{mm}{\pagevalues}
+%  \verb|\marginparwidth|: \printinunitsof{mm}\prntlen{\marginparwidth}
+%  \pagediagram
+%}
+
+%change line space
+\RequirePackage{setspace}
+
+%different ragged
+\RequirePackage{ragged2e}
+
+%putting a cap­tion to some­thing that's not a float.
+\RequirePackage{capt-of}
+
+%Wrap figures around text
+\RequirePackage{wrapfig}
+
+%\newenvironment{mywrapfigure}
+%{\begin{wrapfigure}{R}{0.3\textwidth}}%\noindent\makebox[\textwidth]{
+%{\end{wrapfigure}}%
+\newcommand{\mywrapfigure}[3]{%caption, label, filename
+  \begin{wrapfigure}{R}{0.3\textwidth}%
+  \includegraphics[width=0.3\textwidth]{#3}%
+  \label{#2}%
+  \caption{#1}%
+  \end{wrapfigure}%
+  }
+
+%\newenvironment{\mywrapmarginfigure}
+%{\begin{wrapfigure}[]{R}[0.5\width]{0.3\linewidth}}
+%{\end{wrapfigure}}
+\newcommand{\mywrapfigureexpandtomargin}[3]{%caption, label, filename
+  \begin{wrapfigure}{R}[0.5\width]{\dimexpr\marginparwidth+\marginparsep+0.3\textwidth}%
+  \centering
+  \includegraphics[width=\dimexpr\marginparwidth+\marginparsep+0.3\textwidth]{#3}%
+  \label{#2}%
+  \caption{#1}%
+  \end{wrapfigure}%
+  }
+
+\newlength{\wrapfigurewithmargincaptionwidth}
+\setlength{\wrapfigurewithmargincaptionwidth}{0pt}
+\addtolength{\wrapfigurewithmargincaptionwidth}{\marginparwidth}
+\addtolength{\wrapfigurewithmargincaptionwidth}{\marginparsep}
+\addtolength{\wrapfigurewithmargincaptionwidth}{0.4\textwidth}
+\newcommand{\mywrapfigurewithmargincaption}[3]{%caption, label, filename
+  \begin{wrapfigure}{R}[0pt]{\wrapfigurewithmargincaptionwidth}%
+  \begin{minipage}{0.4\textwidth}
+  \centering
+  \includegraphics[width=0.38\textwidth]{#3}%
+  \end{minipage}
+  \begin{minipage}{\marginparwidth}
+  \label{#2}%
+  \caption{#1}%
+  \end{minipage}
+  \end{wrapfigure}%
+  }
+
+
+% if you have landscape tables
+\RequirePackage[figuresright]{rotating}
+
+
+
+%-----------------------------------------------
+% Text
+%-----------------------------------------------
+
+
+%define \lt{<} \gt{>} \amp{\&} \clmn{&}
+\RequirePackage{sgmlcmpt}
+
+\RequirePackage{datetime}
+\newdateformat{myMonthYearDate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+
+%generate comma separated numbers
+\RequirePackage{comma}
+
+%controls hyphenation
+\RequirePackage{hyphenat}%
+
+%============== TBD \amSI ==============
+%   SI Units. \amSI{10}{\hertz} results in ‘10Hz‘ 
+%==============================================
+%
+\RequirePackage{siunitx}
+
+
+
+%============== \amCopyrightLine ==============
+%   amCopyrightLine
+%==============================================
+%Common Creatives Icons
+\RequirePackage[scale=2.0]{ccicons}
+\newcommand{\amCopyrightLine}[1]{%
+  \ifthenelse{\equal{#1}{ccbync}}{{\Large\ccbync\newline}}{{\Large\ccbync\newline}}%
+  }%
+%------------------------------------------------
+
+
+%============== \amISBN =======================
+%   ISBN barcode
+%===============================================
+\RequirePackage{ean13isbn}
+\newcommand{\amISBN}[1]{\EANisbn[SC5b,ISBN=#1]}
+%----------------------------------------------
+
+
+%if you need alpha and beta in text not in math
+\RequirePackage{textgreek} 
+
+
+%============== \amRomanNumUp \amRomanNumLow =====================
+%   Roman numbers
+%=================================================================
+\newcommand{\amRomanNumUp}[1]{\uppercase\expandafter{\romannumeral#1}}
+\newcommand{\amRomanNumLow}[1]{\romannumeral#1\relax}
+%-----------------------------------------------------------------
+
+
+%============== {amROutput} ==============
+%   Show codes of: R Output
+%=========================================
+
+%Code Listing (minted is better but needs python)
+%note: it is common that wrong asciidoc text ends up as listing, so I put a gray background to show that
+\RequirePackage{listings}
+\lstset{%
+  backgroundcolor = \color{lightgray},%
+  frame = single,%
+  keepspaces=true,% 
+}
+
+%Define verbatim Environments
+\RequirePackage{verbatim}
+\RequirePackage{fancyvrb}
+
+\DefineVerbatimEnvironment%
+{amVerbatimConsole}{Verbatim}
+{gobble=0,numbers=left,numbersep=2mm,framerule=1pt,frame=lines}
+
+        %Shows SAS and R
+          %\RequirePackage{SASnRdisplay}
+          %\lstdefinestyle{r-user}{%
+          %emptylines=*1,%
+          %numbers=left,%
+          %numberstyle=\tiny%
+          %}
+          %\renewcommand*\SnRRoutputname{}
+
+\lstnewenvironment{amROutput}
+{%
+  \lstset{%Routput
+    language=C,
+    frame=single,
+    basicstyle=\scriptsize\ttfamily%
+    }%
+}%
+{}%
+
+%----------------------------------------------
+
+
+%-------------- \amInitial ----------
+%   dropcap first letter 
+%-----------------------------------
+\RequirePackage{lettrine}
+
+% We need different 
+\ifboolexpr{bool{amIsRTL}}
+{
+  \newcommand{\amInitial}[2]{\lettrine[lines=2,lraise=0.4]{#1}{#2}}
+}{
+  \newcommand{\amInitial}[2]{\lettrine[lines=2]{#1}{#2}}
+}
+%-----------------------------------
+
+
+
+\ExplSyntaxOn
+\tl_new:N \l_result_tl
+\tl_new:N \l_proportion_tl
+\str_new:N \l_keshidegi_str
+
+% Inspired by https://tex.stackexchange.com/questions/202379/filling-gaps-by-repeating-a-character
+\cs_new_nopar:Nn \amKeshidegiGlyph:  {%this stupid colon is mandatory and makes it internal. #1n
+  %\tl_set:Nn \l_keshidegi_tl {ـ}
+  \str_set:Nn \l_keshidegi_str {ــــــــــ}% English_ % Persian ـ
+  \leavevmode%
+  %\llap{\clipbox{-1ex 0pt {\width} 0pt}{ـ}}%-1ex, No use
+  %I considered 0.05 of linewidth
+  \resizebox{0.05\linewidth}{\height}{\clipbox{0pt}{ـ}}%HOW DOES THIS WORK! I maded a mistake by pressing underline
+  %\rlap{\clipbox{{\width} 0pt -1ex 0pt}{ـ}}%-1ex,No use
+  %\str_use:N \l_keshidegi_str
+  %\l_keshidegi_str
+}
+
+
+\cs_new:Npn \amKeshidegiAlt #1 {%
+    % Store the verbatim argument into a macro.
+    \tl_set:Nn \l_result_tl {#1}
+    \tl_set:Nn \l_proportion_tl {0.05}
+
+    % Remove all dots followed by a non-digit.
+    %There is a problem with latex regex that ?: does not work as I expect, so I forced to use this pattern that skips one in sequence of two characters that can be expanded. But that is not so bad.
+    %\regex_replace_all:nnN { ([ئبتثجحخسشصضطظعغفقكلمنههىيپچکگھی])([^\sـ\x{200C}$]) } { \1\x{200D}ــــــــــ\x{200D}\2 } \l_result_tl    
+    \regex_replace_all:nnN { ([ئبتثجحخسشصضطظعغفقكلمنههىيپچکگھی])([^\sـ\x{200C}$]) } { \1\x{200D}\c{amKeshidegiGlyph:}\x{200D}\2 } \l_result_tl%
+    %\cB\{ \u{\l_proportion_tl} \cE\}
+    %This was an option but above is enough
+    % \regex_replace_all:nnN { (م)(?:\S) } { \c{Keshidegi2}\cB\{ \u{\l_kesh_str} \cE\}}  \l_result_tl
+
+
+    \tl_use:N \l_result_tl 
+  }
+\ExplSyntaxOff
+
+
+\ifboolexpr{bool{amIsXepersian}}{% Persian style Keshideh and Iranic/Italic
+  \newcommand{\amNewThought}[1]{%
+    \addvspace{1.0\baselineskip plus 0.5ex minus 0.2ex}%
+    \KashidaOff
+    \noindent\emph{\amKeshidegiAlt{#1}}%
+    \KashidaOn 
+  }%
+}{%
+  \ifdefmacro{\newthought}{% Tufte class is available
+    \newcommand{\amNewThought}[1]{%
+      \newthought{#1}%
+    }%  
+  }{% Do it yourself!
+    \newcommand{\amNewThought}[1]{%
+      \addvspace{1.0\baselineskip plus 0.5ex minus 0.2ex}%
+      \noindent\textsc{#1}%
+    }
+  }
+}
+
+
+
+%Styling enumerates and lists
+\RequirePackage[inline]{enumitem}%inclung resume option
+
+%End note things
+%OLD%\RequirePackage{endnotes}%create endnotes per chapter or per whatever
+%OLD%\renewcommand{\theendnote}{\Roman{endnote}}% use Roman numbering
+%OLD%\def\enoteheading{\relax}%We do not need automatic endnote heading
+%OLD%\renewcommand{\enotesize}{\normalsize}
+%OLD%\renewcommand\enoteformat{%
+%OLD%  \justify%
+%OLD%  \leftskip=1.8em%
+%OLD%  \makebox[0pt][r]{\theenmark. \rule{0pt}{\dimexpr\ht\strutbox+\baselineskip}}%
+%OLD%}
+\RequirePackage[counter-format =Roman,totoc=false]{enotez}
+
+\newcommand{\amEndnote}[1]{\endnote{#1}}
+\newenvironment{myendnoteschapter}[1][End Notes]%An endnote page (chapter)
+  {%
+   \thispagestyle{empty}% no header and footer
+   %\chapter*{#1}%
+   %\addcontentsline{toc}{chapter}{#1}%
+  \setenotez{list-name=#1,totoc=chapter}
+   %OLD%\theendnotes%
+   \printendnotes%[]
+  }
+  {%\par % end the paragraph
+  \clearpage%
+  }
+
+
+% smart quotations
+\RequirePackage[autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}%use this as quotation
+
+%epigraph
+\RequirePackage{epigraph}
+\renewcommand{\epigraphsize}{\footnotesize}
+\setlength{\epigraphrule}{0pt}
+\setlength{\epigraphwidth}{.5\textwidth}
+
+%verse
+%\RequirePackage{verse} %% PROBLEM! not compatible with tufte
+
+
+%============== \amDedication ============
+%   Dedication Page
+%=========================================
+\newcommand{\amDedication}[1]{%
+  %\cleardoublepage%
+  \chapter*{}%
+   \thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top 
+  %\raggedleft
+  \begin{fullwidth}%
+  \begin{doublespace}%
+  %\begin{flushright}
+  \noindent%
+    \center%
+   {\large\itshape#1}%
+    %\hspace*\fill#1\newline
+  %\end{flushright}
+  \end{doublespace}%
+  \end{fullwidth}%
+  \par% end the paragraph
+   \vspace{\stretch{3}}% space at bottom is three times that at the top
+   %\clearpage% finish off the page
+}
+%------------------------------------
+
+
+
+%============== \amBookEpigraph ==========
+%   Book Epigraph Page
+%=========================================
+\newcommand{\amBookEpigraph}[3]{
+  %\cleardoublepage%
+  \chapter*{}
+   \thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top 
+   %\itshape% the text is in italics
+   %\raggedleft% flush to the right margin
+  %\begin{fullwidth}
+  \begin{doublespace}%
+  {\large\hspace*\fill#1\newline%
+  \normalsize\hspace*\fill---#2,~\emph{#3}}%
+  \end{doublespace}%
+  %\end{fullwidth}
+  \par% end the paragraph
+   \vspace{\stretch{3}% space at bottom is three times that at the top
+   }%
+   %\clearpage% finish off the page
+}
+%------------------------------------
+
+
+
+%============== {amBlockQuote} ==========
+%   Quote in a block
+%=======================================
+\NewEnviron{amBlockQuote}[2]{%
+  \begin{quote}%
+  \BODY%
+  \par
+  \hspace*{\fill}%
+  \begin{varwidth}{0.75\linewidth}%
+    \RaggedLeft---#1, \linebreak[3]\emph{#2}\par%
+  \end{varwidth}%
+  \end{quote}%
+}
+%------------------------------------
+
+ 
+%============== {amColophon} ==========
+%   Colophon Page
+%=======================================
+\newenvironment{amColophon}
+  {%\clearpage% we want a new page
+   \thispagestyle{empty}% no header and footer
+   %\vspace*{\stretch{1}}% some space at the top
+   %\par\vspace*{\fill}
+   \vspace*{\fill}
+   %\itshape% the text is in italics
+   \begingroup
+   \scriptsize%
+   \raggedright% flush to the right margin
+  }
+  {\par% end the paragraph
+  \endgroup
+   %\vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage% finish off the page
+  }
+%------------------------------------
+
+
+\newenvironment{mybookabstract}[1][Abstract]
+  {%\clearpage           % we want a new page
+   \thispagestyle{empty}% no header and footer
+   \chapter*{#1}
+  }
+  {%\par % end the paragraph
+   %\clearpage           % finish off the page
+  }
+
+
+
+\newcommand{\myglossary}[1][Glossary]
+  {
+  %\chapter*{#1}
+  \printnoidxglossary[title=#1]
+  }
+  
+%Show an abbreviation  
+\NewDocumentCommand\amAbbreviation{m}{%
+  \newacronym{#1}{#1}{#1}%
+  \glsdisp{#1}{#1}\index{#1}%
+}
+
+
+
+  \NewEnviron{mybookkeywords}[1][Keywords]{%
+    \thispagestyle{empty}%
+    \chapter*{#1}%
+    \begin{FlushLeft}%
+    \nohyphens{\BODY}%
+    \end{FlushLeft}
+    }
+
+  \newenvironment{mypreface}[1][Preface]
+  {%\clearpage           % we want a new page
+   \thispagestyle{empty}% no header and footer
+   \chapter*{#1}%
+  }
+  {%\par % end the paragraph
+   %\clearpage           % finish off the page
+  }
+
+%An acknoledgement page (chapter)
+\newenvironment{myacknowledgements}[1][Acknowledgements]
+  {%
+   \thispagestyle{empty}% no header and footer
+   \chapter*{#1}%
+  }
+  {%\par % end the paragraph
+  }
+
+
+  
+
+
+
+%Create Chapter Authors
+\makeatletter
+\newcommand{\amChapterAuthor}[1]{%
+  {\parindent0pt\vspace*{-25pt}%
+  \linespread{1.1}\nohyphens{\large\scshape#1}%
+  \par\nobreak\vspace*{35pt}%
+  }%
+  \@afterheading%
+}
+\makeatother
+
+
+
+
+
+
+
+%---------------------------------
+% Titles , Headers, Footers, ...
+%---------------------------------
+
+
+
+
+%Control over header and footer
+\RequirePackage{fancyhdr} %this made my margines bad!
+\fancypagestyle{mynormalpagestyle}{
+  \makeatletter
+  \fancyhf{} % clear header and footer fields
+  \ifthenelse{\boolean{@tufte@twoside}}
+  %  {\fancyhead[LE]{\thepage\quad\smallcaps{\newlinetospace{\plainauthor}}}%
+  %    \fancyhead[RO]{\smallcaps{\newlinetospace{\plaintitle}}\quad\thepage}}
+   {\fancyhead[LE]{\thepage\quad\smallcaps{\newlinetospace{\plaintitle}}}%
+     \fancyhead[RO]{\smallcaps{\newlinetospace{\leftmark}}\quad\thepage}}
+   {\fancyhead[RE,RO]{\smallcaps{\newlinetospace{\plaintitle}}\quad\thepage}}
+  \makeatother
+}
+%\makeatletter
+% The 'fancy' page style is the default style for all pages.
+%\fancyhf{} % clear header and footer fields
+%\ifthenelse{\boolean{@tufte@twoside}}
+%%  {\fancyhead[LE]{\thepage\quad\smallcaps{\newlinetospace{\plainauthor}}}%
+%%    \fancyhead[RO]{\smallcaps{\newlinetospace{\plaintitle}}\quad\thepage}}
+%  {\fancyhead[LE]{\thepage\quad\smallcaps{\newlinetospace{\plaintitle}}}%
+%    \fancyhead[RO]{\smallcaps{\newlinetospace{\leftmark}}\quad\thepage}
+%  {\fancyhead[RE,RO]{\smallcaps{\newlinetospace{\plaintitle}}\quad\thepage}}
+%\makeatother
+
+
+% chanage titles/sections/chap /table of content(toc)... (also loaded with tufte)
+\RequirePackage{titlesec} 
+\RequirePackage{titletoc}
+\usepackage[figure,table]{totalcount}% determines the number of tables or figures or if existy any
+
+
+% Formatting for main TOC (printed in front matter)
+% {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
+%\ifthenelse{\boolean{@tufte@toc}}{%
+  \titlecontents{part}% FIXME
+    [0em] % distance from left margin
+    {\vspace{1.999\baselineskip}\begin{fullwidth}\Large\rmfamily} % above (global formatting of entry)
+    {\color{Maroon}\contentslabel{2em}} % before w/label (label = ``II'')\
+    {} % before w/o label
+    {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+  \titlecontents{chapter}%
+    [0em] % distance from left margin
+    {\vspace{1.414\baselineskip}\begin{fullwidth}\large\rmfamily} % above (global formatting of entry)
+    {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2'')
+    {\hspace*{2em}} % before w/o label
+    {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+    [\end{fullwidth}] % after
+  \titlecontents{section}% FIXME
+    [0em]% distance from left margin
+    {\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape}% above (global formatting of entry)
+    {\hspace*{2em}\contentslabel{2em}}% before w/label (label = ``2.6'')
+    {\hspace*{2em}}% before w/o label
+    {\rmfamily\upshape\qquad\thecontentspage}% filler + page (leaders and page num)
+    [\end{fullwidth}]% after
+
+
+
+%%
+% Format lists of figures/tables
+
+% \renewcommand\listoffigures{%
+%   \makeatletter
+%   \ifthenelse{\equal{\@tufte@class}{book}}%
+%     {\chapter*{\listfigurename}}%
+%     {\section*{\listfigurename}}%
+% %  \begin{fullwidth}%
+%     \@starttoc{lof}%
+% %  \end{fullwidth}%
+%   \makeatother
+% }
+
+
+% \renewcommand\listoftables{%
+%   \makeatletter
+%   \ifthenelse{\equal{\@tufte@class}{book}}%
+%     {\chapter*{\listtablename}}%
+%     {\section*{\listtablename}}%
+% %  \begin{fullwidth}%
+%     \@starttoc{lot}%
+% %  \end{fullwidth}%
+%   \makeatother
+% }
+
+\newcommand\myfrontmatter{%
+  \makeatletter
+  \cleardoublepage%
+  \@mainmatterfalse%
+  \pagenumbering{arabic}%
+  %\pagestyle{plain}%
+  \fancyhf{}%
+  \ifthenelse{\boolean{@tufte@twoside}}%
+    {\fancyhead[LE,RO]{\thepage}}%
+    {\fancyhead[RE,RO]{\thepage}}%
+  \makeatother
+}
+%%
+% The main matter in Tufte's /Beautiful Evidence/ doesn't restart the page
+% numbering---it continues where it left off in the front matter.
+\newcommand\mymainmatter{%
+  \makeatletter
+  \cleardoublepage%
+  \@mainmattertrue%
+  \pagestyle{normal_tufte_book}
+  \makeatother
+}
+%%
+% The back matter contains appendices, indices, glossaries, endnotes,
+% biliographies, list of contributors, illustration credits, etc.
+\newcommand\mybackmatter{%
+  \makeatletter
+  \if@openright%
+    \cleardoublepage%
+  \else%
+    \clearpage%
+  \fi%
+  \@mainmatterfalse%
+  \makeatother
+}
+
+
+%============== \amHandoutTitle ========
+%   Custom Title for Handout
+%=======================================
+\newcommand{\amHandoutTitle}{
+  \noindent
+  \makebox[\textwidth][l]{%
+    \begin{minipage}[b]{\dimexpr\textwidth+\marginparsep+\marginparwidth}%
+    \raggedright%
+    \maketitle%
+    \end{minipage}%
+  }
+}
+%-----------------------------------------
+
+
+\makeatletter
+\newcommand{\amArticleTitle}[1]{
+  \newpage
+  \global\@topnum\z@% prevent floats from being placed at the top of the page
+  \begingroup
+    \setlength{\parindent}{0pt}%
+    \setlength{\parskip}{4pt}%
+    \let\@@title\@empty
+    \let\@@author\@empty
+    \let\@@date\@empty
+    \ifthenelse{\boolean{@tufte@sfsidenotes}}{%
+      \gdef\@@title{\sffamily\LARGE\allcaps{\@title}\par}%
+      \gdef\@@author{\nohyphens{\large\scshape#1}\par}%\sffamily\Large\allcaps{\@author}%\amChapterAuthor{\@author}
+      \gdef\@@date{\sffamily\Large\allcaps{\@date}\par}%
+    }{%
+      \gdef\@@title{\color{plostitle}\LARGE\@title\color{black}\par}%\itshape
+      \gdef\@@author{\nohyphens{\large\scshape{\@author}}\par}%\itshape\large\smallcaps{\@author}%\amChapterAuthor{\@author}%\nohyphens{\large\scshape#1}
+      \gdef\@@date{\large\smallcaps{\@date}\par}%\itshape
+    }%
+    \@@title
+    \@@author
+    \@@date
+  \endgroup
+  \thispagestyle{plain}% suppress the running head
+  \tuftebreak% add some space before the text begins
+\@afterindentfalse\@afterheading% suppress indentation of the next paragraph
+}
+\makeatother
+
+
+\newcommand{\amBookTitle}{
+  \noindent
+  \makebox[\textwidth][l]{%
+    \begin{minipage}[b]{\dimexpr\textwidth+\marginparsep+\marginparwidth}%
+    \raggedright%
+    \maketitle%
+    \end{minipage}%
+  }
+}
+
+\newcommand{\mytitle}{
+  \noindent
+  \makebox[\textwidth][l]{%
+    \begin{minipage}[b]{\dimexpr\textwidth+\marginparsep+\marginparwidth}%
+    \raggedright%
+    \maketitle%
+    \end{minipage}%
+  }
+}
+
+\makeatletter
+\titleformat{\chapter}%
+  [display]% shape
+  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+  {\color{plostitle}\huge\thechapter}%\itshape% label
+  {0pt}% horizontal separation between label and title body
+  {\huge\rmfamily\raggedright}%\itshape% before the title body
+  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body  
+\makeatother
+
+\newrobustcmd{\mypartnotetext}{}%holds partnote text
+\newrobustcmd{\mypartnotecreate}{% creates partnote 
+    \vspace*{\fill}%
+    \hspace*{\fill}%
+    \begin{varwidth}{0.6\linewidth}%
+    \mypartnotetext{}% the text goes here
+    \end{varwidth}%
+}
+\newcommand{\mysetpartnote}[1]{% sets partnote and adjust the \part style
+  \renewrobustcmd{\mypartnotetext}{#1}%
+  %\dopartformat{\mypartnotecreate}
+  %\apptocmd{\part}{\dopartformat{}}{}{}%resets after each \part command
+}
+\newcommand{\myresetpartnote}{% sets partnote and adjust the \part style
+  \renewrobustcmd{\mypartnotetext}{}%
+  %\dopartformat{\mypartnotecreate}
+  %\apptocmd{\part}{\dopartformat{}}{}{}%resets after each \part command
+}
+
+%\newcommand{\dopartformat}[1][\relax]{
+\titleformat{\part}%
+  [display]% shape
+  {\begin{fullwidth}}% format applied to label+text
+  {\raggedright\LARGE\scshape\MakeUppercase{\partname} \textcolor{Maroon}{\thepart}  }% label
+  {20pt}% horizontal separation between label and title body
+  {\raggedright\huge\scshape}% before the title body
+  [\end{fullwidth}\mypartnotecreate]% after the title body
+%}
+%\dopartformat{}
+
+% \newcommand{\mypartnote}[1]{%
+%   \cleardoublepage
+%   \AtBeginShipoutNext{%
+%     \AtBeginShipoutUpperLeft{%
+%       \put(\dimexpr\ifodd\value{page}\oddsidemargin\else\evensidemargin\fi
+%         + 1in + \textwidth\relax,
+%         -\dimexpr\topmargin + 1in + \headheight + \headsep + \textheight){%
+%         \makebox(0,0)[rb]{%
+%           %\partnodefont
+%           \sbox0{\begin{varwidth}[b]{\linewidth}\centering#1\end{varwidth}}%
+%           \ifdim\dp0>0pt
+%             \dp0=\dimexpr\dp0 - \ifdim\dp0>\maxdepth \maxdepth\else\dp0 \fi    
+%           \fi
+%           \usebox{0}%
+%         }%
+%       }%
+%     }%
+%   }
+% }
+
+%\newcommand{\mypart}[2]{%
+%  \part{#1\vspace*{\fill}\raggedleft\normalfont{}#2\par}%
+  %\vspace*{\fill}%
+  %\raggedleft%
+  %\normalfont%
+ % #2
+  %\par
+%}
+
+%============== \amTableOfContents =======
+%   Custom Table of Contents Page
+%=========================================
+\newcommand{\amTableOfContents}[1][Contents]
+{%\clearpage           % we want a new page
+   \thispagestyle{empty}% no header and footer
+   %\chapter*{#1}
+  \tableofcontents
+  
+  \iftotalfigures
+    \listoffigures
+  \fi
+  \iftotaltables
+    \listoftables
+  \fi
+}
+%-----------------------------------------------
+
+
+
+
+%*************************************************
+% Book Auto-Parts
+%*************************************************
+
+
+
+%should be loaded after hyperref% nomain means no main glossary needed -- savewrites slows
+\RequirePackage[savewrites,xindy,toc,nomain,acronym,hyperfirst=false]{glossaries}
+\makenoidxglossaries%This saves write
+%----%\\makeglossaries
+
+%----%\renewcommand*{\glstextformat}[1]{\textsf{#1}}%I need normal but not blue link
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}%I need this to avoid colored glossary links
+
+%Multiple index with Imakeidx
+\RequirePackage[xindy]{imakeidx}
+\indexsetup{level=\chapter*,toclevel=chapter}%,noclearpage
+\makeindex[intoc]%in toc, 
+
+%============== TBD \amIndex =======
+%   
+%=========================================
+\newcommand{\myindex}[1][Index]
+  {
+  %\chapter*{#1}
+  \printindex
+  }
+
+%Gives subappendices environment, toc puts in toc first page
+\RequirePackage[header,title]{appendix}%toc,we put toc ourselves %NOTE:possible to conflict
+
+%-----------------------------------------------
+% Graphics
+%-----------------------------------------------
+
+\PassOptionsToPackage{cmyk,usenames,dvipsnames,svgnames,table}{xcolor}%cmyk print ready
+\RequirePackage{xcolor} %coloring things, including tables, lots of names here %pass option in the head [usenames,dvipsnames,svgnames,table][table]
+\RequirePackage{pagecolor} %should be after xcolor
+%\RequirePackage{afterpage} %DOES not work Xelatex change color of only one
+
+
+%note: all said that there is no need for [pdftex]
+\RequirePackage{graphicx}%[pdftex]
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\RequirePackage{auto-pst-pdf} %convert ps to pdf
+\usepackage{grfext}
+\PrependGraphicsExtensions*{.pdf,.PDF}%pdf to be first to include
+\graphicspath{ {./}{./_figures/}{../_figures/}{./_sh_my_figures_symlink/}{./_images_symlink/}{../_images/}{../../_images/}{../images/}{../../images/}}
+
+
+
+
+\RequirePackage{tikz}
+
+\usetikzlibrary{decorations,shapes,arrows.meta,patterns,trees,graphs,positioning,calc,datavisualization,fit,intersections,backgrounds,matrix,chains}
+%\usetikzlibrary{external} %create external file for tikz %PROBLEM!
+%\tikzexternalize[prefix=./] % activate! %PROBLEM!
+
+\RequirePackage{tikz-qtree}% To create tree easily
+
+\RequirePackage{pgfplots} %creates charts and ...
+
+\pgfplotsset{compat=newest} %it means the minimum compatibility version 1.11
+
+
+\RequirePackage{pgfplotstable} %draws sophisticated table
+\usepgfplotslibrary{fillbetween}
+
+\RequirePackage{xhfill} %26/02/15 Draws hline between texts
+
+\RequirePackage{pgfgantt} %draws Gantt
+
+%   \pgfmathdeclarefunction{gauss2}{2}{%
+%      \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+%   }
+%
+  \pgfmathdeclarefunction{gauss3}{3}{%
+    \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+  }
+
+
+
+% Extended file name support for graphics (e.g. spaces)
+\RequirePackage[space]{grffile}
+
+
+% background, Needs Tikz package
+\RequirePackage[pages=some,placement=top]{background}
+
+
+%\RequirePackage{transparent} %REMOVED 
+
+%\RequirePackage{wallpaper} %wall paper CREATES PROBLEM with Tex4HT (extra PICT images)
+
+
+
+
+%\RequirePackage{adjustbox}%PROBLEM makes things break
+
+%\RequirePackage{graphviz} %lets for dot file inclusion, but who needs that!
+
+%\RequirePackage[autosize,outputdir=./_figures/]{dot2texi}%[pgf] %adds a command for dotfile, but who needs that!
+
+%\RequirePackage{subfig} %multiple fig in one fig %I commented this because of some conflict with caption package
+
+
+
+\newcommand{\myCornerBackground}[1]%
+{
+  \SetBgContents{%
+    \begin{tikzpicture}[%
+      remember picture,%
+      overlay,%
+      %yshift=-2cm,%
+      %xshift=2cm%
+      ]%
+      \node[anchor=south west] at (0,0) {\includegraphics[width=0.3\paperwidth,height=0.3\paperheight]{#1}};%,height=2cm
+    \end{tikzpicture}%
+  }% Select tikz picture
+
+  \SetBgPosition{current page.south west}% Select location
+  \SetBgOpacity{7.0}% Select opacity
+  \SetBgAngle{0.0}% Select roation of logo
+  \SetBgScale{1.0}% Select scale factor of logo      
+  \BgThispage      
+}
+
+%-----------------------------------------------
+% My Extra Graphic Styles
+%-----------------------------------------------
+
+\RequirePackage{my_extra_graphics_v4}
+
+
+%--------------------------------
+% Tables
+%--------------------------------
+
+\RequirePackage{booktabs} %better tables
+\RequirePackage{tabularx} %better columns in tables
+\RequirePackage{longtable} %breakable tables across pages
+\RequirePackage{threeparttable} % tables with footnote part
+\RequirePackage{multirow}
+\RequirePackage{colortbl}%coloring the table
+\RequirePackage{array} %needed for some table things
+%\RequirePackage{tablefootnote} % facilities for footnote  in tables PROBLEMS!
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+%Some table style
+\newcommand{\ZtabstyleAA}{%
+  \center%
+  \small%
+  \ttfamily%
+  \renewcommand{\arraystretch}{1.3}%
+  \rowcolors{1}{}{lightgray}%
+}
+
+
+
+
+%-----------------------------------------------
+% PDF
+%-----------------------------------------------
+
+
+
+
+\RequirePackage{cmap}%make the PDF by pdflatex "searchable and copyable"
+
+\RequirePackage{pdfpages}%sim­pli­fies the in­clu­sion of ex­ter­nal multi-page PDF doc­u­ments
+
+\RequirePackage{bookmark} %It was recommended by hyperref for better bookmarking
+
+
+
+
+%-----------------------------------------------
+% Academics
+%-----------------------------------------------
+
+
+
+% ---- natbib ---- %
+%\RequirePackage{natbib}
+%\setcitestyle{round,semicolon}
+
+% ---- biblatex ---- %
+% Start of 'ignore natbib' hack (for biditufe?)
+\let\bibhang\relax
+\let\citename\relax
+\let\bibfont\relax
+\let\Citeauthor\relax
+\expandafter\let\csname ver@natbib.sty\endcsname\relax
+% End of 'ignore natbib' hack
+\usepackage[
+    backend=biber,
+    style=authoryear,%authoryear-comp, icom => ibid
+    sortlocale=en_EN,
+    %natbib=true, //This conflicts with classes that auto-load natbib, such as biditufte
+    url=true, 
+    doi=true,
+    %eprint=false,
+    backref=true,
+    hyperref=true,
+    texencoding=utf8,
+    bibencoding=utf8%
+]{biblatex}
+
+
+%\usepackage[style=<somebiblatexstyle>,<other options>]{biblatex}
+
+%\providecommand{\bibname}{References}
+%\renewcommand{\bibname}{References}
+%\providecommand{\refname}{References}
+%\renewcommand{\refname}{References}
+%\makeatletter
+%\@ifundefined{chapter}{%
+%  \renewcommand\bibsection{\section*{\refname}}%
+%}{%
+%  \@ifundefined{NAT@sectionbib}{%
+%    \renewcommand\bibsection{\chapter{\bibname}}%
+%  }{%
+%    \renewcommand\bibsection{\section*{\bibname}}%
+%  }%
+%}%
+%\makeatother
+%\def\bibname{References}
+
+%----------- amCiteP & amCiteT, different definition for natbib and biblatex------%
+
+%This calls \citep[pages]{key} by decomposing complex "key(pages)" keys
+\ExplSyntaxOn
+\str_new:N \l_onlykey_str
+\str_new:N \l_onlypages_str
+\str_new:N \l_amcitetest_str
+\cs_new:Npn \f_amcitepwkey #1 {
+    %\tl_set:Nn \l_result_tl {#1}
+    % \regex_replace_all:nnN { (م)(?:\S) } { \c{Keshidegi2}\cB\{ \u{\l_kesh_str} \cE\}}  \l_result_tl
+    \str_set:Nn \l_onlykey_str {#1}
+    \str_set:Nn \l_onlypages_str {#1}
+    \str_set:Nn \l_amcitetest_str {#1}
+    %some(12-16)some becomes somesome
+    \regex_replace_all:nnN {^([^\(]+)(\()?([\d-\w]+)?(\))?$} {\1} \l_onlykey_str
+    %some(12-16)some becomes 12-16
+    \regex_replace_all:nnN {^([^\(]+)(\()?([\d-\w]+)?(\))?$} {\3} \l_onlypages_str
+    \regex_replace_all:nnN {^([^\(]+)(\()?([\d-\w]+)?(\))?$} {\1,\2,\3,\4} \l_amcitetest_str
+      
+    \typeout{AsciiMint: complex key is #1 , test is \l_amcitetest_str  , key is \l_onlykey_str ,and pages is \l_onlypages_str}%
+    
+
+    %NOTE: use NTF instead of nTF
+    \tl_if_empty:NTF \l_onlypages_str%
+    {%
+      %\typeout{AsciiMint: Using:\\ \citep{\l_onlykey_str}}%
+      \tl_use:N \autocite{\l_onlykey_str}%citep
+    }%
+    {%
+      %\typeout{AsciiMint: Using:\\ \citep{\l_onlykey_str}}%
+      \tl_use:N \autocite[\l_onlypages_str]{\l_onlykey_str}%[\l_onlypages_str]
+    }%
+    %\tl_use:N \citep[\l_onlypages_str]{\l_onlykey_str}
+  }
+\NewDocumentCommand \amCitePwKey{m}{\f_amcitepwkey{#1} }  
+\ExplSyntaxOff  
+
+
+\newcommand{\amBibFileVal}{library}
+\newcommand{\amBibStyleVal}{chicago-authordate}%plainnat
+\newcommand{\amBibHeadVal}{References}
+
+\makeatletter
+\@ifpackageloaded{biblatex}%
+{%
+  \newcommand{\amCiteP}[1]{%
+    %This enhances \citep{#1} to \citep[pages]{keys}
+    \amCitePwKey{#1}
+  }%
+  \newcommand{\amCiteT}[1]{\textcite{#1}}%\citet
+  \newcommand{\amBibStyle}[1]{%
+    \renewcommand{\amBibStyleVal}{#1}%
+    \ExecuteBibliographyOptions{style=\amBibStyleVal}%
+  }%
+  \newcommand{\amBibFile}[1]{%
+    \renewcommand{\amBibFileVal}{#1}%
+    \addbibresource{\amBibFileVal}%
+  }%
+  \newcommand{\amPrintBib}[1][\amBibHeadVal]{\printbibliography}%  [title={#1}]
+}%
+{% if bibtex
+  \newcommand{\amCiteP}[1]{\citep{#1}}%
+  \newcommand{\amCiteT}[1]{\citet{#1}}%
+  \newcommand{\amBibStyle}[1]{%
+    \renewcommand{\amBibStyleVal}{#1}%
+    \bibliographystyle{\amBibStyleVal}%
+  }%
+  \newcommand{\amBibFile}[1]{%
+    \renewcommand{\amBibFileVal}{#1}%
+  }%
+  \newcommand{\amPrintBib}{%[1][\amBibHeadVal]
+    %\renewcommand{\bibname}{#1}
+    %\renewcommand{\refname}{#1} 
+    \bibliography{\amBibFileVal}%
+  }%
+}%
+\makeatother
+
+\makeatletter
+\newcommand{\amBibPage}[1][References]
+  {
+  \renewcommand{\bibname}{#1}
+  \renewcommand{\refname}{#1}
+
+  \fancypagestyle{mybibpagestyle}{
+
+    \fancyhf{} % clear header and footer fields
+    \ifthenelse{\boolean{@tufte@twoside}}
+    %  {\fancyhead[LE]{\thepage\quad\smallcaps{\newlinetospace{\plainauthor}}}%
+    %    \fancyhead[RO]{\smallcaps{\newlinetospace{\plaintitle}}\quad\thepage}}
+     {\fancyhead[LE]{\thepage\quad\smallcaps{\newlinetospace{\plaintitle}}}%
+       \fancyhead[RO]{\smallcaps{\newlinetospace{#1}}\quad\thepage}}
+     {\fancyhead[RE,RO]{\smallcaps{\newlinetospace{\plaintitle}}\quad\thepage}}
+  }
+
+  \cleardoublepage%it helps for correct toc
+  \pagestyle{mybibpagestyle}%
+  \addcontentsline{toc}{chapter}{#1}%
+  %
+  %\amBibStyle{\amBibStyleVal}% plainnat
+  %\amBibFile{\amBibFileVal}%
+  %\amPrintBib[#1]%
+  %\amBibStyle{chicago-authordate}% NOT HERE! chicago-authordate \amBibStyleVal
+  %\amBibFile{library.bib}%  NOT HERE library.bib \amBibFileVal
+  \amPrintBib%[References]
+  %\bibliographystyle{chicago-authordate}
+  %\bibliography{library}
+  %
+  \clearpage%need this before chaning page style
+  \pagestyle{mynormalpagestyle}%
+  }
+  \makeatother
+
+\newcommand{\amBibSection}[1]
+  {
+  \renewcommand{\bibname}{#1}
+  \renewcommand{\refname}{#1}
+
+
+  %
+  %\amBibStyle{\amBibStyleVal}% plainnat
+  %\amBibFile{\amBibFileVal}%
+  %\amPrintBib[#1]%
+  %\amBibStyle{chicago-authordate}% NOT HERE! chicago-authordate \amBibStyleVal
+  %\amBibFile{library.bib}%  NOT HERE library.bib \amBibFileVal
+  \section{#1}
+  \amPrintBib%[References]
+  %\bibliographystyle{chicago-authordate}
+  %\bibliography{library}
+  %
+
+  }  
+
+%Math things
+\RequirePackage{amsmath}
+
+\RequirePackage{algorithm}
+\RequirePackage{algorithmicx}
+\RequirePackage{algpseudocode} %loads algorithmicx automatically 
+
+
+
+%-----------------------------------------------
+% Interlinks
+%-----------------------------------------------
+
+
+
+
+
+%\cref a word is placed in front of the reference according to the type of reference: fig. for figures, eq. for equations
+\RequirePackage{cleveref}
+\crefname{appchapter}{Appendix}{Appendices}
+\crefname{equation}{equation}{equations}
+\crefname{table}{table}{tables}
+\crefname{figure}{figure}{figures}
+\crefname{algorithm}{algorithm}{algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+
+
+
+
+
+%-----------------------------------------------
+%             M Y      C O M M A N D S
+%-----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+%-----------------------------------------------
+% my boxes and areas
+%-----------------------------------------------
+
+
+
+
+
+\RequirePackage[many,skins,breakable]{tcolorbox} %creates colored boxes
+
+
+  %Create marginout
+  \newtcolorbox{myMinimalColorBox}[1][some]
+  {%
+%    colback=red!5!white,%
+     coltitle=white,%
+     colbacktitle=gray,%
+%    colframe=red!75!black,%
+%    fonttitle=\bfseries,%
+    attach boxed title to top right={xshift=1mm,yshift=-2mm},%
+    %enhanced,%empty,%
+    %empty,%
+    %raster equal height,%
+    %raster columns=4,%
+    %coltitle=Navy,%
+    borderline={2pt}{0pt}{black!10!white},%
+    left=1mm,right=1mm,top=1mm,bottom=1mm,middle=1mm,%
+    %frame hidden,%
+    %colbacktitle=white,%
+    %coltitle=gray,%
+    adjusted title=#1,%
+    %enhanced,%empty,%
+  }
+  \NewEnviron{myMarginBackground}[1] 
+  {\noindent\marginnote{%
+              \begin{myMinimalColorBox}[]%
+                %#1%~\hrulefill~\\
+                %\tcblower
+                \BODY%
+              \end{myMinimalColorBox}%
+            }%
+  }
+  
+  
+  
+\newenvironment{mykeywords}[1][Keywords]%
+  {\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray,frame empty]\section*{#1}}%,frame hidden
+  {\end{tcolorbox}}
+\NewEnviron{keyword}{\begin{mykeywords}\BODY\end{mykeywords}}
+
+
+\newenvironment{myabstract}[1][Abstract]%
+  {\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray,frame empty]\section*{#1}}%, frame hidden
+  {\end{tcolorbox}}
+%\newenvironment{mychapterabstract}[1][Abstract]%
+%  {\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray, frame empty]\section*{#1}}%, frame hidden
+%  {\end{tcolorbox}}
+
+\newtcolorbox{myabstractbox}{colframe=white,frame hidden,breakable,colback=plosbluegray,frame empty}  
+\NewEnviron{mychapterabstract}[1][Abstract]{\begin{myabstractbox}\section*{#1}\BODY\end{myabstractbox}}  
+
+
+\newtcolorbox{amGrayBox}{colframe=white,frame hidden,breakable,colback=verylightgray,frame empty,parbox=false}%,sidebyside,sidebyside align=top,lower separated=false
+\newtcolorbox{amGrayBoxListing}{colframe=white,frame hidden,colback=verylightgray,frame empty}%,breakable,parbox=false,sidebyside,sidebyside align=top,lower separated=false
+\NewEnviron{amGrayBoxSection}[1][Box]{\begin{amGrayBox}\section*{}\addcontentsline{toc}{section}{#1}\BODY\end{amGrayBox}}  
+\NewEnviron{amGrayZone}{\begin{amGrayBox}\BODY\end{amGrayBox}}%[1][Box] 
+
+\NewEnviron{amFullWidth}{\begin{fullwidth}\BODY\end{fullwidth}}%needs tufte 
+
+
+\newenvironment{mysummarypoints}%
+{\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray]}
+{\end{tcolorbox}} 
+
+\newcommand{\amAside}[1]{%
+  \marginnote[8.0ex]{%[1.2ex]this offsets -1.2ex to zero
+    %---%\small\selectfont\mygraytext{#1}%
+    {%
+    %\noindent
+    \begin{FlushLeft}%
+      %\large
+      \nohyphens{\amDGray{#1}}%
+    \end{FlushLeft}%
+    }%
+  }%
+  %---%
+  %{\marginpar[1\baselineskip]{%
+      %\lettrine{$\mylightgraytext{\lceil}$}{} ~#1 %\lettrine{$\mylightgraytext{\rfloor}$}{}%\therefore \models /Box
+  %}  
+  %---%
+  }
+  %\NewEnviron{sidebar}{\amAside{\BODY}}
+
+
+
+
+%Creates a thumbnail of something in margin
+\newcommand{\mymarginthumbnail}[3][0pt]{ 
+  \begin{marginfigure}[#1]
+    \center%
+    %\vspace{10pt}
+    \begin{tcolorbox}[backgroundcolor=lightgray]%
+    \center%
+    \resizebox{0.9\linewidth}{!}{#2}%
+    \end{tcolorbox}%
+    %\caption*{}
+    \raggedright%
+    #3%
+    \vspace{5pt}%
+  \end{marginfigure}%
+}
+
+
+
+\DeclareRobustCommand{\myinlineimage}[1]{%
+  \begingroup\normalfont%
+  \includegraphics[height=\fontcharht\font`\B]{#1}%
+  \endgroup%
+}
+
+
+
+%---------------------------
+% C O L O R     B O X E S
+%---------------------------
+  
+
+
+%\RequirePackage[printwatermark]{xwatermark} %creates watermark or draft watermarks
+%\RequirePackage{lpic} %Overlay latex over any pic
+
+
+\RequirePackage{bloques}% creates bloque diagram
+\RequirePackage{qrcode}
+
+
+%\RequirePackage{logicpuzzles} % matrices like sudoko
+
+%\RequirePackage{pstricks}
+%\RequirePackage{pdftricks2}
+%\RequirePackage{pstricks-add}
+%\RequirePackage{preview}
+
+%\RequirePackage{auto-pst-pdf} %we need to convert ps to pdf for dot and graphviz
+%\RequirePackage{graphvizzz}
+
+%\RequirePackage{svg} %PROBLEM! too shaky
+
+
+
+
+%\RequirePackage[framemethod=tikz]{mdframed} %creates colored breakable text frames PROBLEM with many, use tcolorebox
+%  \newenvironment{myInsideStory}[1]
+%    {
+%   \ifstrempty{#1}%
+%   {\mdfsetup{%
+%     frametitle={%
+%        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+%         \node[anchor=east,rectangle,fill=lightgray!20]
+%         {\strut };}}
+%   }%
+%   {\mdfsetup{%
+%      frametitle={%
+%        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+%         \node[anchor=east,rectangle,fill=lightgray!20]
+%         {\strut #1};}}%
+%    }%
+%    
+%
+%   \mdfsetup{
+%   innertopmargin=10pt,
+%   linecolor=lightgray, %!20,%
+%   linewidth=2pt,topline=true,
+%   frametitlealignment=\center,             
+%   frametitleaboveskip=\dimexpr-\ht\strutbox\relax,
+% }
+%                   
+%    \begin{mdframed}%
+%    }
+%    {\end{mdframed}}
+
+
+%-----------------------------------------------
+% Colorful Texts
+%-----------------------------------------------
+
+
+% AsciiMint Colorful Text
+\providecommand{\amRed}[1]{\textcolor{myred}{#1}}
+\providecommand{\amBlue}[1]{\textcolor{myblue}{#1}}
+\providecommand{\amGray}[1]{\textcolor{gray}{#1}}
+\providecommand{\amDGray}[1]{\textcolor{darkgray}{#1}}
+\providecommand{\amLGray}[1]{\textcolor{lightgray}{#1}}
+
+
+
+%-----------------------------------------------
+% Xepersian
+%-----------------------------------------------
+\makeatletter
+\ifboolexpr{bool{amIsXepersian}}%
+{%
+  \RequirePackage[Kashida,localise,computeautoilg=on]{xepersian}%loads bidi package automatically %Kashida,(we do it ourselve)
+
+  \crefname{equation}{ریختار}{ریختارهای}
+  \crefname{table}{جدلو}{جداول}
+  \crefname{figure}{نمودار}{نمودارهای}
+  \Crefname{figure}{نمودار}{نمودارهای}
+  \crefname{algorithm}{آلگوریتم}{آلگوریتم‌ها}
+  \Crefname{algorithm}{آلگوریتم}{آلگوریتم‌ها}
+
+
+  \NewDocumentCommand \amRunKashidaXepersianDefault{}{
+    \chardef\xepersian@zwj="200D % zero-width joiner
+
+    \chardef\xepersian@D=10 % dual-joiner class
+    \chardef\xepersian@L=11 % lam
+    \chardef\xepersian@R=12 % right-joiner
+    \chardef\xepersian@A=13 % alef
+    \chardef\xepersian@V=4096 % vowel or other combining mark (to be ignored)
+
+
+    %I put
+    \chardef\am@char@keshidegi="0640
+
+    \newif\if@Kashida@on%
+    %\def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
+    %    \leaders\hrule height \XeTeXglyphbounds2 \the\XeTeXcharglyph"0640  depth \XeTeXglyphbounds4 \the\XeTeXcharglyph"0640 \hskip0pt plus 0.5em \xepersian@zwj\fi}
+    \def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
+    \leavevmode%
+    %Font Justifications goes here
+    \edef\keshidegiid{\the\XeTeXcharglyph"0640}% `_ %Should be defined inside to take effect of font?
+    %\dimen0=\XeTeXglyphbounds2 \the\XeTeXcharglyph"005F%"0640%
+    \dimen0=\XeTeXglyphbounds2 \the\XeTeXcharglyph"0640%"0640%
+    \advance\dimen0 by - 0.003pt
+    %\dimen1=\XeTeXglyphbounds4 \the\XeTeXcharglyph"005F%"0640%
+    \dimen1=\XeTeXglyphbounds4 \the\XeTeXcharglyph"0640%"0640
+    \advance\dimen1 by - 0.003pt
+        %Old style Begin
+        \leaders\hrule height \dimen0 depth \dimen1 \hskip0pt plus 0.5em%
+        %\xepersian@zwj\fi%
+        %Old style End
+        %\setbox0=\hbox to\hsize{\leaders\hrule \hskip 0pt plus 05.em}%
+        %\resizebox{\th\wd0}{\height}{\clipbox{0pt}{\char"0640}}%{ـ}HOW DOES THIS WORK!     
+        %\setbox0\hbox{\leaders\hrule\hskip 0pt plus 0.5em}%\leaders\hrule
+        %New style Begin    
+        %%%%%%%\hskip0pt plus 0.5em%
+        %\unskip%
+        %%%%%%%\dimen2=\z@%
+        %%%%%%%\advance\dimen2 \lastskip%
+        %\write\@auxout{\dimen2}
+        %\advance\dimen2 1sp%
+        %\showbox0%
+        %\typeout{zz \the\wd0 is the size last skip is \the\dimen2}%
+        %%%%%%%\expandafter\resizebox{\dimen2}{\height}{\color{red}\char"0640\color{black}}%{ـ}\clipbox{0pt}{\char"0640}
+        %New style End
+        %\setbox0=\hbox{\am@char@keshidegi}%
+        %\leaders\hrule height\ht0 \hskip0pt plus 0.5em%
+        \xepersian@zwj\fi}%
+    \def\setclass#1#2{\def\theclass{#1}\def\charlist{#2}%
+      \expandafter\dosetclass\charlist,\end}
+    \def\dosetclass#1,#2\end{%
+      \def\test{#1}\def\charlist{#2}%
+      \ifx\test\empty\let\next\finishsetclass
+      \else \XeTeXcharclass "\test = \theclass
+         \let\next\dosetclass \fi
+      \expandafter\next\charlist,,\end}
+    \def\finishsetclass#1,,\end{}
+
+    \setclass \xepersian@A {0622,0623,0625,0627}
+    \setclass \xepersian@R {0624,0629,062F,0630,0631,0632,0648,0698}
+    \setclass \xepersian@D {0626,0628,062A,062B,062C,062D,062E}
+    \setclass \xepersian@D {0633,0634,0635,0636,0637,0638,0639,063A}
+    \setclass \xepersian@D {0640,0641,0642,0643,0645,0646,0647,0649,064A}
+    \setclass \xepersian@D {067E,0686,06A9,06AF,06CC}
+    \setclass \xepersian@L {0644}
+    \setclass \xepersian@V {064B,064C,064D,064E,064F,0650,0651,0652}
+
+    \XeTeXinterchartoks \xepersian@D \xepersian@D = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@D = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@L = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@L = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@R = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@A = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@R = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@A = {}
+
+    \providecommand{\KashidaOn}{\@Kashida@ontrue}
+    \providecommand{\KashidaOff}{\@Kashida@onfalse}  
+
+    \renewcommand{\KashidaOn}{\@Kashida@ontrue}
+    \renewcommand{\KashidaOff}{\@Kashida@onfalse}  
+  }
+
+
+
+  %Interchar RTL/LTR inspired from here: http://tex.stackexchange.com/questions/23049/font-substitution-with-xelatex
+  %I put
+  %\XeTeXinterchartokenstate=1
+  %\newXeTeXintercharclass\PersSubst
+  %\count255="0600
+  %\loop\ifnum\count255<"06FF
+  %  \XeTeXcharclass\count255=\PersSubst
+  %  \advance\count255 by 1
+  %\repeat
+  %\newcommand*{\unicode@bidi@startlatin}{\if@nonlatin\bgroup\beginL\latinfont\@nonlatinfalse\fi}
+  %\newcommand*{\unicode@bidi@finishlatin}{\if@nonlatin\else\unskip\endL\egroup{ }\fi}
+  %\XeTeXinterchartoks \PersSubst 0 = {\unicode@bidi@startlatin}
+  %\XeTeXinterchartoks \PersSubst 255 = {\unicode@bidi@startlatin}
+  %\XeTeXinterchartoks 0 \PersSubst = {\unicode@bidi@finishlatin}
+  %\XeTeXinterchartoks 255 \PersSubst = {\unicode@bidi@finishlatin}
+
+  %\RequirePackage{unicode-bidi}  
+
+
+
+}{%
+}
+\makeatother
+
+%-----------------------------------------------
+% Tufte fixes
+%-----------------------------------------------
+
+% The default minimum amount of space between \marginnotes is 10 pt.
+\setlength\marginparpush{20pt}
+
+
+
+
+%-----------------------------------------------
+% dblatex fixes
+%-----------------------------------------------
+
+
+%Disable comment for later
+\providecommand{\comment}[1]{\relaxt}
+
+
+%---%\providecommand{\hyperlabel}[1]{}
+%---%\let\hyperlabel\relax
+\def\hyperlabel#1{}
+%\providecommand{\imgexists}[3]{#2}
+%\providecommand{\imgevalsize}[2]{#2}
+%
+
+%
+% The image keeps its natural size if lower than the max boundaries
+% Now it's fully based on internal graphics macros
+%
+% Macros defining the maximum lengths
+
+\makeatletter
+
+% Check if the image file (#1) exists. If so, it switches to #2, else to #3
+% It assumes that the graphics package \Gin@extensions macro is defined.
+%
+\long\def\imgexists#1#2#3{%
+  \begingroup%
+  \let\img@file\relax%
+  \filename@parse{#1}%
+  \ifx\filename@ext\relax%
+    \@for\Gin@temp:=\Gin@extensions\do{%
+    \ifx\img@file\relax%
+      \IfFileExists{#1\Gin@temp}{\def\img@file{#1}}{}%
+    \fi}%
+  \else
+    \IfFileExists{#1}{\def\img@file{#1}}{}%
+  \fi%
+  \ifx\img@file\relax#3\else#2\fi%
+  \endgroup%
+}
+
+
+\def\imgmaxwidth{\textwidth}%
+\def\imgmaxheight{\textheight}%
+
+% Real image sizes
+\def\imgrwidth{\Gin@nat@width}%
+\def\imgrheight{\Gin@nat@height}%
+\def\imgevalsize#1{}%
+
+% Use the maximum possible size
+\def\imgwidth{%
+  \ifdim\Gin@nat@width>\imgmaxwidth%
+    \imgmaxwidth%
+  \else%
+    \Gin@nat@width%
+  \fi%
+}
+
+\def\imgheight{%
+  \ifdim\Gin@nat@height>\imgmaxheight%
+    \imgmaxheight%
+  \else%
+    \Gin@nat@height%
+  \fi%
+}
+
+\makeatother
+
+% For the newtbl code
+\newdimen\newtblstarfactor%
+\newdimen\newtblsparewidth%
+\newdimen\newtblcolwidth%
+\newdimen\tablewidth%

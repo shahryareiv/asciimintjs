@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.engine.options">
+  <refmeta>
+    <refentrytitle>latex.engine.options</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.engine.options</parameter></refname>
+    <refpurpose>Extra arguments to pass to the TeX engine</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.engine.options.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>This parameter enables to pass some options or extra arguments to the
+    TeX engine used to compile the latex file built by
+    <command>dblatex</command>.</para>
+    <para>This can be usefull to tweak the PDF generation to meet some specific
+    needs that cannot be set through latex commands. The following example asks
+    to <command>xelatex</command> to produce PDF version 1.3 and to embed all
+    the fonts in the PDF file:</para>
+    <screen>
+$ <userinput>dblatex -b xetex -V -P latex.engine.options="-output-driver='xdvipdfmx -V3 -E'" file.xml</userinput>
+[...]
+xelatex -output-driver=xdvipdfmx -V3 -E -interaction=batchmode file.tex
+[...]
+xelatex -output-driver=xdvipdfmx -V3 -E -interaction=batchmode file.tex
+[...]
+    </screen>
+  </refsection>
+</refentry>

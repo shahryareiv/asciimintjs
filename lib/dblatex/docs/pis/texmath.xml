@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="pi-texmath_delimiters">
+  <refmeta>
+    <refentrytitle>texmath delimiters</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><sgmltag class="xmlpi">texmath
+             <parameter>delimiters</parameter></sgmltag></refname>
+    <refpurpose>Disable The LaTeX Mathematical Delimiters Control</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><![CDATA[<?texmath delimiters="user" ?>]]></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+
+    <xi:include href="../math/alttex.xml"
+                xpointer="xpointer(id('pi-texmath-user'))"
+                xmlns:xi="http://www.w3.org/2001/XInclude" />
+
+  </refsection>
+
+  <refsection>
+    <title>Context</title>
+    <para>Recognized in the <sgmltag>alt</sgmltag> element.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+    <para><xref linkend="sec-alttex-delimiters"/>.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.layout.options">
+  <refmeta>
+    <refentrytitle>literal.layout.options</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.layout.options</parameter></refname>
+    <refpurpose>Override the options passed to the <filename>listing</filename>
+    package</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.layout.options.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Overwrite the default options passed to the \lstset command.</para>
+  </refsection>
+</refentry>

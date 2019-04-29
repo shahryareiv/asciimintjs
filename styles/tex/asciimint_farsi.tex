@@ -1,0 +1,207 @@
+
+  \NewDocumentCommand \amRunKashidaXepersianDefault{}{
+    \chardef\xepersian@zwj="200D % zero-width joiner
+
+    \chardef\xepersian@D=10 % dual-joiner class
+    \chardef\xepersian@L=11 % lam
+    \chardef\xepersian@R=12 % right-joiner
+    \chardef\xepersian@A=13 % alef
+    \chardef\xepersian@V=4096 % vowel or other combining mark (to be ignored)
+
+
+    %I put
+    \chardef\am@char@keshidegi="0640
+
+    \newif\if@Kashida@on%
+    %\def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
+    %    \leaders\hrule height \XeTeXglyphbounds2 \the\XeTeXcharglyph"0640  depth \XeTeXglyphbounds4 \the\XeTeXcharglyph"0640 \hskip0pt plus 0.5em \xepersian@zwj\fi}
+    \def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
+    \leavevmode%
+    %Font Justifications goes here
+    \edef\keshidegiid{\the\XeTeXcharglyph"0640}% `_ %Should be defined inside to take effect of font?
+    %\dimen0=\XeTeXglyphbounds2 \the\XeTeXcharglyph"005F%"0640%
+    \dimen0=\XeTeXglyphbounds2 \the\XeTeXcharglyph"0640%"0640%
+    \advance\dimen0 by - 0.003pt
+    %\dimen1=\XeTeXglyphbounds4 \the\XeTeXcharglyph"005F%"0640%
+    \dimen1=\XeTeXglyphbounds4 \the\XeTeXcharglyph"0640%"0640
+    \advance\dimen1 by - 0.003pt
+        %Old style Begin
+        \leaders\hrule height \dimen0 depth \dimen1 \hskip0pt plus 0.5em%
+        %\xepersian@zwj\fi%
+        %Old style End
+        %\setbox0=\hbox to\hsize{\leaders\hrule \hskip 0pt plus 05.em}%
+        %\resizebox{\th\wd0}{\height}{\clipbox{0pt}{\char"0640}}%{ـ}HOW DOES THIS WORK!     
+        %\setbox0\hbox{\leaders\hrule\hskip 0pt plus 0.5em}%\leaders\hrule
+        %New style Begin    
+        %%%%%%%\hskip0pt plus 0.5em%
+        %\unskip%
+        %%%%%%%\dimen2=\z@%
+        %%%%%%%\advance\dimen2 \lastskip%
+        %\write\@auxout{\dimen2}
+        %\advance\dimen2 1sp%
+        %\showbox0%
+        %\typeout{zz \the\wd0 is the size last skip is \the\dimen2}%
+        %%%%%%%\expandafter\resizebox{\dimen2}{\height}{\color{red}\char"0640\color{black}}%{ـ}\clipbox{0pt}{\char"0640}
+        %New style End
+        %\setbox0=\hbox{\am@char@keshidegi}%
+        %\leaders\hrule height\ht0 \hskip0pt plus 0.5em%
+        \xepersian@zwj\fi}%
+    \def\setclass#1#2{\def\theclass{#1}\def\charlist{#2}%
+      \expandafter\dosetclass\charlist,\end}
+    \def\dosetclass#1,#2\end{%
+      \def\test{#1}\def\charlist{#2}%
+      \ifx\test\empty\let\next\finishsetclass
+      \else \XeTeXcharclass "\test = \theclass
+         \let\next\dosetclass \fi
+      \expandafter\next\charlist,,\end}
+    \def\finishsetclass#1,,\end{}
+
+    \setclass \xepersian@A {0622,0623,0625,0627}
+    \setclass \xepersian@R {0624,0629,062F,0630,0631,0632,0648,0698}
+    \setclass \xepersian@D {0626,0628,062A,062B,062C,062D,062E}
+    \setclass \xepersian@D {0633,0634,0635,0636,0637,0638,0639,063A}
+    \setclass \xepersian@D {0640,0641,0642,0643,0645,0646,0647,0649,064A}
+    \setclass \xepersian@D {067E,0686,06A9,06AF,06CC}
+    \setclass \xepersian@L {0644}
+    \setclass \xepersian@V {064B,064C,064D,064E,064F,0650,0651,0652}
+
+    \XeTeXinterchartoks \xepersian@D \xepersian@D = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@D = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@L = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@L = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@R = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@A = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@R = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@A = {}
+
+    \providecommand{\KashidaOn}{\@Kashida@ontrue}
+    \providecommand{\KashidaOff}{\@Kashida@onfalse}  
+
+    \renewcommand{\KashidaOn}{\@Kashida@ontrue}
+    \renewcommand{\KashidaOff}{\@Kashida@onfalse}  
+  }
+
+  \NewDocumentCommand \amRunKashegi{}{
+    \chardef\xepersian@zwj="200D % zero-width joiner
+    \chardef\xepersian@D=10 % dual-joiner class
+    \chardef\xepersian@L=11 % lam
+    \chardef\xepersian@R=12 % right-joiner
+    \chardef\xepersian@A=13 % alef
+    \chardef\xepersian@V=4096 % vowel or other combining mark (to be ignored)
+    %I put
+    \chardef\am@char@keshidegi="0640
+    \newif\if@Kashida@on%
+    %\def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
+    %    \leaders\hrule height \XeTeXglyphbounds2 \the\XeTeXcharglyph"0640  depth \XeTeXglyphbounds4 \the\XeTeXcharglyph"0640 \hskip0pt plus 0.5em \xepersian@zwj\fi}
+    \def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
+    \leavevmode%
+    %Font Justifications goes here
+    \edef\keshidegiid{\the\XeTeXcharglyph"0640}% `_ %Should be defined inside to take effect of font?
+    %\dimen0=\XeTeXglyphbounds2 \the\XeTeXcharglyph"005F%"0640%
+    \dimen0=\XeTeXglyphbounds2 \the\XeTeXcharglyph"0640%"0640%
+    \advance\dimen0 by - 0.003pt%
+    %\dimen1=\XeTeXglyphbounds4 \the\XeTeXcharglyph"005F%"0640%
+    \dimen1=\XeTeXglyphbounds4 \the\XeTeXcharglyph"0640%"0640
+    \advance\dimen1 by - 0.003pt%
+        %Old style Begin
+        %\leaders\hrule height \dimen0 depth \dimen1 \hskip0pt plus 0.5em%
+        %\xepersian@zwj\fi%
+        %Old style End
+        %Method 1
+        %\setbox0=\hbox to\hsize{\leaders\hrule height \dimen0 depth \dimen1 \hskip 0pt plus 05.em}% Here WD is page wixth 304.44447pt!!!
+        %Method 2
+        %\setbox0=\hbox to\hsize{\leaders\hrule  \hskip 0pt plus 05.em}% Here WD is page wixth 304.44447pt!!!
+        %Method 3
+        %\setbox0=\hbox{\leaders\hrule  \hskip 0pt plus 05.em}% Here WD is page 0pt!!!
+        %Method 4
+        %\setbox0=\hbox{\hskip 0pt plus 05.em}% Here WD is page 0pt!!!
+        %Method 5
+        %\setbox0=\hbox{ـ}% Here WD is page 0pt!!!
+        %Method 6
+        %\the\lastskip
+        %Method 7
+        %\newbox\mybox
+        %\setbox\mybox\hbox to 50pt{a b c}
+        %\setbox0\hbox{\unhcopy\mybox}%\showthe\wd0
+        %Method 8
+        %\hskip 0pt plus 05.em %still lastskip is 0
+        %Method 9
+        %\setbox1=\hbox{\leaders\hrule  \hskip 0pt plus 05.em}
+        %\setbox0=\hbox{\unhbox\box1}% Here WD is page 0pt!!!        
+        %Method 9
+        %\newbox\mybox
+        %\setbox\mybox\hbox{\leaders\hrule  \hskip 0pt plus 05.em}
+        %\setbox0=\setbox0\hbox{\unhcopy\mybox}% Here WD is page 0pt!!!        
+        %Method 10
+        %\leaders\hrule height \dimen0 depth \dimen1 \hskip 0pt plus 05.em
+        %\resizebox{\lastskip}{\height}{\clipbox{0pt}{\char"0640}}     
+        %\dimen3=0pt
+        %\advance\dimen3 by \the\dimen0
+        %\advance\dimen3 by \the\dimen2
+        %\lastskip
+        %method 11
+        %\dimen3=\lastskip%
+        %\setbox0=
+        %\hbox{\leaders\hrule  }%
+        \leaders\hrule height \dimen0 depth \dimen1 \hskip 0pt plus 05.em%
+        %\unskip%
+        \dimen0=\wd0%
+        \dimen0=\lastskip%
+        \resizebox{\dimen0}{\height}{\clipbox{0pt}{\am@char@keshidegi}}%
+        %\rlap{\resizebox{\lastskip}{\height}{\clipbox{0pt}{\char"0640}}}
+        \typeout{WD0=***\the\wd0***and DIMEN2= \the\dimen2***and last skip=\the\lastskip }%
+        %\resizebox{\the\wd0}{\height}{\clipbox{0pt}{\char"0640}}%{ـ}HOW DOES THIS WORK!     
+        %\setbox0\hbox{\leaders\hrule\hskip 0pt plus 0.5em}%\leaders\hrule
+        %New style Begin    
+        %%%%%%%\hskip0pt plus 0.5em%
+        %\unskip%
+        %%%%%%%\dimen2=\z@%
+        %%%%%%%\advance\dimen2 \lastskip%
+        %\write\@auxout{\dimen2}
+        %\advance\dimen2 1sp%
+        %\showbox0%
+        %\typeout{zz \the\wd0 is the size last skip is \the\dimen2}%
+        %%%%%%%\expandafter\resizebox{\dimen2}{\height}{\color{red}\char"0640\color{black}}%{ـ}\clipbox{0pt}{\char"0640}
+        %New style End
+        %\setbox0=\hbox{\am@char@keshidegi}%
+        %\leaders\hrule height\ht0 \hskip0pt plus 0.5em%
+        \xepersian@zwj\fi}%
+    \def\setclass#1#2{\def\theclass{#1}\def\charlist{#2}%
+      \expandafter\dosetclass\charlist,\end}
+    \def\dosetclass#1,#2\end{%
+      \def\test{#1}\def\charlist{#2}%
+      \ifx\test\empty\let\next\finishsetclass
+      \else \XeTeXcharclass "\test = \theclass
+         \let\next\dosetclass \fi
+      \expandafter\next\charlist,,\end}
+    \def\finishsetclass#1,,\end{}
+
+    \setclass \xepersian@A {0622,0623,0625,0627}
+    \setclass \xepersian@R {0624,0629,062F,0630,0631,0632,0648,0698}
+    \setclass \xepersian@D {0626,0628,062A,062B,062C,062D,062E}
+    \setclass \xepersian@D {0633,0634,0635,0636,0637,0638,0639,063A}
+    \setclass \xepersian@D {0640,0641,0642,0643,0645,0646,0647,0649,064A}
+    \setclass \xepersian@D {067E,0686,06A9,06AF,06CC}
+    \setclass \xepersian@L {0644}
+    \setclass \xepersian@V {064B,064C,064D,064E,064F,0650,0651,0652}
+
+    \XeTeXinterchartoks \xepersian@D \xepersian@D = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@D = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@L = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@L = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@R = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@D \xepersian@A = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@R = {\xepersian@kashida}
+    \XeTeXinterchartoks \xepersian@L \xepersian@A = {}
+
+    \providecommand{\KashidaOn}{\@Kashida@ontrue}
+    \providecommand{\KashidaOff}{\@Kashida@onfalse}  
+
+    \renewcommand{\KashidaOn}{\@Kashida@ontrue}
+    \renewcommand{\KashidaOff}{\@Kashida@onfalse}  
+  }
+  %\amRunKashegi{}
+
+    %\XeTeXinterchartoks \mycharclassA \mycharclassB = {\mystretchedchar}%%%
+
+  

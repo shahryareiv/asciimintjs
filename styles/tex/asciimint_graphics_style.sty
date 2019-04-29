@@ -1,0 +1,63 @@
+
+\ProvidesPackage{asciimint_graphics_style_a}[2018/03/31 Shahryar]
+
+% This has been provided asciimint_graphics define your style
+%Detect Pdftex or Xelatex or Luatex
+% \RequirePackage{ifpdf}
+% \RequirePackage{ifxetex}
+% \RequirePackage{ifluatex}
+% \newif\ifxetexorluatex
+% \ifxetex
+%   \xetexorluatextrue
+% \else
+%   \ifluatex
+%     \xetexorluatextrue
+%   \else
+%     \xetexorluatexfalse
+%   \fi
+% \fi
+
+% %IF Lua then some fixes are needed
+% \ifluatex
+%   \RequirePackage{shellesc}                % implement \write18
+%   \RequirePackage{pdftexcmds}              % fake \pdfshellescape so
+%   \makeatletter                            % standalone knows about it
+%     \let\pdfshellescape\pdf@shellescape
+%   \makeatother
+%   \RequirePackage{luatex85}%remedy of luatex for standalone (for a while)
+% \fi
+
+
+
+
+\ifxetexorluatex%
+  \RequirePackage{fontspec}
+  \RequirePackage[cmintegrals,cmbraces]{newtxmath}
+  \RequirePackage{ebgaramond-maths}  
+  \defaultfontfeatures{Mapping=tex-text, Numbers=Lining}   
+  % \setmainfont[Contextuals=NoAlternate]{EB Garamond}%lining vs OldStyle
+  % \setmainfont[Contextuals=NoAlternate]{Optima}%lining vs OldStyle
+  \setmainfont[Contextuals=NoAlternate]{Linux Biolinum}%lining vs OldStyle
+  % \RequirePackage{roboto}
+  % \setsansfont{Roboto}
+  % \setmainfont{Roboto}
+  % \setmainfont[
+  %     Ligatures=TeX
+  %     % Condensed = * Condensed,
+  %     % UprightFont = *-Boo,
+  %     % ItalicFont = *-BooObl,
+  %     % SmallCapsFont = *SC-Boo,
+  %     % BoldFont = *-Dem,
+  %     % BoldItalicFont = *-DemObl
+  % ]{Roboto}  
+  % \setsansfont{Gill Sans}[BoldFont={* Bold}]  
+\else
+    \RequirePackage[lining]{ebgaramond}
+    \RequirePackage[cmintegrals,cmbraces]{newtxmath}
+    \RequirePackage{ebgaramond-maths}   %[lining]
+    \RequirePackage[sfdefault]{roboto}
+    \renewcommand\familydefault{\sfdefault} %set font to sans for all figures
+\fi
+
+
+

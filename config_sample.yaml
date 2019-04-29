@@ -1,0 +1,69 @@
+  title : "برای دهمین و بیستمین‌ سال"
+  subtitle : " پرسش‌های کهنه، پاسخ‌های نو"
+  author : "شهریار عیوض زاده"
+  date : "زمستان ۱۳۹۵"
+
+  #basefolder
+  # put a relative path (to the current working directory/folder) or an absolute path
+  #put '.' or leave the value empty if you want the current working directory/folder to be used
+  basefolder : '/Users/sei/Google Drive/Academics/_my_writings/afkare_parakandeh/95_baraye_dahomin_sal'
+
+  #outfolder
+  # put a relative path (to the basefolder) or an absolute path. Note: '.' means the same as the basefolder.
+  #If you leave the value empty then 'output' folder in the basefolder would be used
+  #NOTE: normally the basefolder definition line is above this line, otherwise outfolder assumes
+  outfolder : 'output'
+  buildfolder : 'build'
+  figuresfolder : 'figures'
+  #stylesfolder : 'styles' //Most of new users do not create their own styles
+
+
+  # task
+  #Use any of 'HTML','DOCBOOK',PDFTEX','PDF_FOPUB','PDF_DIRECT','tex_f_html',
+  # 'ASCIIDOC': it creates almost the same output as the input! just does some pre-processing (such as language things)
+  # 'ALL_IMAGES': it compiles and copies all images  (png=>(png & pdf), pdf=>(pdf & png), jpg=>(jpg), svg=>(svg, pdf, png), tikz.tex(pdf)=>(pdf, png), r(pdf)=>(pdf,png))
+  # 'HTML': the html ouput with all related images (only png,jpg,svg outputs)
+  # 'DOCBOOK' creates docbook output without any images
+  # PDFTEX: creates pdf througt docbook->tex->pdf.
+  tasks : 
+    # - 'tex_f_html'
+    - 'HTML'
+    # - 'PDF_DIRECT'
+    - 'PDFTEX'
+  src_name : 'fistar_results'
+  target : 'fistar_results'
+   #  #adoc_pdf adoc_tex_pdf adoc_docbook_tex_pdf adoc_docbooktex adoc_docbook4tex_tex adoc_docbook4tex_tex_pdf
+   #  #adoc_tex_pdf adoc_docbook4tex_tex adoc_docbook4tex_tex_pdf adoc_docbook4docx_docx
+  # format : ['adoc_docbook4tex_tex_pdf', 'adoc_docbook4docx_docx', 'adoc_html']
+  files_to_copy_to_base :  
+    - '/Users/sei/Google Drive/Academics/_my_assets/_biblio/library.bib'
+  files_to_copy_to_figures :
+    -
+  commands_to_run_before :  
+    -
+  #all_src_to_copy  : [bib_src_to_copy]
+  bib_file :  'library.bib'
+   #  chicago-author-date,apa,ieee
+  bib_style : 'apa'
+  csl_style : 'apa'
+  glossary :  '_glossary.adoc.txt'
+  tex_glossary : 'tex_glossary.tex'
+   #  #licentiate.docbooktemplate_tuft1.tex licentiate.docbooktemplate_mem1.tex
+  tex_template : 'x_fa_article.tex' # x_article.tex,x_book.tex,x_fa_article.tex, x_fa_book.tex
+   #  #xelatex pdflatex,
+   # tex_compiler : 'xelatex'
+  css_file : 'my.css'
+  css_file_rtl : 'my_rtl.css'
+
+  #Uncomment these if you want a presenation
+  #pres_engine : 'reveal'
+  #pres_css_file : 'pres.css'  
+
+  doctype : 'article'
+  
+  pdf_style : 'my-theme.yml'
+  pdf_font : 'IRMitra' # IRFarnaz_p30download.com
+  lang : 'fa' # en
+  rtl : true  # automatically is set if lang is fa or ar
+  remove_sidebar_text : false #if true if would remove sidebar texts  
+  

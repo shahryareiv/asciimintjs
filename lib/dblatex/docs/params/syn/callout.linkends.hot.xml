@@ -1,0 +1,1 @@
+<xsl:param name="callout.linkends.hot" select="'1'"/>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<section><title>Writing Mathematics</title>
+<xi:include href="alttex.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="mathml.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</section>

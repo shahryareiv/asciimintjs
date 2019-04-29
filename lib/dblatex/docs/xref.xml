@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section id="sec-xref">
+<title>Using XRefsyle and Olinks</title>
+
+<para>Since version 0.2.7 you can use the <sgmltag>xrefstyle</sgmltag> attribute
+like you would do with the DocBook Project stylesheets for HTML output.</para>
+
+<para>Furthermore, you can also use <sgmltag>olink</sgmltag>s. Note that
+Olinking is used in the PDF version of this manual,
+in <xref linkend="sec-changelog"/>.</para>
+
+<para>Actually, the common DocBook Project stylesheets version 1.72 are now
+used by dblatex to handle all of these features.</para>
+
+<para>These features are fully described in the <ulink url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The Complete Guide</ulink> book by Bob Stayton. In particular, the following sections cover these topics:
+
+<itemizedlist>
+<listitem><para><ulink url="http://www.sagehill.net/docbookxsl/CustomXrefs.html"/> explains how to use <sgmltag>xrefstyle</sgmltag>.</para></listitem>
+
+<listitem><para><ulink url="http://www.sagehill.net/docbookxsl/Olinking.html"/> explains how to use <sgmltag>olink</sgmltag>s.</para></listitem>
+</itemizedlist>
+</para>
+
+<section id="sec-ulink-style">
+<title>Specific xrefstyle for <sgmltag>ulink</sgmltag></title>
+
+<para>Dblatex defines a template that can be applied through
+the xrefstyle attribute to format an <sgmltag>ulink</sgmltag>. The template has
+the following general form: 
+<literal>url[.{show|hide}][.{after|infoot}]</literal></para>
+
+<para>The principle is that the <literal>show</literal> and
+<literal>hide</literal> parts override locally for this ulink the
+<parameter>ulink.show</parameter> parameter,
+and the <literal>after</literal> and
+<literal>infoot</literal> parts override locally the
+<parameter>ulink.footnotes</parameter> parameter.</para>
+
+<para>When only one part is defined, only one setup is overriden, and the other setup depends on the corresponding global parameter.</para>
+
+<para>See <xref linkend="ulink.show"/> to have several examples of use of the ulink xrefstyle template.</para>
+
+</section>
+
+</section>

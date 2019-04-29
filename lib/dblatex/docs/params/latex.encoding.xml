@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.encoding">
+  <refmeta>
+    <refentrytitle>latex.encoding</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.encoding</parameter></refname>
+    <refpurpose>Encoding of the latex document to produce</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.encoding.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Encoding of the latex document to produce. The supported values are:
+"latin1" and "utf8". See <xref linkend="sec-doc-encode"/> for more details
+about how to use it.</para>
+  </refsection>
+</refentry>

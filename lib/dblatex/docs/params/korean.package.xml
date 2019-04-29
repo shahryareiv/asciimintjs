@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="korean.package">
+  <refmeta>
+    <refentrytitle>korean.package</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>korean.package</parameter></refname>
+    <refpurpose>Package included when Korean language is used</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/korean.package.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When lang is set to 'ko' and the parameter is set to 'CJK' the CJK
+package is included to handle the Korean language.</para>
+  </refsection>
+</refentry>

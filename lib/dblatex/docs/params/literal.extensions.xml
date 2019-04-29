@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.extensions">
+  <refmeta>
+    <refentrytitle>literal.extensions</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.extensions</parameter></refname>
+    <refpurpose>Enable extended verbatim features</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.extensions.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When this parameter is empty, <command>dblatex</command> only uses options supported by the listings package, in order to ensure that any verbatim environment built upon this standard package will work.</para>
+    <para>When this parameter contains "scale", <command>dblatex</command> uses
+    additionnal options handled only by the dblatex version of the
+    verbatim environment to provide scaling capabilities (see <xref
+    linkend="sec-scale-verbatim"/>).</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>literal.environment</parameter>.</para>
+  </refsection>
+</refentry>

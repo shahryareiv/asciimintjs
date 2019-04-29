@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+ <chapter id="sec-custom">
+  <title>Customization</title>
+ <para>
+  The transformation process (and thus the output rendering) can be heavily customized by:
+ </para>
+ <itemizedlist>
+  <listitem>
+  <para>
+  using some <link linkend="sec-param">configuration parameters</link> either in
+  a <link linkend="sec-param-stylesheet">configuration stylesheet</link> or directly
+  from the <link linkend="sec-param-value">command line</link>,
+  </para>
+ </listitem>
+  <listitem>
+    <para>using <link linkend="sec-pi-usage">Processing Instructions</link>
+    to create some instructions very specific to dblatex,</para>
+  </listitem>
+  <listitem>
+  <para>
+  using some <link linkend="sec-custom-stylesheet">customized stylesheets</link>,
+  </para>
+ </listitem>
+  <listitem>
+  <para>
+  using a <link linkend="sec-custom-latex">customized LaTeX style package</link>.
+  </para>
+ </listitem>
+  <listitem>
+  <para>
+  using a <link linkend="sec-texpost">LaTeX post process script or plugin</link>.
+  </para>
+ </listitem>
+ </itemizedlist>
+ <para>
+  All these customization methods can be used independently and in exceptional cases, but it can also be combined and registered in a master configuration file, called a specification file (cf. <xref linkend="sec-specs"/>) to create a new tool dedicated to your needs.
+ </para>
+<section id="sec-param">
+  <title>Using XSL Parameters</title>
+  <para>
+   The PDF rendering can be customised by using some XSL configuration
+   parameters.
+   <xref linkend="sec-params"/> contains the reference documentation of
+   the available user-configurable parameters.
+  </para>
+</section>
+
+<section id="sec-param-value"><title>Setting Command line Parameters</title>
+  <para>You can set some XSL parameters directly from the command
+  line without creating a configuration parameter stylesheet, with the
+  <option>-P <replaceable>parameter=value</replaceable></option> option.</para>
+  <para>The following example set the latex.hyperparam parameter value:
+   <programlisting>
+<![CDATA[  dblatex -P latex.hyperparam=colorlinks,linkcolor=blue myfile.xml
+]]></programlisting>
+  </para>
+</section>
+
+<section id="sec-pi-usage">
+  <title>Using Processing Instructions</title>
+
+  <para>Dblatex has Processing Instructions (PI) which can modify the default 
+  document formatting. Usually these instructions alter the
+  output formatting of specific DocBook elements, like table cells.
+</para>
+
+  <para>To alter formatting globally it is better to set an
+  appropriate <link linkend="sec-param">stylesheet
+  parameter</link>.</para>
+
+  <para>Processing instructions are written
+  <literal>&lt;?</literal><replaceable>name</replaceable>
+  <replaceable>content</replaceable> <literal>?&gt;</literal>.  Most
+  often <replaceable>content</replaceable> will have the form of one or more
+  XML attributes with a value, as follows:
+  <literal>&lt;?</literal><replaceable>name</replaceable>
+  <replaceable>attribute</replaceable><literal>="</literal><replaceable>value</replaceable><literal>" ?&gt;</literal>.</para>
+
+  <para>The list of the available Processing Instructions are given in <xref
+  linkend="sec-pis"/>.</para>
+
+  <para>Here is an example of a PI used in a table:</para>
+  <example>
+    <title>Table width specified with a Processing Instruction</title>
+    <xi:include href="../tables/table.xml"
+                xpointer="xpointer(id('lst-table-autowidth'))"
+                xmlns:xi="http://www.w3.org/2001/XInclude" />
+  </example>
+
+</section>
+
+<section>
+<title>XSL User Stylesheet</title>
+  <para>You can provide your own XSL stylesheet to set some of the XSL parameters,
+  and/or to override some of the dblatex XSL templates. The user stylesheet is
+  specified by using the option
+  <option>-p <replaceable>custom.xsl</replaceable></option>.</para>
+
+<section id="sec-param-stylesheet">
+<title>Changing the XSL parameter values</title>
+  <para>
+   The parameters can be stored in a user defined XSL stylesheet. An example of
+   configuration stylesheet is given with this manual:
+  </para>
+  <programlisting language="XML"><xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+                   parse="text" href="../manual.xsl"/></programlisting>
+  </section>
+  <section id="sec-custom-stylesheet">
+   <title>Overriding some templates</title>
+  <para>
+   You can directly put the overriding templates in your XSL stylesheet, but do not
+   try to import the default dblatex stylesheets in it: it is automatically done by
+   the tool. So, just focus on the template to override and dblatex will ensure
+   that your definitions will get precedence over the dblatex ones.
+  </para>
+  <para>
+  You can of course split your templates in several files, and import each of
+  them in the main user stylesheet by calling <literal>xsl:import</literal>.
+  </para>
+<example><title>Overriding templates</title>
+  <programlisting language="XML">
+<![CDATA[<?xml version='1.0' encoding="iso-8859-1"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'>
+ 
+<!-- Let's import our own XSL to override the default behaviour. -->
+<xsl:import href="mystyle.xsl"/>
+
+<!-- Let's patch directly a template here -->
+<xsl:template match="article" mode="docinfo">
+  <xsl:apply-imports/>
+  <xsl:text>\let\mymacro=\DBKrelease</xsl:text>
+</xsl:template>
+
+</xsl:stylesheet>
+]]>  </programlisting>
+</example>
+  </section>
+  </section>
+  <section id="sec-custom-latex">
+   <title>Customized LaTeX style</title>
+  <para>
+   The actual output rendering is done by the latex style package used, and not by the XSL stylesheets whose role is only to translate to latex. Users can provide their own LaTeX style file, in respect of some rules:
+  </para>
+  <itemizedlist>
+   <listitem>
+   <para>
+   The LaTeX style package preamble must support all the options that the XSL stylesheets can pass to the package.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   Some packages must be used to make all the thing work.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   The docbook interface must be defined: the XSL stylesheets register some elements information in LaTeX commands. These commands or macro are the only ones specific to DocBook that are explicitely used by the XSL stylesheets. Other specific macros are used but are not intended to be changed by the user. These hidden macros are defined in the dbk_core latex package.
+   </para>
+  </listitem>
+  </itemizedlist>
+  <para>
+   The latex style file to use is specified by using the option <option>--texstyle <replaceable>latex_style</replaceable></option>. An example of a simple LaTeX DocBook style is provided in the package.
+  </para>
+  <para>
+   The <option>--texstyle <replaceable>latex_style</replaceable></option> option
+   accepts a package name (no path and no <filename>.sty</filename> extension)
+   or a full style file path. If a full path is used,
+   the filename must ends with <filename>.sty</filename>.
+   </para>
+   <programlisting>
+# Give a package name and assume its path is already in TEXINPUTS
+dblatex --texstyle=mystyle file.xml
+
+# Give the full package path. The TEXINPUTS is then updated by dblatex
+dblatex --texstyle=./mystyle.sty file.xml
+</programlisting>
+<section><title>Reusing an existing LaTeX style</title>
+<para>You can either create your latex style from scratch, in respect of the
+interfaces described in the following sections, or you can simply reuse an
+already existing style and override what you want. The latter method is easier
+for small things to change.</para>
+<para>Here is an example of a style package reusing the default docbook
+style:</para>
+<example><title>Reused LaTeX style</title>
+<programlisting language="tex">
+<xi:include href="mystyle.sty" xmlns:xi="http://www.w3.org/2001/XInclude"
+            parse="text" encoding="ISO-8859-1"/>
+</programlisting>
+</example>
+</section>
+   <section>
+    <title>Package options</title>
+   <para>A compliant LaTeX style package supports the following options. The options are
+   provided by the XSL stylesheets according to the document attributes.</para>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="styoption.xml"/>
+   </section>
+   <section>
+    <title>Needed packages</title>
+   <para>A LaTeX style package must at least include the following packages.</para>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="stypackage.xml"/>
+   </section>
+   <section>
+    <title>DocBook interface</title>
+   <para>
+    All the latex commands beginning with DBK are related to elements under <sgmltag>bookinfo</sgmltag> or <sgmltag>articleinfo</sgmltag>.
+   </para>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="stycommand.xml"/>
+   </section>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="stydebug.xml"/>
+  </section>
+  <section id="sec-texpost">
+   <title>Latex post process script</title>
+  <para>
+   Extra user actions can be processed on the latex file produced by the XSL stylesheets or on its temporary working files produced by the latex compilation. 
+  </para>
+  <para>
+   For instance, in the documents I write the cover page must display the number of pages of the document, but written in full letters (e.g. 23 is written &ldquo;twenty three&rdquo;). The latex post process script is then helpfull, and in this particular case it patches the .aux file.
+  </para>
+  <para>
+   The post process script is called just before the last latex compilation, and takes one parameter, the latex file compiled by the tool.
+  </para>
+  <section><title>Post latex compilations</title>
+  <para>
+   The latex compilations done once the script is called depend on the return code
+   of the script:
+  <itemizedlist>
+   <listitem>
+   <para>
+   When the return code is 0, <command>dblatex</command> continues the
+   compilation as many times as necessary.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   When the return code is 1, no more compilation is done by dblatex.
+   This case is useful
+   if the script needs to control precisely the number of compilation to apply.
+   It is up to the script to perform the expected compilations.</para>
+   <para>To do so, the script can retrieve in the <envar>LATEX</envar> environment
+   variable the actual compiler used by <command>dblatex</command>.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   When the return code is another value, an error is raised to signal
+   a failed post process script execution.
+   </para>
+  </listitem>
+  </itemizedlist>
+  </para>
+  </section>
+  <section id="sec-texpost-py"><title>Post processing with a Python Plugin</title>
+   <para>You can use a python plugin instead of a script by prefixing
+   the plugin name with the string <literal>"plugin:"</literal>. When using a
+   plugin you must not put the python suffix in the plugin name. If the plugin
+   is in one of the Python system directories, or in the current directory where
+   you call dblatex, or in one of the directories of the
+   <envar>PYTHONPATH</envar>
+   environment variable, you don't need to specify a directory location.
+   Otherwise put the plugin directory path before the plugin name.
+   </para>
+   <para>Here are several plugin call examples:
+   <programlisting><![CDATA[# The texpost.py module is in one of the python paths
+dblatex -r plugin:texpost file.xml
+
+# The texpost.py module location is specified with an absolute path
+dblatex -r plugin:/path/to/texpost file.xml
+
+# The texpost.py module is specified through a relative path from current dir
+dblatex -r plugin:relative/path/from/current/dir/texpost file.xml
+]]></programlisting>
+  </para>
+  <para>The plugin must contain a <function>main</function> entry point. <command>Dblatex</command> will pass the following parameters to the entry point: <parameter>latex_file</parameter> to specify the latex file to post process, and <parameter>stdout</parameter> to specify the output stream to use to be consistent with the dblatex verbosity.</para> 
+<example><title>Texpost Python Plugin Example</title>
+<programlisting language="python"><![CDATA[
+import sys
+import os
+
+def main(latex_file, stdout):
+    """
+    Texpost Plugin Entry point
+    """
+    # Let's find out the backend used
+    tex_engine = os.environ["LATEX"]
+
+    # Let's log something
+    print >>stdout, "Plugin called on '%s' file" % (latex_file)
+
+    # Open the latex file and parse it
+    texfile = open(latex_file)
+    ...
+
+    # Now decide if a new compilation must occur
+    if has_changed:
+      sys.exit(0)
+    else:
+      sys.exit(1)
+
+]]></programlisting>
+</example>
+
+  </section>
+  </section>
+  <section id="sec-specs">
+  <title>Dblatex Configuration File</title>
+  <para>
+   A master configuration file, also called a specification file, can be used
+   to list all the customizations and options to apply. Such a file is passed
+   by using the
+   option <option>-S <replaceable>config_file</replaceable></option>.
+  </para>
+  <section id="sec-xml-config">
+  <title>XML Configuration File Format</title>
+  <para>
+   You should use the XML format to configure dblatex. It contains more
+   features than the text format used up to the 0.3.7 release that is now
+   deprecated. The principle remains the same, that is, most of the
+   configuration parameters correspond to a command line option.
+  </para>
+  <para>
+  Here is a full example of a configuration file. In the next sections the
+  meaning and use of the configuration tags are detailed.
+  <programlisting language="XML"><xi:include
+      xmlns:xi="http://www.w3.org/2001/XInclude" href="dblatex.xconf"
+      parse="text"/></programlisting>
+  </para>
+  <para>
+   Another example, much simpler, is the configuration file used for
+   this manual.
+  </para>
+<example><title>User Manual Configuration File</title>
+<programlisting language="XML"><xi:include
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    parse="text" href="../manual.conf"/></programlisting>
+</example>
+  <para>The following sections detail the meaning of each tag. Note that
+  dblatex provides some schema that you can use to validate your configuration
+  file.</para>
+
+  <section id="sec-xconf-config" label="" xreflabel="config">
+  <title><sgmltag>&lt;config&gt;</sgmltag></title>
+  <para>It is the root element of a configuration file. A valid configuration
+  file must have a <sgmltag>config</sgmltag> root element.</para>
+  <para>Attributes:
+  <variablelist>
+    <varlistentry>
+      <term>xmlns</term>
+      <listitem><para>The namespace to use for a dblatex configuration file is: 
+      <literal>http://dblatex.sourceforge.net/config</literal>.</para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+  <para>
+  The following elements occur in <sgmltag>config</sgmltag>:
+  <xref linkend="sec-xconf-latex"/>, <xref linkend="sec-xconf-xslt"/>, 
+  <xref linkend="sec-xconf-imagedata"/>, <xref linkend="sec-xconf-options"/>.
+  </para>
+  </section>
+  <section id="sec-xconf-latex" label="" xreflabel="latex">
+  <title><sgmltag>&lt;latex&gt;</sgmltag></title>
+  <para>The latex element contains the configuration data related to the latex
+  processing.</para>
+  <para>Attributes: none</para>
+  <para>
+  The following elements occur in <sgmltag>latex</sgmltag>:
+  <variablelist>
+    <varlistentry>
+      <term><sgmltag>backend</sgmltag></term>
+      <listitem><para>It defines the latex engine to use, like the option
+      <option>--backend</option> does. The backend name is specified through the 
+      <sgmltag>use</sgmltag> attribute.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>texstyle</sgmltag></term>
+      <listitem><para>It defines the docbook latex style to use, like the option
+      <option>--texstyle</option> does. The latex package is specified through the 
+      <sgmltag>use</sgmltag> attribute.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>texpost</sgmltag></term>
+      <listitem><para>It defines the latex post-processing script to use, like the
+      option <option>--texpost</option> does. The script name is specified through the 
+      <sgmltag>use</sgmltag> attribute or the <sgmltag>fileref</sgmltag>
+      attribute.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>indexstyle</sgmltag></term>
+      <listitem><para>It defines index style file (.ist) to use, like the
+      option <option>--indexstyle</option> does. The filename is
+      specified through the <sgmltag>fileref</sgmltag>
+      attribute.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>texinputs</sgmltag></term>
+      <listitem><para>The element text defines the extra paths to add to TEXINPUTS,
+      like the option <option>--texinputs</option> does.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>bibinputs</sgmltag></term>
+      <listitem><para>The element text defines the lookup paths of BIBINPUTS,
+      like you would do by successive use of the option <option>--bib-path</option>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>bstinputs</sgmltag></term>
+      <listitem><para>The element text defines the lookup paths of BSTINPUTS,
+      like you would do by successive use of the option <option>--bst-path</option>.
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+  </section>
+  <section id="sec-xconf-xslt" label="" xreflabel="xslt">
+  <title><sgmltag>&lt;xslt&gt;</sgmltag></title>
+  <para>The xslt element contains the configuration data related to the XSL
+  processing.</para>
+  <para>Attributes: none</para>
+  <para>
+  The following elements occur in <sgmltag>xslt</sgmltag>:
+  <variablelist>
+    <varlistentry>
+      <term><sgmltag>stylesheet</sgmltag></term>
+      <listitem><para>It defines a user stylesheet to use, like the option
+      <option>--xsl-user</option> does. The stylesheet name is specified through the 
+      <sgmltag>fileref</sgmltag> attribute. If several
+      <sgmltag>stylesheet</sgmltag> elements are set, the precedence is the same
+      like using the option <option>--xsl-user</option> several times.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>engine</sgmltag></term>
+      <listitem><para>See <xref linkend="sec-xconf-engine"/>.</para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+  </section>
+  <section id="sec-xconf-engine" label="" xreflabel="engine">
+  <title><sgmltag>&lt;engine&gt;</sgmltag></title>
+  <para>It defines the XSLT processor to use; it can be either a predefined
+  engine, or a user-defined command to run.</para>
+  <para>When the attribute
+  <sgmltag>use</sgmltag> is used, it works like the option
+  <option>--xslt</option>. The engine name is specified through the 
+  <sgmltag>use</sgmltag> attribute.</para>
+  <para>
+  When the element contains the <sgmltag>command</sgmltag> or 
+  <sgmltag>commandchain</sgmltag> child element it defines the command(s)
+  to run to perform the XSLT processing. The core keywords defined in
+  <xref linkend="sec-xconf-command"/> apply. The additional keywords of an XSLT
+  engine command are the following:
+  <variablelist>
+    <varlistentry>
+      <term><literal>%(xmlfile)s</literal></term>
+      <listitem><para>Replaced by the XML source file to
+      process.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal>%(stylesheet)s</literal></term>
+      <listitem><para>Replaced by the stylesheet to use to process the
+      XML file <literal>xmlfile</literal>.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal>%(param_list)s</literal></term>
+      <listitem><para>Replaced by the list of the XSL parameters to set.
+      The parameter pair formatting (the parameter name and its value) is
+      specified through the <sgmltag>param-format</sgmltag> attribute
+      given to the <sgmltag>engine</sgmltag> element.</para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+
+  <para>Attributes:
+  <variablelist>
+    <varlistentry>
+      <term>param-format</term>
+      <listitem><para>This attribute is mandatory when the engine is specified
+      through a <sgmltag>command</sgmltag>. It tells how a parameter name and
+      value pair shall be formatted when added to the XSLT engine command.
+      The formatting is given by a string containing the keywords replaced by
+      the name or value of the parameter to set:
+
+      <variablelist>
+        <varlistentry>
+          <term><literal>%(param_name)s</literal></term>
+          <listitem><para>Replaced by the name of the
+          parameter to set.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><literal>%(param_value)s</literal></term>
+          <listitem><para>Replaced by the value to set to the 
+          parameter.</para></listitem>
+        </varlistentry>
+      </variablelist>
+      </para></listitem>
+    </varlistentry>
+  </variablelist></para>
+  <para>
+  The following example re-writes with a user-defined command the Saxon engine
+  with an additional <option>-T</option> option:
+  <programlisting language="XML">
+<![CDATA[<xslt>
+  <engine param-format="%(param_name)s=%(param_value)s">
+    <command>
+    saxon-xslt -T -o %(output)s %(xmlfile)s
+                                %(stylesheet)s %(param_list)s</command>
+  </engine>
+</xslt>]]></programlisting>
+  </para>
+  </section>
+  <section id="sec-xconf-imagedata" label="" xreflabel="imagedata">
+  <title><sgmltag>&lt;imagedata&gt;</sgmltag></title>
+  <para>The imagedata element contains the rules and commands to convert
+  on the fly the images included in the docbook document.</para>
+  <para>Attributes: none</para>
+  <para>
+  The following elements occur in <sgmltag>imagedata</sgmltag>:
+  <variablelist>
+    <varlistentry>
+      <term><sgmltag>figpath</sgmltag></term>
+      <listitem><para>It defines a path where to find the images, like the
+      option <option>--fig-path</option> does.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>figformat</sgmltag></term>
+      <listitem><para>It defines the default image format when no suffix is
+      available to deduce the actual format, like 
+      <option>--fig-format</option> does.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>formatrule</sgmltag></term>
+      <listitem><para>It specifies in which format an image must be 
+      converted, depending on the context, given by some attributes:
+      <variablelist>
+        <varlistentry>
+          <term><sgmltag>docformat</sgmltag></term>
+          <listitem><para>The output document for which the rule
+          applies. When not set the rule applies for any format</para></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><sgmltag>backend</sgmltag></term>
+          <listitem><para>The rule applies only when this backend is
+          used</para></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><sgmltag>dst</sgmltag></term>
+          <listitem><para>When the conditions are met the image shall be
+          converted to this format.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      </para><para>The following example:
+      <programlisting><![CDATA[<formatrule docformat="pdf" backend="xetex" dst="pdf"/>]]></programlisting>
+      tells that when a PDF document is built with the xetex backend, the
+      graphics not natively supported shall be converted to PDF.
+      </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>converter</sgmltag></term>
+      <listitem><para>It defines an image transformation rule. See 
+      <xref linkend="sec-xconf-converter"/> for more
+      details.</para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+  </section>
+  <section id="sec-xconf-converter" label="" xreflabel="converter">
+  <title><sgmltag>&lt;converter&gt;</sgmltag></title>
+  <para>The converter element defines a rule about how to convert on the fly
+  an image in a docbook document to the corresponding image used in the built
+  latex file. The
+  goal is to have an image format compatible with the latex engine, whatever the
+  original format is. <command>Dblatex</command> has a default set of rules, but
+  one can overwrite or add some rules.</para>
+
+  <para>Attributes:
+  <variablelist>
+    <varlistentry>
+      <term>src</term>
+      <listitem><para>Format of the original image referenced in the XML
+      document. The converter only applies to the images matching this format.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term>dst</term>
+      <listitem><para>Target format once converted. The converter only applies
+      to the original images having the format <literal>src</literal> and that
+      need to be converted to the format <literal>dst</literal>.
+      <literal>dst</literal> can take the special value "<literal>*</literal>"
+      meaning that the rule applies for all
+      the possible target formats (e.g. eps, pdf, png).</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term>docformat</term>
+      <listitem><para>Specify for which document output format the converter
+      applies. For example, if <literal>docformat</literal> is set to "pdf",
+      it means that
+      the converter applies only if the document output format is PDF. The
+      converter will not apply if you want to build a PostScript or DVI
+      document.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term>backend</term>
+      <listitem><para>The converter applies only if it is this latex engine that
+      is used. For example, it is usefull if you want to convert an image in a
+      specific way only when xetex is used.</para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+
+  <para>The following elements occur in <sgmltag>converter</sgmltag>:
+  <variablelist>
+    <varlistentry>
+      <term><sgmltag>commandchain</sgmltag></term>
+      <listitem><para>List of the commands to run. A
+      <sgmltag>commandchain</sgmltag> contains one or more
+      <sgmltag>command</sgmltag> elements.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><sgmltag>command</sgmltag></term>
+      <listitem><para>command to execute to perform the conversion, or a part of
+      the conversion if several commands are chained. See
+      <xref linkend="sec-xconf-command"/>.
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+  </section>
+  <section id="sec-xconf-command" label="" xreflabel="command">
+  <title><sgmltag>&lt;command&gt;</sgmltag></title>
+  <para>The command element contains the arguments of the command to run.
+  The arguments can contain some predefined keywords that are replaced by the
+  actual values when the command is executed. The known core keywords
+  are:</para>
+  <variablelist>
+    <varlistentry>
+      <term><literal>%(src)s</literal></term>
+      <listitem><para>Replaced by the <literal>src</literal> value (original
+      image format).</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal>%(dst)s</literal></term>
+      <listitem><para>Replaced by the <literal>dst</literal> value (target
+      image format).</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal>%(input)s</literal></term>
+      <listitem><para>Replaced by the input file required by the command. In the
+      case of an image conversion, it is the filename of the original image to
+      convert.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal>%(output)s</literal></term>
+      <listitem><para>Replaced by the name of the ouput file required by the
+      command. In the case of an image conversion, it is the filename of the
+      output image once converted.</para></listitem>
+    </varlistentry>
+  </variablelist>
+
+  <para>Attributes:
+  <variablelist>
+    <varlistentry>
+      <term>input</term>
+      <listitem><para>Standard input of the command to run. It can specify a
+      file or it can specify to use the output of the preceding command if the
+      keyword "PIPE" is used.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term>output</term>
+      <listitem><para>Standard output of the command to run. It can specify a
+      file or it can specify that the output shall be redirected to the next
+      command if the keyword "PIPE" is used.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term>shell</term>
+      <listitem><para>When set to "1" or "true", the command is run in a shell 
+      environment.</para></listitem>
+    </varlistentry>
+  </variablelist>
+  </para>
+  </section>
+  <section id="sec-xconf-options" label="" xreflabel="options">
+  <title><sgmltag>&lt;options&gt;</sgmltag></title>
+  <para>The options element lists the extra arguments to pass to
+  <command>dblatex</command>.</para>
+  </section>
+
+  </section>
+  <section><title>Deprecated Text Configuration File Format</title>
+  <para>
+   The format of the file is the following:
+  </para>
+  <itemizedlist>
+   <listitem>
+   <para>
+   Every comment starts with a &ldquo;&num;&rdquo;, and is ignored.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   The file must contain one parameter by line.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   The format of a parameter is the following:
+   </para>
+   <programlisting>
+<![CDATA[<keyword>: <value>
+]]>   </programlisting>
+  </listitem>
+   <listitem>
+   <para>
+   Every parameter is mapped to an option that can be passed to <command>dblatex</command>.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   An unknown parameter is silently ignored (the whole line is dropped).
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   The parameters defining a path (a file or a directory) can take absolute or relative paths. A relative path must be defined from the specification file itself. For instance, a specification file under <filename>/the/spec/directory/</filename> with a parameter describing the file <filename>../where/this/file/is/myfile</filename> points to <filename>/the/spec/where/this/file/is/myfile</filename>.
+   </para>
+  </listitem>
+  </itemizedlist>
+  <para>
+   The following table lists the supported parameters and the corresponding command line option.
+  </para>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="specparam.xml"/>
+  </section>
+  <section id="sec-conf-path"><title>Configuration Paths</title>
+  <para>By default <command>dblatex</command> tries to find the configuration files
+  in the following paths, in respect of the order:</para>
+  <orderedlist>
+  <listitem><para>The current directory</para></listitem>
+  <listitem><para><filename>$HOME/.dblatex</filename></para></listitem>
+  <listitem><para><filename>/etc/dblatex</filename></para></listitem>
+  <listitem><para>The dblatex package configuration directories.</para></listitem>
+  </orderedlist>
+  <para>You can add some extra paths where to look for by setting the
+  <envar>DBLATEX_CONFIG_FILES</envar> environment variable. The paths are
+  separated by ":" in Unix like systems, and by ";" on Windows. These paths are used
+  only when nothing is found in the default paths.</para>
+  </section>
+  </section>
+  <section>
+   <title>Customization Precedence</title>
+  <para>
+   All the customization queries are translated to the corresponding command line options. Thus, using several customization methods can be unconsistent because each of them override the same option with another value. 
+  </para>
+  <para>
+   For instance, you can specify the use of a specification file in which it is said to use a latex style (parameter TexStyle) and explicitely use the <option>--texstyle</option> command line option. So, what is the behaviour?
+  </para>
+  <para>
+   The options order is the following:
+  </para>
+  <itemizedlist>
+   <listitem>
+   <para>
+   If a specification file is used (<option>-S</option> option), the options are set to the specification file parameters.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   The options explicitely passed override the specification file setting, whatever is the position of the options (i.e. before or after the <option>-S</option> option).
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   If an option is passed several times, this is the last occurence that is used.
+   </para>
+  </listitem>
+  </itemizedlist>
+<example><title>Customization Precedence</title>
+  <para>
+   Let's consider the specification file containing the following parameters:
+  </para>
+  <programlisting language="XML"><![CDATA[<?xml version="1.0" ?>
+<config xmlns="http://dblatex.sourceforge.net/config">
+  <xslt><stylesheet fileref="file3.xsl"/></xslt>
+  <options>-b pdftex</options>
+  <latex><texstyle use="mystyle1"/></latex>
+</config>]]></programlisting>
+  <para>
+   And now the command line:
+  </para>
+  <programlisting>
+<![CDATA[dblatex -b dvips -p file1.xsl -p file2.xsl -S file.specs -s mystyle2 mydoc.xml
+]]>  </programlisting>
+  <para>
+   The setting used is the following:
+  </para>
+  <itemizedlist>
+   <listitem>
+   <para>
+   &ldquo;-b dvips&rdquo; overrides &ldquo;-b pdftex&rdquo; set by the spec file.
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   &ldquo;-p file2.xsl&rdquo; overrides &ldquo;-p file1.xsl&rdquo; since it is defined after, and overrides &ldquo;file3.xsl&rdquo; set by the spec file. 
+   </para>
+  </listitem>
+   <listitem>
+   <para>
+   &ldquo;-s mystyle2&rdquo; override &ldquo;mystyle1&rdquo; set by the spec file.
+   </para>
+  </listitem>
+  </itemizedlist>
+</example>
+  </section>
+ </chapter>

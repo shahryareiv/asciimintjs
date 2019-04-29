@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="monoseq.small">
+  <refmeta>
+    <refentrytitle>monoseq.small</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>monoseq.small</parameter></refname>
+    <refpurpose>Use a smaller font to render monoseq portions of text</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/monoseq.small.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When set to 1, choose a smaller font to the element rendered with
+monoseq fonts.</para>
+    <tip>
+    <para>If you use the XeTeX backend you do not need to use this parameter.
+    Instead, you can configure
+    the monospaced font used with a scale option as follow,
+    through the parameter <parameter>xetex.font</parameter> or via a user
+    latex style:
+<programlisting>
+\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
+</programlisting>
+    </para>
+    </tip>
+  </refsection>
+</refentry>

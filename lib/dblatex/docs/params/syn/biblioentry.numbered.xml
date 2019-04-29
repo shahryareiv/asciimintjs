@@ -1,0 +1,1 @@
+<xsl:param name="biblioentry.numbered" select="0"/>

@@ -1,0 +1,1 @@
+<xsl:param name="table.in.float" select="'1'"/>

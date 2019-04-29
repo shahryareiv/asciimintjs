@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section id="sec-pagesetup">
+<title>Global Page Setup</title>
+
+<para>Since version 0.3.3 the user can specify to <command>dblatex</command>
+the global page layout to apply, through some XSL parameters (see <xref
+linkend="sec-pagination-params"/>). It is
+also possible to produce pre-press layouts with physical pages having some crops
+(see <xref linkend="sec-prepress-params"/>).</para>
+
+<para><xref linkend="fig-layout"/> shows the meaning of each parameter length.
+Of course the example is a page with crops, only to be able to display the
+crop lengths with the other lengths.</para>
+
+<figure float="0" id="fig-layout">
+<title>Parameter Lengths used for Page Setup</title>
+
+<mediaobject>
+<imageobject>
+<!-- Use the PDF version to have a vector graphic. PNG from xfig is ugly -->
+<imagedata output="pdf" align="center" fileref="pagesetup2.pdf" width="70%" />
+<imagedata output="html" align="center" fileref="pagesetup2" width="70%" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<warning>
+<para>
+The native dblatex style still contains some hard-coded lengths to format the
+<sgmltag>revhistory</sgmltag> table. You should then disable the revision
+history display.
+</para>
+</warning>
+</section>

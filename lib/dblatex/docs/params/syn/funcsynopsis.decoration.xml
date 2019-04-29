@@ -1,0 +1,1 @@
+<xsl:param name="funcsynopsis.decoration" select="1"/>

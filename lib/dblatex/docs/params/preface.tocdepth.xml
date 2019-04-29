@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="preface.tocdepth">
+  <refmeta>
+    <refentrytitle>preface.tocdepth</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>preface.tocdepth</parameter></refname>
+    <refpurpose>How preface section and subsections appear in TOC</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/preface.tocdepth.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When greater than 0, the preface headings appear in the TOC. The
+parameter value define the preface section depth appearing in the TOC and in
+the bookmarks. If set to 0, none of the sections are put in the TOC. If set to
+1, only the chapter level appears in the TOC and bookmarks, and so on. When
+the parameter is negative, it behaves like with 0, but it uses the previous
+implementation (use of unnumbered sections, that is, with latex heading
+commands ending with '*').</para>
+  </refsection>
+</refentry>

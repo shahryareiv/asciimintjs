@@ -1,0 +1,1 @@
+<xsl:param name="variablelist.term.separator">, </xsl:param>

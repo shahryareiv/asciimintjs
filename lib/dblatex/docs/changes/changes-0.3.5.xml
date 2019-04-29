@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Fix an HTML table bug when no <sgmltag>colgroup</sgmltag> or <sgmltag>col</sgmltag> is specified.</para>
+</listitem>
+
+<listitem>
+<para>Fix an HTML table bug when cellpadding is expressed in percentage.</para>
+</listitem>
+
+<listitem>
+<para>Include the package 'ucs' and configure listings to work with pdftex and
+  UTF-8 characters.</para>
+</listitem>
+
+<listitem>
+<para>Improve setup.py to detect the installed texlive version only on
+  manual install.</para>
+</listitem>
+
+<listitem>
+<para>Adapt URL to work with texlive >= 2009.</para>
+</listitem>
+
+<listitem>
+<para>Debian bugs fixed: #720624, #684393, #684391, #683166, #682936,
+and #682901.</para>
+</listitem>
+
+<listitem>
+<para>SF bugs fixed: #108, #107, #106, #104, #103, #98, and some fixes to be
+able work with Saxon.</para>
+</listitem>
+
+</itemizedlist>

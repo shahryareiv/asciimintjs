@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="pi-dblatex_bgcolor">
+  <refmeta>
+    <refentrytitle>dblatex bgcolor</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><sgmltag class="xmlpi">dblatex
+             <parameter>bgcolor</parameter></sgmltag></refname>
+    <refpurpose>Sets the Background Color of A Table Element</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><![CDATA[<?dblatex bgcolor="#00FF00"?>
+<?dblatex bgcolor="{blue}"?>
+<?dblatex bgcolor="[gray]{0.8}"?>]]></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    
+    <para>Set the background color of a table element.  The color of a
+    child element is inherited from its parent, with the exception of
+    the color of row cells. These have a color which is inherited from
+    the column in which they appear so long as no color is specified
+    for the row.  How the color is set, whether by attribute or by
+    processing instruction, does not matter.</para>
+
+    <xi:include href="../tables/table.xml"
+                xpointer="xpointer(id('table-color-format'))"
+                xmlns:xi="http://www.w3.org/2001/XInclude" />
+
+    <para>The default is the value of the table's
+    <sgmltag>bgcolor</sgmltag> attribute, or white when not otherwise
+    specified.</para>
+  </refsection>
+
+  <refsection>
+    <title>Context</title>
+    <para>Recognized in the following elements<footnote>
+      <para>HTML table elements have attributes which allow color to
+      be specified.</para>
+    </footnote>:</para>
+    <itemizedlist>
+      <listitem><sgmltag>col</sgmltag></listitem>
+      <listitem><sgmltag>colgroup</sgmltag></listitem>
+      <listitem><sgmltag>entry</sgmltag></listitem>
+      <listitem><sgmltag>entrytbl</sgmltag></listitem>
+      <listitem><sgmltag>row</sgmltag></listitem>
+    </itemizedlist>
+  </refsection>
+
+    <refsection>
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>See <xref linkend="sec-table-color" /></listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

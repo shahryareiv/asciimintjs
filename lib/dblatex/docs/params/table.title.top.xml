@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="table.title.top">
+  <refmeta>
+    <refentrytitle>table.title.top</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>table.title.top</parameter></refname>
+    <refpurpose>Title on top of the <sgmltag>table</sgmltag> float</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/table.title.top.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1 the <sgmltag>table</sgmltag> 
+    float title position is above the
+table. Set to 0 the title is under the table. Meaningless when the table is not in a float (see <parameter>table.in.float</parameter>).</para>
+  </refsection>
+</refentry>

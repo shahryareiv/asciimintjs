@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="variablelist.term.separator">
+  <refmeta>
+    <refentrytitle>variablelist.term.separator</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>variablelist.term.separator</parameter></refname>
+    <refpurpose>Text to separate <sgmltag>term</sgmltag>s within a multi-term
+<sgmltag>varlistentry</sgmltag></refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/variablelist.term.separator.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection><title>Description</title>
+
+<para>When a <sgmltag>varlistentry</sgmltag> contains multiple
+<sgmltag>term</sgmltag> elements, the string specified in the value of the
+<parameter>variablelist.term.separator</parameter> parameter is placed
+after each <sgmltag>term</sgmltag> except the last.</para>
+
+  </refsection>
+</refentry>

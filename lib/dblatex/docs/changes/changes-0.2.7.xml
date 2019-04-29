@@ -1,0 +1,17 @@
+<itemizedlist>
+<listitem><para>The XRef implementation is competely refactored to work with the
+common DocBook Project stylesheets version 1.72. The goal is to support the
+DocBook Project xreftyle and olink capabilities. In normal use, the changes
+should be transparent.</para>
+</listitem>
+
+<listitem><para><command>Dblatex</command> accepts input data from
+standard input. Therefore, the result of some pre-processing (like profiling)
+can be piped to dblatex.</para></listitem>
+
+<listitem><para>Several user stylesheets (option -p) can be passed. Note that
+each stylesheet is imported (not included) which have significant impact
+on precedence or overriding behaviour.</para></listitem>
+
+<listitem><para>Other minor improvements and a number of bug fixes.</para></listitem>
+</itemizedlist>

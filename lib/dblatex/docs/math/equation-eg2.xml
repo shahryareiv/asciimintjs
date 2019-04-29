@@ -1,0 +1,6 @@
+<para>The following formula:
+  <informalequation>
+    <alt>\[C = \alpha + \beta Y^{\gamma} + \epsilon\]</alt>
+    <graphic fileref="figures/eq1"/>
+  </informalequation>
+is displayed in a separate block. The XML source is:</para>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>latex</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="apbs02.html" title="LaTeX" /><link rel="prev" href="apbs02.html" title="LaTeX" /><link rel="next" href="apbs03.html" title="Miscellaneous" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">latex</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apbs02.html">Prev</a> </td><th width="60%" align="center">LaTeX</th><td width="20%" align="right"> <a accesskey="n" href="apbs03.html">Next</a></td></tr></table><hr /></div><div class="refentry" title="latex"><a id="pi-latex"></a><div class="titlepage"></div><div class="refnamediv"><h2><span class="refentrytitle">latex</span></h2><p><code class="sgmltag-xmlpi">&lt;?latex?&gt;</code>, <code class="sgmltag-xmlpi">&lt;?db2latex?&gt;</code> — Insert Arbitrary text into the LaTeX file</p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><pre class="programlisting">&lt;?latex <em class="replaceable"><code>content</code></em> ?&gt;</pre></div><div class="refsection" title="Description"><a id="idp5885240"></a><h2>Description</h2><p>These Processing Instructions are unusual in that they have no
+    <span class="quote">“<span class="quote">attribute</span>”</span>. Instead, the
+    <em class="replaceable"><code>content</code></em> is put directly into the
+    generated LaTeX document.</p><p>The <code class="sgmltag-xmlpi">&lt;?db2latex?&gt;</code> PI is deprecated
+    and should not be used anymore. It was provided for backward
+    compatibility. Use the <code class="sgmltag-xmlpi">&lt;?latex?&gt;</code> PI
+    instead.</p><p>This can provide the ultimate in customization, but can be
+    very dangerous since it breaks the abstractions provided by
+    dblatex.</p><div class="warning" title="Warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>These Processing Instructions can be used
+      to inject arbitrary LaTeX into the output stream. Please check if a
+      safer customization method can be used instead. See the other
+      <a class="link" href="sec-custom.html" title="Chapter 4. Customization">customization methods</a>.</p><p>While it is pretty clear that insertion of certain sorts
+      of LaTeX text, at some points within the document, will always
+      be expected to work, there is no guarantee that
+      <span class="emphasis"><em>any</em></span> inserted LaTeX will continue to work in
+      the future with newer versions of dblatex or its underlying
+      software stack.</p><p>Inserting LaTeX into <code class="code">CDATA</code>, i.e. in places
+      where document text appears, is likely to be more robust than
+      inserting LaTeX elsewhere.  But again, no guarantees are
+      made.</p></div><p>Care must be taken with whitespace.  Leading and trailing
+    spaces matter within the processing instruction.  The
+    <em class="replaceable"><code>content</code></em> consists of everything
+    following the first space and before the closing
+    <code class="literal">?&gt;</code>.  Further care must be taken with any
+    whitespace which follows the processing instruction -- the TeX
+    tokenization scan may consume whitespace which follows the
+    processing instruction.  One possible solution when this happens
+    is to end your <em class="replaceable"><code>content</code></em> with the
+    <code class="literal">\</code> character.</p><p>The <code class="sgmltag-xmlpi">&lt;?latex?&gt;</code> Processing Instruction
+    takes special steps to work in verbatim blocks,
+    <code class="sgmltag-element">screen</code>, <code class="sgmltag-element">programlisting</code>, and
+    <code class="sgmltag-element">literallayout</code> elements, while
+    <code class="sgmltag-xmlpi">&lt;?db2latex?&gt;</code> is directly written as is.</p></div><div class="refsection" title="Safe LaTeX Insertions"><a id="sec-safe-latex"></a><h2>Safe LaTeX Insertions</h2><p>Although the <span class="package">latex</span> processing instruction
+    can be dangerous there are a few <span class="package">latex</span>
+    <em class="parameter"><code>content</code></em> values that are safe to use within
+    <code class="code">CDATA</code> words, within the words of the actual text of
+    your document.  The following <em class="parameter"><code>content</code></em>
+    values provide LaTeX with information it can use to improve your
+    document's formatting:</p><div class="variablelist"><dl><dt><a id="latex_softhyphen"></a><span class="term"><code class="literal">\-</code></span></dt><dd><p>Soft hyphen.  A backslash followed by a dash indicates
+          a soft hyphen.  LaTeX may or may not break the line and
+          hyphenate at this point.  Useful when over-long variable
+          names and similar fail to hyphenate and thereby cause lines
+          to exceed their normal lengths.</p><p>Once a soft hyphen is inserted into a word the
+          insertion point becomes the only place at which hyphenation
+          is permitted in that occurrence of the word.</p></dd><dt><a id="latex_no-kern"></a><span class="term"><code class="literal">{}</code></span></dt><dd><p>Do not kern (join together) characters.  An empty pair
+          of curly braces placed between two characters indicates that
+          the characters should not be joined together.  Depending on
+          the font and the characters, some pairs of characters may be
+          joined together.  E.g. a pair of lower-case
+          <code class="literal">f</code> characters may be have a their
+          crossbars joined.  This may not be desirable, as when each
+          of the characters is a component of a separate word within a
+          larger compound word.  Placing this PI between the
+          characters which are to remain separated prevents the two
+          characters from kerning.</p></dd><dt><a id="latex_no-kern-really"></a><span class="term"><code class="literal">{\kern0pt}</code></span></dt><dd><p>Really, do not kern (join together) characters.  A
+          stronger version of <code class="literal">{}</code>.</p></dd><dt><a id="latex_end-of-sentence"></a><span class="term"><code class="literal">\@</code></span></dt><dd><p>A backslash followed by the at sign, when placed after
+          a capital letter and before a period, indicates that the
+          period is the end of a sentence.  Periods following capital
+          letters do not otherwise end sentences and sentences may be
+          used by LaTeX when determining layout.</p></dd></dl></div></div><div class="refsection" title="Context"><a id="idp3703200"></a><h2>Context</h2><p>Recognized in all elements.</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="apbs02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="apbs02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="apbs03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">LaTeX </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Miscellaneous</td></tr></table></div></body></html>

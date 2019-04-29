@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="olink.params">
+  <refmeta>
+    <refentrytitle>Olink Parameters
+    <!--
+    <varname>current.docid</varname>,
+    <varname>insert.olink.page.number</varname>,
+    <varname>insert.olink.pdf.frag</varname>,
+    <varname>olink.base.uri</varname>,
+    <varname>olink.debug</varname>,
+    <varname>olink.doctitle</varname>,
+    <varname>olink.lang.fallback.sequence</varname>,
+    <varname>prefer.internal.olink</varname>,
+    <varname>target.database.document</varname>,
+    <varname>targets.filename</varname>,
+    <varname>use.local.olink.style</varname>
+    -->
+    </refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>current.docid</parameter></refname>
+    <refname><parameter>insert.olink.page.number</parameter></refname>
+    <refname><parameter>insert.olink.pdf.frag</parameter></refname>
+    <refname><parameter>olink.base.uri</parameter></refname>
+    <refname><parameter>olink.debug</parameter></refname>
+    <refname><parameter>olink.doctitle</parameter></refname>
+    <refname><parameter>olink.lang.fallback.sequence</parameter></refname>
+    <refname><parameter>prefer.internal.olink</parameter></refname>
+    <refname><parameter>target.database.document</parameter></refname>
+    <refname><parameter>targets.filename</parameter></refname>
+    <refname><parameter>use.local.olink.style</parameter></refname>
+    <refpurpose>Parameters to configure Olinks</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/current.docid.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/insert.olink.page.number.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/insert.olink.pdf.frag.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/olink.base.uri.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/olink.debug.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/olink.doctitle.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/olink.lang.fallback.sequence.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/prefer.internal.olink.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/target.database.document.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/targets.filename.xml"/>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/use.local.olink.style.xml"/> </programlisting>
+</refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>These parameters are taken from the DocBook Project XSL parameters and
+  must be used as described in the original reference:
+<itemizedlist>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/current.docid.html">current.docid</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/insert.olink.page.number.html">insert.olink.page.number</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/insert.olink.pdf.frag.html">insert.olink.pdf.frag</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/olink.base.uri.html">olink.base.uri</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/olink.debug.html">olink.debug</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/olink.doctitle.html">olink.doctitle</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/olink.lang.fallback.sequence.html">olink.lang.fallback.sequence</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/prefer.internal.olink.html">prefer.internal.olink</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/target.database.document.html">target.database.document</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/targets.filename.html">targets.filename</ulink>,</para></listitem>
+<listitem><para><ulink url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/use.local.olink.style.html">use.local.olink.style</ulink>,</para></listitem>
+</itemizedlist>
+  </para>
+  </refsection>
+</refentry>

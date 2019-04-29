@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="figure.tip">
+  <refmeta>
+    <refentrytitle>figure.tip</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>figure.tip</parameter></refname>
+    <refpurpose>Figure to use to render a <sgmltag>tip</sgmltag> block</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/figure.tip.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Figure to use to render a <sgmltag>tip</sgmltag> block. This parameter
+is added to allow new latex styles to use their own figures in
+admonitions.</para>
+  </refsection>
+</refentry>

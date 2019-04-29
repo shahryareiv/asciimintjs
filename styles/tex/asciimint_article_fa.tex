@@ -1,0 +1,158 @@
+
+% \input{config_fa.tex}
+
+\PassOptionsToPackage{authoryear}{natbib}
+\documentclass[a4paper,nobib,justified,notoc,table,oneside,reversegeometry]{biditufte-handout}%notoc = my style!, oneside+revergeometry = right text +left margine, twoside = right text then left text
+\usepackage[rtl]{asciimint}
+
+
+
+%Kashida, it should be the last package,quickindex, Kashida (case sensetive),Kashida helps prevent overfull,localise for farsi commands
+% \KashidaOn
+
+
+%
+%IRNazli: very bad yeh-akhar, bad dash, short letters
+%HM XYas: good
+%HM XYas-Kashida: problem with Heh
+%Yas-Kashida: problem with Heh, Italic
+%Parisa-Kashida: not very nice, it does not seem kashid is working?
+%HM XKayhan: nice but out of to margin (biroonzadegi)
+%HM XKayhan-Kashida: nice but problem with Heh,Italic
+%XB Niloofar-Kashida: nice, still problem with Heh but less than others
+%IRLotus-Kashida: Good!, a little small (scale 1.4), no Bold!
+%IRZar-Kashida: Good!, a little small (scale 1.2), no Bold!
+%X Yas-Kashida: Bad, major problem with Be
+%X Perian-Kashida: Bad, major problem with Be
+%HM X...: major problems!
+%Scheherazade: not bad, very smalll (scale to 1.5), a bit arabic
+%XB Yas-Kashida: same as Yas
+%Parastoo Print-Kashida: Nice! (no italic?)
+%HM X Series after 3.0: looks good, small problem with dots hiding beneath 
+
+\newcommand{\myPersianFont}{HM XKayhan}%myKayhan HM XKayhan, XB Kayhan, IRNazanin, Parastoo (no italic!), IRLotus
+\newcommand{\myPersianFontScale}{1.2}
+%\setlength{\emergencystretch}{4pt}%ONLY use this if not using Kashida, it does not work always, it makes paragraphs not so good
+
+\renewcommand{\baselinestretch}{1.5}
+\AtBeginDocument{
+  \settextfont[Scale=\myPersianFontScale]{\myPersianFont}‎%Parisa,%HM XRoya HM XKayhan HM XYas HM XNiloofar Yas XB Niloofar HM XNiloofar
+  \setlatintextfont[Scale=\myPersianFontScale]{EB Garamond}
+  \setdigitfont[Scale=\myPersianFontScale]{PGaramond}‎‎%Iranian Sans‎‎‎,
+  %\defpersianfont\poemfont{\myPersianFont}  
+%  \setlength{\headheight}{15.5pt} %to avoid fancyhdr complain about that  
+}
+
+
+
+
+%We only accept PDF!
+\DeclareGraphicsExtensions{.pdf,.png}
+
+%MAGICBEGINGLS
+\input{MAGICPLACEHOLDERGLS}
+%MAGICENDGLS
+
+%\fontencoding{T1}\fontfamily{gill}\fontseries{m}\fontshape{n}\selectfont 
+\providecommand{\thetopic}{}
+\providecommand{\thetopicNoHyphen}{}
+%MAGICBEGINTTL
+\renewcommand{\thetopic}{MAGICPLACEHOLDERTTL}%{\confTitle} %\linespread{3}\selectfont 
+\renewcommand{\thetopicNoHyphen}{MAGICPLACEHOLDERTTL}%{\confTitle}
+%MAGICENDTTL
+\title{\thetopic}%\protect\endnotemark[1]
+
+% \makeatletter
+% \@ifl@aded{def}{tufte-common}
+% {
+%	\title[\thetopicNoHyphen]{\thetopic}%\protect\endnotemark[1]
+% }{
+% 	\title{\thetopic}%\protect\endnotemark[1]
+% }
+% \makeatother
+
+%\subtitle{}
+
+%MAGICBEGINAUT
+\author{MAGICPLACEHOLDERAUT}%\confAuthor%\protect\endnotemark[2
+%MAGICENDAUT
+
+
+\date{}%\today
+%MAGICBEGINDAT
+\date{MAGICPLACEHOLDERDAT}%\confAuthor%\protect\endnotemark[2
+%MAGICENDDAT
+
+\cfoot{}%Disables foot page numbers
+% \titleformat{\part*}%
+%   [display]% shape
+%   {\begin{fullwidth}}% format applied to label+text
+%   {\raggedright\LARGE\scshape\MakeUppercase{\partname} \textcolor{Maroon}{\thepart}  }% label
+%   {20pt}% horizontal separation between label and title body
+%   {\raggedright\huge\scshape}% before the title body
+%   [\end{fullwidth}]% after the title body
+
+
+%\hypersetup{  
+%	pdfauthor={شهریار عیوض‌زاده},%\confAuthor
+	% pdfcopyright={حقوق نویسنده محفوظ است.},%\confCopyright
+	% pdftitle={\thetopicNoHyphen},
+	% pdfkeywords={}%\confKeywords
+% }
+
+ \setcounter{secnumdepth}{2}%\confNumberingLevel
+
+
+% \providecommand{\sidenote}[1]{}
+% \newenvironment{preamble}{}{}
+
+%\myMarginInfo{last update: \today, email: sei@bth.se} %COMMENT THIS in submission!
+
+
+
+\begin{document}
+
+%If fribixelatex runs
+%\let\fribidixetexLRE\lr
+%\let\fribidixetexRLE\rl
+%\let\fribidixetexlatinnumbers\lr
+%\let\fribidixetexnonlatinnumbers\rl
+%ABIDION
+
+%\linenumbers
+%\myfrontmatter
+\amArticleTitleRTL%
+
+	% \clearpage
+	% \mypageinfo
+	% \clearpage
+	% \layout
+
+%\begin{fullwidth}
+%\maketitle      
+%\end{fullwidth}  
+% \newenvironment{myabstract}%
+%   {\begin{tcolorbox}}
+%   {\end{tcolorbox}} 
+
+% \tableofcontents
+%NOT FOR ARTICLE \mainmatter %this fixes running headers
+
+
+%MAGICBEGINSRC
+\input{MAGICPLACEHOLDERSRC}
+%MAGICENDSRC
+
+% \endnotetext[1]{Last update: \today} 
+% \endnotetext[2]{shahryar@eivazzadeh.com} 
+
+%% References with BibTeX database:
+%\bibliographystyle{chicago} % plainnat
+%\bibliography{library}
+%\printnoidxglossary
+
+%If fribixelatex runs
+%ABIDIOFF
+\end{document}
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Improve the verbatim block display to be able to scale the block width to the page width. See <olink output="pdf"
+targetdoc="usermanual" targetptr="sec-scale-verbatim"></olink><ulink output="html"
+url="../manual/sec-scale-verbatim.html#sec-scale-verbatim">Verbatim Scaling</ulink>
+for more details.</para>
+</listitem>
+
+<listitem>
+<para>Improve the hyphenation of the inlined literal elements with a dblatex
+specific hyphenation algorithm.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameter <parameter>hyphenation.format</parameter> to specify the inlined format types that must be hyphenated. It replaces the more limited parameter <parameter>monoseq.hyphenation</parameter>.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameter <parameter>example.float.type</parameter> to give the possibility to have <sgmltag>example</sgmltag> elements not floating. The attribute 'floatstyle' is also taken into account.</para>
+</listitem>
+
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+</itemizedlist>

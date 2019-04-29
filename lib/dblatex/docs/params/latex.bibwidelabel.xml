@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.bibwidelabel">
+  <refmeta>
+    <refentrytitle>latex.bibwidelabel</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.bibwidelabel</parameter></refname>
+    <refpurpose>Template of the widest bibliography label</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.bibwidelabel.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The environment bibliography accepts a parameter that indicates the
+    widest label, which is used to correctly format the bibliography output.
+    The value of this parameter is output inside the
+    <literal>\begin{thebibliography[]}</literal> LaTeX command.
+    </para>
+  </refsection>
+</refentry>

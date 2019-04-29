@@ -1,0 +1,1 @@
+<xsl:param name="hyphenation.format">monoseq,sansseq</xsl:param>

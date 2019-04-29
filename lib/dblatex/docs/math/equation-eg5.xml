@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE para PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<equation>
+  <title>Equation block with align tabs</title>
+  <alt><?texmath delimiters="user"?><![CDATA[\begin{align*}
+S & = \left\lfloor { { N \bmod 65536 } \over 32768 } \right\rfloor  \\
+E & = \left\lfloor { { N \bmod 32768 } \over  1024 } \right\rfloor  \\
+M & = N \bmod 1024.
+\end{align*}]]></alt>
+</equation>

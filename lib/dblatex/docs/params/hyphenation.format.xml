@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="hyphenation.format">
+  <refmeta>
+    <refentrytitle>hyphenation.format</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>hyphenation.format</parameter></refname>
+    <refpurpose>Predefined formats to hyphenate</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/hyphenation.format.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>This parameter replaces the parameter
+    <parameter>monoseq.hyphenation</parameter> and its role is more general.
+    It contains a comma separated list of the predefined inline
+    formats that must be agressively hyphenated. It means that all the
+    elements rendered with these formats are then hyphenated.</para>
+    <para>The predefined formats that can be hyphenated when contained in the
+    list are:
+    <variablelist>
+      <varlistentry>
+      <term>monoseq</term>
+      <listitem>
+      <para>Monospaced font.</para>
+      </listitem>
+      </varlistentry>
+      <varlistentry>
+      <term>sansseq</term>
+      <listitem>
+      <para>Sans serif like font.</para>
+      </listitem>
+      </varlistentry>
+      <varlistentry>
+      <term>boldmonoseq</term>
+      <listitem>
+      <para>Bold monospaced font.</para>
+      </listitem>
+      </varlistentry>
+      <varlistentry>
+      <term>italicmonoseq</term>
+      <listitem>
+      <para>Italic monospaced font.</para>
+      </listitem>
+      </varlistentry>
+    </variablelist>
+    </para>
+    <para>If one wants no hyphenation at all, he must set the parameter to
+    "nohyphen". In this case dblatex tries to avoid overfull boxes (words in
+    the margins) but keeps the words splittable only on their natural
+    hyphenation points which can end up to no hyphenation at all for literal
+    words like URLs or technical terms.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>monoseq.hyphenation</parameter></para>
+  </refsection>
+</refentry>

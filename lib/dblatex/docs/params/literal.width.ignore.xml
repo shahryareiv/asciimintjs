@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.width.ignore">
+  <refmeta>
+    <refentrytitle>literal.width.ignore</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.width.ignore</parameter></refname>
+    <refpurpose>Ignore the literal environment width attribute</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.width.ignore.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When set to 1 the programlisting and screen width attribute is ignored.
+In this case all the verbatim environment widths are equal to the enclosing
+environment width.</para>
+  </refsection>
+</refentry>

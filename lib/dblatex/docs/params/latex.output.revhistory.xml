@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.output.revhistory">
+  <refmeta>
+    <refentrytitle>latex.output.revhistory</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.output.revhistory</parameter></refname>
+    <refpurpose>Print the <sgmltag>revhistory</sgmltag> table?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.output.revhistory.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The <sgmltag>revhistory</sgmltag> data are formatted as a table of the
+    revisions if the parameter is non-zero. If the parameter is zero all the
+    <sgmltag>revhistory</sgmltag> data are skipped.</para>
+  </refsection>
+</refentry>

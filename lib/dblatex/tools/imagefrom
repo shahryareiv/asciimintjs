@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Build some image/snapshot of parts of the manual. The XML elements to shoot
+# are specified by their unique identifier (@id)
+#
+basedir=`dirname $0`
+dblatex="$basedir/../scripts/dblatex"
+xsl="$basedir/getsubset.xsl"
+
+if [ $# -lt 2 ]; then
+  echo "`basename $0` file.xml id1 [id2 ...]"
+  exit 1
+fi
+
+# The XML input file
+file="$1"
+shift
+
+echo $*
+
+for id in "$@"; do
+  imgfile="img-$id"
+  $dblatex -o $imgfile.pdf -P extractid=$id -p $xsl $file
+  convert -units PixelsPerInch -density 144x144 -trim $imgfile.pdf $imgfile.png
+  rc=$?
+  if [ "$rc" = "0" ]; then
+    echo "'$imgfile.png' successfully built"
+    rm $imgfile.pdf
+  fi
+done

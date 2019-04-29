@@ -1,0 +1,48 @@
+<itemizedlist>
+<listitem><para>Better unicode support. Now the XML output is encoded in UTF-8,
+and Python uses the codecs to decode to ISO-Latin1 and replace the unsupported
+characters to some latex equivalent.</para></listitem>
+
+<listitem><para>Several XSLT processors can be used. The first port is for
+<ulink url="http://4suite.org">4suite</ulink> because it is fully written in
+Python and is quite a good tool. The processors are loaded as plugins, so that
+it can be easily extended to any other XSLT processor.</para>
+<para>The processor to use is specified from the command line with the
+<option>-m <replaceable>xslt</replaceable></option> option, where
+<replaceable>xslt</replaceable> is the name of the plugin to load (actually the
+name of the dynamically loaded Python module).</para>
+</listitem>
+
+<listitem><para>The XSL code is more conformant. It has been checked by using the
+<ulink url="http://4suite.org">4suite</ulink> XSLT processor as an alternative
+to <command>xsltproc</command>.</para></listitem>
+
+<listitem><para>Possibility to have some configuration files stored under
+<filename>$HOME/.dblatex</filename> or under <filename>/etc/dblatex</filename>
+for system-wide configurations. Some extra paths can be specified by using the
+<envar>DBLATEX_CONFIG_FILES</envar> environment variable.</para></listitem>
+
+<listitem><para>The <sgmltag>remark</sgmltag>s and <sgmltag>comment</sgmltag>s
+are rendered as PDF text annotations when <application>pdflatex</application> is
+used. Otherwise, the comments are suppressed.</para></listitem>
+
+<listitem><para>Some other minor improvements:
+<itemizedlist>
+<listitem><para>The parameters <parameter>pdf.annot.options</parameter>,
+<parameter>latex.class.book</parameter>, and
+<parameter>latex.class.article</parameter> are added.</para></listitem>
+<listitem><para>An hexadecimal color like
+<literal><![CDATA[<?dblatex bgcolor="#cceeff"?>]]></literal> is supported, and
+a named color like <literal><![CDATA[<?dblatex bgcolor="blue"?>]]></literal> is
+supported too (in the previous release named colors had to
+be enclosed in curly braces "{}").</para></listitem>
+<listitem><para>Some cleaner locale handling is provided, and new latex commands
+are given to allow the user to customize the babel setup.</para></listitem>
+<listitem><para>The cross-references now use <function>key()</function>
+instead of <function>id()</function>. It prevents from some bugs and makes
+writing a document easier, especially in modular parts.</para></listitem>
+</itemizedlist>
+</para></listitem>
+
+<listitem><para>Some bug fixes.</para></listitem>
+</itemizedlist>

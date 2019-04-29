@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Locale Support</title>
+
+<section id="sec-doc-encode">
+<title>Document Encoding</title>
+
+<para>By default the latex document produced by <command>dblatex</command> is
+encoded in latin1, that fits well for roman-characters. This said,
+a real international support involves some kind of Unicode (UTF8)
+support.</para>
+
+<para>In dblatex, the Unicode support is done by two methods that can be selected
+by some parameters:
+
+<itemizedlist>
+<listitem><para><parameter>latex.unicode.use</parameter>=1 asks for including the
+unicode package (initially provided by Passivetex) in order to
+handle many of the unicode characters in a latin1 encoded document.</para>
+</listitem>
+<listitem><para><parameter>latex.encoding</parameter>=utf8 produces a document
+encoded in UTF8, that is compiled in UTF8. It requires to have the
+<literal>ucs</literal> package installed.</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para>In some languages like Chinese, Japanese or Korean, the latex document
+must be in UTF8. Therefore, the UTF8 encoding is forced for these languages
+whatever the parameter values are.</para>
+
+</section>
+<section><title>Babel Languages</title>
+
+<para>Dblatex should be able to handle most of the languages supported by the
+babel package. Just set the
+<literal>lang=<replaceable>lang</replaceable></literal> attribute in the root
+document element and dblatex will load
+the appropriate babel language.</para>
+
+</section>
+<section><title>CJK Languages</title>
+
+<para>Dblatex can handle the CJK languages thanks to the CJK package. The CJK
+package must be installed to have this support available.</para>
+
+<para>As said in <xref linkend="sec-doc-encode"/> the latex file is encoded
+in UTF8. Moreover, the Cyberbit fonts are then used.</para>
+
+<para>The install of the CJK package and Cyberbit fonts are well described at:
+<ulink url="http://kile.sourceforge.net/Documentation/html/cjk.html"/>.
+</para>
+
+<section><title>Korean Support</title>
+
+<para>Dblatex does not use the HLatex package to drive Korean documents. It does
+not use the <command>hmakeindex</command> nor the <command>hbibtex</command> tool.
+Currently, Korean is handled like Chinese and Japanese with the CJK package.</para>
+
+</section>
+</section>
+
+<section><title>Mixing the languages</title>
+
+<para>Dblatex cannot handle correctly a document containing several elements
+with different <sgmltag>lang</sgmltag> values. In particular, if the main
+document lang is not one of the CJK language, a portion of text written in CJK
+will not be handled correctly and it can result in a compilation crash.</para>
+<para>Even if the langs mixed do not end to a compilation failure, only the
+main document lang will be taken into account.</para>
+</section>
+</section>

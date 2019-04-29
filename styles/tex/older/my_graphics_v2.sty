@@ -1,0 +1,580 @@
+%-----------------------------------------------
+%Shahryar Graphics package, configuration of graphics and tikz  things
+%-----------------------------------------------
+
+\ProvidesPackage{my_graphics_v2}[2015/09/18 Shahryar]
+
+\newcommand{\mylegendsize}{\scriptsize}
+
+%----------------------
+% C O M M O N S !
+%----------------------
+
+
+
+
+%Detect Xetex or Xelatex 
+\RequirePackage{ifxetex}
+
+\ifxetex%
+
+  \RequirePackage{fontspec} %[T1]
+ % \setmainfont{Gill Sans}[BoldFont={* Bold}]
+ % \setsansfont{Gill Sans}[BoldFont={* Bold}]    
+
+\else 
+
+ % \RequirePackage[english]{babel}%english,ngerman %%PROBLEM with standalone but maybe later
+  \RequirePackage[T1]{fontenc}%,LGRfont encoding for eu and greek
+  \RequirePackage[utf8]{inputenc}%utf8x,utf8,latin1
+
+%  \RequirePackage[garamond]{mathdesign}
+%  \RequirePackage{garamondx}
+  \RequirePackage[ebgaramond-math]{mathdesign}
+  \RequirePackage{ebgaramond}
+%  \RequirePackage{relsize}
+%  \AtBeginDocument{\larger}
+%  \RequirePackage[sfdefault]{gillius2}    %some times for images
+\fi
+
+%It makes the text more readable and with font enhancement
+%------%[protrusion=true,expansion=true]
+\RequirePackage[final]{microtype}
+
+%----------------------
+% C O L O R S
+%----------------------
+
+\RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor} %coloring things, including tables, lots of names here %pass option in the head [usenames,dvipsnames,svgnames,table][table]
+
+\definecolor{darkblue}{rgb}{0,0,0.5} 
+\definecolor{verylightgray}{gray}{0.95}
+\definecolor{lightgray}{gray}{0.8}
+\definecolor{histo1}{HTML}{acb3ca}%{7231A3} 
+\definecolor{histo2}{HTML}{bc9eb4}%{335EA1} 
+\definecolor{histo3}{HTML}{e6a6a7}%{F3CF3D} 
+\definecolor{histo4}{HTML}{d3c2c5}% 
+\definecolor{plostitle}{cmyk}{0.92, 0.16, 0.13, 0.25}% this is Pantone Uncoated 7468 U the same {HTML}{0076a0}%{} 
+\definecolor{tufteredCMYK}{cmyk}{0, 0.771, 0.715, 0.161}%RGB is #D6313D
+\definecolor{tufteyellowCMYK}{cmyk}{0, 0.771, 0.715, 0.161}%RGB is #D6313D
+%\colorlet{plosbluegray}{lightgray!50!plostitle!20!white}
+\definecolor{plosbluegray}{cmyk}{0.13, 0.03, 0.05, 0}%Pantone Uncoated 5455 U
+\colorlet{myred}{tufteredCMYK}%red
+\colorlet{myblue}{blue}
+\colorlet{myyellow}{Dandelion}
+\colorlet{myyellowhighlight}{Dandelion!50!white}
+\colorlet{mygreen}{OliveGreen}
+
+
+\colorlet{myVividA1}{red}
+\colorlet{myVividA2}{NavyBlue}
+\colorlet{myMediumA1}{Mahogany}
+\colorlet{myMediumA2}{MidnightBlue}
+\colorlet{mybgA1}{Mahogany!50}
+\colorlet{mybgA2}{RoyalBlue!50}
+\colorlet{myMediumA3}{OliveGreen}
+\colorlet{myDimA1}{Periwinkle}
+\colorlet{myAxisColor}{gray}
+
+%some from juiceanalytics, fixed with paletton.com
+\definecolor{myColorCatActive1}{HTML}{FF451E}
+
+\definecolor{myColorCatNormal1}{HTML}{63C2E7}
+\definecolor{myColorCatNormal2}{HTML}{68C76A}
+\definecolor{myColorCatNormal3}{HTML}{F1D062}
+
+\definecolor{myColorCatDim1}{HTML}{E4E4E4}
+\definecolor{myColorCatDim2}{HTML}{D7D7D7}
+\definecolor{myColorCatDim3}{HTML}{DFEEFE}
+
+\definecolor{myColorDataNormal1}{HTML}{890301}%red
+\definecolor{myColorDataNormal2}{HTML}{004187}%blue
+\definecolor{myColorDataNormal3}{HTML}{4881BB}
+
+\definecolor{myColorDataDim1}{HTML}{CDCDCD}
+\definecolor{myColorDataDim2}{HTML}{4881BB}
+\definecolor{myColorDataDim3}{HTML}{4881BB}
+
+\definecolor{myColorDataBg1}{cmyk}{0, 0.22, 0.56, 0.02}%Pantone Uncoated 141%{0.05, 0.45, 0.65, 0.01}%Pantone Uncoated 472 U%{HTML}{d26143}%red FF7258 d64a30 F9AB8F
+\definecolor{myColorDataBg2}{cmyk}{0.32, 0.09, 0.08, 0.07}%Pantone Uncoated 5435 U%{HTML}{90AEC3}
+\definecolor{myColorDataBg3}{cmyk}{0.34, 0, 0.61, 0}%Pantone Uncoated 366 U%{HTML}{ADDF80}%#F8BD47
+
+\definecolor{myColorSilentFrame}{HTML}{D3D7DA} %gray
+
+
+\definecolor{myColorSpaceA1}{cmyk}{0.07, 0.01, 0.03, 0}%Pantone Uncoated 7541 U%{HTML}{D3D7DA} %gray
+\definecolor{myColorSpaceA2}{cmyk}{0.19, 0.11, 0.12, 0.31}%Pantone Uncoated 423 U%{HTML}{899096}
+\definecolor{myColorSpaceB1}{cmyk}{0.10, 0.03, 0.01, 0.02}%Pantone Uncoated 656 U%{HTML}{E7EEF4} %blue
+\definecolor{myColorSpaceB2}{cmyk}{0.29, 0.13, 0.13, 0.02}%Pantone Uncoated 7543 U%{HTML}{B6C0C8}
+
+\definecolor{myIranGreenCMYK}{cmyk}{90, 12, 95, 40} %Iran green {17,153,8}? RGB(4,106,56) cmyk(90, 12, 95, 40)
+\definecolor{myIranGreen}{RGB}{4,106,56} %Iran green {17,153,8}? RGB(4,106,56) cmyk(90, 12, 95, 40)
+
+
+\providecommand{\hlred}[1]{\textcolor{Maroon}{#1}}% prints in red
+\providecommand{\myredtext}[1]{\textcolor{myred}{#1}}% prints in red
+\providecommand{\mybluetext}[1]{\textcolor{myblue}{#1}}% prints in red
+\providecommand{\mygraytext}[1]{\textcolor{gray}{#1}}% prints in red
+\providecommand{\mylightgraytext}[1]{\textcolor{lightgray}{#1}}% prints in red
+\providecommand{\hlblue}[1]{\textcolor{NavyBlue}{#1}}% prints in red
+
+%--------------------------------
+% Tikz and ...
+%--------------------------------
+
+
+\RequirePackage{tikz}
+
+\usetikzlibrary{decorations,shapes,arrows.meta,patterns,trees,graphs,positioning,calc,datavisualization,fit,intersections,backgrounds,matrix,chains}
+%\usetikzlibrary{external} %create external file for tikz %PROBLEM!
+%\tikzexternalize[prefix=./] % activate! %PROBLEM!
+
+\RequirePackage{tikz-qtree}% To create tree easily
+
+\RequirePackage{pgfplots} %creates charts and ...
+
+\pgfplotsset{compat=newest} %it means the minimum compatibility version 1.11
+
+
+\RequirePackage{pgfplotstable} %draws sophisticated table
+\usepgfplotslibrary{fillbetween}
+
+\RequirePackage{xhfill} %26/02/15 Draws hline between texts
+
+\RequirePackage{pgfgantt} %draws Gantt
+
+%   \pgfmathdeclarefunction{gauss2}{2}{%
+%      \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+%   }
+%
+  \pgfmathdeclarefunction{gauss3}{3}{%
+    \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+  }
+
+
+
+
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+  \newcommand{\yslant}{0.5}
+  \newcommand{\xslant}{-0.7}
+  \tikzset{Zslant/.style={%
+          yshift=#1,% It should be in the beginning to impact rest  
+          every node/.append style={%
+            yslant=\yslant,%
+            xslant=\xslant%
+          },%
+          yslant=\yslant,%
+          xslant=\xslant%
+        }%
+      }%
+
+%Some macros for slanted 3d pages
+\newcommand*\elevation{14} %
+\newcommand*\anglerot{-50} %
+\pgfmathsetmacro\xc{cos(\anglerot)}  
+\pgfmathsetmacro\xs{sin(\anglerot)}   
+\pgfmathsetmacro\yc{cos(\elevation)} 
+\pgfmathsetmacro\ys{sin(\elevation)} 
+\newcommand*\axexthreed{\xs*1cm,-\xc*1cm} 
+\newcommand*\axeythreed{\yc*1cm,-\ys*1cm}
+\newcommand*\axezthreed{0cm,1cm} 
+
+%% How do I compute these:
+\tikzset{yz slant style/.style={yslant=-tan(\elevation), xscale=cos(\elevation)}}
+\tikzset{xy slant style/.style={xslant=-tan(\elevation+\anglerot), rotate=-\elevation, yscale=cos(\anglerot)}}
+\tikzset{xz slant style/.style={yslant=-cot(\anglerot), xscale=sin(-\anglerot)}}
+
+%My Commands
+%\newcommand{\myEdgeLabel}[1]{\scriptsize{#1}} %No use with tikz styles
+
+
+%--------------------------------------
+% M Y  S T Y L E   L I B R A R Y
+%--------------------------------------
+
+\makeatletter
+\tikzset{
+  my fitting node/.style={
+    inner sep=0pt,
+    fill=none,
+    draw=none,
+    reset transform,
+    fit={(\pgf@pathminx,\pgf@pathminy) (\pgf@pathmaxx,\pgf@pathmaxy)}
+  },
+  reset transform/.code={\pgftransformreset}
+}
+\makeatother
+
+\tikzset{   
+  myprocess/.style={
+    very thick,
+    draw=black!50,
+    top color=white,
+    bottom color=black!20, 
+    font=\ttfamily,
+    rectangle,
+    rounded corners,
+    align=center,%also enables breaklines
+  },
+  myentity/.style={
+    thick,
+    draw=black!50,
+    %top color=white,
+    %bottom color=black!20, 
+    font=\ttfamily,
+    rectangle,
+    rounded corners,    
+    align=center,
+  },
+  myobject/.style={
+    thick,
+    draw=black!50,
+    %top color=white,
+    %bottom color=black!20, 
+    font=\ttfamily,
+    circle,
+    rounded corners,    
+    align=center,
+  },  
+  mydb/.style={
+    very thick,
+    draw=black!50,
+    top color=white,
+    bottom color=black!20, 
+    font=\ttfamily,
+    cylinder,
+    shape border rotate=90,
+    shape aspect=0.1,
+    rounded corners=false,
+    align=center,%also enables breaklines     
+  },
+  myedge/.style={
+    very thick,
+    rounded corners,
+    ->,
+  },
+  mygrayedge/.style={
+    %color=lightgray,
+    text=black,
+    midway,
+    anchor=south,
+    sloped, 
+    font=\scriptsize,
+  },
+  mycalloutline/.style={
+     thick,
+    rounded corners,
+    color=myred,
+    opacity=0.5,
+  text=black,
+  text opacity=1.0,
+%    --,
+  }, 
+  myspotyel/.style={
+% fill opacity=0.5,
+  fill,
+  color=myyellowhighlight,
+  circle,
+  minimum size=10pt  
+  },
+  myedgelabel/.style={
+    font=\itshape,
+    align=center,%also enables breaklines     
+  },  
+  mylabel/.style={
+    font=\itshape,
+    font=\scriptsize,
+    align=center,%also enables breaklines     
+  },  
+  mylegend/.style={
+    font=\itshape,
+    font=\scriptsize,
+    align=left,%also enables breaklines     
+  },  
+  mylabelnormal/.style={
+    font=\itshape,
+    %font=\scriptsize,
+    align=center,%also enables breaklines     
+  }, 
+  myontology/.style={
+        every tree node/.style=myentity,      
+        every tree node/.append style={myentity, minimum size=2em},     
+        edge from parent/.append style={color=gray,text=black,midway,anchor=south,sloped, font=\scriptsize},
+  %     every level 3 node/.append style={text=myblue},
+  %     every leaf node/.style=myentity,
+  %     every leaf node/.append style={font=\scriptsize},
+          level distance=1.75cm,
+          frontier/.style={distance from root=250pt},
+          sibling distance=.5cm, 
+          edge from parent path={(\tikzchildnode) -- (\tikzparentnode)},
+  },
+  mydimnode/.style={
+    fill=myColorCatDim1,
+  },
+  myfirstnode/.style={
+    fill=myColorCatNormal1,
+  },
+  mysecondnode/.style={
+    fill=myColorCatNormal2,
+  },
+  mythirdnode/.style={
+    fill=myColorCatNormal3,
+  },
+}
+
+%------------------------------------
+% My Pic library
+%------------------------------------
+
+\tikzset{
+  myhalfarc/.pic={
+    \coordinate(-center) at (0,0);
+    \fill[draw] 
+    (-1cm,0cm) arc (180:0:1cm)
+      -- ++(-0.25cm,0)
+      arc (0:180:0.75cm)
+      -- cycle 
+      node[my fitting node] (#1) {}
+    ; 
+  },
+  myhalfyinyang/.pic={
+    \coordinate(-center) at (0,0);
+    \fill[draw,name path=#1] 
+      (90:1cm) arc (90:-90:0.5cm)
+          arc (90:270:0.5cm)
+       arc (-90:-270:1cm)
+      -- cycle
+      node[my fitting node] (#1) {}
+    ; 
+  },
+  mypatient/.pic={
+    \node (#1) {\includegraphics[scale=0.3]{figlib_patient_internal_line.pdf}};
+  },
+  myhuman/.pic={
+% \node[fill=red] (#1) {\includegraphics[scale=0.3]{figlib_human_line.pdf}};
+  \path[
+    pic actions,
+    draw,
+    y=0.25pt,x=0.25pt,yscale=-1, 
+%   xshift=-2pt,
+%   yshift=-2pt,
+%   append after command={},
+    inner sep=0pt, outer sep=0pt,
+%   line width=0.271pt,
+    ]%=0.271pt,draw=black,fill=black,fill opacity=0.000,
+    (18.6180,8.6590) circle (6.528188976)%converted 0.2303cm
+    (8.9720,95.9260) .. controls
+    (8.9720,98.4500) and (11.0220,100.5000) .. (13.5460,100.5000) .. controls
+    (16.0750,100.5000) and (18.1220,98.4500) .. (18.1220,95.9260) --
+    (18.1260,57.5520) -- (20.1630,57.5520) -- (20.1500,95.9260) .. controls
+    (20.1500,98.4500) and (22.1980,100.5000) .. (24.7240,100.5000) .. controls
+    (27.2500,100.5000) and (29.2970,98.4500) .. (29.2970,95.9260) --
+    (29.3170,29.7680) -- (31.3230,29.7680) -- (31.3230,54.1480) .. controls
+    (31.3230,59.0530) and (37.7210,59.0530) .. (37.7070,54.1480) --
+    (37.7070,29.2480) .. controls (37.7070,23.8300) and (34.5230,18.5200) ..
+    (28.1840,18.5200) -- (9.8960,18.5120) .. controls (4.1190,18.5120) and
+    (0.5000,23.2220) .. (0.5000,29.0990) -- (0.5000,54.1490) .. controls
+    (0.5000,59.0180) and (6.9330,59.0180) .. (6.9330,54.1490) -- (6.9330,29.7690)
+    -- (8.9810,29.7690) -- (8.9720,95.9260) -- cycle
+    node[my fitting node,inner sep=0pt, outer sep=0pt,
+    ] (#1) {};  
+  },
+  mydoctor/.pic={
+    \node  (#1) {\includegraphics[scale=0.3]{figlib_doctor_line_1.pdf}};
+  },
+  myhospital/.pic={
+  % \node[fill=red] (#1) {\includegraphics[scale=0.3]{human_line.pdf}};
+    \path[
+      pic actions,
+      draw,
+      y=0.85pt,x=0.85pt,yscale=-1, 
+      inner sep=0pt, outer sep=0pt,
+%   line width=0.192pt,  
+      ]%=0.271pt,draw=black,fill=black,fill opacity=0.000,
+  (10.0156,0.1699) -- (7.7481,2.4375) --
+  (4.2852,5.9023) -- (0.1699,10.0156) -- (1.4688,11.3145) -- (4.2227,8.5605) --
+  (4.2852,8.5000) -- (9.9902,2.7949) -- (10.0156,2.7676) -- (15.9199,8.6719) --
+  (18.5313,11.2832) -- (19.8301,9.9844) -- (15.9199,6.0742) -- (12.2832,2.4375)
+  -- cycle(9.9902,3.5156) -- (4.2852,9.2207) -- (4.2227,9.2813) --
+  (4.2227,22.5312) -- (8.3848,22.5312) -- (8.3848,18.7871) -- (11.5059,18.7871)
+  -- (11.5059,22.5312) -- (15.8750,22.5312) -- (15.8750,9.3926) --
+  cycle(9.3197,11.0618) -- (10.5677,11.0618) -- (10.5677,12.5422) --
+  (12.0482,12.5422) -- (12.0482,13.7903) -- (10.5677,13.7903) --
+  (10.5677,15.2707) -- (9.3197,15.2707) -- (9.3197,13.7903) -- (7.8392,13.7903)
+  -- (7.8392,12.5422) -- (9.3197,12.5422) -- cycle  
+  node[my fitting node,inner sep=0pt, outer sep=0pt,] (#1) {};    
+    },
+  myapp/.pic={
+%    \node (#1) {\includegraphics[scale=0.3]{figlib_mobile_line.pdf}};
+
+  \path[
+    pic actions,
+    draw,
+    y=0.25pt,x=0.25pt,yscale=-1, 
+%   inner sep=0pt, outer sep=0pt,
+%   line width=0.271pt,
+    ] 
+    (61.9788,16.9742) -- (34.3878,1.0442) .. controls
+    (32.4418,-0.0808) and (29.9508,0.5872) .. (28.8278,2.5332) -- (1.0438,50.6562)
+    .. controls (-0.0802,52.6052) and (0.5858,55.0942) .. (2.5328,56.2182) --
+    (30.1228,72.1462) .. controls (32.0698,73.2712) and (34.5608,72.6032) ..
+    (35.6838,70.6562) -- (63.4688,22.5352) .. controls (64.5918,20.5872) and
+    (63.9258,18.0972) .. (61.9788,16.9742) -- cycle(23.1458,59.0952) .. controls
+    (22.0418,61.0082) and (19.5968,61.6632) .. (17.6828,60.5592) .. controls
+    (15.7698,59.4552) and (15.1148,57.0092) .. (16.2198,55.0972) .. controls
+    (17.3238,53.1822) and (19.7708,52.5272) .. (21.6828,53.6322) .. controls
+    (23.5958,54.7382) and (24.2518,57.1832) .. (23.1458,59.0952) --
+    cycle(36.5288,58.2492) -- (11.4148,43.7492) -- (32.6648,6.9422) --
+    (57.7788,21.4422) -- (36.5288,58.2492) -- cycle
+    node[my fitting node] (#1) {};     
+  },
+  myspot/.pic={
+    \fill (0,0) circle (0.2cm)
+          node[my fitting node] (#1) {}
+    ;   
+  },  
+  mytwowayspot/.pic={
+    \pic {myspot};
+    \draw[thick,arrows = {-Stealth[right]}] 
+    (-0.4cm,-0.05) -- (0.4cm,-0.05);
+    \draw[thick,arrows = {-Stealth[right]}] 
+     (0.4cm,0.05) -- (-0.4cm,0.05)
+          node[my fitting node] (#1) {}
+    ;   
+  },  
+}
+
+% ------------------------
+%Graphics packages
+% ------------------------
+
+%note: all said that there is no need for [pdftex]
+\RequirePackage{graphicx}%[pdftex]
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\RequirePackage[space]{grffile}%Allow spaces in graphic file name
+%\RequirePackage{auto-pst-pdf} %convert ps to pdf
+\usepackage{grfext}
+\PrependGraphicsExtensions*{.pdf,.PDF}%pdf to be first to include
+\graphicspath{ {./}{./_figures/}{../_figures/}{./_sh_my_figures_symlink/}{./_images_symlink/}{../_images/}{../../_images/}{../images/}{../../images/}}
+
+% ------------------------
+% some packages for normal text
+% ------------------------------
+
+\RequirePackage{textgreek}
+% ------------------------
+% T A B L E S
+% ------------------------------
+\RequirePackage{booktabs} %better tables
+\RequirePackage{tabularx} %better columns in tables
+\RequirePackage{longtable} %breakable tables across pages
+\RequirePackage{threeparttable} % tables with footnote part
+\RequirePackage{multirow}
+\RequirePackage{colortbl}%coloring the table
+
+\RequirePackage{array} %needed for some table things
+%\RequirePackage{tablefootnote} % facilities for footnote  in tables , PROBLEMS
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+% ***********************************
+
+\RequirePackage{pagecolor} %should be after xcolor
+%\RequirePackage{afterpage} %DOES not work Xelatex change color of only one
+
+
+%\RequirePackage{transparent} %REMOVED 
+
+%\RequirePackage{wallpaper} %wall paper CREATES PROBLEM with Tex4HT (extra PICT images)
+
+
+
+
+%\RequirePackage{adjustbox}%PROBLEM makes things break
+
+%\RequirePackage{graphviz} %lets for dot file inclusion, but who needs that!
+
+%\RequirePackage[autosize,outputdir=./_figures/]{dot2texi}%[pgf] %adds a command for dotfile, but who needs that!
+
+%\RequirePackage{subfig} %multiple fig in one fig %I commented this because of some conflict with caption package
+
+
+%---------------------------
+% C O L O R     B O X E S
+%---------------------------
+  
+
+
+%\RequirePackage[printwatermark]{xwatermark} %creates watermark or draft watermarks
+
+
+
+%\RequirePackage{smartdiagram} %problem with tex4ht 2014
+
+\RequirePackage{bloques}% creates bloque diagram
+\RequirePackage{qrcode}
+
+%\RequirePackage{lpic} %Overlay latex over any pic
+
+%\RequirePackage{logicpuzzles} % matrices like sudoko
+
+%\RequirePackage{pstricks}
+%\RequirePackage{pdftricks2}
+%\RequirePackage{pstricks-add}
+%\RequirePackage{preview}
+
+%\RequirePackage{auto-pst-pdf} %we need to convert ps to pdf for dot and graphviz
+%\RequirePackage{graphvizzz}
+
+%\RequirePackage{svg} %PROBLEM! too shaky
+
+
+
+
+%\RequirePackage[framemethod=tikz]{mdframed} %creates colored breakable text frames PROBLEM with many, use tcolorebox
+%  \newenvironment{myInsideStory}[1]
+%    {
+%   \ifstrempty{#1}%
+%   {\mdfsetup{%
+%     frametitle={%
+%        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+%         \node[anchor=east,rectangle,fill=lightgray!20]
+%         {\strut };}}
+%   }%
+%   {\mdfsetup{%
+%      frametitle={%
+%        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+%         \node[anchor=east,rectangle,fill=lightgray!20]
+%         {\strut #1};}}%
+%    }%
+%    
+%
+%   \mdfsetup{
+%   innertopmargin=10pt,
+%   linecolor=lightgray, %!20,%
+%   linewidth=2pt,topline=true,
+%   frametitlealignment=\center,             
+%   frametitleaboveskip=\dimexpr-\ht\strutbox\relax,
+% }
+%                   
+%    \begin{mdframed}%
+%    }
+%    {\end{mdframed}}
+
+
+
+
+
+
+
+
+

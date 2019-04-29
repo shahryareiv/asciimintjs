@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Writing a Bibliography</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="ch03.html" title="Chapter 3. Using dblatex" /><link rel="prev" href="sec-index.html" title="Creating an Index" /><link rel="next" href="ch03s14.html" title="Document Revisions" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Writing a Bibliography</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-index.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Using dblatex</th><td width="20%" align="right"> <a accesskey="n" href="ch03s14.html">Next</a></td></tr></table><hr /></div><div class="section" title="Writing a Bibliography"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp3905856"></a>Writing a Bibliography</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s13.html#idp1629160">Using Bibliography Entries</a></span></dt><dt><span class="section"><a href="ch03s13.html#sec-bibtex">Using BibTeX Databases</a></span></dt><dt><span class="section"><a href="ch03s13.html#sec-natbib">Natbib Citations</a></span></dt></dl></div><p>
+   A bibliography (<code class="sgmltag-element">bibliography</code>) can be written and put anywhere in the document. It appears as a chapter or a section and is composed by several divisions (<code class="sgmltag-element">bibliodiv</code>) displayed as sections or subsections.
+  </p><div class="section" title="Using Bibliography Entries"><div class="titlepage"><div><div><h3 class="title"><a id="idp1629160"></a>Using Bibliography Entries</h3></div></div></div><p>
+   The writer selects information that describes each bibliography entry (<code class="sgmltag-element">biblioentry</code>), and chooses the presentation order. The titles and authors are displayed first.
+  </p><div class="example"><a id="idp4006128"></a><p class="title"><strong>Example 3.13. A Bibliography</strong></p><div class="example-contents"><pre class="programlisting">
+&lt;bibliography&gt;&lt;title&gt;Bibliography Example&lt;/title&gt; 
+  &lt;bibliodiv&gt;&lt;title&gt;References&lt;/title&gt;
+    &lt;biblioentry&gt;
+      &lt;title&gt;Document title&lt;/title&gt;
+      &lt;author&gt;&lt;firstname&gt;J.&lt;/firstname&gt;&lt;surname&gt;Doe&lt;/surname&gt;&lt;/author&gt;
+      &lt;pubsnumber&gt;DEX000567325&lt;/pubsnumber&gt;
+    &lt;/biblioentry&gt;
+  &lt;/bibliodiv&gt;
+  &lt;bibliodiv&gt;&lt;title&gt;White papers&lt;/title&gt;
+    &lt;biblioentry&gt;
+      &lt;title&gt;Technical notes&lt;/title&gt;
+      &lt;authorgroup&gt;
+        &lt;author&gt;&lt;firstname&gt;J.&lt;/firstname&gt;&lt;surname&gt;Doe&lt;/surname&gt;&lt;/author&gt;
+        &lt;author&gt;&lt;firstname&gt;R.&lt;/firstname&gt;&lt;surname&gt;Marion&lt;/surname&gt;&lt;/author&gt;
+      &lt;/authorgroup&gt;
+      &lt;pubsnumber&gt;DEX000704520&lt;/pubsnumber&gt;
+    &lt;/biblioentry&gt;
+  &lt;/bibliodiv&gt;
+&lt;/bibliography&gt;
+  </pre></div></div><br class="example-break" /></div><div class="section" title="Using BibTeX Databases"><div class="titlepage"><div><div><h3 class="title"><a id="sec-bibtex"></a>Using BibTeX Databases</h3></div></div></div><p>Instead of writing the bibliographic materials in DocBook you can reuse
+some already available BibTeX databases. Of course, this feature is specific to
+<span class="command"><strong>dblatex</strong></span>, that will automatically call <span class="command"><strong>bibtex</strong></span>
+if some bibtex databases are used.</p><p>To do so, write a <code class="sgmltag-element">bibliodiv</code> containing an empty
+<code class="sgmltag-element">bibliomixed</code> element having a
+<code class="literal">bibtex</code> processing instruction specifying the databases to use
+and the style to apply.</p><p>More precisely here are the attributes supported by the
+<code class="literal">bibtex</code> PI:
+
+</p><div class="variablelist"><a id="bibtex-attributes"></a><dl><dt><span class="term">bibfiles</span></dt><dd><p>This attribute is mandatory and specifies the databases to use.
+The databases are separated by
+commas, and must not contain the file suffix (<code class="literal">.bib</code>). The bibfiles
+paths must be absolute or relative to the base directory of the document. You
+can also add some bibfile paths by using the <code class="option">-L</code> option.</p></dd><dt><span class="term">bibstyle</span></dt><dd><p>Optional attribute specifying the bibliographic style to apply for rendering
+the databases. You can also change globally the style to apply with the
+<em class="parameter"><code>latex.biblio.style</code></em>.</p><p>The actual style file used by
+<span class="command"><strong>bibtex</strong></span> is searched in the default paths, but some extra paths
+can be added by using the <code class="option">-l</code> option.</p></dd><dt><span class="term">mode</span></dt><dd><p>Optional print mode. The available values are:
+  </p><div class="variablelist"><a id="biblio-output-modes"></a><dl><dt><span class="term">all</span></dt><dd><p>Print all the entries contained in the databases.</p></dd><dt><span class="term">cited</span></dt><dd><p>Print only the entries cited in the document.</p></dd><dt><span class="term">notcited</span></dt><dd><p>Print only the entries <span class="emphasis"><em>not</em></span> cited in the
+  document.</p></dd></dl></div><p>
+</p><p>When the attribute is not used, the
+  <em class="parameter"><code>latex.biblio.output</code></em> parameter is used as print mode. By
+  default the print mode is set to 'all'.</p></dd></dl></div><p>
+</p><p>Some <code class="sgmltag-element">bibliodiv</code>s embedding bibliographic entries can be mixed with some <code class="sgmltag-element">bibliodiv</code>s using BibTeX databases, as shown by <a class="xref" href="ch03s13.html#eg-bibmixed" title="Example 3.14. Bibliography using BibTeX databases">Example 3.14, “Bibliography using BibTeX databases”</a>.</p><div class="example"><a id="eg-bibmixed"></a><p class="title"><strong>Example 3.14. Bibliography using BibTeX databases</strong></p><div class="example-contents"><pre class="programlisting">
+&lt;bibliography&gt;&lt;title&gt;Bibliography Example&lt;/title&gt; 
+  &lt;bibliodiv&gt;&lt;title&gt;References&lt;/title&gt;
+    &lt;biblioentry&gt;
+      &lt;title&gt;Document Title&lt;/title&gt;
+      &lt;author&gt;&lt;firstname&gt;J.&lt;/firstname&gt;&lt;surname&gt;Doe&lt;/surname&gt;&lt;/author&gt;
+      &lt;pubsnumber&gt;DEX000567325&lt;/pubsnumber&gt;
+    &lt;/biblioentry&gt;
+  &lt;/bibliodiv&gt;
+  &lt;bibliodiv&gt;&lt;title&gt;Bibtex References&lt;/title&gt;
+    &lt;bibliomixed&gt;&lt;?bibtex bibfiles="bib/latex-bib" bibstyle="alpha"?&gt;&lt;/bibliomixed&gt;
+  &lt;/bibliodiv&gt;
+  &lt;bibliodiv&gt;&lt;title&gt;Cited Bibtex References&lt;/title&gt;
+    &lt;bibliomixed&gt;&lt;?bibtex bibfiles="bib/database1,bib/database2"
+                          bibstyle="plain"
+                          mode="cited"?&gt;&lt;/bibliomixed&gt;
+  &lt;/bibliodiv&gt;
+&lt;/bibliography&gt;
+  </pre></div></div><br class="example-break" /></div><div class="section" title="Natbib Citations"><div class="titlepage"><div><div><h3 class="title"><a id="sec-natbib"></a>Natbib Citations</h3></div></div></div><p>You can apply natbib citation styles by playing with the citation role
+attribute, or with a <code class="literal">dblatex</code> processing instruction. The
+natbib use is enabled only when the <em class="parameter"><code>citation.natbib.use</code></em>
+paramater is set to 1; if not (default) the role attribute or PI are not taken
+into account even if present. The natbib package can be loaded with user specific
+options by setting the <em class="parameter"><code>citation.natbib.options</code></em>
+parameter.</p><p>When using the role attribute, simply type the natbib citation command to
+apply. When using the <code class="literal">dblatex</code> PI, put the natbib command in
+the <code class="sgmltag-element">citestyle</code> attribute.</p><p>If you need to put some square brackets "[ ]" in the citation texts, enclose
+the whole text with "{ }" to protect them (as you would do in latex).</p><p>Here are some examples:</p><pre class="programlisting">&lt;para&gt;
+&lt;citation role="\citep[see][chap. #2]"&gt;texbook&lt;/citation&gt;
+&lt;citation role="\citep[see][{[chap. #2]}]"&gt;texbook&lt;/citation&gt;
+&lt;citation&gt;&lt;?dblatex citestyle="\citep[see][chap. #2]"?&gt;texbook&lt;/citation&gt;
+&lt;citation&gt;texbook&lt;/citation&gt;
+&lt;/para&gt;</pre><p>You can use a global natib citation style with the
+<em class="parameter"><code>citation.default.style</code></em> parameter. By default the
+parameter is empty, and therefor is not used.</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-index.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s14.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Creating an Index </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Document Revisions</td></tr></table></div></body></html>

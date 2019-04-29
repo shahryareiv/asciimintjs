@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="imagedata.default.scale">
+  <refmeta>
+    <refentrytitle>imagedata.default.scale</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>imagedata.default.scale</parameter></refname>
+    <refpurpose>Specifies the default image scaling properties</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/imagedata.default.scale.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection id="sec-defaultscale">
+    <title>Description</title>
+
+    <para>Default scale to apply to every <sgmltag>imagedata</sgmltag> that does not contain any scaling attribute.</para>
+<para>By default this parameter is set to `pagebound`
+so that the included images keep their natural size up to the page
+boundaries.</para>
+<para>Two other special parameters are available:
+'maxwidth=<replaceable>width</replaceable>' and
+'maxheight=<replaceable>height</replaceable>' where <replaceable>width</replaceable>
+and <replaceable>height</replaceable> define the maximum image
+dimensions, i.e. the image keeps its natural size up to the specified
+maximum dimension. Both 'maxwidth' and 'maxheight' settings can be combined in a
+comma separated list.</para>
+<para>Example:
+<programlisting>dblatex -P imagedata.default.scale=maxwidth=10cm,maxheight=8cm file.xml</programlisting>
+</para>
+<para>Except these special reserved values, the expected value of the parameter
+must be some valid options passed to the \includegraphics command.</para>
+  </refsection>
+</refentry>

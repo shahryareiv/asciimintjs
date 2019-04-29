@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Writing a Bibliography</title>
+  <para>
+   A bibliography (<sgmltag>bibliography</sgmltag>) can be written and put anywhere in the document. It appears as a chapter or a section and is composed by several divisions (<sgmltag>bibliodiv</sgmltag>) displayed as sections or subsections.
+  </para>
+  <section><title>Using Bibliography Entries</title>
+  <para>
+   The writer selects information that describes each bibliography entry (<sgmltag>biblioentry</sgmltag>), and chooses the presentation order. The titles and authors are displayed first.
+  </para>
+<example><title>A Bibliography</title>
+  <programlisting>
+<![CDATA[<bibliography><title>Bibliography Example</title> 
+  <bibliodiv><title>References</title>
+    <biblioentry>
+      <title>Document title</title>
+      <author><firstname>J.</firstname><surname>Doe</surname></author>
+      <pubsnumber>DEX000567325</pubsnumber>
+    </biblioentry>
+  </bibliodiv>
+  <bibliodiv><title>White papers</title>
+    <biblioentry>
+      <title>Technical notes</title>
+      <authorgroup>
+        <author><firstname>J.</firstname><surname>Doe</surname></author>
+        <author><firstname>R.</firstname><surname>Marion</surname></author>
+      </authorgroup>
+      <pubsnumber>DEX000704520</pubsnumber>
+    </biblioentry>
+  </bibliodiv>
+</bibliography>
+]]>  </programlisting>
+</example>
+</section>
+<section id="sec-bibtex"><title>Using BibTeX Databases</title>
+
+<para>Instead of writing the bibliographic materials in DocBook you can reuse
+some already available BibTeX databases. Of course, this feature is specific to
+<command>dblatex</command>, that will automatically call <command>bibtex</command>
+if some bibtex databases are used.</para>
+
+<para>To do so, write a <sgmltag>bibliodiv</sgmltag> containing an empty
+<sgmltag>bibliomixed</sgmltag> element having a
+<literal>bibtex</literal> processing instruction specifying the databases to use
+and the style to apply.</para>
+
+<para>More precisely here are the attributes supported by the
+<literal>bibtex</literal> PI:
+
+<variablelist id="bibtex-attributes">
+<varlistentry><term>bibfiles</term>
+<listitem><para>This attribute is mandatory and specifies the databases to use.
+The databases are separated by
+commas, and must not contain the file suffix (<literal>.bib</literal>). The bibfiles
+paths must be absolute or relative to the base directory of the document. You
+can also add some bibfile paths by using the <option>-L</option> option.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>bibstyle</term>
+<listitem>
+<para>Optional attribute specifying the bibliographic style to apply for rendering
+the databases. You can also change globally the style to apply with the
+<parameter>latex.biblio.style</parameter>.</para>
+<para>The actual style file used by
+<command>bibtex</command> is searched in the default paths, but some extra paths
+can be added by using the <option>-l</option> option.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>mode</term>
+<listitem>
+<para>Optional print mode. The available values are:
+  <variablelist id="biblio-output-modes">
+  <varlistentry><term>all</term>
+  <listitem><para>Print all the entries contained in the databases.</para></listitem>
+  </varlistentry>
+  <varlistentry><term>cited</term>
+  <listitem><para>Print only the entries cited in the document.</para></listitem>
+  </varlistentry>
+  <varlistentry><term>notcited</term>
+  <listitem><para>Print only the entries <emphasis>not</emphasis> cited in the
+  document.</para></listitem>
+  </varlistentry>
+  </variablelist>
+</para>
+<para>When the attribute is not used, the
+  <parameter>latex.biblio.output</parameter> parameter is used as print mode. By
+  default the print mode is set to 'all'.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</para>
+
+<para>Some <sgmltag>bibliodiv</sgmltag>s embedding bibliographic entries can be mixed with some <sgmltag>bibliodiv</sgmltag>s using BibTeX databases, as shown by <xref
+linkend="eg-bibmixed"/>.</para>
+
+<example id="eg-bibmixed"><title>Bibliography using BibTeX databases</title>
+  <programlisting>
+<![CDATA[<bibliography><title>Bibliography Example</title> 
+  <bibliodiv><title>References</title>
+    <biblioentry>
+      <title>Document Title</title>
+      <author><firstname>J.</firstname><surname>Doe</surname></author>
+      <pubsnumber>DEX000567325</pubsnumber>
+    </biblioentry>
+  </bibliodiv>
+  <bibliodiv><title>Bibtex References</title>
+    <bibliomixed><?bibtex bibfiles="bib/latex-bib" bibstyle="alpha"?></bibliomixed>
+  </bibliodiv>
+  <bibliodiv><title>Cited Bibtex References</title>
+    <bibliomixed><?bibtex bibfiles="bib/database1,bib/database2"
+                          bibstyle="plain"
+                          mode="cited"?></bibliomixed>
+  </bibliodiv>
+</bibliography>
+]]>  </programlisting>
+</example>
+
+</section>
+<section id="sec-natbib"><title>Natbib Citations</title>
+
+<para>You can apply natbib citation styles by playing with the citation role
+attribute, or with a <literal>dblatex</literal> processing instruction. The
+natbib use is enabled only when the <parameter>citation.natbib.use</parameter>
+paramater is set to 1; if not (default) the role attribute or PI are not taken
+into account even if present. The natbib package can be loaded with user specific
+options by setting the <parameter>citation.natbib.options</parameter>
+parameter.</para>
+
+<para>When using the role attribute, simply type the natbib citation command to
+apply. When using the <literal>dblatex</literal> PI, put the natbib command in
+the <sgmltag>citestyle</sgmltag> attribute.</para>
+
+<para>If you need to put some square brackets "[ ]" in the citation texts, enclose
+the whole text with "{ }" to protect them (as you would do in latex).</para>
+
+<para>Here are some examples:</para>
+<programlisting><![CDATA[<para>
+<citation role="\citep[see][chap. #2]">texbook</citation>
+<citation role="\citep[see][{[chap. #2]}]">texbook</citation>
+<citation><?dblatex citestyle="\citep[see][chap. #2]"?>texbook</citation>
+<citation>texbook</citation>
+</para>]]></programlisting>
+
+<para>You can use a global natib citation style with the
+<parameter>citation.default.style</parameter> parameter. By default the
+parameter is empty, and therefor is not used.</para>
+
+</section>
+</section>

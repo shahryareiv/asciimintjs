@@ -1,0 +1,1 @@
+<xsl:param name="doc.lot.show">figure,table</xsl:param>

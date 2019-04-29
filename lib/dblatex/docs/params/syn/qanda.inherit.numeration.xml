@@ -1,0 +1,1 @@
+<xsl:param name="qanda.inherit.numeration" select="1"/>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="make.single.year.ranges">
+  <refmeta>
+    <refentrytitle>make.single.year.ranges</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>make.single.year.ranges</parameter></refname>
+    <refpurpose>Print single-year ranges (e.g., 1998-1999)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/make.single.year.ranges.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>If non-zero, year ranges that span a single year will be printed in
+range notation (1998-1999) instead of discrete notation (1998, 1999).
+Parameter taken from the DocBook XSL stylesheets.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<section>
+  <title>Correcting Poor Formatting</title>
+
+  <para>LaTeX does not invariably produce good looking output.  To
+  remedy this it can sometimes be useful to guide LaTeX in the
+  formatting of individual characters, words, sentences, and pages.
+  It is best to adjust with caution, making adjustments only to fix
+  specific problems and limiting adjustments to the affected
+  area.</para>
+
+  <tip>
+    <para>Adjustments to formatting are best done late in the
+    production process so that subsequent changes to content do not
+    produce new problems.</para>
+  </tip>
+
+  <para>This section provides an overview of common problems and
+  summarizes methods which may be used to resolve issues related to
+  formatting.  Much more detail can be found in the <xref
+  linkend="sec-custom"/> chapter and the <xref linkend="sec-params"/>
+  and <xref linkend="sec-pis"/> appendixes.  Be sure to look through
+  these, especially the appendixes, to see whether there is an
+  adjustment which will solve your particular problem.  Of course the
+  DocBook documentation should also be consulted to see if a DocBook
+  attribute can be used to adjust document presentation.</para>
+
+  <section>
+    <title>Floats</title>
+    
+    <para>Floats are figures, tables, examples, images, and so forth
+    which do not necessarily appear in the output document in the
+    location in which they appear in the DocBook source.  The
+    placement of floats can result in visually poor or otherwise
+    undesirable output.</para>
+
+    <para>One direct approach is to use the <quote>informal</quote>
+    versions of the affected DocBook elements.  E.g. use
+    <sgmltag>informaltable</sgmltag> instead of
+    <sgmltag>table</sgmltag>.  The <quote>informal</quote> elements do
+    not float.  Bear in mind though that <quote>informal</quote>
+    elements do not appear in the table of contents.</para>
+    
+    <para>The alternative to eliminating the float entirely is
+    to make an adjustment by parameter, attributes, or processing
+    instruction. For figure, example, and equation, you can play
+    with these methods:</para>
+
+    <itemizedlist>
+    <listitem><para>In a specific element, use the
+    <sgmltag>floatstyle</sgmltag> attribute to
+    specify the latex float placement policy. For example
+    <literal>'[H]'</literal> tries to place the element where it is
+    declared.</para></listitem>
+
+    <listitem><para>Use the parameter
+    <literal><replaceable>element</replaceable>.defaut.position</literal>
+    to specify globaly the placement policy for this element.</para>
+    </listitem>
+    </itemizedlist>
+
+    <para>Look at page <xref xrefstyle="template:%p"
+    linkend="float-placement-choices"/> for more details
+    about the meaning of the placement choice letters.</para>
+  </section>
+
+  <section>
+    <title>Tables</title>
+
+    <para>Placement problems with tables relate to their
+    classification as a float.  For resolution regarding these issues
+    see the section on floats above.</para>
+
+    <para>Tables exceeding the length of a page, or tables that
+    otherwise need to cross page boundaries, have special
+    requirements.  They must not be floats and must be rendered using
+    the LaTeX <package>longtable</package> environment.  Among the
+    available controls are: use of a <sgmltag>informaltable</sgmltag>
+    element in place of a <sgmltag>table</sgmltag> element, the
+    <sgmltag>table</sgmltag> element's <sgmltag>tabstyle</sgmltag>
+    attribute, the <parameter>table.default.tabstyle</parameter> parameter,
+    the <parameter>table.in.float</parameter> parameter<!--, and the <xref
+    linkend="dblatex_table-in-float"/> PI-->.</para>
+
+    <para>It is worth mentioning that good typesetting design practice
+    for tables generally calls for eliminating all vertical rules (the
+    lines between columns) and most horizontal rules.</para>
+
+    <para><?latex-block sloppy="1"?>Better vertical placement of
+    table horizontal rules can be obtained by providing values for
+    the <parameter>newtbl.format.thead</parameter> and
+    <parameter>newtbl.format.tbody</parameter> parameters.  Depending on the
+    font in use, a value like
+    <literal>\rule{0pt}{2.6ex}\rule[-0.9ex]{0pt}{0pt}</literal> can be
+    used for both parameters.  This inserts a
+    <wordasword>strut</wordasword>, a 0 width character, in each row
+    of the table which <quote>pushes</quote> the horizontal rules
+    upwards and downwards to provide adequate vertical spacing.</para>
+  </section>
+
+  <section>
+    <title>Examples</title>
+
+    <para>Placement of examples has the same issue than tables, that is, it
+    is an element that can contain many materials and need to split over
+    several pages. In this case it cannot be considered as a float.</para>
+
+    <para>To avoid an example floating and to allow it cover several
+    pages, set the parameter <parameter>example.float.type</parameter>
+    to <literal>none</literal>.</para>
+  </section>
+
+  <section>
+    <title>Hyphenation and over-long lines</title>
+
+    <para>LaTeX is generally very good at hyphenation, but this
+    applies only to actual words.  Technical writing may include long
+    character sequences that are not actual words.  Hyphenation
+    failure will typically result in lines of text that flow past the
+    expected right-hand edge of a line.  In LaTeX terminology this is
+    known as a <quote>overfull hbox</quote>.</para>
+
+    <para>The <parameter>hyphenation.format</parameter> parameter can
+    be helpful to flag some formats for more agressive
+    hyphenation.</para>
+
+    <para>Various adjustments can be made with the
+    <sgmltag class="xmlpi">latex</sgmltag> processing instruction to
+    add raw latex directives and eliminate
+    overfull hboxes but it often makes sense to address hyphenation
+    problems directly.  This can be done either on an ad-hoc basis,
+    telling LaTeX how to hyphenate specific occurrences of words where
+    a problem exists, or by telling LaTeX how to hyphenate words it
+    does not know.  The first method is accomplished by inserting
+    <quote>soft hyphens</quote> into words in your DocBook source
+    using the <xref linkend="pi-latex"/> processing instruction.  This is
+    described in the <xref linkend="sec-safe-latex"/> section.</para>
+
+    <para>To educate LaTeX as to how to hyphenate your special
+    vocabulary a custom LaTeX style is required.  Setting this up is
+    described in the <xref linkend="sec-custom-latex"/> section.  The
+    LaTeX command to use is <code>\hyphenation</code>.  For example
+    <code>\hyphenation{PostgreSQL trans-mog-re-fi-ca-tion}</code>
+    tells LaTeX that <wordasword>PostgreSQL</wordasword> should not be
+    hyphenated and where to hyphenate
+    <wordasword>transmogrification</wordasword>.</para>
+
+    <para>Finally, long URLs can cause over-long lines.  Especially in
+    footnotes.  Using the LaTeX <package>breakurl</package> package is
+    one way to solve this.  This can be done with a custom latex
+    stylesheet.  See <xref linkend="sec-custom-latex"/>.</para>
+  </section>
+
+  <!-- latex-block not yet provided
+  <section>
+    <title>Paragraphs, Lines, and Sentences</title>
+
+    <para>Widows and orphans, single (or too few) lines at the top and
+    bottom of pages, can be controlled with the <xref
+    linkend="latex-block"/> processing instruction.</para>
+
+    <para>Lines can grow longer than their normal right-hand boundary.
+    This is generally due to problems with hyphenation.  Hyphenation
+    problems can arise in various ways, e.g. the introduction of
+    hyperlinks which do not hyphenate.  Sometimes hyphenation cannot
+    or should not be changed.  In these situations the <xref
+    linkend="latex-block"/> processing instruction can be used to
+    prevent poorly formatted lines.  It provides controls which
+    affect, among other things, the placement of line breaks.</para>
+
+    <para>The <xref linkend="latex.frenchspacing"/> parameter controls
+    spacing between sentences.  A <quote>safe</quote> <xref
+    linkend="latex"/> processing instruction
+    <parameter>content</parameter> value can, in some cases, provide
+    control over individual instances of this.</para>
+  </section>
+  -->
+
+  <section>
+    <title>Characters and Manual Spacing</title>
+
+    <para>The <sgmltag class="xmlpi">latex</sgmltag> processing instruction
+    may be used to limit character kerning, the joining of pairs of
+    characters.</para>
+
+    <para>The following DocBook entity declarations can be useful to
+    control spacing. These may be declared in your DocBook
+    <code>DTD</code> within the trailing pair of square braces
+    (<literal>[]</literal>) or elsewhere.  Once declared the entities
+    may be used in your document text.  E.g.
+    <literal>Von&amp;nbsp;Trapp</literal> puts a non-breaking space
+    between <literal>Von</literal> and <literal>Trapp</literal>,
+    ensuring that these two words will not appear on separate
+    lines.</para>
+
+    <programlisting>
+  &lt;!ENTITY nbsp  "&amp;#x000A0;" &gt;
+  &lt;!ENTITY ensp  "&amp;#x02002;" &gt;
+  &lt;!ENTITY emsp  "&amp;#x02003;" &gt;
+    </programlisting>
+  </section>
+</section>

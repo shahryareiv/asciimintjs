@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.class.book">
+  <refmeta>
+    <refentrytitle>latex.class.book</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.class.book</parameter></refname>
+    <refpurpose>LaTeX document class to use for
+<sgmltag>book</sgmltag> documents</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.class.book.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>This parameter sets the document class to use for
+<sgmltag>book</sgmltag> documents.</para>
+  </refsection>
+</refentry>

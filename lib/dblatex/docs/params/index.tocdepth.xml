@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="index.tocdepth">
+  <refmeta>
+    <refentrytitle>index.tocdepth</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>index.tocdepth</parameter></refname>
+    <refpurpose>How index section and subsections appear in TOC</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/index.tocdepth.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Same than <parameter moreinfo="none">preface.tocdepth</parameter> for index
+sections. Meaningful only when <parameter moreinfo="none">index.numbered</parameter> is set
+to 0.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>index.numbered</parameter>.</para>
+    <para><parameter>refentry.numbered</parameter>, <parameter>refentry.tocdepth</parameter>.</para>
+    <para><parameter>bibliography.numbered</parameter>, <parameter>bibliography.tocdepth</parameter>.</para>
+    <para><parameter>glossary.numbered</parameter>, <parameter>glossary.tocdepth</parameter>.</para>
+
+  </refsection>
+</refentry>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Publishing Outputs</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="ch03.html" title="Chapter 3. Using dblatex" /><link rel="prev" href="sec-style.html" title="Output Formatting Style" /><link rel="next" href="sec-pagesetup.html" title="Global Page Setup" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Publishing Outputs</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-style.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Using dblatex</th><td width="20%" align="right"> <a accesskey="n" href="sec-pagesetup.html">Next</a></td></tr></table><hr /></div><div class="section" title="Publishing Outputs"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sec-pub-output"></a>Publishing Outputs</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="sec-pub-output.html#idp4621192">Publishing a single document</a></span></dt><dt><span class="section"><a href="sec-pub-output.html#sec-book-set">Publishing a Set of Books</a></span></dt></dl></div><div class="section" title="Publishing a single document"><div class="titlepage"><div><div><h3 class="title"><a id="idp4621192"></a>Publishing a single document</h3></div></div></div><p>The default publishing document units are: <code class="sgmltag-element">article</code>
+and <code class="sgmltag-element">book</code>. The output file name is optionnaly specified by
+the <code class="option">-o</code> option.</p><p>You can also publish an article or book subset, i.e. you can run dblatex
+on an XML input whose root element is a <code class="sgmltag-element">chapter</code>, a
+<code class="sgmltag-element">section</code>, or anything else. In this case, dblatex wraps the
+root element in an <code class="sgmltag-element">article</code> or in a <code class="sgmltag-element">book</code>
+and print out a warning. The output subset does not contain any front matter
+data found in an article or in a book (cover page, revision history, etc.),
+but it can contain some back matter materials like an index.</p><pre class="programlisting">$ dblatex subset.xml 
+Build the book set list...
+Build the listings...
+XSLT stylesheets DocBook - LaTeX 2e (0.2.11)
+===================================================
+Warning: the root element is not an article nor a book
+Warning: element section(sec-subset) wrapped with article
+Build subset.pdf
+...
+   </pre></div><div class="section" title="Publishing a Set of Books"><div class="titlepage"><div><div><h3 class="title"><a id="sec-book-set"></a>Publishing a Set of Books</h3></div></div></div><p>When the document root element is a <code class="sgmltag-element">set</code>, and when
+<em class="parameter"><code>set.book.num</code></em> is set to '<code class="literal">all</code>',
+dblatex ouputs a file per book contained in the set (and in the nested sets).
+In this case the <code class="option">-o</code> option is ignored, and only the
+<code class="option">-O</code> option is taken into account to specify the output
+directory that will contain the generated files.</p><p>Instead of building all the books, the user can publish a single book
+from the set, by setting the <em class="parameter"><code>set.book.num</code></em> parameter to
+the absolute position of the book in the set(s). By default
+<em class="parameter"><code>set.book.num</code></em> is set to 1 to publish only the first
+book.</p><p>The output file names are the book identifiers when
+<em class="parameter"><code>use.id.as.filename</code></em> is non zero, and when an identifier
+exists. If one of the two conditions are not met, the filename pattern is
+"<code class="filename">book<em class="replaceable"><code>&lt;position in set&gt;</code></em></code>".
+</p><p>Example: given the following set:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;!-- setfile.xml. An example of set. All the books have an @id except one --&gt;
+
+&lt;!DOCTYPE set PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd"&gt;
+&lt;set lang="en" id="a_set" xmlns:xi="http://www.w3.org/2001/XInclude"&gt;
+&lt;title&gt;Set Title&lt;/title&gt;
+  &lt;set&gt;
+    &lt;xi:include href="book1.xml"/&gt;   &lt;!-- book #1 --&gt;
+    &lt;xi:include href="book2.xml"/&gt;   &lt;!-- book #2 --&gt;
+    &lt;xi:include href="book3.xml"/&gt;   &lt;!-- book #3 --&gt;
+  &lt;/set&gt;
+  &lt;set&gt;
+    &lt;set&gt;
+      &lt;xi:include href="bookA.xml"/&gt; &lt;!-- book #4 --&gt;
+      &lt;xi:include href="bookB.xml"/&gt; &lt;!-- book #5 --&gt;
+    &lt;/set&gt;
+    &lt;set&gt;
+      &lt;xi:include href="bookC.xml"/&gt; &lt;!-- book #6 --&gt;
+    &lt;/set&gt;
+  &lt;/set&gt;
+  &lt;set&gt;
+    &lt;xi:include href="book4.xml"/&gt;   &lt;!-- book #7 --&gt;
+    &lt;!-- The following book, at 8th position in the sets, has no @id --&gt;
+    &lt;xi:include href="book5.xml"/&gt;   &lt;!-- book #8 --&gt;
+    &lt;xi:include href="book6.xml"/&gt;   &lt;!-- book #9 --&gt;
+  &lt;/set&gt;
+&lt;/set&gt;</pre><p>Publishing this set produces 9 books in the
+<code class="filename">pdfdir</code> directory:</p><pre class="programlisting">$ dblatex -O./pdfdir -Pset.book.num=all -Puse.id.as.filename=1 setfile.xml
+Build the book set list...
+Build the listings...
+XSLT stylesheets DocBook - LaTeX 2e (0.2.11)
+===================================================
+Output all the books from the set
+Writing sec1-mybook.rtex for book(sec1-mybook)
+Writing sec2-mybook.rtex for book(sec2-mybook)
+Writing sec3-mybook.rtex for book(sec3-mybook)
+Writing secA-mybook.rtex for book(secA-mybook)
+Writing book8.rtex for book
+Writing secC-mybook.rtex for book(secC-mybook)
+Writing sec4-mybook.rtex for book(sec4-mybook)
+Writing sec5-mybook.rtex for book(sec5-mybook)
+Writing sec6-mybook.rtex for book(sec6-mybook)
+...
+Files successfully built in '/path/to/set/pdfdir':
+sec1-mybook.pdf
+sec2-mybook.pdf
+sec3-mybook.pdf
+sec4-mybook.pdf
+book8.pdf
+sec6-mybook.pdf
+secA-mybook.pdf
+secB-mybook.pdf
+secC-mybook.pdf</pre><p></p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-style.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="sec-pagesetup.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Output Formatting Style </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Global Page Setup</td></tr></table></div></body></html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="alt.use">
+  <refmeta>
+    <refentrytitle>alt.use</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>alt.use</parameter></refname>
+    <refpurpose>Always use <sgmltag>alt</sgmltag> to display equations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/alt.use.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When an (informal) equation contains both <sgmltag>alt</sgmltag> and
+another element (graphic, etc.), and when
+<parameter moreinfo="none">tex.math.in.alt</parameter> is not set to 'latex', the alt element
+is not used to display the equation since it is considered as a fallback
+element. Set <parameter moreinfo="none">alt.use</parameter> to force the use of
+<sgmltag>alt</sgmltag> as default rendering element even when
+<parameter moreinfo="none">tex.math.in.alt</parameter> is not set to 'latex'.</para>
+  </refsection>
+</refentry>

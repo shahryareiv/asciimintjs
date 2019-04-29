@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="doc.toc.show">
+  <refmeta>
+    <refentrytitle>doc.toc.show</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>doc.toc.show</parameter></refname>
+    <refpurpose>Print the Table Of Contents</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/doc.toc.show.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Print the table of contents when set to 1.</para>
+  </refsection>
+</refentry>

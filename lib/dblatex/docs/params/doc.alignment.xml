@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="doc.alignment">
+  <refmeta>
+    <refentrytitle>doc.alignment</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>doc.alignment</parameter></refname>
+    <refpurpose>Specifies the text alignement of the document</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/doc.alignment.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Defines the text alignment for the whole document. The valid values
+are: "left", "center", "right", "justify". An empty string is equivalent to
+"justify".</para>
+  </refsection>
+</refentry>

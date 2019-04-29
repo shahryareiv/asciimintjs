@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="monoseq.hyphenation">
+  <refmeta>
+    <refentrytitle>monoseq.hyphenation</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>monoseq.hyphenation</parameter></refname>
+    <refpurpose>Specifies one of the supported monoseq hyphenation policy</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/monoseq.hyphenation.xml"/> </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>This parameter is obsoleted in version 0.3.4 and has no more
+    effect. It has been replaced by the <parameter>hyphenation.format</parameter>.</para>
+    <para>Its role was: 
+    when set to 1, aggressively hyphenates the inlined element rendered
+with monoseq fonts. When set to 0, let latex do as default. When set to
+'nohyphen', dblatex tries to avoid overfull boxes (words in the margins) but
+keeps the monoseq words not splittable.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>hyphenation.format</parameter></para>
+  </refsection>
+</refentry>

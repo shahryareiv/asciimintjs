@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.role">
+  <refmeta>
+    <refentrytitle>literal.role</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.role</parameter></refname>
+    <refpurpose>Default role to apply to verbatim blocks</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.role.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When not empty and when no <sgmltag>role</sgmltag> attribute is
+    specified for a block verbatim block to render, this parameter is applied as
+    formatting role.</para>
+    <para>The allowed values are specified in <xref linkend="sec-literal-options"/>. If the value
+    is not one of the allowed value, the role is then ignored.</para>
+  </refsection>
+</refentry>

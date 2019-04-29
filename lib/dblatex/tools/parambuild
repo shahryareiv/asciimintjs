@@ -1,0 +1,34 @@
+#!/bin/sh
+tooldir=`dirname $0`
+tooldir=`cd $tooldir && pwd`
+
+# Where to store the synopsis
+synopdir="$1"
+
+if [ ! -d $synopdir ]; then
+  echo "$synopdir does not exist"
+  exit 1
+fi
+
+# Absolute path
+synopdir=`cd "$synopdir" && pwd`
+if [ "$synopdir" = "" ]; then
+  echo "Cannot go to dir"
+  exit 1
+fi
+
+cd $synopdir
+
+# Extract the parameters synopsis
+xsltproc --param chunk 1 $tooldir/paramextract.xsl $tooldir/../xsl/docbook.xsl
+
+# Strip the xmlns
+for i in *.sxml; do
+  echo $i
+  param=`basename $i .sxml`
+  sed "s/xmlns[^ ]* //" $param.sxml > $param.xml
+  rm $param.sxml
+done
+
+cd -
+

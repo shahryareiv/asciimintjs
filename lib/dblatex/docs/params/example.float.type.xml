@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="example.float.type">
+  <refmeta>
+    <refentrytitle>example.float.type</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>example.float.type</parameter></refname>
+    <refpurpose>Select the type of float for example elements</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/example.float.type.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Selects the type of float for example elements.
+
+    <itemizedlist>
+    <listitem>
+    <para>If <parameter>example.float.type</parameter> is “none”, then no float is used. It may be usefull when the example must be displayed exactly where it is defined or when it must cover several pages.</para>
+    </listitem>
+    <listitem>
+    <para>If <parameter>example.float.type</parameter> is "float”, then the float environment is used. The actual float placement is computed by latex according to the <sgmltag>floatstyle</sgmltag> attribute if specified, or according to the <parameter>example.default.position</parameter> parameter.</para>
+    </listitem>
+    </itemizedlist>
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>example.default.position</parameter>.</para>
+    <para><parameter>figure.default.position</parameter>.</para>
+  </refsection>
+</refentry>

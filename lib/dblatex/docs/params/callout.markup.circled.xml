@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="callout.markup.circled">
+  <refmeta>
+    <refentrytitle>callout.markup.circled</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>callout.markup.circled</parameter></refname>
+    <refpurpose>Use black circles for numbering the callout items?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/callout.markup.circled.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1 the callouts references in a <sgmltag>calloutlist</sgmltag>
+are white numbers in black circles, like the markups in the listing (or
+graphic). Set to 0 the references are simple numbers.</para>
+  </refsection>
+</refentry>

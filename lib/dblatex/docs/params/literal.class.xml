@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.class">
+  <refmeta>
+    <refentrytitle>literal.class</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.class</parameter></refname>
+    <refpurpose>Default class to apply to <sgmltag>literallayout</sgmltag>
+    blocks</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.class.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Default class to apply when no <sgmltag>class</sgmltag> attribute is
+    set, to render <sgmltag>literallayout</sgmltag> environments.</para>
+  </refsection>
+</refentry>

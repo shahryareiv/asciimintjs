@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="ulink.show">
+  <refmeta>
+    <refentrytitle>ulink.show</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>ulink.show</parameter></refname>
+    <refpurpose>Display URLs after <sgmltag>ulink</sgmltag>s?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/ulink.show.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+<para>If non-zero, the URL of each <tag>ulink</tag> will
+appear after the text of the link. If the text of the link and the URL
+are identical, the URL is suppressed. </para>
+
+<para>See also <parameter>ulink.footnotes</parameter>.</para>
+
+<para>The global <parameter>ulink.show</parameter> and <parameter>ulink.footnotes</parameter>
+setting can be overriden
+for each <sgmltag>ulink</sgmltag> that uses an <sgmltag>xrefstyle</sgmltag>
+like the following examples:</para>
+
+<programlisting><![CDATA[
+<!-- show 'Hot Text [URL]' or 'Hot Text (foot)' even if $ulink.show=0 -->
+<ulink xrefstyle="url.show" url="http://www.a.site.org/path">Hot Text</ulink>
+
+<!-- show 'Hot Text' even if $ulink.show=1 -->
+<ulink xrefstyle="url.hide" url="http://us3.a.site.org/path">Hot Text</ulink>
+
+<!-- show 'Hot Text [URL]' even if $ulink.show=0 and $ulink.footnotes=1 -->
+<ulink xrefstyle="url.show.after" url="http://www.a.site.org/path">Hot Text</ulink>
+
+<!-- show 'Hot Text (foot)' even if $ulink.show=0 and $ulink.footnotes=0 -->
+<ulink xrefstyle="url.show.infoot" url="http://www.a.site.org/path">Hot Text</ulink>
+
+<!-- show 'Hot Text (foot)' if $ulink.show=1 and even if $ulink.footnotes=0 -->
+<ulink xrefstyle="url.infoot" url="http://www.a.site.org/path">Hot Text</ulink>
+
+<!-- show 'Hot Text [URL]' if $ulink.show=1 and even if $ulink.footnotes=1 -->
+<ulink xrefstyle="url.after" url="http://www.a.site.org/path">Hot Text</ulink>
+
+]]></programlisting>
+
+  </refsection>
+</refentry>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Improve the <sgmltag>set</sgmltag> support: dblatex can build all the
+PDF files (one per book) and the xr-hyper package is used to make
+cross-references between books.</para>
+</listitem>
+
+<listitem>
+<para>Improve the XeTeX font switch macros (still experimental).</para>
+</listitem>
+
+<listitem>
+<para>Add some hook to external error handlers.</para>
+</listitem>
+
+<listitem>
+<para>Change the verbatim implementation in order to be able to easily
+add new elements embeddable in <sgmltag>programlisting</sgmltag>s.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters:</para>
+
+<itemizedlist>
+<listitem>
+<para><parameter>glossary.tocdepth</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>glossary.numbered</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>refclass.suppress</parameter>.</para>
+</listitem>
+
+<listitem>
+<para><parameter>use.id.as.filename</parameter>.</para>
+</listitem>
+
+</itemizedlist>
+</listitem>
+
+<listitem>
+<para>Fix some bugs.</para>
+</listitem>
+
+</itemizedlist>

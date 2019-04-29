@@ -1,0 +1,36 @@
+<informaltable tabstyle="tabular">
+<?dblatex table-width="autowitdh.column: 1 3"?>
+<!-- Table with no specifed column widths -->
+<tgroup cols="5" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<colspec align="left"/>
+<colspec align="right"/>
+<colspec align="center"/>
+<colspec align="center"/>
+<thead>
+<row>
+<entry>C1</entry>
+<entry>Column 2</entry>
+<entry>Column 3</entry>
+<entry>Column 4</entry>
+<entry>Column 5</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry valign="top">A
+</entry><entry valign="top">left aligned
+</entry><entry valign="top">right aligned
+</entry><entry valign="top">centered cell
+</entry><entry valign="top">centered
+</entry></row>
+<row>
+<entry valign="top">B
+</entry><entry valign="top">idem 
+</entry><entry valign="top">idem
+</entry><entry valign="top">idem
+</entry><entry valign="top">idem
+</entry></row>
+</tbody>
+</tgroup>
+</informaltable>

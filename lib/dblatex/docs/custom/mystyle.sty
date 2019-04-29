@@ -1,0 +1,20 @@
+%%
+%% This style is derivated from the docbook one
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mystyle}[2007/04/04 My DocBook Style]
+
+%% Just use the original package and pass the options
+\RequirePackageWithOptions{docbook}
+
+%% Redefine the paragraph layout
+\setlength\parskip{\medskipamount}
+\setlength\parindent{5pt}
+
+%% Redefine some french settings
+\babelsetup{fr}{%
+  \catcode`\«=\active
+  \catcode`\»=\active
+  \def«{u\og\ignorespaces}
+  \def»{v\unskip\fg}
+}

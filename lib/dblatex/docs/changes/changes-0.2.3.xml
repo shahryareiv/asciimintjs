@@ -1,0 +1,13 @@
+<itemizedlist>
+<listitem><para>Experimental <sgmltag>annotation</sgmltag> support (DocBook 5)
+enabled when the <parameter>annotation.support</parameter> paramater is set to 1. The
+annotation support is only for PDF output.</para></listitem>
+
+<listitem><para>Some <filename>setup.py</filename> improvements and bug fixes, thanks
+to Max Horn's feedbacks (Fink packager).</para></listitem>
+
+<listitem><para>Some minor improvements (<parameter>doc.toc.show</parameter> and
+<parameter>draft.mode</parameter> parameters added).</para></listitem>
+
+<listitem><para>A number of bug fixes.</para></listitem>
+</itemizedlist>

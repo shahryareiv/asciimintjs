@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE bibliography PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<bibliography>
+<title>Documentation</title>
+
+<bibliodiv>
+<title>Reference</title>
+
+<biblioentry>
+<abbrev>TDG</abbrev>
+
+<title>DocBook: The Definitive Guide</title>
+
+<authorgroup>
+<author>
+<firstname>Norman</firstname>
+
+<surname>Walsh</surname>
+</author>
+
+<author>
+<firstname>Leonard</firstname>
+
+<surname>Muellner</surname>
+</author>
+</authorgroup>
+
+<copyright>
+<year>1999, 2000, 2001</year>
+
+<holder>O'Reilly &amp; Associates, Inc.</holder>
+</copyright>
+
+<isbn>156592-580-7</isbn>
+
+<publisher>
+<publishername>O'Reilly</publishername>
+</publisher>
+</biblioentry>
+</bibliodiv>
+</bibliography>
+  

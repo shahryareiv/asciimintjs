@@ -1,0 +1,20 @@
+<?xml version='1.0'?>
+<!DOCTYPE mapping SYSTEM "mapping.dtd" []>
+<mapping>
+<map key="abstract"   text="&#10;\begin{abstract}&#10;"/>
+<map key="part"       text="&#10;\part"/>
+<map key="chapter"    text="&#10;\chapter"/>
+<map key="sect1"      text="&#10;\section"/>
+<map key="sect2"      text="&#10;\subsection"/>
+<map key="sect3"      text="&#10;\subsubsection"/>
+<map key="sect4"      text="&#10;\paragraph"/>
+<map key="sect5"      text="&#10;\subparagraph"/>
+<map key="reference"  text="&#10;\chapter"/>
+<map key="refentry"   text="&#10;\section*"/>
+<map key="refsect1"   text="&#10;\subsection*"/>
+<map key="refsect2"   text="&#10;\subsubsection*"/>
+<map key="refsect3"   text="&#10;\paragraph*"/>
+<map key="preface"    text="&#10;\chapter*"/>
+<map key="colophon"   text="&#10;\chapter*"/>
+<map key="dedication" text="&#10;\chapter*"/>
+</mapping>

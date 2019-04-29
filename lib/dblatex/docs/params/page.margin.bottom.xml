@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry xml:id="page.margin.bottom">
+<refmeta>
+<refentrytitle>page.margin.bottom</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname><parameter>page.margin.bottom</parameter></refname>
+<refpurpose>The bottom margin of the page</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/page.margin.bottom.xml"/></programlisting>
+</refsynopsisdiv>
+
+<refsection><info><title>Description</title></info>
+
+<para>The bottom page margin is the distance from the bottom of the body
+including the footer to the physical bottom of the page.
+</para>
+<para>When empty the used latex style layout applies.</para>
+
+</refsection>
+</refentry>

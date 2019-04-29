@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="newtbl.default.colsep">
+  <refmeta>
+    <refentrytitle>newtbl.default.colsep</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>newtbl.default.colsep</parameter></refname>
+    <refpurpose>By default draw a vertical line between columns</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/newtbl.default.colsep.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1, print the column separators when no
+<sgmltag>colspec</sgmltag> attribute is specified.</para>
+  </refsection>
+</refentry>

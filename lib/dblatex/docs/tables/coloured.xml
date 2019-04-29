@@ -1,0 +1,31 @@
+<informaltable id="tbl-color" bgcolor="{yellow}">
+<tgroup cols="4" colsep="1" rowsep="1" align="left">
+  <colspec colname="c1" colwidth="2cm"/>
+  <colspec align="left" colwidth="2.5cm"><?dblatex bgcolor="#00FF00"?></colspec>
+  <colspec align="right" colwidth="5cm"/>
+  <colspec align="center" colwidth="3cm"/>
+  <thead>
+    <row>
+      <entry>Column 1</entry><entry>Column 2</entry>
+      <entry>Column 3</entry><entry>Column 4</entry>
+    </row>
+  </thead>
+  <tbody>
+  <row>
+    <entry>yellow</entry><entry>green column</entry>
+    <entry>yellow</entry><entry>yellow</entry>
+  </row>
+  <row>
+  <?dblatex bgcolor="{blue}"?>
+    <entry>blue row</entry>
+    <entry><?dblatex bgcolor="{red}"?>red cell</entry>
+    <entry>blue row</entry><entry>blue row</entry>
+  </row>
+  <row>
+    <entry>yellow</entry><entry>green column</entry>
+    <entry>yellow</entry>
+    <entry><?dblatex bgcolor="[gray]{0.8}"?>gray</entry>
+  </row>
+  </tbody>
+</tgroup>
+</informaltable>

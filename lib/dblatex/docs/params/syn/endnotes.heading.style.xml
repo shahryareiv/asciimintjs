@@ -1,0 +1,1 @@
+<xsl:param name="endnotes.heading.style" select="'select:title'"/>

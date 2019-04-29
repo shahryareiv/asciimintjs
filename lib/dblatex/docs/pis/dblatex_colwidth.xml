@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="pi-dblatex_colwidth">
+  <refmeta>
+    <refentrytitle>dblatex colwidth</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><sgmltag class="xmlpi">dblatex
+             <parameter>colwidth</parameter></sgmltag></refname>
+    <refpurpose>Specifies a column width for
+    <sgmltag>segmentedlist</sgmltag>s presented as tables</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><![CDATA[<?dblatex colwidth="3cm" ?>]]></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Specifies a column width for the columns of a
+    <sgmltag>segmentedlist</sgmltag> when presented as a table.  (See
+    <xref linkend="segmentedlist.as.table"/>.)  This is the width of the
+    cell content and does not include inter-cell spacing.</para>
+
+    <para>The <parameter>colwidth</parameter> attribute may take any
+    of the <sgmltag>colspec</sgmltag>'s
+    <parameter>colwidth</parameter> attribute's values.  These
+    are:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>A valid TeX length (e.g. 4cm).</para>
+      </listitem>
+      <listitem>
+        <para>A proportional width specification of the form
+        <replaceable>N</replaceable><literal>*</literal>, where
+        <replaceable>N</replaceable>is a positive integer.</para>
+      </listitem>
+      <listitem>
+        <para>A combination of the above
+        (e.g. <literal>3*+1cm</literal>).  Spaces are not
+        allowed.</para>
+      </listitem>
+      <listitem>
+        <para>Any of the keywords allowed the <xref
+        linkend="default.table.width"/> parameter:
+        <literal>autowidth.default</literal>,
+        <literal>autowidth.all</literal>, and
+        <literal>autowidth.none</literal>.  The first two,
+        <literal>autowidth.default</literal> and
+        <literal>autowidth.none</literal>, have the same meaning --
+        LaTeX determines the width of the column based on the width of
+        the widest cell value.  <literal>autowidth.none</literal>
+        means the same as <quote><literal>*</literal></quote>,
+        proportional spacing.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The <sgmltag class="xmlpi">dblatex
+    <parameter>colwidth</parameter></sgmltag> processing instruction supersedes
+    any column width specified by the <xref
+    linkend="default.table.width"/> parameter or <xref
+    linkend="pi-dblatex_table-width"/> processing instruction.</para>
+
+    <para id="column-autowidth-defaults">The default depends on
+    whether the overall table width is specified.  When there is no
+    fixed table width columns default to the LaTeX default, the width
+    of the widest cell.  This is the default when no parameters or
+    processing instructions are used.  When a fixed table width is
+    specified the default is <quote><literal>*</literal></quote>,
+    proportional spacing.</para>
+  </refsection>
+
+  <refsection>
+    <title>Context</title>
+    <para>Recognized in the <sgmltag>segtitle</sgmltag> element.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem><xref linkend="sec-table-width" /></listitem>
+      <listitem><xref linkend="pi-dblatex_table-width"/></listitem>
+      <listitem><xref linkend="segmentedlist.as.table"/></listitem>
+      <listitem><xref linkend="pi-dblatex_list-presentation"/></listitem>
+      <listitem><xref linkend="newtbl.autowidth"/></listitem>
+      <listitem><xref linkend="default.table.width"/></listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

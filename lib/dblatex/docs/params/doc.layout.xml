@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="doc.layout">
+  <refmeta>
+    <refentrytitle>doc.layout</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>doc.layout</parameter></refname>
+    <refpurpose>Specifies the overall document layout.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/doc.layout.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The parameter configures the overall document layout, i.e. it
+    specifies if the document must contain a coverpage, some TOC/LOTs,
+    a frontmatter
+    layout (for metadata/preface/dedication rendering), an index section,
+    etc.</para>
+    <para>See also the <parameter>doc.lot.show</parameter> and
+    <parameter>doc.toc.show</parameter> parameters to specify the
+    content of the TOC/LOTs.</para>
+  </refsection>
+</refentry>

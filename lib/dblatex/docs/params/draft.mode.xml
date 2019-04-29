@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="draft.mode">
+  <refmeta>
+    <refentrytitle>draft.mode</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>draft.mode</parameter></refname>
+    <refpurpose>Select draft mode</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/draft.mode.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Print <sgmltag>releaseinfo</sgmltag> in a framed box in the header,
+when the parameter is set to 'yes'. The <sgmltag>releaseinfo</sgmltag> is
+ignored if the parameter is set to 'no', or if the releaseinfo content is
+empty. When the parameter is set to 'maybe', the draft mode is deduced from
+the <sgmltag>status</sgmltag> attribute of the root element if set to
+'draft'.</para>
+  </refsection>
+</refentry>

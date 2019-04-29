@@ -1,0 +1,10 @@
+<xsl:param name="literal.environment">
+  <xsl:choose>
+  <xsl:when test="contains($literal.extensions,'scale')">
+    <xsl:text>lstcode</xsl:text>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:text>lstlisting</xsl:text>
+  </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>

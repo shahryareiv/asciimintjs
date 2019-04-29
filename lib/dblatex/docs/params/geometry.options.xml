@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="geometry.options">
+  <refmeta>
+    <refentrytitle>geometry.options</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>geometry.options</parameter></refname>
+    <refpurpose>Raw options to pass to the geometry package</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/geometry.options.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>The content of this parameter is directly passed as options to the
+    latex geometry package, when the page layout setup is customized by the
+    user. Page layout customization is done through setting one or more of the
+    pagination parameters (see below). If
+    <parameter>geometry.options</parameter> is set but none of the other
+    parameters is set, nothing is passed to geometry because the package is
+    loaded only when the layout is not the default one.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para>
+<parameter>page.height</parameter>, 
+<parameter>page.margin.bottom</parameter>, 
+<parameter>page.margin.inner</parameter>, 
+<parameter>page.margin.outer</parameter>, 
+<parameter>page.margin.top</parameter>, 
+<parameter>page.width</parameter>, 
+<parameter>paper.type</parameter>.</para>
+  </refsection>
+</refentry>

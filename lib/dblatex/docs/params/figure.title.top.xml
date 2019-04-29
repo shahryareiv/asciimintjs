@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="figure.title.top">
+  <refmeta>
+    <refentrytitle>figure.title.top</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>figure.title.top</parameter></refname>
+    <refpurpose>Title on top of the <sgmltag>figure</sgmltag> float</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/figure.title.top.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1 the <sgmltag>figure</sgmltag> float title position is above
+the image. Set to 0 the title is under the image.</para>
+  </refsection>
+</refentry>

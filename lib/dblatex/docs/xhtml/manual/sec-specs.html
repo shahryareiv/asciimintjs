@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Dblatex Configuration File</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="sec-custom.html" title="Chapter 4. Customization" /><link rel="prev" href="sec-texpost.html" title="Latex post process script" /><link rel="next" href="ch04s08.html" title="Customization Precedence" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Dblatex Configuration File</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-texpost.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Customization</th><td width="20%" align="right"> <a accesskey="n" href="ch04s08.html">Next</a></td></tr></table><hr /></div><div class="section" title="Dblatex Configuration File"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sec-specs"></a>Dblatex Configuration File</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="sec-specs.html#sec-xml-config">XML Configuration File Format</a></span></dt><dt><span class="section"><a href="sec-specs.html#idp811504">Deprecated Text Configuration File Format</a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-conf-path">Configuration Paths</a></span></dt></dl></div><p>
+   A master configuration file, also called a specification file, can be used
+   to list all the customizations and options to apply. Such a file is passed
+   by using the
+   option <code class="option">-S <em class="replaceable"><code>config_file</code></em></code>.
+  </p><div class="section" title="XML Configuration File Format"><div class="titlepage"><div><div><h3 class="title"><a id="sec-xml-config"></a>XML Configuration File Format</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="sec-specs.html#sec-xconf-config"><code class="sgmltag-element">&lt;config&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-latex"><code class="sgmltag-element">&lt;latex&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-xslt"><code class="sgmltag-element">&lt;xslt&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-engine"><code class="sgmltag-element">&lt;engine&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-imagedata"><code class="sgmltag-element">&lt;imagedata&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-converter"><code class="sgmltag-element">&lt;converter&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-command"><code class="sgmltag-element">&lt;command&gt;</code></a></span></dt><dt><span class="section"><a href="sec-specs.html#sec-xconf-options"><code class="sgmltag-element">&lt;options&gt;</code></a></span></dt></dl></div><p>
+   You should use the XML format to configure dblatex. It contains more
+   features than the text format used up to the 0.3.7 release that is now
+   deprecated. The principle remains the same, that is, most of the
+   configuration parameters correspond to a command line option.
+  </p><p>
+  Here is a full example of a configuration file. In the next sections the
+  meaning and use of the configuration tags are detailed.
+  </p><pre class="programlisting">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!-- ======================================================= --&gt;
+&lt;!-- Dblatex Configuration example for building a book       --&gt;
+&lt;!-- ======================================================= --&gt;
+&lt;config xmlns="http://dblatex.sourceforge.net/config" version="1.0"&gt;
+  &lt;latex&gt;
+    &lt;backend use="xetex"/&gt;
+    &lt;texstyle use="dbsimple"/&gt;
+    &lt;texpost fileref="dblatex-postprocess"/&gt;
+    &lt;indexstyle fileref="../myindexstyle.ist"/&gt;
+    &lt;texinputs&gt;../mystyledir:/etc/texmf/userfont&lt;/texinputs&gt;
+  &lt;/latex&gt;
+  &lt;xslt&gt;
+    &lt;stylesheet fileref="user_param.xsl"/&gt;
+    &lt;stylesheet fileref="xetex_param.xsl"/&gt;
+    &lt;stylesheet fileref="pdf.xsl"/&gt;
+  &lt;/xslt&gt;
+  &lt;imagedata&gt;
+    &lt;converter src="svg" dst="*" docformat="pdf"&gt;
+      &lt;command&gt;
+        inkscape -z -D --export-dpi=600 --export-%(dst)s=%(output)s %(input)s
+      &lt;/command&gt;
+    &lt;/converter&gt;
+  &lt;/imagedata&gt;
+  &lt;options&gt;-X -V&lt;/options&gt;
+&lt;/config&gt;
+</pre><p>
+  </p><p>
+   Another example, much simpler, is the configuration file used for
+   this manual.
+  </p><div class="example"><a id="idp6097088"></a><p class="title"><strong>Example 4.5. User Manual Configuration File</strong></p><div class="example-contents"><pre class="programlisting">&lt;?xml version="1.0" ?&gt;
+&lt;!--
+  ====================================================================
+  Configuration file for dblatex documentation (manual, release notes)
+  ====================================================================
+--&gt;
+&lt;config xmlns="http://dblatex.sourceforge.net/config"&gt;
+  &lt;latex&gt;
+    &lt;texinputs&gt;../latex//&lt;/texinputs&gt;
+    &lt;texstyle use="docbook"/&gt;
+    &lt;backend use="pdftex"/&gt;
+  &lt;/latex&gt;
+  &lt;xslt&gt;
+    &lt;stylesheet fileref="manual.xsl"/&gt;
+  &lt;/xslt&gt;
+&lt;/config&gt;
+</pre></div></div><br class="example-break" /><p>The following sections detail the meaning of each tag. Note that
+  dblatex provides some schema that you can use to validate your configuration
+  file.</p><div class="section" title="&lt;config&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-config"></a><code class="sgmltag-element">&lt;config&gt;</code></h4></div></div></div><p>It is the root element of a configuration file. A valid configuration
+  file must have a <code class="sgmltag-element">config</code> root element.</p><p>Attributes:
+  </p><div class="variablelist"><dl><dt><span class="term">xmlns</span></dt><dd><p>The namespace to use for a dblatex configuration file is: 
+      <code class="literal">http://dblatex.sourceforge.net/config</code>.</p></dd></dl></div><p>
+  </p><p>
+  The following elements occur in <code class="sgmltag-element">config</code>:
+  <a class="xref" href="sec-specs.html#sec-xconf-latex" title="&lt;latex&gt;">latex</a>, <a class="xref" href="sec-specs.html#sec-xconf-xslt" title="&lt;xslt&gt;">xslt</a>, 
+  <a class="xref" href="sec-specs.html#sec-xconf-imagedata" title="&lt;imagedata&gt;">imagedata</a>, <a class="xref" href="sec-specs.html#sec-xconf-options" title="&lt;options&gt;">options</a>.
+  </p></div><div class="section" title="&lt;latex&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-latex"></a><code class="sgmltag-element">&lt;latex&gt;</code></h4></div></div></div><p>The latex element contains the configuration data related to the latex
+  processing.</p><p>Attributes: none</p><p>
+  The following elements occur in <code class="sgmltag-element">latex</code>:
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="sgmltag-element">backend</code></span></dt><dd><p>It defines the latex engine to use, like the option
+      <code class="option">--backend</code> does. The backend name is specified through the 
+      <code class="sgmltag-element">use</code> attribute.</p></dd><dt><span class="term"><code class="sgmltag-element">texstyle</code></span></dt><dd><p>It defines the docbook latex style to use, like the option
+      <code class="option">--texstyle</code> does. The latex package is specified through the 
+      <code class="sgmltag-element">use</code> attribute.</p></dd><dt><span class="term"><code class="sgmltag-element">texpost</code></span></dt><dd><p>It defines the latex post-processing script to use, like the
+      option <code class="option">--texpost</code> does. The script name is specified through the 
+      <code class="sgmltag-element">use</code> attribute or the <code class="sgmltag-element">fileref</code>
+      attribute.</p></dd><dt><span class="term"><code class="sgmltag-element">indexstyle</code></span></dt><dd><p>It defines index style file (.ist) to use, like the
+      option <code class="option">--indexstyle</code> does. The filename is
+      specified through the <code class="sgmltag-element">fileref</code>
+      attribute.</p></dd><dt><span class="term"><code class="sgmltag-element">texinputs</code></span></dt><dd><p>The element text defines the extra paths to add to TEXINPUTS,
+      like the option <code class="option">--texinputs</code> does.</p></dd><dt><span class="term"><code class="sgmltag-element">bibinputs</code></span></dt><dd><p>The element text defines the lookup paths of BIBINPUTS,
+      like you would do by successive use of the option <code class="option">--bib-path</code>.
+      </p></dd><dt><span class="term"><code class="sgmltag-element">bstinputs</code></span></dt><dd><p>The element text defines the lookup paths of BSTINPUTS,
+      like you would do by successive use of the option <code class="option">--bst-path</code>.
+      </p></dd></dl></div><p>
+  </p></div><div class="section" title="&lt;xslt&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-xslt"></a><code class="sgmltag-element">&lt;xslt&gt;</code></h4></div></div></div><p>The xslt element contains the configuration data related to the XSL
+  processing.</p><p>Attributes: none</p><p>
+  The following elements occur in <code class="sgmltag-element">xslt</code>:
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="sgmltag-element">stylesheet</code></span></dt><dd><p>It defines a user stylesheet to use, like the option
+      <code class="option">--xsl-user</code> does. The stylesheet name is specified through the 
+      <code class="sgmltag-element">fileref</code> attribute. If several
+      <code class="sgmltag-element">stylesheet</code> elements are set, the precedence is the same
+      like using the option <code class="option">--xsl-user</code> several times.</p></dd><dt><span class="term"><code class="sgmltag-element">engine</code></span></dt><dd><p>See <a class="xref" href="sec-specs.html#sec-xconf-engine" title="&lt;engine&gt;">engine</a>.</p></dd></dl></div><p>
+  </p></div><div class="section" title="&lt;engine&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-engine"></a><code class="sgmltag-element">&lt;engine&gt;</code></h4></div></div></div><p>It defines the XSLT processor to use; it can be either a predefined
+  engine, or a user-defined command to run.</p><p>When the attribute
+  <code class="sgmltag-element">use</code> is used, it works like the option
+  <code class="option">--xslt</code>. The engine name is specified through the 
+  <code class="sgmltag-element">use</code> attribute.</p><p>
+  When the element contains the <code class="sgmltag-element">command</code> or 
+  <code class="sgmltag-element">commandchain</code> child element it defines the command(s)
+  to run to perform the XSLT processing. The core keywords defined in
+  <a class="xref" href="sec-specs.html#sec-xconf-command" title="&lt;command&gt;">command</a> apply. The additional keywords of an XSLT
+  engine command are the following:
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="literal">%(xmlfile)s</code></span></dt><dd><p>Replaced by the XML source file to
+      process.</p></dd><dt><span class="term"><code class="literal">%(stylesheet)s</code></span></dt><dd><p>Replaced by the stylesheet to use to process the
+      XML file <code class="literal">xmlfile</code>.</p></dd><dt><span class="term"><code class="literal">%(param_list)s</code></span></dt><dd><p>Replaced by the list of the XSL parameters to set.
+      The parameter pair formatting (the parameter name and its value) is
+      specified through the <code class="sgmltag-element">param-format</code> attribute
+      given to the <code class="sgmltag-element">engine</code> element.</p></dd></dl></div><p>
+  </p><p>Attributes:
+  </p><div class="variablelist"><dl><dt><span class="term">param-format</span></dt><dd><p>This attribute is mandatory when the engine is specified
+      through a <code class="sgmltag-element">command</code>. It tells how a parameter name and
+      value pair shall be formatted when added to the XSLT engine command.
+      The formatting is given by a string containing the keywords replaced by
+      the name or value of the parameter to set:
+
+      </p><div class="variablelist"><dl><dt><span class="term"><code class="literal">%(param_name)s</code></span></dt><dd><p>Replaced by the name of the
+          parameter to set.</p></dd><dt><span class="term"><code class="literal">%(param_value)s</code></span></dt><dd><p>Replaced by the value to set to the 
+          parameter.</p></dd></dl></div><p>
+      </p></dd></dl></div><p>
+  The following example re-writes with a user-defined command the Saxon engine
+  with an additional <code class="option">-T</code> option:
+  </p><pre class="programlisting">
+&lt;xslt&gt;
+  &lt;engine param-format="%(param_name)s=%(param_value)s"&gt;
+    &lt;command&gt;
+    saxon-xslt -T -o %(output)s %(xmlfile)s
+                                %(stylesheet)s %(param_list)s&lt;/command&gt;
+  &lt;/engine&gt;
+&lt;/xslt&gt;</pre><p>
+  </p></div><div class="section" title="&lt;imagedata&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-imagedata"></a><code class="sgmltag-element">&lt;imagedata&gt;</code></h4></div></div></div><p>The imagedata element contains the rules and commands to convert
+  on the fly the images included in the docbook document.</p><p>Attributes: none</p><p>
+  The following elements occur in <code class="sgmltag-element">imagedata</code>:
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="sgmltag-element">figpath</code></span></dt><dd><p>It defines a path where to find the images, like the
+      option <code class="option">--fig-path</code> does.</p></dd><dt><span class="term"><code class="sgmltag-element">figformat</code></span></dt><dd><p>It defines the default image format when no suffix is
+      available to deduce the actual format, like 
+      <code class="option">--fig-format</code> does.</p></dd><dt><span class="term"><code class="sgmltag-element">formatrule</code></span></dt><dd><p>It specifies in which format an image must be 
+      converted, depending on the context, given by some attributes:
+      </p><div class="variablelist"><dl><dt><span class="term"><code class="sgmltag-element">docformat</code></span></dt><dd><p>The output document for which the rule
+          applies. When not set the rule applies for any format</p></dd><dt><span class="term"><code class="sgmltag-element">backend</code></span></dt><dd><p>The rule applies only when this backend is
+          used</p></dd><dt><span class="term"><code class="sgmltag-element">dst</code></span></dt><dd><p>When the conditions are met the image shall be
+          converted to this format.</p></dd></dl></div><p>
+      </p><p>The following example:
+      </p><pre class="programlisting">&lt;formatrule docformat="pdf" backend="xetex" dst="pdf"/&gt;</pre><p>
+      tells that when a PDF document is built with the xetex backend, the
+      graphics not natively supported shall be converted to PDF.
+      </p></dd><dt><span class="term"><code class="sgmltag-element">converter</code></span></dt><dd><p>It defines an image transformation rule. See 
+      <a class="xref" href="sec-specs.html#sec-xconf-converter" title="&lt;converter&gt;">converter</a> for more
+      details.</p></dd></dl></div><p>
+  </p></div><div class="section" title="&lt;converter&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-converter"></a><code class="sgmltag-element">&lt;converter&gt;</code></h4></div></div></div><p>The converter element defines a rule about how to convert on the fly
+  an image in a docbook document to the corresponding image used in the built
+  latex file. The
+  goal is to have an image format compatible with the latex engine, whatever the
+  original format is. <span class="command"><strong>Dblatex</strong></span> has a default set of rules, but
+  one can overwrite or add some rules.</p><p>Attributes:
+  </p><div class="variablelist"><dl><dt><span class="term">src</span></dt><dd><p>Format of the original image referenced in the XML
+      document. The converter only applies to the images matching this format.
+      </p></dd><dt><span class="term">dst</span></dt><dd><p>Target format once converted. The converter only applies
+      to the original images having the format <code class="literal">src</code> and that
+      need to be converted to the format <code class="literal">dst</code>.
+      <code class="literal">dst</code> can take the special value "<code class="literal">*</code>"
+      meaning that the rule applies for all
+      the possible target formats (e.g. eps, pdf, png).</p></dd><dt><span class="term">docformat</span></dt><dd><p>Specify for which document output format the converter
+      applies. For example, if <code class="literal">docformat</code> is set to "pdf",
+      it means that
+      the converter applies only if the document output format is PDF. The
+      converter will not apply if you want to build a PostScript or DVI
+      document.</p></dd><dt><span class="term">backend</span></dt><dd><p>The converter applies only if it is this latex engine that
+      is used. For example, it is usefull if you want to convert an image in a
+      specific way only when xetex is used.</p></dd></dl></div><p>
+  </p><p>The following elements occur in <code class="sgmltag-element">converter</code>:
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="sgmltag-element">commandchain</code></span></dt><dd><p>List of the commands to run. A
+      <code class="sgmltag-element">commandchain</code> contains one or more
+      <code class="sgmltag-element">command</code> elements.
+      </p></dd><dt><span class="term"><code class="sgmltag-element">command</code></span></dt><dd><p>command to execute to perform the conversion, or a part of
+      the conversion if several commands are chained. See
+      <a class="xref" href="sec-specs.html#sec-xconf-command" title="&lt;command&gt;">command</a>.
+      </p></dd></dl></div><p>
+  </p></div><div class="section" title="&lt;command&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-command"></a><code class="sgmltag-element">&lt;command&gt;</code></h4></div></div></div><p>The command element contains the arguments of the command to run.
+  The arguments can contain some predefined keywords that are replaced by the
+  actual values when the command is executed. The known core keywords
+  are:</p><div class="variablelist"><dl><dt><span class="term"><code class="literal">%(src)s</code></span></dt><dd><p>Replaced by the <code class="literal">src</code> value (original
+      image format).</p></dd><dt><span class="term"><code class="literal">%(dst)s</code></span></dt><dd><p>Replaced by the <code class="literal">dst</code> value (target
+      image format).</p></dd><dt><span class="term"><code class="literal">%(input)s</code></span></dt><dd><p>Replaced by the input file required by the command. In the
+      case of an image conversion, it is the filename of the original image to
+      convert.</p></dd><dt><span class="term"><code class="literal">%(output)s</code></span></dt><dd><p>Replaced by the name of the ouput file required by the
+      command. In the case of an image conversion, it is the filename of the
+      output image once converted.</p></dd></dl></div><p>Attributes:
+  </p><div class="variablelist"><dl><dt><span class="term">input</span></dt><dd><p>Standard input of the command to run. It can specify a
+      file or it can specify to use the output of the preceding command if the
+      keyword "PIPE" is used.</p></dd><dt><span class="term">output</span></dt><dd><p>Standard output of the command to run. It can specify a
+      file or it can specify that the output shall be redirected to the next
+      command if the keyword "PIPE" is used.</p></dd><dt><span class="term">shell</span></dt><dd><p>When set to "1" or "true", the command is run in a shell 
+      environment.</p></dd></dl></div><p>
+  </p></div><div class="section" title="&lt;options&gt;"><div class="titlepage"><div><div><h4 class="title"><a id="sec-xconf-options"></a><code class="sgmltag-element">&lt;options&gt;</code></h4></div></div></div><p>The options element lists the extra arguments to pass to
+  <span class="command"><strong>dblatex</strong></span>.</p></div></div><div class="section" title="Deprecated Text Configuration File Format"><div class="titlepage"><div><div><h3 class="title"><a id="idp811504"></a>Deprecated Text Configuration File Format</h3></div></div></div><p>
+   The format of the file is the following:
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+   Every comment starts with a “#”, and is ignored.
+   </p></li><li class="listitem"><p>
+   The file must contain one parameter by line.
+   </p></li><li class="listitem"><p>
+   The format of a parameter is the following:
+   </p><pre class="programlisting">
+&lt;keyword&gt;: &lt;value&gt;
+   </pre></li><li class="listitem"><p>
+   Every parameter is mapped to an option that can be passed to <span class="command"><strong>dblatex</strong></span>.
+   </p></li><li class="listitem"><p>
+   An unknown parameter is silently ignored (the whole line is dropped).
+   </p></li><li class="listitem"><p>
+   The parameters defining a path (a file or a directory) can take absolute or relative paths. A relative path must be defined from the specification file itself. For instance, a specification file under <code class="filename">/the/spec/directory/</code> with a parameter describing the file <code class="filename">../where/this/file/is/myfile</code> points to <code class="filename">/the/spec/where/this/file/is/myfile</code>.
+   </p></li></ul></div><p>
+   The following table lists the supported parameters and the corresponding command line option.
+  </p><div class="informaltable"><table border="1"><colgroup><col align="left" class="c1" /><col /><col /><col /></colgroup><thead><tr><th align="left">Keyword</th><th align="left">Value</th><th align="left">Corresponding option</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">TexInputs</td><td align="left">Directories</td><td align="left">--texinputs</td><td align="left">Defines extra path to add to TEXINPUTS</td></tr><tr><td align="left">TexStyle</td><td align="left">Latex package name</td><td align="left">--texstyle</td><td align="left">Defines the LaTeX style package to use.</td></tr><tr><td align="left">TexPost</td><td align="left">Script file name</td><td align="left">--texpost</td><td align="left">Defines the LaTeX post process script to use.</td></tr><tr><td align="left">XslParam</td><td align="left">Parameter file name</td><td align="left">-p</td><td align="left">Defines the parameter file to use.</td></tr><tr><td align="left">FigInputs</td><td align="left">Directories</td><td align="left">-I</td><td align="left">Defines the extra figures path.</td></tr><tr><td align="left">Options</td><td align="left">Command line options</td><td align="left">None</td><td align="left">Lists command options to use by default when using the tool. The
+options specified by the parameter are directly passed to
+<span class="command"><strong>dblatex</strong></span></td></tr></tbody></table></div></div><div class="section" title="Configuration Paths"><div class="titlepage"><div><div><h3 class="title"><a id="sec-conf-path"></a>Configuration Paths</h3></div></div></div><p>By default <span class="command"><strong>dblatex</strong></span> tries to find the configuration files
+  in the following paths, in respect of the order:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The current directory</p></li><li class="listitem"><p><code class="filename">$HOME/.dblatex</code></p></li><li class="listitem"><p><code class="filename">/etc/dblatex</code></p></li><li class="listitem"><p>The dblatex package configuration directories.</p></li></ol></div><p>You can add some extra paths where to look for by setting the
+  <code class="envar">DBLATEX_CONFIG_FILES</code> environment variable. The paths are
+  separated by ":" in Unix like systems, and by ";" on Windows. These paths are used
+  only when nothing is found in the default paths.</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-texpost.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="sec-custom.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s08.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Latex post process script </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Customization Precedence</td></tr></table></div></body></html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.lines.showall">
+  <refmeta>
+    <refentrytitle>literal.lines.showall</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.lines.showall</parameter></refname>
+    <refpurpose>Show the last empty lines in the literal environments?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.lines.showall.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1, all the lines in a verbatim environment like programlisting
+or screen are printed, even if they are empty. Set to 0, the last empty lines
+are not printed. It is set to 1 by default.</para>
+  </refsection>
+</refentry>

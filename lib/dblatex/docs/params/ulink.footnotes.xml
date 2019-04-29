@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="ulink.footnotes">
+  <refmeta>
+    <refentrytitle>ulink.footnotes</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>ulink.footnotes</parameter></refname>
+    <refpurpose>Generate footnotes for <sgmltag>ulink</sgmltag>s?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/ulink.footnotes.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+  <para>If non-zero, and if <parameter>ulink.show</parameter> also is non-zero,
+the URL of each <sgmltag>ulink</sgmltag> will appear as a footnote.</para>
+
+<note><title>Dblatex Limitation</title>
+<para>The URL cannot be shown in a footnote if the <sgmltag>ulink</sgmltag>s
+are in list <sgmltag>term</sgmltag>s or heading titles.</para>
+</note>
+
+  </refsection>
+</refentry>

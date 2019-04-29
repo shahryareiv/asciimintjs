@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="pi-dblatex_angle">
+  <refmeta>
+    <refentrytitle>dblatex angle</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><sgmltag class="xmlpi">dblatex
+             <parameter>angle</parameter></sgmltag></refname>
+    <refpurpose>Rotates an <sgmltag>imagedata</sgmltag> Image</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><![CDATA[<?dblatex angle="90" ?>]]></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Rotates the designated image by the angle given, expressed in
+    degrees.</para>
+
+    <para>The default is no rotation.</para>
+  </refsection>
+
+  <refsection>
+    <title>Context</title>
+    <para>Recognized in the <sgmltag>imagedata</sgmltag> element.</para>
+  </refsection>
+</refentry>

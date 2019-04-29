@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<section id="sec-debug"><title>Debugging your Style</title>
+<para>It is not surprising if your first dblatex compilation fails with a fresh
+LaTeX style. So, how to debug it when used with dblatex?</para>
+<para>The following steps can help you:</para>
+<procedure>
+<step><para>Compile your file in the debug mode (option <option>-d</option>).
+When the compilation is done, the temporary working directory will not be
+removed.
+<programlisting><![CDATA[
+$ dblatex --texstyle=./mystyle.sty -d file.xml
+...
+/tmp/tpub-ben-99629 is not removed
+]]></programlisting>
+</para>
+</step>
+<step><para>Go under the building temporary directory, and set the environment
+with the file <filename>env_tex</filename>.
+<programlisting><![CDATA[
+$ cd /tmp/tpub-ben-99629
+$ . env_tex
+]]></programlisting>
+</para>
+</step>
+<step><para>Compile the temporary latex file produced by the XSL stylesheets. Its
+name has the suffix "_tmp.tex".
+<programlisting><![CDATA[
+$ pdflatex file_tmp.tex
+$ [ many outputs here ]
+]]></programlisting>
+</para>
+</step>
+<step><para>Now latex stops when it encounters an error so that you can debug
+your stylesheet.
+</para>
+</step>
+</procedure>
+</section>

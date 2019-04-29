@@ -1,0 +1,85 @@
+<itemizedlist>
+<listitem>
+  <para>Better <sgmltag>programlisting</sgmltag> and <sgmltag>screen</sgmltag>
+  support: inlinegraphic[@format='linespecific'] is handled.</para>
+</listitem>
+<listitem>
+  <para>Better newtbl support: the case colwidth="1in+5*" is now correctly handled.
+  </para>
+</listitem>
+<listitem>
+  <para>GIF images are converted on the fly to PDF.</para>
+</listitem>
+<listitem>
+  <para><sgmltag>Bibliolist</sgmltag> support.</para>
+</listitem>
+<listitem>
+  <para>Minor improvements:</para>
+  <itemizedlist>
+  <listitem>
+  <para>DBLaTeX does not convert images when output is latex only.</para>
+  </listitem>
+  <listitem>
+  <para><sgmltag>Emphasis</sgmltag> with role="underline" is supported.</para>
+  </listitem>
+  <listitem>
+  <para><sgmltag>Trademark</sgmltag> with class="service" is supported.</para>
+  </listitem>
+  <listitem>
+  <para><sgmltag>Xref</sgmltag> to <sgmltag>refnamediv</sgmltag>
+  is now possible.</para>
+  </listitem>
+  <listitem>
+  <para>Automatic <sgmltag>biblioentry</sgmltag> abbreviation used if
+  <sgmltag>abbrev</sgmltag> and @id reference are not defined.</para>
+  </listitem>
+  </itemizedlist>
+</listitem>
+<listitem>
+<para>the following parameters are added:</para>
+<variablelist>
+<varlistentry><term>titleabbrev.in.toc</term>
+  <listitem>
+  <para>When set to 1 the titleabbrev content is put in the TOC instead of the 
+        title. Set to 1 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>set.book.num</term>
+  <listitem>
+  <para>When the document root element is a <sgmltag>set</sgmltag> this parameter
+        can be used to select the book to print. Set to 1 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>doc.lot.show</term>
+  <listitem>
+  <para>It specifies which Lists of Titles should be printed after the  
+  Table of Content. The value is a comma separated list of the LoTs to 
+  print. The supported LoTs are "figure", "table", "equation", and "example".
+  The list order represents the LoTs order in the output document.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>qandaset.defaultlabel</term>
+  <listitem>
+  <para>It defines the default label to use in a <sgmltag>qandadet</sgmltag>
+  when the defaultlabel attribute is not specified. Set to "number" by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>imagedata.file.check</term>
+  <listitem>
+  <para>Set to 1, it checks if the referenced image file exists. If not, the 
+  mediaobject alternative (textobject) is used. Set to 1 by default.</para>
+  </listitem>
+</varlistentry>
+<varlistentry><term>doc.alignment</term>
+  <listitem>
+  <para>It defines the text alignment for the whole document. The valid values
+  are: "left", "center", "right", "justify". By default the parameter is empty,
+  which is equivalent to "justify".</para>
+  </listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<para>A number of bug fixes.</para>
+</listitem>
+</itemizedlist>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="sec-thanks">
+<title>Thanks</title>
+
+<section>
+<title>Sponsors</title>
+<para>Thanks to the companies that sponsored dblatex at a time or another:
+<ulink url="http://www.froglogic.com/" xrefstyle="url.show.infoot">
+<inlinemediaobject>
+  <imageobject>
+    <imagedata depth="1cm" fileref="froglogic-logo.png"/>
+  </imageobject>
+</inlinemediaobject>
+</ulink>, and the Raphael Hertzog's company  
+<ulink url="http://www.freexian.com/" xrefstyle="url.show.infoot">
+<inlinemediaobject>
+  <imageobject>
+    <imagedata depth="1cm" fileref="Logo_Freexian.png"/>
+  </imageobject>
+</inlinemediaobject>
+</ulink>.
+</para>
+</section>
+<section>
+<title>Contributors</title>
+<para>Thanks to Andreas Hoenen who packages and maintains dblatex for Debian,
+provides patches and so on.</para>
+<para>Thanks also to other contributors: David Hedley (newtbl
+implementor), and Nicolas Pernetty
+(Windows port).</para>
+</section>
+<section>
+<title>Pioners</title>
+<para>Thanks to the people who contributed to the project at its early age:
+Jean-Yves Le Ruyet, precursory and hard-working user, Julien Ducourthial for
+his precious help, Vincent Hottier who asked for the embedded LaTeX equations
+support.</para>
+<para>Special thanks to the KDE documentation team (especially Philip
+Rodrigues), Michael Smith (from the DocBook Project), and Kai Brommann, for
+their feedbacks, encouragements, and advice. They were the first people who
+believed in this project and boosted dblatex.</para>
+</section>
+</chapter>

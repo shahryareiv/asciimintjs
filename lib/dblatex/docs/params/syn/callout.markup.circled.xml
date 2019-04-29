@@ -1,0 +1,1 @@
+<xsl:param name="callout.markup.circled" select="'1'"/>

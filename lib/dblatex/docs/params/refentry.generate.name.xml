@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="refentry.generate.name">
+  <refmeta>
+    <refentrytitle>refentry.generate.name</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>refentry.generate.name</parameter></refname>
+    <refpurpose>Output NAME header before <sgmltag>refname</sgmltag>s?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/refentry.generate.name.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+<para>If non-zero, a "NAME" section title is output before the list
+of <sgmltag>refname</sgmltag>s.</para>
+  </refsection>
+</refentry>

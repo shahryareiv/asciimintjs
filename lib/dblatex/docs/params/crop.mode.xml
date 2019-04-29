@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="crop.mode">
+  <refmeta>
+    <refentrytitle>crop.mode</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>crop.mode</parameter></refname>
+    <refpurpose>How to display crops</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/crop.mode.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Mode to pass to the crop package defining the form of the crops to
+    display when <parameter>crop.marks</parameter> is not set to zero.</para>
+    <para>The allowed values are detailed in the crop package manual.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ======================================================= -->
+<!-- Dblatex Configuration example for building a book       -->
+<!-- ======================================================= -->
+<config xmlns="http://dblatex.sourceforge.net/config" version="1.0">
+  <latex>
+    <backend use="xetex"/>
+    <texstyle use="dbsimple"/>
+    <texpost fileref="dblatex-postprocess"/>
+    <indexstyle fileref="../myindexstyle.ist"/>
+    <texinputs>../mystyledir:/etc/texmf/userfont</texinputs>
+  </latex>
+  <xslt>
+    <stylesheet fileref="user_param.xsl"/>
+    <stylesheet fileref="xetex_param.xsl"/>
+    <stylesheet fileref="pdf.xsl"/>
+  </xslt>
+  <imagedata>
+    <converter src="svg" dst="*" docformat="pdf">
+      <command>
+        inkscape -z -D --export-dpi=600 --export-%(dst)s=%(output)s %(input)s
+      </command>
+    </converter>
+  </imagedata>
+  <options>-X -V</options>
+</config>

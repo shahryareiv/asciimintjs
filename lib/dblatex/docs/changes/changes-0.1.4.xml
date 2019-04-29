@@ -1,0 +1,74 @@
+<itemizedlist>
+<listitem>
+<para>Deep code cleanup.</para>
+</listitem>
+<listitem>
+<para>Better table support</para>
+  <itemizedlist>
+  <listitem>
+  <para><sgmltag>Multicolumn</sgmltag> support (use of the attributes
+  <sgmltag>namest</sgmltag>, <sgmltag>nameend</sgmltag>,
+  <sgmltag>spanname</sgmltag>).</para>
+  </listitem>
+  <listitem>
+  <para>Better <sgmltag>frame</sgmltag>, <sgmltag>rowsep</sgmltag>,
+  <sgmltag>colsep</sgmltag> attributes inheritance.</para>
+  </listitem>
+  </itemizedlist>
+</listitem>
+<listitem>
+<para>Better bibliography support</para>
+  <itemizedlist>
+  <listitem>
+  <para><sgmltag>Bibliography</sgmltag> can be nested under any section.</para>
+  </listitem>
+  <listitem>
+  <para><sgmltag>Biblioset</sgmltag> support.</para>
+  </listitem>
+  <listitem>
+  <para>Basic <sgmltag>bibliomixed</sgmltag> support.</para>
+  </listitem>
+  </itemizedlist>
+</listitem>
+<listitem>
+<para><sgmltag>Indexterm</sgmltag> <sgmltag>sortas</sgmltag> and <sgmltag>class</sgmltag> attributes support added.</para>
+</listitem>
+<listitem>
+<para><sgmltag>Imagedata</sgmltag> <sgmltag>width</sgmltag>, <sgmltag>depth</sgmltag>, <sgmltag>scale</sgmltag> attributes support improved. In previous releases, <sgmltag>scale</sgmltag> was used instead of <sgmltag>width</sgmltag>. Now, you should use <sgmltag>width</sgmltag> or <sgmltag>scale</sgmltag> properly.</para>
+</listitem>
+<listitem>
+<para><sgmltag>Programlisting</sgmltag> <sgmltag>linenumbering</sgmltag> attribute support added.</para>
+</listitem>
+<listitem>
+<para>Basic <sgmltag>glossary</sgmltag> support added.</para>
+</listitem>
+<listitem>
+<para>Better <sgmltag>reference</sgmltag> support. <sgmltag>Refnamediv</sgmltag> title is no more hard-coded
+(use of $refnamediv.title if not empty, or name automatically generated according to the
+lang).</para>
+</listitem>
+<listitem>
+<para><sgmltag>Qandaset</sgmltag> improved. <sgmltag>Qandadiv</sgmltag> can be nested under any section.</para>
+</listitem>
+<listitem>
+<para>Better <sgmltag>xref</sgmltag> support. Now <sgmltag>xreflabel</sgmltag> and <sgmltag>endterm</sgmltag> work.</para>
+</listitem>
+<listitem>
+<para>The latex hyperref package is now automatically included in the dbk_core
+package. A customized LaTeX style package shouldn't include hyperref
+anymore.</para>
+</listitem>
+<listitem>
+<para><sgmltag>Link</sgmltag> now works.</para>
+</listitem>
+<listitem>
+<para><sgmltag>Trademark</sgmltag>   <sgmltag>class</sgmltag> attribute managed (except class='service').</para>
+</listitem>
+<listitem>
+<para>A <sgmltag>keyword</sgmltag> is not displayed but is inserted in the index entries.</para>
+</listitem>
+<listitem>
+<para>Some bug fixes.</para>
+</listitem>
+</itemizedlist>
+

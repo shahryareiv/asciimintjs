@@ -1,0 +1,36 @@
+<informaltable role="scriptsize">
+<!-- Table example with smaller size -->
+<tgroup cols="5" colsep="1" rowsep="1" align="left">
+<colspec colname="c1"/>
+<colspec align="left"/>
+<colspec align="right"/>
+<colspec align="center"/>
+<colspec align="center"/>
+<thead>
+<row>
+<entry>Column 1</entry>
+<entry>Column 2</entry>
+<entry>Column 3</entry>
+<entry>Column 4</entry>
+<entry>Column 5</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center" valign="top">left aligned
+</entry><entry align="center" valign="top">left aligned
+</entry><entry align="center" valign="top">right aligned
+</entry><entry align="center" valign="top">centered cell
+</entry><entry align="center" valign="top">centered
+</entry></row>
+<row>
+<entry align="center" valign="top">no specified width
+</entry><entry align="center" valign="top">idem 
+</entry><entry align="center" valign="top">idem
+</entry><entry align="center" valign="top">idem
+</entry><entry align="center" valign="top">idem
+</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+

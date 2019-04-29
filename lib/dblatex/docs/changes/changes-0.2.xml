@@ -1,0 +1,31 @@
+<itemizedlist>
+<listitem><para>Better <command>osx</command> integration. The SDATA entities are translated to the equivalent Unicode characters.</para></listitem>
+<listitem><para>Better Windows compatibility thanks to Nicolas Pernetty for his
+patches and feedbacks.</para>
+</listitem>
+<listitem><para>Better table support:</para>
+<itemizedlist>
+<listitem><para>Putting some verbatim text (<sgmltag>literallayout</sgmltag>, <sgmltag>address</sgmltag>, <sgmltag>synopsis</sgmltag>, <sgmltag>classsynopsis</sgmltag>) in tables now works.</para></listitem>
+<listitem><para>Nesting some <sgmltag>informaltable</sgmltag>s is
+possible.</para></listitem>
+<listitem><para>Basic <sgmltag>entrytbl</sgmltag> support.</para></listitem>
+<listitem><para>Better <sgmltag>valign</sgmltag> attribute support.</para></listitem>
+<listitem><para>The columns, rows and entries can be coloured by using some special
+Processing Instructions like <literal><![CDATA[<?dblatex bgcolor="..."?>]]></literal>.</para></listitem>
+<listitem><para>The table <sgmltag>floatstyle</sgmltag> attribute can be used to
+specify the float placement rules (like "[htbp]").</para></listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>A few <sgmltag>imageobject</sgmltag> improvements:</para>
+<itemizedlist>
+<listitem><para>Like for the official DocBook XSL stylesheets, you can use the
+<sgmltag>role</sgmltag> attribute in <sgmltag>imageobject</sgmltag> to specify
+the image to use by <command>dblatex</command>. Set role to 'dblatex' to select
+the image used by <command>dblatex</command>.</para>
+</listitem>
+<listitem><para>Alternative <sgmltag>imageobject</sgmltag>s can be put in a
+<sgmltag>mediaobjectco</sgmltag> (DocBook 5).</para></listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Some cleanups and a number of bug fixes.</para></listitem>
+</itemizedlist>

@@ -1,0 +1,1 @@
+<xsl:param name="author.othername.in.middle" select="1"/>

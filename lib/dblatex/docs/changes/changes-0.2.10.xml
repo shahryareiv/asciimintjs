@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+<listitem>
+<para>Use info/title to render <sgmltag>qansaset</sgmltag> headings.</para>
+</listitem>
+
+<listitem>
+<para>Use <literal>\ensuremath{}</literal> to make latin1 from UTF8 conversion
+more robust.</para>
+</listitem>
+
+<listitem>
+<para>Add the parameters:</para>
+
+<itemizedlist>
+<listitem>
+<para><parameter>doc.layout</parameter> parameter to configure the overall
+document layout (deciding if it contains a coverpage, a toc, a frontmatter
+etc.).</para>
+</listitem>
+
+<listitem>
+<para><parameter>variablelist.term.separator</parameter> (common with DocBook
+Project),</para>
+</listitem>
+
+<listitem>
+<para><parameter>refentry.generate.name</parameter> (common with DocBook
+Project),</para>
+</listitem>
+
+<listitem>
+<para><parameter>ulink.show</parameter> (mechanism extended with
+@xrefstyle),</para>
+</listitem>
+
+<listitem>
+<para><parameter>ulink.footnotes</parameter> (mechanism extended with
+@xrefstyle).</para>
+</listitem>
+</itemizedlist>
+</listitem>
+
+<listitem>
+<para>By default, a document subset (i.e. the root element is not an
+<sgmltag>article</sgmltag> nor a <sgmltag>book</sgmltag>) is no more wrapped
+with an <sgmltag>article</sgmltag>. No more unexpected cover page and front
+matter.</para>
+</listitem>
+
+<listitem>
+<para>A tex equation in <sgmltag>alt</sgmltag> can be written without latex
+math mode delimiters (\( \),\[ \], $ $) in both <sgmltag>equation</sgmltag>
+and <sgmltag>inlineequation</sgmltag>.</para>
+</listitem>
+
+<listitem>
+<para>Add <sgmltag role="">texmath</sgmltag> Processing Instruction in
+<sgmltag>alt</sgmltag> in order to avoid automatic math mode wrapping</para>
+</listitem>
+
+<listitem>
+<para>Make XeTeX support more mature (but still experimental).</para>
+</listitem>
+
+<listitem>
+<para>Change the documentation structure.</para>
+</listitem>
+
+<listitem>
+<para>A number of bug fixes, including:</para>
+
+<itemizedlist>
+<listitem>
+<para>Debian bugs: #525692, and #514932.</para>
+</listitem>
+
+<listitem>
+<para>SourceForge bugs: #2412650, #2393435, #2381306, #2058771, #1987025, and
+#1975259.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>

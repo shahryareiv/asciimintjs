@@ -1,0 +1,7 @@
+<itemizedlist>
+<listitem><para>Add the parameters <parameter>equation.default.position</parameter>,
+<parameter>example.default.position</parameter>, and <parameter>cjk.font</parameter>.
+</para>
+</listitem>
+<listitem><para>A number of bug fixes.</para></listitem>
+</itemizedlist>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="use.id.as.filename">
+  <refmeta>
+    <refentrytitle>use.id.as.filename</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>use.id.as.filename</parameter></refname>
+    <refpurpose>Use ID value of chunk elements as the filename?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/use.id.as.filename.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+
+<para>If <parameter>use.id.as.filename</parameter>
+is non-zero, the filename of chunk elements that have IDs will be
+derived from the ID value.
+</para>
+<para>This parameter is used only when chuncking occurs, that is, when a set of
+books is published.</para>
+  </refsection>
+</refentry>

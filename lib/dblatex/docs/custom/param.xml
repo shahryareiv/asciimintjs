@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE informaltable PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<informaltable>
+<tgroup align="left" cols="3" colsep="1" rowsep="1">
+<colspec colname="c1" colwidth="2*" />
+
+<colspec colname="c2" colwidth="3*" />
+
+<colspec colname="c3" colwidth="*" />
+
+<thead>
+<row>
+<entry>Parameter</entry>
+
+<entry>Role</entry>
+
+<entry>Default Value</entry>
+</row>
+</thead>
+
+<tbody>
+<row>
+<entry>alt.use</entry>
+
+<entry>When an (informal) equation contains both <sgmltag>alt</sgmltag> and
+another element (graphic, etc.), and when
+<parameter>tex.math.in.alt</parameter> is not set to 'latex', the alt element
+is not used to display the equation since it is considered as a fallback
+element. Set <parameter>alt.use</parameter> to force the use of
+<sgmltag>alt</sgmltag> as default rendering element even when
+<parameter>tex.math.in.alt</parameter> is not set to 'latex'.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>annotation.support</entry>
+
+<entry>Set to 1 the experimental DocBook 5 <sgmltag>annotation</sgmltag>
+support is enabled.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>callout.markup.circled</entry>
+
+<entry>Set to 1 the callouts references in a <sgmltag>calloutlist</sgmltag>
+are white numbers in black circles, like the markups in the listing (or
+graphic). Set to 0 the references are simple numbers.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>callout.linkends.hot</entry>
+
+<entry>The callouts referenced in a callout list are hot links if the
+parameter is set to 1. Then, the references are in red such like any other
+cross-reference link in the document.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>calloutlist.style</entry>
+
+<entry>Defines how the callout list items are displayed. The value must be
+some valid enumitem description list options.</entry>
+
+<entry>"leftmargin=1cm,style=sameline"</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>citation.default.style</entry>
+
+<entry>Default natbib citation style to apply when natbib is used. See <xref
+linkend="sec-natbib" />.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>citation.natbib.options</entry>
+
+<entry>Options to pass to the natbib package when it is loaded. See also <xref
+linkend="sec-natbib" />.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>citation.natbib.use</entry>
+
+<entry>Load the natbib package, and allows the use of natbib citation styles.
+The package is loaded if the parameter is set to 1. See <xref
+linkend="sec-natbib" />.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>cjk.font</entry>
+
+<entry>Fonts to use in CJK environments (i.e. for Chinese, Japanese or Korean
+documents handled by the CJK package).</entry>
+
+<entry>cyberbit</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>co.linkends.show</entry>
+
+<entry>Next to a callout markup the links to the corresponding calloutlist
+items are shown when the parameter is set to 1. Set to 0 the links are not
+shown.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>colophon.tocdepth</entry>
+
+<entry>Same than <parameter>preface.tocdepth</parameter> for colophon
+sections.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>dedication.tocdepth</entry>
+
+<entry>Same than <parameter>preface.tocdepth</parameter> for dedication
+sections.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.alignment</entry>
+
+<entry>Defines the text alignment for the whole document. The valid values
+are: "left", "center", "right", "justify". An empty string is equivalent to
+"justify".</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.collab.show</entry>
+
+<entry>Show the collaborators (authors, contributors) defined in the document
+information block.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.lot.show</entry>
+
+<entry>Specifies which Lists of Titles should be printed after the Table of
+Content. The value is a comma separated list of the LoTs to show. The
+supported LoTs are "figure", "table", "equation", and "example". The list
+order represents the LoTs order in the output document.</entry>
+
+<entry>"figure,table"</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.pdfcreator.show</entry>
+
+<entry>Fill the Creator field of the PDF document information section with
+"DBLaTeX-&lt;version&gt;" if the parameter is set to 1. Set to 0 this field is
+keep untouched.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.publisher.show</entry>
+
+<entry>Print the dblatex logo on the cover page for the native docbook style
+if the parameter is set to 1.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.section.depth</entry>
+
+<entry>Depth of the section numbering. Used to set the latex
+<literal>secnumdepth</literal> counter.</entry>
+
+<entry>5</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>doc.toc.show</entry>
+
+<entry>Print the table of contents when set to 1.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>draft.mode</entry>
+
+<entry>Print <sgmltag>releaseinfo</sgmltag> in a framed box in the header,
+when the parameter is set to 'yes'. The <sgmltag>releaseinfo</sgmltag> is
+ignored if the parameter is set to 'no', or if the releaseinfo content is
+empty. When the parameter is set to 'maybe', the draft mode is deduced from
+the <sgmltag>status</sgmltag> attribute of the root element if set to
+'draft'.</entry>
+
+<entry>maybe</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>draft.watermark</entry>
+
+<entry>Print the draft text (that is, "DRAFT") as a watermark on each page, if
+the document is in draft mode and if the parameter is set to '1'.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>equation.default.position</entry>
+
+<entry>Default equation float placement algorithm to apply. See
+figure.default.position for more details about how to use latex float
+specifications.</entry>
+
+<entry>[H]</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>example.default.position</entry>
+
+<entry>Default example float placement algorithm to apply. See
+figure.default.position for more details about how to use latex float
+specifications.</entry>
+
+<entry>[H]</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>figure.caution</entry>
+
+<entry>Figure to use to render a <sgmltag>caution</sgmltag> block. This
+parameter is added to allow new latex styles to use their own figures in
+admonitions.</entry>
+
+<entry>"warning"</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>figure.default.position</entry>
+
+<entry>Default figure float placement algorithm to apply. The default
+parameter value is [htbp] meaning that latex tries to place the figure where
+it occurs first (h, here), then at the top of the page (t), at the bottom of
+the page (b), and finally on the next page (p).</entry>
+
+<entry>[htbp]</entry>
+</row>
+
+<row>
+<entry>figure.important</entry>
+
+<entry>Figure to use to render a <sgmltag>important</sgmltag> block. This
+parameter is added to allow new latex styles to use their own figures in
+admonitions.</entry>
+
+<entry>"warning"</entry>
+</row>
+
+<row>
+<entry>figure.note</entry>
+
+<entry>Figure to use to render a <sgmltag>note</sgmltag> block. This parameter
+is added to allow new latex styles to use their own figures in
+admonitions.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<row>
+<entry>figure.tip</entry>
+
+<entry>Figure to use to render a <sgmltag>tip</sgmltag> block. This parameter
+is added to allow new latex styles to use their own figures in
+admonitions.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<row>
+<entry>figure.title.top</entry>
+
+<entry>Set to 1 the <sgmltag>figure</sgmltag> float title position is above
+the image. Set to 0 the title is under the image.</entry>
+
+<entry>0</entry>
+</row>
+
+<row>
+<entry>figure.warning</entry>
+
+<entry>Figure to use to render a <sgmltag>warning</sgmltag> block. This
+parameter is added to allow new latex styles to use their own figures in
+admonitions.</entry>
+
+<entry>"warning"</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>filename.as.url</entry>
+
+<entry>Set to 1 the <sgmltag>filename</sgmltag>s are handled as URLs, with the
+same hyphenation rules. Set to 0 the <sgmltag>filename</sgmltag> hyphenation
+is forced for each character.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>glossterm.auto.link</entry>
+
+<entry>When set to 1, the glossterms in the document are linked to their
+definition in the glossary.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>imagedata.boxed</entry>
+
+<entry>If set to 1, put the images into a framed box.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>imagedata.default.scale</entry>
+
+<entry>cf. <xref linkend="sec-defaultscale" /></entry>
+
+<entry>pagebound</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>imagedata.file.check</entry>
+
+<entry>When set to 1 some tex code is added to ensure that latex compilation
+does not fail when the referenced imagadata file does not exist.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>imageobjectco.hide</entry>
+
+<entry>When set to 1 the callout numbered circles are not drawn on the image.
+Only the anchors are put, allowing callout list items to jump at the
+referenced position on the image. The purpose of this parameter is to allow
+the use of images that already contain the callout numbers (like for GIMP
+manual).</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>korean.package</entry>
+
+<entry>When lang is set to 'ko' and the parameter is set to 'CJK' the CJK
+package is included to handle the Korean language.</entry>
+
+<entry>CJK</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.babel.language</entry>
+
+<entry>This parameter forces the use of the specified babel language whatever
+the document language is.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.babel.use</entry>
+
+<entry>Set to 1 the babel package corresponding to the document language is
+included. Set to 0 no babel package is included whatever the document language
+is.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.bibfiles</entry>
+
+<entry>Defines the default BibTeX database to use. Used when the bibtex PI
+does not have a "bibfiles" attribute. See <xref linkend="sec-bibtex" /> for
+more details.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.biblio.output</entry>
+
+<entry>Defines how the BibTeX bibliographic entries are printed out. The
+available values are defined in <xref linkend="sec-bibtex" />.</entry>
+
+<entry>all</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.biblio.style</entry>
+
+<entry>Defines the default BibTeX style to apply. Meaningful when not empty,
+only for the used bibtex databases. See <xref linkend="sec-bibtex" />.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.class.article</entry>
+
+<entry>This parameter sets the document class to use for
+<sgmltag>article</sgmltag> documents.</entry>
+
+<entry>article</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.class.book</entry>
+
+<entry>This parameter sets the document class to use for
+<sgmltag>book</sgmltag> documents.</entry>
+
+<entry>report</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.class.options</entry>
+
+<entry>Options passed to the \documentclass command.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.encoding</entry>
+
+<entry>Encoding of the latex document to produce. The supported values are:
+"latin1" and "utf8". See <xref linkend="sec-doc-encode" /> for more details
+about how to use it.</entry>
+
+<entry>"latin1"</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.hyperparam</entry>
+
+<entry>See <xref linkend="sec-hyperparam" /></entry>
+
+<entry>empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>latex.unicode.use</entry>
+
+<entry>Set to 1 the passivetex unicode support is included, allowing to handle
+a wider range of Unicode characters (like cyrillic).</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>literal.layout.options</entry>
+
+<entry>Overwrite the default options passed to the \lstset command.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>literal.lines.showall</entry>
+
+<entry>Set to 1, all the lines in a verbatim environment like programlisting
+or screen are printed, even if they are empty. Set to 0, the last empty lines
+are not printed. It is set to 1 by default.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>literal.width.ignore</entry>
+
+<entry>When set to 1 the programlisting and screen width attribute is ignored.
+In this case all the verbatim environment widths are equal to the enclosing
+environment width.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>make.year.ranges</entry>
+
+<entry>If non-zero, copyright years will be collated into ranges. Parameter
+taken from the DocBook XSL stylesheets.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>make.single.year.ranges</entry>
+
+<entry>If non-zero, year ranges that span a single year will be printed in
+range notation (1998-1999) instead of discrete notation (1998, 1999).
+Parameter taken from the DocBook XSL stylesheets.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>mediaobject.caption.style</entry>
+
+<entry>Font style of the mediaobject caption text. Its value can be any valid
+latex font style command combinations. By default this parameter put the
+caption text to italics.</entry>
+
+<entry>\slshape</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>monoseq.hyphenation</entry>
+
+<entry>When set to 1, aggressively hyphenates the inlined element rendered
+with monoseq fonts. When set to 0, let latex do as default. When set to
+'nohyphen', dblatex tries to avoid overfull boxes (words in the margins) but
+keeps the monoseq words not splittable.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>monoseq.small</entry>
+
+<entry>When set to 1, choose a smaller font to the element rendered with
+monoseq fonts.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>newtbl.autowidth</entry>
+
+<entry>Defines if the table column widths must be automatically sized by
+latex. See <xref linkend="sec-newtbl-autowidth" />.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<row>
+<entry>newtbl.bgcolor.thead</entry>
+
+<entry>Background color of the <sgmltag>thead</sgmltag> rows.</entry>
+
+<entry>1</entry>
+</row>
+
+<row>
+<entry>newtbl.default.colsep</entry>
+
+<entry>Set to 1, print the column separators when no
+<sgmltag>colspec</sgmltag> attribute is specified.</entry>
+
+<entry>1</entry>
+</row>
+
+<row>
+<entry>newtbl.default.rowsep</entry>
+
+<entry>Set to 1, print the row separators when no <sgmltag>rowspec</sgmltag>
+attribute is specified.</entry>
+
+<entry>1</entry>
+</row>
+
+<row>
+<entry>newtbl.format.tbody</entry>
+
+<entry>LaTeX formatting for body table cells.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<row>
+<entry>newtbl.format.tfoot</entry>
+
+<entry>LaTeX formatting for foot table cells.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<row>
+<entry>newtbl.format.thead</entry>
+
+<entry>LaTeX formatting for head table cells.</entry>
+
+<entry>\bfseries%</entry>
+</row>
+
+<row>
+<entry>newtbl.use.hhline</entry>
+
+<entry>Set to 1, use the <filename>hhline</filename> package to draw the table
+row separators instead of cline. Using <filename>hhline</filename> seems more
+suited for colored tables.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>pdf.annot.options</entry>
+
+<entry>Options to change how the PDF text annotations should look. The
+supported options are width, height, depth. The options must be comma
+separated like: <literal>width=5cm,depth=10cm</literal>.</entry>
+
+<entry>Empty</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>preface.tocdepth</entry>
+
+<entry>When greater than 0, the preface headings appear in the TOC. The
+parameter value define the preface section depth appearing in the TOC and in
+the bookmarks. If set to 0, none of the sections are put in the TOC. If set to
+1, only the chapter level appears in the TOC and bookmarks, and so on. When
+the parameter is negative, it behaves like with 0, but it uses the previous
+implementation (use of unnumbered sections, that is, with latex heading
+commands ending with '*').</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>qandaset.defaultlabel</entry>
+
+<entry>Defines the default label to use in a <sgmltag>qandadet</sgmltag> when
+the defaultlabel attribute is not specified.</entry>
+
+<entry>"number"</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>refentry.numbered</entry>
+
+<entry>Defines either the <sgmltag>refentry</sgmltag> titles are numbered or
+not. When numbered, it is displayed as any other numbered section.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>refentry.tocdepth</entry>
+
+<entry>Same than <parameter>preface.tocdepth</parameter> for refentry
+sections. Meaningful only when <parameter>refentry.numbered</parameter> is set
+to 0.</entry>
+
+<entry>5</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>seg.item.separator</entry>
+
+<entry>Defines the separator to use between several
+<sgmltag>segitem</sgmltag>s.</entry>
+
+<entry>", "</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>set.book.num</entry>
+
+<entry>When the document root element is a <sgmltag>set</sgmltag> this
+parameter can be used to select the book to print, because
+<command>dblatex</command> can output only one book from the set.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>table.default.position</entry>
+
+<entry>Default table float placement algorithm to apply. The default parameter
+value is [htbp] meaning that latex tries to place the table where it occurs
+first (h, here), then at the top of the page (t), at the bottom of the page
+(b), and finally on the next page (p).</entry>
+
+<entry>[htbp]</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>table.in.float</entry>
+
+<entry>Set to 0 the formal tables are no more put in table floats. They are
+displayed with the longtable package, allowing to have formal tables covering
+several pages (which is not possible with floats). The limitation is that the
+title must necessarily be on the top of the table.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>table.title.top</entry>
+
+<entry>Set to 1 the <sgmltag>table</sgmltag> float title position is above the
+table. Set to 0 the title is under the table.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>term.breakline</entry>
+
+<entry>Set to 1 the item following a term in a variable list is put on the
+next line.</entry>
+
+<entry>0</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>tex.math.in.alt</entry>
+
+<entry>Specifies if the <sgmltag>alt</sgmltag> element in an (informal)
+equation contains some tex equation. If so, and if the tex equation is in
+'latex' format, the content is directly used by dblatex.</entry>
+
+<entry>latex</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>titleabbrev.in.toc</entry>
+
+<entry>Set to 1 the titleabbrev content is put in the TOC instead of the
+title.</entry>
+
+<entry>1</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>toc.section.depth</entry>
+
+<entry>Depth of the TOC. Used to set the latex <literal>tocdepth</literal>
+counter.</entry>
+
+<entry>5</entry>
+</row>
+
+<!-- -->
+
+<row>
+<entry>xetex.font</entry>
+
+<entry>Font specification for XeTeX. Meaningful only when the xetex backend is
+used.</entry>
+
+<entry>\setmainfont{DejaVU Serif} \setsansfont{DejaVu Sans}</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>

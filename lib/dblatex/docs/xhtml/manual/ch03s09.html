@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Writing Mathematics</title><link rel="stylesheet" type="text/css" href="manual.css" /><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="DocBook to LaTeX Publishing" /><link rel="up" href="ch03.html" title="Chapter 3. Using dblatex" /><link rel="prev" href="ch03s08.html" title="Correcting Poor Formatting" /><link rel="next" href="sec-music.html" title="Musical Notation" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Writing Mathematics</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s08.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Using dblatex</th><td width="20%" align="right"> <a accesskey="n" href="sec-music.html">Next</a></td></tr></table><hr /></div><div class="section" title="Writing Mathematics"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp107224"></a>Writing Mathematics</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s09.html#idp2809568">Writing LaTeX Mathematical Equations</a></span></dt><dt><span class="section"><a href="ch03s09.html#idp5381624">
+   Writing MathML equations
+  </a></span></dt></dl></div><div class="section" title="Writing LaTeX Mathematical Equations"><div class="titlepage"><div><div><h3 class="title"><a id="idp2809568"></a>Writing LaTeX Mathematical Equations</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s09.html#idp5045464">Presentation</a></span></dt><dt><span class="section"><a href="ch03s09.html#idp1118744">Implementation choice</a></span></dt><dt><span class="section"><a href="ch03s09.html#sec-alttex-delimiters">Mathematical Delimiters</a></span></dt><dt><span class="section"><a href="ch03s09.html#idp5140224">Compatibility</a></span></dt><dt><span class="section"><a href="ch03s09.html#idp777496">Examples</a></span></dt></dl></div><div class="section" title="Presentation"><div class="titlepage"><div><div><h4 class="title"><a id="idp5045464"></a>Presentation</h4></div></div></div><p>DocBook doesn't define elements for writing mathematical equations. Only
+few elements exist that tell how equation should be displayed (inlined,
+block):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><code class="sgmltag-element">inlineequation</code> tells that the equation is
+inlined,</p></li><li class="listitem"><p><code class="sgmltag-element">informalequation</code> tells that the equation is displayed
+as a block, without a title.</p></li><li class="listitem"><p><code class="sgmltag-element">equation</code> tells that the equation is displayed as a
+block, with or without a title.</p></li></ul></div><p>These tags include a graphic (<code class="sgmltag-element">graphic</code> or
+<code class="sgmltag-element">mediaobject</code>) or an alternative text equation, as shown by
+the example.</p><div class="example"><a id="idp5688944"></a><p class="title"><strong>Example 3.5. Equation taken from TDG</strong></p><div class="example-contents"><pre class="programlisting">
+&lt;equation&gt;&lt;title&gt;Last Theorem of Fermat&lt;/title&gt; 
+  &lt;alt&gt;x^n + y^n &amp;ne; z^n &amp;forall; n &amp;ne; 2&lt;/alt&gt;
+  &lt;graphic fileref="figures/fermat"&gt;&lt;/graphic&gt;
+&lt;/equation&gt;
+   </pre></div></div><br class="example-break" /></div><div class="section" title="Implementation choice"><div class="titlepage"><div><div><h4 class="title"><a id="idp1118744"></a>Implementation choice</h4></div></div></div><p>The principle is to use only the <code class="sgmltag-element">alt</code> element. If
+initially <code class="sgmltag-element">alt</code> contains actually the text to print, it is
+chosen to use this element to embed LaTeX mathematical equations. This choice
+has the following advantages:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The translation done by dblatex is really easy, since the equation is
+already written in LaTeX.</p></li><li class="listitem"><p>LaTeX is one of the best word processor to render mathematical
+formulas.</p></li><li class="listitem"><p>One doesn't need to write the equations in MathML.</p></li><li class="listitem"><p>This method isn't specific to this tool (see the following
+section).</p></li></ul></div></div><div class="section" title="Mathematical Delimiters"><div class="titlepage"><div><div><h4 class="title"><a id="sec-alttex-delimiters"></a>Mathematical Delimiters</h4></div></div></div><p>The dblatex implementation is as light as possible. This is why it is
+up to the writer to properly use the mathematical delimiters ($, \(, \), \[,
+\]). By this way the writer fully controls how he writes equations.</p><p><a id="pi-texmath-user"></a>By default <span class="command"><strong>dblatex</strong></span> checks that
+consistent mathematical
+delimiters or environment are used in <code class="sgmltag-element">alt</code> and it inserts the
+default math mode delimiters if dblatex thinks they are missing, but
+you can ask dblatex to write directly the <code class="sgmltag-element">alt</code> content 
+without any action. To do this, use the <code class="literal">texmath</code> Processing 
+Instruction with <code class="literal">delimiters</code> set to 'user'.</p><p>For example, <a class="xref" href="ch03s09.html#eq-with-texmath-pi" title="Example 3.6. Equation with user delimiters">Example 3.6, “Equation with user delimiters”</a> has user specific
+delimiters:</p><div class="example"><a id="eq-with-texmath-pi"></a><p class="title"><strong>Example 3.6. Equation with user delimiters</strong></p><div class="example-contents"><div class="equation"><a id="idp2470648"></a><p class="title"><strong>Equation 3.1. Equation block with align tabs</strong></p><div class="equation-contents"></div></div><br class="equation-break" /><p>In the XML source this equation uses a specific <code class="literal">align*</code> environment and the <code class="literal">texmath</code> PI to let the equation as is:</p><pre class="programlisting">
+&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;!DOCTYPE para PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd"&gt;
+&lt;equation&gt;
+  &lt;title&gt;Equation block with align tabs&lt;/title&gt;
+  &lt;alt&gt;&lt;?texmath delimiters="user"?&gt;&lt;![CDATA[\begin{align*}
+S &amp; = \left\lfloor { { N \bmod 65536 } \over 32768 } \right\rfloor  \\
+E &amp; = \left\lfloor { { N \bmod 32768 } \over  1024 } \right\rfloor  \\
+M &amp; = N \bmod 1024.
+\end{align*}]]&gt;&lt;/alt&gt;
+&lt;/equation&gt;
+ </pre></div></div><br class="example-break" /></div><div class="section" title="Compatibility"><div class="titlepage"><div><div><h4 class="title"><a id="idp5140224"></a>Compatibility</h4></div></div></div><p>This implementation is not contradictory nor specific. In particular,
+the <a class="ulink" href="http://ricardo.ecn.wfu.edu/~cottrell/dbtexmath/" target="_top">DBTeXMath</a>
+proposal to extend the DSSSL stylesheets used by jade follows the same
+approach, and is integrated in the Norman Walsh XSL stylesheets.</p></div><div class="section" title="Examples"><div class="titlepage"><div><div><h4 class="title"><a id="idp777496"></a>Examples</h4></div></div></div><p>The following examples show how to write the equations.</p><div class="example"><a id="idp3204968"></a><p class="title"><strong>Example 3.7. Inlined Equation</strong></p><div class="example-contents"><p>The formula 
+  <img src="figures/eq1.png" />
+is inlined in the paragraph. Its XML source is:</p><pre class="programlisting">
+&lt;para&gt;The formula 
+  &lt;inlineequation id="eg-inlineequation"&gt;
+    &lt;alt&gt;$C = \alpha + \beta Y^{\gamma} + \epsilon$&lt;/alt&gt;
+    &lt;graphic fileref="figures/eq1"/&gt;
+  &lt;/inlineequation&gt;
+is inlined in the paragraph. Its XML source is:&lt;/para&gt;
+
+</pre></div></div><br class="example-break" /><div class="example"><a id="idp5140344"></a><p class="title"><strong>Example 3.8. Equation in a block</strong></p><div class="example-contents"><p>The following formula:
+  </p><div class="informalequation"><div><img src="figures/eq1.png" /></div></div><p>
+is displayed in a separate block. The XML source is:</p><pre class="programlisting">
+&lt;para&gt;The following formula:
+  &lt;informalequation&gt;
+    &lt;alt&gt;\[C = \alpha + \beta Y^{\gamma} + \epsilon\]&lt;/alt&gt;
+    &lt;graphic fileref="figures/eq1"/&gt;
+  &lt;/informalequation&gt;
+is displayed in a separate block. The XML source is:&lt;/para&gt;
+
+</pre></div></div><br class="example-break" /><div class="example"><a id="idp4113728"></a><p class="title"><strong>Example 3.9. Equation in a float</strong></p><div class="example-contents"><p>The formula <a class="xref" href="ch03s09.html#eq-with-title" title="Equation 3.2. Simple Formula">Equation 3.2, “Simple Formula”</a> below:
+  </p><div class="equation"><a id="eq-with-title"></a><p class="title"><strong>Equation 3.2. Simple Formula</strong></p><div class="equation-contents"><div><img src="figures/eq1.png" /></div></div></div><p><br class="equation-break" />
+is displayed in a block with a title. Its XML source is:</p><pre class="programlisting">
+&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;!DOCTYPE para PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd"&gt;
+&lt;para&gt;The formula &lt;xref linkend="eq-with-title"/&gt; below:
+  &lt;equation id="eq-with-title"&gt;
+  &lt;title&gt;Simple Formula&lt;/title&gt;
+    &lt;alt&gt;\[C = \alpha + \beta Y^{\gamma} + \epsilon\]&lt;/alt&gt;
+    &lt;graphic fileref="figures/eq1"/&gt;
+  &lt;/equation&gt;
+is displayed in a block with a title. Its XML source is:&lt;/para&gt;
+
+</pre></div></div><br class="example-break" /><div class="example"><a id="idp2623016"></a><p class="title"><strong>Example 3.10. Equation without a title</strong></p><div class="example-contents"><p>The formula <a class="xref" href="ch03s09.html#eq-with-no-title" title="Equation 3.3. ">Equation 3.3</a> below:
+  </p><div class="equation"><a id="eq-with-no-title"></a><p class="title"><strong>Equation 3.3. </strong></p><div class="equation-contents"><div><img src="figures/eq4.png" /></div></div></div><p><br class="equation-break" />
+is displayed as a latex equation with its own equation numbering.
+Its XML source is:</p><pre class="programlisting">
+&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;!DOCTYPE para PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd"&gt;
+&lt;para&gt;The formula &lt;xref linkend="eq-with-no-title"/&gt; below:
+  &lt;equation id="eq-with-no-title"&gt;
+    &lt;alt&gt;C = \alpha + \beta Y^{\gamma} + \epsilon&lt;/alt&gt;
+    &lt;graphic fileref="figures/eq4"/&gt;
+  &lt;/equation&gt;
+is displayed as a latex equation with its own equation numbering.
+Its XML source is:&lt;/para&gt;
+
+</pre></div></div><br class="example-break" /></div></div><div class="section" title="Writing MathML equations"><div class="titlepage"><div><div><h3 class="title"><a id="idp5381624"></a>
+   Writing MathML equations
+  </h3></div></div></div><p>
+   You can write MathML equations in a DocBook based document, by using the <a class="ulink" href="http://www.oasis-open.org/docbook/xml/mathml/index.1.shtml" target="_top">MathML Module for DocBook XML</a> instead of the DocBook DTD.
+  </p><p>
+   dblatex now translates the MathML equations to latex by using the excellent stylesheets of the <a class="ulink" href="http://xsltml.sourceforge.net" target="_top">XSLT MathML Library</a> by Vasil Yaroshevich. A large amount of tests from the <a class="ulink" href="http://www.w3.org/Math/testsuite/" target="_top">W3C MathML Test Suite 2.0</a> is supported (657 of 712 tests). The test file used to validate the MathML stylesheets is provided in the package. 
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s08.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="sec-music.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Correcting Poor Formatting </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Musical Notation</td></tr></table></div></body></html>

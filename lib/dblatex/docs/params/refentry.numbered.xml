@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="refentry.numbered">
+  <refmeta>
+    <refentrytitle>refentry.numbered</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>refentry.numbered</parameter></refname>
+    <refpurpose>Should <sgmltag>refentry</sgmltag> headings be numbered?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/refentry.numbered.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Defines either the <sgmltag>refentry</sgmltag> titles are numbered or
+not. When numbered, it is displayed as any other numbered section.</para>
+  </refsection>
+    <refsection>
+    <title>See Also</title>
+    <para><parameter>refentry.tocdepth</parameter>.</para>
+    <para><parameter>glossary.numbered</parameter>, <parameter>glossary.tocdepth</parameter>.</para>
+    <para><parameter>bibliography.numbered</parameter>, <parameter>bibliography.tocdepth</parameter>.</para>
+    <para><parameter>index.numbered</parameter>, <parameter>index.tocdepth</parameter>.</para>
+  </refsection>
+</refentry>

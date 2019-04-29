@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE targetset 
+  SYSTEM "file:///usr/share/xml/docbook/stylesheet/nwalsh/common/targetdatabase.dtd"
+[
+  <!ENTITY rntargets SYSTEM "release-notes.db">
+  <!ENTITY umtargets SYSTEM "manual.db">
+]>
+<!-- Note: use entities instead of XInclude, to workaround the missing
+     -+-xincludestyle option needed to expand the included files when
+     olinkdb.xml is loaded.
+-->
+<targetset>
+  <targetsetinfo>
+    Dblatex documentation target database.
+  </targetsetinfo>
+
+  <!-- Site map for generating relative paths between documents -->
+  <sitemap>
+    <!-- The 'pdf' directory is virtual. It is the relative path that is
+         meaningful.
+    -->
+    <dir name="pdf">
+      <document targetdoc="usermanual"
+                baseuri="manual.pdf">
+                &umtargets;
+      </document>
+      <document targetdoc="releasenotes"
+                baseuri="release-notes.pdf">
+                &rntargets;
+      </document>
+    </dir>
+  </sitemap>
+</targetset>
+

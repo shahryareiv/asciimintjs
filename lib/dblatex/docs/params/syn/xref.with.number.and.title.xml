@@ -1,0 +1,1 @@
+<xsl:param name="xref.with.number.and.title" select="0"/>

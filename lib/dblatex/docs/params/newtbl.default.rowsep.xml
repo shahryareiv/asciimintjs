@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="newtbl.default.rowsep">
+  <refmeta>
+    <refentrytitle>newtbl.default.rowsep</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>newtbl.default.rowsep</parameter></refname>
+    <refpurpose>By default draw a horizontal line between rows</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/newtbl.default.rowsep.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Set to 1, print the row separators when no <sgmltag>rowspec</sgmltag>
+attribute is specified.</para>
+  </refsection>
+</refentry>

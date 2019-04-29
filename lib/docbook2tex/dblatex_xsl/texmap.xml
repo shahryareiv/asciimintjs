@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<!-- Mapping des caracteres -> LaTeX
+     Attention : l'ordre est important, pour les effets de bords
+     qu'il induit. Par exemple, '\' doit etre remplace tout de suite
+     en backslah, vu qu'ensuite d'autres '\' sont introduits !
+     C'est la fin du tableau qui est remplace en premier.
+-->
+
+<!DOCTYPE mapping SYSTEM "mapping.dtd"
+[
+  <!ENTITY nbsp  "&#x000A0;" >
+  <!ENTITY ldquo "&#x0201C;" >
+  <!ENTITY rdquo "&#x0201D;" >
+  <!ENTITY tilde "&#x002DC;" >
+]>
+<mapping>
+<map key="\textbackslash"   text="\textbackslash{}"/>
+<map key="&nbsp;"           text="~"/>
+<map key="&ldquo;"          text="{}``"/>
+<map key="&rdquo;"          text="{}''"/>
+<map key="&lt;"             text="$&lt;$"/>
+<map key="&gt;"             text="$&gt;$"/>
+<map key="&tilde;"          text="\textasciitilde{}"/>
+<map key="{"                text="\{"/>
+<map key="}"                text="\}"/>
+<map key="&amp;"            text="\&amp;"/>
+<map key="#"                text="\#"/>
+<map key="_"                text="\_"/>
+<map key="$"                text="\$"/>
+<map key="%"                text="\%"/>
+<map key="^"                text="\^"/>
+<map key="\"                text="\textbackslash"/>
+</mapping>

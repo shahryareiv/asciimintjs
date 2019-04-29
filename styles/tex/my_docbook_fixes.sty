@@ -1,0 +1,156 @@
+% C O P I E D     F R O M    D O C B O O K    P A C K A G E by Shahryar
+
+
+%
+% If hyperlink, load the hyperref package and set the \hyperlabel command needed
+% by the DocBook stylesheets
+%
+\ProvidesPackage{my_docbook_fixes}[2015/10/01 Shahryar]
+\let\hyperlabel\relax
+
+\RequirePackage{etoolbox}
+
+
+% The defined options
+\DeclareOption{hyperlink}{ \def\DBKhyperlink{yes} }
+\DeclareOption{nohyperlink}{ \def\DBKhyperlink{no} }
+% Default values
+\ExecuteOptions{nohyperlink}
+
+% If defined, process the options
+\ProcessOptions\relax
+
+\RequirePackage{ifpdf}
+
+\makeatletter
+
+\@ifundefined{DBKhyperlink}{ \def\DBKhyperlink{no} }{}
+
+
+\ifthenelse{\equal{\DBKhyperlink}{yes}}{
+  \@ifundefined{hyperparam}{
+    \def\hyperparam{linktocpage,colorlinks,citecolor=blue,pdfstartview=FitH}
+  }{}
+  \@ifundefined{hyperparamadd}{
+    \def\hyperparamadd{}
+  }{}
+  \ifpdf
+    \RequirePackage[pdftex,plainpages=false,\hyperparam,\hyperparamadd]{hyperref}
+    \RequirePackage{bookmark}
+    \def\hyperlabel#1{\hypertarget{#1}{}}
+  \else\ifxetex
+    \RequirePackage[xetex,plainpages=false,\hyperparam,\hyperparamadd]{hyperref}
+    \RequirePackage{bookmark}
+    \def\hyperlabel#1{\hypertarget{#1}{}}
+  \else
+    \RequirePackage[dvips,plainpages=false,\hyperparam,\hyperparamadd]{hyperref}
+    \RequirePackage{bookmark}
+    \def\hyperlabel#1{\Hy@raisedlink{\hyper@anchorstart{#1}\hyper@anchorend}}
+  \fi\fi
+}{
+  \RequirePackage{hyperref}
+  \RequirePackage{bookmark}
+  \def\hyperlabel#1{}
+}
+
+%
+% Check if the image file (#1) exists. If so, it switches to #2, else to #3
+% It assumes that the graphics package \Gin@extensions macro is defined.
+% 
+\long\def\imgexists#1#2#3{%
+  \begingroup%
+  \let\img@file\relax%
+  \filename@parse{#1}%
+  \ifx\filename@ext\relax%
+    \@for\Gin@temp:=\Gin@extensions\do{%
+    \ifx\img@file\relax%
+      \IfFileExists{#1\Gin@temp}{\def\img@file{#1}}{}%
+    \fi}%
+  \else
+    \IfFileExists{#1}{\def\img@file{#1}}{}%
+  \fi%
+  \ifx\img@file\relax#3\else#2\fi%
+  \endgroup%
+}
+
+%
+% The image keeps its natural size if lower than the max boundaries
+% Now it's fully based on internal graphics macros
+%
+% Macros defining the maximum lengths
+\def\imgmaxwidth{\textwidth}
+\def\imgmaxheight{\textheight}
+
+% Real image sizes
+\def\imgrwidth{\Gin@nat@width}
+\def\imgrheight{\Gin@nat@height}
+\def\imgevalsize#1{}%
+
+% Use the maximum possible size
+\def\imgwidth{%
+  \ifdim\Gin@nat@width>\imgmaxwidth
+    \imgmaxwidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+
+\def\imgheight{%
+  \ifdim\Gin@nat@height>\imgmaxheight
+    \imgmaxheight
+  \else
+    \Gin@nat@height
+  \fi
+}
+
+
+%%
+%% Manages the tables.
+%%
+%% The package is provided to:
+%% - fix or workaround some bugs,
+%% - define some specific dimensions,
+%% - workaround annoying longtable things about table counter.
+
+\RequirePackage{longtable}
+\RequirePackage{lscape}
+\RequirePackage{colortbl}
+\RequirePackage{multirow}
+\RequirePackage{calc}
+\RequirePackage{hhline}
+
+% Multirow changed, used by newtbl
+%\RequirePackage{multirow2} % COULD NOT FIND, SHAHRYAR
+
+% Temporary latex/3797 bug fix (colortbl) by Morten Hoegholm
+\expandafter\renewcommand\expandafter\multicolumn
+  \expandafter[\expandafter3\expandafter]\expandafter{%
+  \multicolumn{#1}{#2}{#3}}
+
+% Make \@xmultirow long
+\expandafter\long\expandafter\def%
+\expandafter\@xmultirow%
+\expandafter#\expandafter1%
+\expandafter[\expandafter#\expandafter2\expandafter]%
+\expandafter#\expandafter3%
+\expandafter[\expandafter#\expandafter4\expandafter]%
+\expandafter#\expandafter5%
+\expandafter{\@xmultirow{#1}[#2]{#3}[#4]{#5}}
+
+% For the newtbl code
+\newdimen\newtblstarfactor%
+\newdimen\newtblsparewidth%
+\newdimen\newtblcolwidth%
+\newdimen\tablewidth%
+
+% Avoid table counter mess with (informal) longtable
+\def\emptyrefstepcounter#1{}
+\let\stdrefstepcounter\refstepcounter%
+\def\savetablecounter{%
+  \let\refstepcounter\emptyrefstepcounter%
+}
+\def\restoretablecounter{%
+  \let\refstepcounter\stdrefstepcounter%
+}
+
+\makeatother

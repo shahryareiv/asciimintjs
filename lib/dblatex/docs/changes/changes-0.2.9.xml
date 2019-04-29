@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itemizedlist PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<itemizedlist>
+  <listitem>
+    <para>Add the parameters <parameter>refentry.numbered</parameter>,
+    <parameter>refentry.tocdepth</parameter> to have the
+    <sgmltag>refentry</sgmltag> titles numbered (default) or not.</para>
+  </listitem>
+
+  <listitem>
+    <para>Add <sgmltag>partintro</sgmltag>s handling. Needed to have a
+    complete TDG compiled with <command>dblatex</command>.</para>
+  </listitem>
+
+  <listitem>
+    <para>Add linking to <sgmltag>areaset</sgmltag>.</para>
+  </listitem>
+
+  <listitem>
+    <para>Add <sgmltag>emphasis</sgmltag> rendering in
+    <sgmltag>programlisting</sgmltag> and <sgmltag>screen</sgmltag>.</para>
+  </listitem>
+
+  <listitem>
+    <para>Add some logic to handle the graphics in equations. Add the
+    <parameter>alt.use</parameter> parameter.</para>
+  </listitem>
+
+  <listitem>
+    <para>Add some XeTeX support. One can use <option>-b xetex</option> to
+    compile with <command>xelatex</command>. The
+    <parameter>xetex.font</parameter> parameter is added to allow the user
+    to configure the fonts used by XeTeX. This feature may not work for
+    some ranges of unicode characters. This aspect will be improved in a next
+    release.</para>
+  </listitem>
+
+  <listitem>
+    <para>A number of bug fixes.</para>
+  </listitem>
+</itemizedlist>

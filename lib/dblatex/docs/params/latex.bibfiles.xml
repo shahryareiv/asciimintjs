@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="latex.bibfiles">
+  <refmeta>
+    <refentrytitle>latex.bibfiles</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>latex.bibfiles</parameter></refname>
+    <refpurpose>Defines the default BibTeX database to use</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/latex.bibfiles.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Defines the default BibTeX database to use. Used when the bibtex PI
+does not have a "bibfiles" attribute. See <xref linkend="sec-bibtex"/> for
+more details.</para>
+  </refsection>
+</refentry>

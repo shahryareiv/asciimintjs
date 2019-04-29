@@ -1,0 +1,2 @@
+<xsl:param name="newtbl.format.thead">\bfseries%
+</xsl:param>

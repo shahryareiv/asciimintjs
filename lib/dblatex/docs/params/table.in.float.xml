@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="table.in.float">
+  <refmeta>
+    <refentrytitle>table.in.float</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>table.in.float</parameter></refname>
+    <refpurpose>Use or emulate a float to display a formal table?</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/table.in.float.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+        
+    <para id="floating_table_def">Determines whether formal tables
+    float.  Floating tables do not necessarily appear in the output
+    document in the location in which they appear in the DocBook
+    input, they may move when this improves the overall document
+    layout.  Non-floating tables always appear in the rendered
+    document in the same place as they appear in the input DocBook
+    document.</para>
+
+    <para id="nonfloating_table_desc">Informal tables never float.
+    Tables that do not float are processed using the
+    <package>longtable</package> package.  Unlike the methods used to
+    process floating tables, tables processed with
+    <package>longtable</package> may span page boundaries.  Floating
+    tables may not cross page boundaries and so may not be larger than
+    a single page.</para>
+
+    <para id="longtable_limits">The <package>longtable</package>
+    package is limited in that titles must be positioned at the top of
+    the table.  This limits the positioning of non-floating table
+    titles to the top of the table.</para>
+
+    <para>When <parameter>table.in.float</parameter> is
+    <literal>0</literal> formal tables do not float.</para>
+
+    <para>The default is <literal>1</literal>, formal tables
+    float.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="literal.environment">
+  <refmeta>
+    <refentrytitle>literal.environment</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>literal.environment</parameter></refname>
+    <refpurpose>Latex environment used to format verbatim blocks</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/literal.environment.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>It specifies the Latex environment to use to render a verbatim
+    block.</para>
+    <para>Since <command>dblatex</command> uses the listings package 
+    capabilities to
+    handle the DocBook attributes, the specified environment must have the same
+    capabilities if written from scratch, but it is recommended to just extend
+    the listings environment with you own listings extension. See <xref
+    linkend="sec-literal-env"/> for more details.</para>
+    <para>The specified environment name must starts with
+    <literal>"lst"</literal>. Otherwise <command>dblatex</command> raises an
+    error and exits.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <para><parameter>literal.extensions</parameter>.</para>
+  </refsection>
+</refentry>

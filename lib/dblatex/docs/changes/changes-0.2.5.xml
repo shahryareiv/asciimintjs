@@ -1,0 +1,14 @@
+<itemizedlist>
+<listitem><para>Basic support for Chinese, Japanese, and Korean (CJK)
+languages. The CJK package must be installed, as well as the cyberbit fonts, to
+have this feature available.</para>
+</listitem>
+
+<listitem><para>Support native UTF8 latex compilation, thanks to the
+<literal>ucs</literal> package.</para></listitem>
+
+<listitem><para>Preamble code refactored. The expected benefit is to make
+dblatex more customizable.</para></listitem>
+
+<listitem><para>Some other minor improvements and bug fixes.</para></listitem>
+</itemizedlist>

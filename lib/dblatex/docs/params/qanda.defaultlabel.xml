@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="qanda.defaultlabel">
+  <refmeta>
+    <refentrytitle>qanda.defaultlabel</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>qanda.defaultlabel</parameter></refname>
+    <refpurpose>Sets the default for defaultlabel on QandASet.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/qanda.defaultlabel.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>If no <literal>defaultlabel</literal> attribute is specified on
+a <tag>qandaset</tag>, this value is used. It must be one of the legal
+values for the defaultlabel attribute, one from none, number or
+qanda. The default value is 'number'.
+</para>
+<para>Meaning</para>
+<para>qanda -   <sgmltag>question</sgmltag>s are labeled “Q:” and <tag>answer</tag>s are labeled “A:”. </para>
+<para>number -    The entries are enumerated. </para>
+<para>none -    No distinguishing label precedes Questions or Answers. 
+</para>
+  </refsection>
+</refentry>

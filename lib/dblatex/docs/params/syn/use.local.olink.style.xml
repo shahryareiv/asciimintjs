@@ -1,0 +1,1 @@
+<xsl:param name="use.local.olink.style" select="0"/>

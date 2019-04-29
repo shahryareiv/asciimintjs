@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="imagedata.file.check">
+  <refmeta>
+    <refentrytitle>imagedata.file.check</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>imagedata.file.check</parameter></refname>
+    <refpurpose>Make the latex compilation robust to missing images</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/imagedata.file.check.xml"/></programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>When set to 1 some tex code is added to ensure that latex compilation
+does not fail when the referenced imagedata file does not exist.</para>
+  </refsection>
+</refentry>

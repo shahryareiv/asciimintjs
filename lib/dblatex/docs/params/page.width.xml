@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry xml:id="page.width">
+<refmeta>
+<refentrytitle>page.width</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname><parameter>page.width</parameter></refname>
+<refpurpose>The width of the physical page</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <programlisting>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/page.width.xml"/>
+  </programlisting>
+</refsynopsisdiv>
+
+<refsection><info><title>Description</title></info>
+
+<para>The page width does not need to be specified when
+<parameter>paper.type</parameter> is set.</para>
+
+</refsection>
+</refentry>

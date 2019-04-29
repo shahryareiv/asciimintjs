@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="doc.lot.show">
+  <refmeta>
+    <refentrytitle>doc.lot.show</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname><parameter>doc.lot.show</parameter></refname>
+    <refpurpose>Specifies the Lists of Titles to display</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <programlisting>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" parse="text" href="syn/doc.lot.show.xml"/>
+    </programlisting>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Specifies which Lists of Titles should be printed after the Table of
+Content. The value is a comma separated list of the LoTs to show. The
+supported LoTs are "figure", "table", "equation", and "example". The list
+order represents the LoTs order in the output document.</para>
+  </refsection>
+</refentry>

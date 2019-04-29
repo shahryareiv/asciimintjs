@@ -1,0 +1,7 @@
+/Gemfile.lock
+/release/
+*.swp
+*.swo
+/samples/*.html
+/samples/*-ref.*
+pkg

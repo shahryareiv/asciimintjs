@@ -1,0 +1,11 @@
+<section>
+   <title>
+   Writing MathML equations
+  </title>
+  <para>
+   You can write MathML equations in a DocBook based document, by using the <ulink url="http://www.oasis-open.org/docbook/xml/mathml/index.1.shtml">MathML Module for DocBook XML</ulink> instead of the DocBook DTD.
+  </para>
+  <para>
+   dblatex now translates the MathML equations to latex by using the excellent stylesheets of the <ulink url="http://xsltml.sourceforge.net">XSLT MathML Library</ulink> by Vasil Yaroshevich. A large amount of tests from the <ulink url="http://www.w3.org/Math/testsuite/">W3C MathML Test Suite 2.0</ulink> is supported (657 of 712 tests). The test file used to validate the MathML stylesheets is provided in the package. 
+  </para>
+</section>
