@@ -3,7 +3,6 @@
 %-----------------------------------------------%
 
 \ProvidesPackage{asciimint}[2019/03/28 Shahryar]
-
 %This package provides :
 
 % amIsLTR
@@ -33,6 +32,10 @@
 
 %Some programming facilities, such as ifthenelse
 \RequirePackage{etoolbox}
+% Recommendation by:
+% https://tex.stackexchange.com/questions/507853/leavevmodeifvmode-undefined-for-xindy-texindy?answertab=active#tab-top  
+\robustify\enspace
+\robustify\TeX
 
 %Hacking filecontents environment to enable overwrite
 \RequirePackage{filecontents}
@@ -72,6 +75,7 @@
 %Some latex3 features
 \RequirePackage{expl3}
 \RequirePackage{xparse}
+
 
 %-----------------------------------------------%
 % Option Section (needs etoolbox before)
@@ -163,7 +167,8 @@
 
 \RequirePackage{trimclip}
 
-
+%creates lipsum text (blind text)
+\RequirePackage{lipsum}
 
 %It makes the text more readable and with font enhancement
 %------%[protrusion=true,expansion=true]
@@ -651,11 +656,28 @@
 %\RequirePackage[style=plain]{floatrow}
 %\floatsetup[longtable]{LTcapwidth=table}
 
+% \RequirePackage{newfloat}
+
+% \makeatletter
+% \NewDocumentCommand{\amMakeAllFloatsCentered}{}{%from here:https://tex.stackexchange.com/questions/2651/should-i-use-center-or-centering-for-figures-and-tables
+%   \g@addto@macro\@floatboxreset\centering%
+% }
+% \makeatother
+
 %the next element needs some space and cannot be put bottom of page, clearpage if needed
 \RequirePackage{needspace}
 
 %Layout 
 \RequirePackage{geometry}
+\makeatletter
+  \newlength\amLeftMargin
+  \newlength\amRightMargin
+  \newlength\amEnoughMarginWidth
+  \setlength\amLeftMargin{\Gm@lmargin}
+  \setlength\amRightMargin{\Gm@rmargin}
+  \setlength\amEnoughMarginWidth{40pt}
+\makeatother 
+
 
 %Varwidth environment
 \RequirePackage{varwidth}
@@ -699,6 +721,51 @@
 
 %putting a cap­tion to some­thing that's not a float.
 \RequirePackage{capt-of}
+
+%Overlay captions over figure
+\RequirePackage{overpic}
+
+
+%overlays caption on a corner of the figure  
+%dependencis: tufte fullwidth, overpic, adjustbox  
+%overlays caption on a corner of the figure  
+%dependencis: tufte fullwidth, overpic, adjustbox  
+\NewDocumentCommand{\amFullFigureWithOverlayCaption}{O{right} O{B}  m m O{#4} O{#3}}%#1h-alignment #2v-alignment #3filename #4caption #5caption-short  #6label
+{%
+\message{Asciimint: amFullFigureWithOverlayCaption with halign=#1 valign=#2 filname="#3" caption="#4" caption-short="#5" label=#6}  
+% \afterpage{% NOTE: created odd results
+  % \vspace*{\fill}%
+  \begin{adjustbox}{max width=\amFullWidthLength ,max height=\textheight,valign=m,float={figure}[htbp]} %minipage=[c][\amtextheight][s]{\amFullWidthLength},
+    \begin{fullwidth}%
+      \begin{overpic}[%
+%      percent, %
+    height=\textheight, %
+    width=\amFullWidthLength, %
+    keepaspectratio]{#3}%
+    \begin{adjustbox}{minipage=\marginparwidth,#1,valign=#2}% width=\marginparwidth 
+      \captionof{figure}[#5]{\protect{#4}\label{#6}\hyperlabel{#6}}%
+    \end{adjustbox}%
+  \end{overpic}
+\end{fullwidth}%
+\end{adjustbox}%
+  % \vspace*{\fill}
+% } %afterpage
+}  
+
+\DeclareDocumentEnvironment{amSinglePageCentered}{o}%#1 just consume it if someone passed [htbp]
+{%
+  \noindent%
+  \vspace*{\fill}%
+  \begin{fullwidth}%
+  % \begin{adjustbox}{max width=\amFullWidthLength ,max height=\textheight,valign=m,float={figure*}} %minipage=[c][\amtextheight][s]{\amFullWidthLength},
+    \begin{figure*}
+      
+}{%
+\end{figure*}
+% \end{adjustbox}%
+  \end{fullwidth}%
+  \vspace*{\fill}
+}
 
 %Wrap figures around text
 \RequirePackage{wrapfig}
@@ -837,37 +904,59 @@
 
 
 %Place a figure in two pages left and right
+%from: https://tex.stackexchange.com/questions/23860/how-to-include-a-picture-over-two-pages-left-part-on-left-side-right-on-right
 %---------% already \RequirePackage{capt-of}
 \RequirePackage[strict]{changepage}
+\RequirePackage{ifoddpage}%better than changepage? it should be loaded after changepage
 %---------% already \RequirePackage{graphicx}
 %---------% already \RequirePackage{adjustbox}
 \RequirePackage{afterpage}
 %---------% already \RequirePackage{placeins}
 %---------% already \RequirePackage{xcolor}
 \makeatletter
-\NewDocumentCommand{\amTwoPageFigure}{mmmm}{%
+\NewDocumentCommand{\amTwoPageFigure}{O{f} O{l} m m O{#4} O{r} O{#3}}{% #1 t/b/f top or bottom or full #2 width l/p line width or page width #3 filename #4 caption #5 toc caption #6 r/l/R/L caption location #7 label
+  % \leavevmode%trick from here:https://tex.stackexchange.com/questions/317689/odd-even-page-detection-fails-at-the-end-of-each-page
     \checkoddpage
     \ifoddpage
-        \expandafter\@firstofone
+        \message{AsciiMint: for the amTwoPageFigure the odd page was \thepage}
+        \expandafter\@firstofone%
     \else
-        \expandafter\afterpage
+    \message{AsciiMint: for the amTwoPageFigure the even page was \thepage}
+    \expandafter\afterpage%
     \fi
-    {\afterpage{%
+    {%\afterpage{%
+    \message{AsciiMint: for the amTwoPageFigure begin from \thepage}
     \if #1t%
         \if #2p%
             \thispagestyle{empty}%
             \afterpage{\thispagestyle{empty}}%
         \fi
     \fi
-    \begin{figure*}[#1]
+    \if #1f% Shahryar added this if
+        \if #2p%
+            \thispagestyle{empty}%
+            \afterpage{\thispagestyle{empty}}%
+        \fi
+    \fi
+    \if #1f% Shahryar added this if
+      \begin{figure*}%[t]%[p]
+    \else
+      \begin{figure*}[#1]
+    \fi
         \if #2p%
             \if #1t%
                 \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
             \fi
+            \if #1f%
+                \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
+            \fi
         \fi
+        \if #6l % if caption left page (bottom figure)
         \if #1b%
-            \captionof{figure}{#4}%
-        \fi
+            \captionof{figure}[#5]{#4}%
+            \label{#7}\hyperlabel{#7}%
+        \fi%
+        \fi%
         \makebox[\textwidth][l]{%
         \if #2p\relax
             \let\mywidth\paperwidth
@@ -876,21 +965,40 @@
             \let\mywidth\linewidth
         \fi
         \adjustbox{trim=0 0 {.5\width} 0,clip}{\includegraphics[width=2\mywidth]{#3}}}%
+        \if #6l% if caption right page (top or full figure)
         \if #1b\else
-            \captionof{figure}{#4}%
+            \captionof{figure}[#5]{#4}%
+            \label{#7}\hyperlabel{#7}%
+        \fi
         \fi
         \if #2p%
             \if #1b%
                 \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep\relax}%
             \fi
         \fi
-    \end{figure*}%
+\end{figure*}%
+% \if #1f%shahryar if
+%   \clearpage%
+% \fi
+  \if #1f% Shahryar added this if
+    \begin{figure*}%[t]%[p]
+  \else
     \begin{figure*}[#1]
+  \fi%
         \if #2p%
             \if #1t%
                 \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
             \fi
+            \if #1f%
+                \vspace*{-\dimexpr1in+\voffset+\topmargin+\headheight+\headsep\relax}%
+            \fi
         \fi
+        % \if #6r% if caption right page (bottom figure)
+        \if #1b%
+            \captionof{figure}[#5]{#4}%
+            \label{#7}\hyperlabel{#7}%
+        \fi
+        % \fi
         \makebox[\textwidth][l]{%
         \if #2p%
             \let\mywidth\paperwidth
@@ -899,13 +1007,22 @@
             \let\mywidth\linewidth
         \fi
         \adjustbox{trim={.5\width} 0 0 0,clip}{\includegraphics[width=2\mywidth]{#3}}}%
+        % \if #6r% if caption right page (top or full figure)
+        \if #1b\else
+            \captionof{figure}[#5]{#4}%
+            \label{#7}\hyperlabel{#7}%
+        \fi%
+        % \fi%
         \if #2p%
             \if #1b%
                 \vspace*{-\dimexpr\paperheight-\textheight-1in-\voffset-\topmargin-\headheight-\headsep\relax}%
             \fi
         \fi
-    \end{figure*}%
-    }}%
+\end{figure*}%
+% \if #1f%shahryar added
+%   \clearpage%
+% \fi
+}%}%end of afterpage and then surronding
 }
 \makeatother
 
@@ -933,12 +1050,16 @@
 %controls hyphenation
 \RequirePackage{hyphenat}%
 
+
+
 %============== TBD \amSI ==============
 %   SI Units. \amSI{10}{\hertz} results in ‘10Hz‘ 
 %==============================================
 %
 \RequirePackage{siunitx}
 
+%Be able to comment out environments
+\RequirePackage{comment}
 
 
 %============== \amCopyrightLine ==============
@@ -973,6 +1094,8 @@
 %=================================================================
 \newcommand{\amRomanNumUp}[1]{\uppercase\expandafter{\romannumeral#1}}
 \newcommand{\amRomanNumLow}[1]{\romannumeral#1\relax}
+
+\NewDocumentCommand{\amSmallSuperscript}{m}{\textsuperscript{\textit{\tiny\textcolor{amGrayCMYK}{#1}}}}
 %-----------------------------------------------------------------
 
 
@@ -1034,7 +1157,7 @@
 
 \DefineVerbatimEnvironment%
 {amVerbatimConsole}{Verbatim}
-{gobble=0,numbers=left,numbersep=2mm,framerule=1pt,frame=lines}
+{gobble=0,numbers=left,numbersep=2mm,framerule=1pt,frame=lines,fontsize=\footnotesize}
 
         %Shows SAS and R
           %\RequirePackage{SASnRdisplay}
@@ -1151,10 +1274,11 @@
 %OLD%  \leftskip=1.8em%
 %OLD%  \makebox[0pt][r]{\theenmark. \rule{0pt}{\dimexpr\ht\strutbox+\baselineskip}}%
 %OLD%}
-\RequirePackage[counter-format =Roman,totoc=false]{enotez}
+\RequirePackage{enotez}%
+\setenotez{counter-format=Roman,totoc=false}
 
 \NewDocumentCommand\amEndnote {m}{\endnote{#1}}
-\NewDocumentEnvironment{amEndnotesChapter}{O{End Notes}}%An endnote page (chapter)
+\NewDocumentEnvironment{amEndnotesChapter}{O{End Notes} O{r} O{References}}%An endnote page (chapter) #2 r we need a reference section 
   {%
   \thispagestyle{empty}% no header and footer
    %\chapter*{#1}%
@@ -1164,13 +1288,12 @@
    \printendnotes%[]
   }
   {%\par % end the paragraph
-  \clearpage%
+  \if #2r
+  \amBibSection{#3}[u]%
+  \fi
   }
 
 
-% smart quotations
-\RequirePackage[autostyle, english = american]{csquotes}
-\MakeOuterQuote{"}%use this as quotation
 
 %epigraph
 \RequirePackage{epigraph}
@@ -1267,6 +1390,12 @@
 %============== {amBlockQuote} ==========
 %   Quote in a block
 %=======================================
+% smart quotations
+\RequirePackage[autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}%use this as quotation
+% \SetBlockEnvironment{quote}
+% \SetCiteCommand{autocite}
+
 % \NewEnviron{amBlockQuote}[2]{%
 %   \begin{quote}%
 %   \BODY%
@@ -1289,8 +1418,12 @@
 % }
 \ExplSyntaxOn
 \DeclareDocumentEnvironment{amBlockQuote}{ O{} O{} }%
-  {\begin{quote}}%
+  {\begin{quote}}%already chanegd by csquote in SetBlockEnvironment (defult: quote)
+  % {\begin{displaycquote}}%
   {%
+  % \blockquote[][]{%
+
+
   \par%
   \hspace*{\fill}%
   \begin{varwidth}{0.75\linewidth}%
@@ -1304,14 +1437,19 @@
     \IfNoValueTF{#2}{}{\IfNoValueTF{#1}{}{,}\linebreak[3]\emph{#2}\par}
   }%
   \end{varwidth}%
+
+
+
+  % }%end of blockquote
   \end{quote}%
+  % \end{displaycquote}%
   }
 \ExplSyntaxOff
 
 
 %------------------------------------
 
- 
+
 %============== {amColophon} ==========
 %   Colophon Page
 %=======================================
@@ -1352,25 +1490,6 @@
   
 
 
-\DeclareDocumentEnvironment{amBlockQuote}{ O{} O{} }%
-  {\begin{quote}}%
-  {%
-  \par%
-  \hspace*{\fill}%
-  \begin{varwidth}{0.75\linewidth}%
-  \ifboolexpr{bool{amIsRTL}}%
-  {%
-    \tl_if_empty:nTF {#1}{}{\RaggedLeft\LRE{\textemdash}#1}
-    \tl_if_empty:nTF {#2}{}{\tl_if_empty:nTF {#1}{}{،}\linebreak[3]\emph{#2}\par}
-    % \RaggedLeft---#1، \linebreak[3]\emph{#2}\par%
-  }{%
-    \IfNoValueTF{#1}{}{\RaggedLeft\textemdash#1}
-    \IfNoValueTF{#2}{}{\IfNoValueTF{#1}{}{,}\linebreak[3]\emph{#2}\par}
-  }%
-  \end{varwidth}%
-  \end{quote}%
-  }
-  
 
 
 
@@ -1432,14 +1551,31 @@
 \makeatother%
 
 
+%Subtitle for chapter
+%dependenci relsize
+\NewDocumentCommand{\amChapterSubtitle}{m}{%
+{\newline\smaller[2]#1}
+}
 
+%Running head for chapter
+\NewDocumentCommand{\amChapterRunningHead}{m}{%
+\chaptermark{#1}
+}
 
-
-
+\NewDocumentCommand{\amBeginFromOddPage}{}{%
+\cleardoublepage%
+}
 
 %---------------------------------
 % Titles , Headers, Footers, ...
 %---------------------------------
+
+\NewDocumentCommand{\amChapterToC}{}{%
+  
+\begin{fullwidth}
+\localtableofcontents% requires etoc
+\end{fullwidth}
+}
 
 
 
@@ -1476,34 +1612,35 @@
 
 % chanage titles/sections/chap /table of content(toc)... (also loaded with tufte)
 \RequirePackage{titlesec} 
-\RequirePackage{titletoc}
+% \RequirePackage{titletoc}% we use etoc, so I commented this
 \usepackage[figure,table]{totalcount}% determines the number of tables or figures or if existy any
 \RequirePackage{etoc}%Maybe I should use only titletoc or only etoc
 
-% Formatting for main TOC (printed in front matter)
-% {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
-%\ifthenelse{\boolean{@tufte@toc}}{%
-  \titlecontents{part}% FIXME
-    [0em] % distance from left margin
-    {\vspace{1.999\baselineskip}\begin{fullwidth}\Large\rmfamily} % above (global formatting of entry)
-    {\color{Maroon}\contentslabel{2em}} % before w/label (label = ``II'')\
-    {} % before w/o label
-    {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
-  \titlecontents{chapter}%
-    [0em] % distance from left margin
-    {\vspace{1.414\baselineskip}\begin{fullwidth}\large\rmfamily} % above (global formatting of entry)
-    {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2'')
-    {\hspace*{2em}} % before w/o label
-    {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-    [\end{fullwidth}] % after
-  \titlecontents{section}% FIXME
-    [0em]% distance from left margin
-    {\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape}% above (global formatting of entry)
-    {\hspace*{2em}\contentslabel{2em}}% before w/label (label = ``2.6'')
-    {\hspace*{2em}}% before w/o label
-    {\rmfamily\upshape\qquad\thecontentspage}% filler + page (leaders and page num)
-    [\end{fullwidth}]% after
+%NOTE: WE USE etoc SO REMOVED titletoc
+% % Formatting for main TOC (printed in front matter)
+% % {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
+% %\ifthenelse{\boolean{@tufte@toc}}{%
+%   \titlecontents{part}% FIXME
+%     [0em] % distance from left margin
+%     {\vspace{1.999\baselineskip}\begin{fullwidth}\Large\rmfamily} % above (global formatting of entry)
+%     {\color{Maroon}\contentslabel{2em}} % before w/label (label = ``II'')\
+%     {} % before w/o label
+%     {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+%     [\end{fullwidth}] % after
+%   \titlecontents{chapter}%
+%     [0em] % distance from left margin
+%     {\vspace{1.414\baselineskip}\begin{fullwidth}\large\rmfamily} % above (global formatting of entry)
+%     {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2'')
+%     {\hspace*{2em}} % before w/o label
+%     {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+%     [\end{fullwidth}] % after
+%   \titlecontents{section}% FIXME
+%     [0em]% distance from left margin
+%     {\vspace{0\baselineskip}\begin{fullwidth}\large\rmfamily\itshape}% above (global formatting of entry)
+%     {\hspace*{2em}\contentslabel{2em}}% before w/label (label = ``2.6'')
+%     {\hspace*{2em}}% before w/o label
+%     {\rmfamily\upshape\qquad\thecontentspage}% filler + page (leaders and page num)
+%     [\end{fullwidth}]% after
 
 
 
@@ -1605,7 +1742,7 @@
 
 
 \makeatletter
-\NewDocumentCommand\amArticleTitle{}{
+\NewDocumentCommand\amArticleTitle{O{plostitle}}{
   \newpage
   \global\@topnum\z@% prevent floats from being placed at the top of the page
   \begingroup
@@ -1619,7 +1756,7 @@
       \gdef\@@author{\nohyphens{\large\scshape{\@author}}\par}%\sffamily\Large\allcaps{\@author}%\amChapterAuthor{\@author}
       \gdef\@@date{\sffamily\Large\allcaps{\@date}\par}%
     }{%
-      \gdef\@@title{\color{plostitle}\nohyphens{\LARGE\@title}\color{black}\par}%\itshape
+      \gdef\@@title{\color{#1}\nohyphens{\LARGE\@title}\color{black}\par}%\itshape
       \gdef\@@author{\nohyphens{\large\scshape{\@author}}\par}%\itshape\large\smallcaps{\@author}%\amChapterAuthor{\@author}%\nohyphens{\large\scshape#1}
       \gdef\@@date{\large\smallcaps{\@date}\par}%\itshape
     }%
@@ -1728,8 +1865,14 @@
 \makeatother
 
 \newrobustcmd{\mypartnotetext}{}%holds partnote text
+\newrobustcmd{\mypartnoteimage}{}%holds partnote text
 \newrobustcmd{\mypartnotecreate}{% creates partnote 
     \vspace*{\fill}%
+    % \hspace*{\fill}%
+    % \begin{varwidth}{0.6\linewidth}%
+    % \mypartnoteimage{}% the text goes here
+    % \end{varwidth}%
+    % \vspace*{\fill}%
     \hspace*{\fill}%
     \begin{varwidth}{0.6\linewidth}%
     \mypartnotetext{}% the text goes here
@@ -1740,11 +1883,16 @@
   %\dopartformat{\mypartnotecreate}
   %\apptocmd{\part}{\dopartformat{}}{}{}%resets after each \part command
 }
+\NewDocumentCommand{\amSetPartNoteFrontImage}{m}{%
+\renewrobustcmd{\mypartnotetext}{#1}%
+% \renewrobustcmd{\mypartnoteimage}{#1}%
+}
 \newcommand{\myresetpartnote}{% sets partnote and adjust the \part style
   \renewrobustcmd{\mypartnotetext}{}%
   %\dopartformat{\mypartnotecreate}
   %\apptocmd{\part}{\dopartformat{}}{}{}%resets after each \part command
 }
+
 \newcommand{\amPartEnding}{
   \message{amPartEnding is running}
   \bookmarksetup{startatroot}
@@ -1802,13 +1950,13 @@
     % \phantomsection%
     % \addcontentsline{toc}{chapter}{#1}% 
     % \addtocontents{toc}{\protect{\pdfbookmark[0]{#1}{toc}}}
-    \cleardoublepage%    
+    \cleardoublepage%use phantomsection with cleardoublepage: https://tex.stackexchange.com/questions/258969/hyperref-not-working-it-goes-to-wrong-page  
     \phantomsection%
     \addcontentsline{toc}{chapter}{#1}% 
     \tableofcontents%
   
     \iftotalfigures%
-      \cleardoublepage%    
+      \cleardoublepage%use phantomsection with cleardoublepage: https://tex.stackexchange.com/questions/258969/hyperref-not-working-it-goes-to-wrong-page    
       % \pdfbookmark[0]{#2}{lof}%
       \phantomsection%
       \addcontentsline{toc}{chapter}{#2}% 
@@ -1998,8 +2146,21 @@
 \NewDocumentCommand\amResetGls{}{\glsresetall[acronym]\PackageWarning{AsciiMint}{Glossary reseted \DTMnow}}
 
 
-%Gives subappendices environment, toc puts in toc first page
-\RequirePackage[header,title]{appendix}%toc,we put toc ourselves %NOTE:possible to conflict
+%Gives subappendices environment, toc puts in toc first page. Required by DBLatex conversion?
+% \RequirePackage[header,title]{appendix}%toc,we put toc ourselves %NOTE:possible to conflict
+\RequirePackage[ header,title]{appendix}%toc,we put toc ourselves %NOTE:possible to conflict, toc, titletoc,
+\DeclareDocumentEnvironment{amSubAppendix}{}{%
+  \section*{Appendices}%
+  % \addcontentsline{toc}{section}{Appendices}%
+  % \counterwithin{figure}{section}%
+  % \counterwithin{table}{section}%
+  \begin{subappendices}%
+}{
+  \end{subappendices}%
+  % \counterwithout{figure}{section}%
+  % \counterwithout{table}{section}%
+}
+
 
 
 
@@ -2015,6 +2176,10 @@
 \fi
 
 \RequirePackage{pdfpages}%sim­pli­fies the in­clu­sion of ex­ter­nal multi-page PDF doc­u­ments
+\NewDocumentCommand{\amIncludePDF}{o m}{
+  \includepdf[pages=-,pagecommand=\thispagestyle{amNormalPageStyle},#1]{#2}%
+}
+
 
 \RequirePackage{bookmark} %It was recommended by hyperref for better bookmarking
 
@@ -2033,9 +2198,10 @@
 %\RequirePackage{afterpage} %DOES not work Xelatex change color of only one
 
 
+
 %note: all said that there is no need for [pdftex]
 \RequirePackage{graphicx}%[pdftex]
-\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\DeclareGraphicsExtensions{.pdf,.PDF,.png,.PNG,.jpg,.JPG}
 
 % max width hack from here:
 % https://tex.stackexchange.com/questions/86350/includegraphics-maximum-width
@@ -2079,14 +2245,21 @@
 %      \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 %   }
 %
-  \pgfmathdeclarefunction{gauss3}{3}{%
-    \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
-  }
+  % \pgfmathdeclarefunction{gauss3}{3}{%
+  %   \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+  % }
 
 
 
-% Extended file name support for graphics (e.g. spaces)
-\RequirePackage[space]{grffile}
+
+  % Extended file name support for graphics (e.g. spaces)
+  % A bug in Lua and grffile, do not use grffile with lua
+  % https://tex.stackexchange.com/questions/511368/is-grffile-broken-in-luatex-latest-update
+  \ifluatex
+  \else
+  \RequirePackage[space]{grffile}
+  \fi
+% \endinput
 
 
 % background, Needs Tikz package
@@ -2143,15 +2316,43 @@
 
 \RequirePackage{booktabs} %better tables
 \RequirePackage{tabularx} %better columns in tables
+\RequirePackage{tabulary} %better tabularx?
+
+%long table
 \RequirePackage{longtable} %breakable tables across pages
+\RequirePackage{ltablex}% X feature + tabularx redefined
+%patch longtable caption command to adjust the font size wift tufte-latex
+\makeatletter
+\ifboolexpr{bool{amIsTufte}}{%
+\def\LT@c@ption#1[#2]#3{%
+  \LT@makecaption{\@tufte@caption@font#1}\fnum@table{\@tufte@caption@font#3}%
+  \def\@tempa{#2}%
+  \ifx\@tempa\@empty\else
+     {\let\\\space
+     \addcontentsline{lot}{table}{\protect\numberline{\thetable.}{#2}}}%
+  \fi}
+}{}
+\makeatother
+
+
+
 \RequirePackage{threeparttablex} % tables with footnote part (treeparttable with longtable support)
 \RequirePackage{multirow}
 \RequirePackage{colortbl}%coloring the table
 \RequirePackage{array} %needed for some table things
 %\RequirePackage{tablefootnote} % facilities for footnote  in tables PROBLEMS!
 
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}%raggedright
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+% \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash}p{#1}}
+% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash}p{#1}}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newcounter{amCounterTableItem}[table]
+\NewDocumentCommand{\amTableItemNum}{ O{arabic} }{
+    \stepcounter{amCounterTableItem}\arabic{amCounterTableItem}%
+}
 
 %Some table style
 \newcommand{\ZtabstyleAA}{%
@@ -2264,6 +2465,14 @@
 \NewDocumentCommand\amCitePwKey{m}{\f_amcitepwkey{#1}}  
 \ExplSyntaxOff  
 
+\NewDocumentCommand{\amFullCite}{m}{%
+    \fullcite{#1}%
+}
+\NewDocumentCommand\amAuthorYearTitleCite{m}{%
+    \nocite{#1}(\citeauthor*{#1} \citeyear{#1}), \citetitle{#1}%\textquote{}\autocite{#1}
+    % \fullcite{#1}%
+}
+
 
 \newcommand{\amBibFileVal}{library}
 \newcommand{\amBibStyleVal}{chicago-authordate}%plainnat
@@ -2337,6 +2546,7 @@
 
   \cleardoublepage%it helps for correct toc
   \pagestyle{mybibpagestyle}%
+  \phantomsection%
   \addcontentsline{toc}{chapter}{#1}%
   %
   %\amBibStyle{\amBibStyleVal}% plainnat
@@ -2353,7 +2563,7 @@
   }%
 \makeatother%
 
-\NewDocumentCommand{\amBibSection}{m}{%
+\NewDocumentCommand{\amBibSection}{m O{n}}{%#2 number/unnumbered n/u
   \renewcommand{\bibname}{#1}
   \renewcommand{\refname}{#1}
   %
@@ -2362,7 +2572,12 @@
   %\amPrintBib[#1]%
   %\amBibStyle{chicago-authordate}% NOT HERE! chicago-authordate \amBibStyleVal
   %\amBibFile{library.bib}%  NOT HERE library.bib \amBibFileVal
+  \FloatBarrier%dump all floats before reference!
+  \if #2n%
   \section{#1}%
+  \else%
+  \section*{#1}%
+  \fi%
   \amPrintBib%[References]
   %\bibliographystyle{chicago-authordate}
   %\bibliography{library}
@@ -2385,7 +2600,10 @@
 
 
 %Math things
-\RequirePackage{amsmath}
+% \RequirePackage{amsmath}
+\RequirePackage{mathtools}%replaces amsmath
+\RequirePackage{amssymb}%more math symbols
+% \RequirePackage{unicode-math}%only works in xetex and luatex, we load it after font definition in the template
 
 % refer here https://tex.stackexchange.com/questions/229355/algorithm-algorithmic-algorithmicx-algorithm2e-algpseudocode-confused 
 %\RequirePackage{algorithm}%float wrapper for algorithms.% CONFLICT with floatrow
@@ -2404,7 +2622,7 @@
 
 
 %\cref a word is placed in front of the reference according to the type of reference: fig. for figures, eq. for equations
-\RequirePackage{cleveref}
+\RequirePackage[sort,nameinlink]{cleveref}
 \crefname{appchapter}{Appendix}{Appendices}
 \crefname{equation}{equation}{equations}
 \crefname{table}{table}{tables}
@@ -2494,16 +2712,43 @@
 \amBreak%
 %
 % \begin{tcolorbox}[breakable,colback=plosbluegray,frame hidden, interior hidden,boxrule=0pt]%frame empty,
-\begin{myabstractbox}
+\begin{amAbstractBox}
 \section*{#1}%
 % \addcontentsline{toc}{section}{\protect\numberline{}#1
 %
 }{%
 % \BODY%
 % \end{tcolorbox}%
-\end{myabstractbox}
+\end{amAbstractBox}
 %
 }
+
+\NewDocumentEnvironment{amCoverBlock}{ O{Summary} }
+{%
+  % \amBreak%
+% \vspace*{\stretch{1}}% some space at the top 
+\begin{fullwidth}
+\begin{amAbstractBox}%
+  % \begin{doublespace}%
+    \section*{#1}%
+}{%
+% \end{doublespace}%
+\end{amAbstractBox}
+  \end{fullwidth}
+% \par% end the paragraph
+% \vspace{\stretch{3}% space at bottom is three times that at the top
+% \cleardoublepage%
+}
+
+\NewDocumentEnvironment{amVSkip}{ O{bigskip} }
+{%
+\par \bigskip%
+}
+
+
+
+
+
 
 \newenvironment{myabstract}[1][Abstract]%
   {\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray,frame empty]\section*{#1}}%, frame hidden
@@ -2512,8 +2757,8 @@
 %  {\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray, frame empty]\section*{#1}}%, frame hidden
 %  {\end{tcolorbox}}
 
-\newtcolorbox{myabstractbox}{colframe=white,frame hidden,breakable,colback=plosbluegray,frame empty}  
-\NewDocumentEnvironment{amChapterAbstract}{O{Abstract}}{\begin{myabstractbox}\section*{#1}}{\end{myabstractbox}}  
+\newtcolorbox{amAbstractBox}{colframe=white,frame hidden,breakable,colback=plosbluegray,frame empty}  
+\NewDocumentEnvironment{amChapterAbstract}{O{Abstract}}{\begin{amAbstractBox}\section*{#1}}{\end{amAbstractBox}}  
 
 
 
@@ -2615,7 +2860,8 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
     coltitle=black,
     frame hidden,
     enhanced,
-    breakable,
+    % breakable, thumbnail should not be breakable(?), but float!
+    float,
     colback=verylightgray
   }{%
     % overlay={
@@ -2635,7 +2881,8 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
     enhanced,
     % colframe=white,
     frame hidden,
-    breakable,
+    % breakable, thumbnail should not be breakable(?) but float!
+    float,
     colback=verylightgray,
     % every float=\centering,
     parbox=false,%
@@ -2654,6 +2901,7 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
 }%[1][Box] 
 \NewDocumentEnvironment{amGrayBoxThumbnail}{O{}}{%
   \begin{amGrayBoxBasicThumbnail}[#1]%
+    \phantomsection%
     \insidetcolorboxtrue%
   }{
     \insidetcolorboxfalse%
@@ -2719,7 +2967,7 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
     % \begin{figure*}[htbp]
     % \tcblower  
     \imgevalsize{#2}\includegraphics[width=0.95\columnwidth,height=\imgheight,keepaspectratio=true]{#2}%
-    \IfValueT{#3}{\amNoLabelCaption{#3}}
+    \IfValueT{#3}{\captionof{figure}[#3]{#3}}
     % \end{figure*}
   
 }
@@ -2728,14 +2976,23 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
 
 
 
-\NewDocumentEnvironment{amFullWidth}{}{\begin{fullwidth}}{\end{fullwidth}}%needs tufte 
+\NewDocumentEnvironment{amFullWidth}{}{\begin{fullwidth}}{\end{fullwidth}}%needs tufte
+
+\makeatletter
+\newlength{\amFullWidthLength}
+\ifboolexpr{bool{amIsTufte}}{%
+  \AtBeginDocument{\setlength{\amFullWidthLength}{\@tufte@fullwidth}}
+}{
+  \AtBeginDocument{\setlength{\amFullWidthLength}{\textwidth}}  
+} 
+\makeatother
 
 
 \newenvironment{mysummarypoints}%
 {\begin{tcolorbox}[frame empty,breakable,colback=plosbluegray]}
 {\end{tcolorbox}} 
 
-\NewDocumentCommand\amAside{m}{%
+\NewDocumentCommand\amAside{m O{h}}{% #2 h: here, n: nextpage
   \ifinsidetcolorbox
     %float version
     \PackageWarning{Asciimint}{I eliminated the following text in marginenote (amAside) because it was in a float: \newline}%
@@ -2743,16 +3000,35 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
     % \ifinner%
     \PackageWarning{Asciimint}{amAside in non-float mode}%
     % non float version
-    \marginnote[8.0ex]{%[1.2ex]this offsets -1.2ex to zero
-    %---%\small\selectfont\mygraytext{#1}%
-    {%
-    %\noindent
-    \begin{FlushLeft}%
-      %\large
-      :\nohyphens{\amDGray{\textit{#1}}}%
-    \end{FlushLeft}%
-    }%
-  }%
+    \if #2h
+    \protect\marginnote[5.0ex]{%8.0ex%for marginnote [1.2ex]this offsets -1.2ex to zero
+    % \leavevmode\marginpar{%
+      %---%\small\selectfont\mygraytext{#1}%
+      {%
+      %\noindent
+      \begin{FlushLeft}%
+        %\large
+        :\nohyphens{\amDGray{\textit{#1}}}%
+      \end{FlushLeft}%
+      }%
+    }
+    \fi%#2n
+    \if #2n
+    \afterpage{%
+    \protect\marginnote[2.0ex]{%8.0ex%for marginnote [1.2ex]this offsets -1.2ex to zero
+    % \leavevmode\marginpar{%
+      %---%\small\selectfont\mygraytext{#1}%
+      {%
+      \leavevmode
+      \begin{FlushLeft}%
+        %\large
+        :\nohyphens{\amDGray{\textit{#1}}}%
+      \end{FlushLeft}%
+      }%
+    }
+    }%afterpage
+    \fi
+
   \fi
   %---%
   %{\marginpar[1\baselineskip]{%
@@ -2866,6 +3142,9 @@ list type=\noexpand\currentseclevel% I have defined currentseclevel from https:/
 
 % AsciiMint Colorful Text
 \providecommand{\amRed}[1]{\textcolor{myred}{#1}}
+\NewDocumentCommand{\amColorRed}{m}{%
+\amRed{#1}%
+}
 \providecommand{\amBlue}[1]{\textcolor{myblue}{#1}}
 \providecommand{\amGray}[1]{\textcolor{gray}{#1}}
 \providecommand{\amDGray}[1]{\textcolor{darkgray}{#1}}

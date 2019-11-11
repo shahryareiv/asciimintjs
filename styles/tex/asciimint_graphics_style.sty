@@ -32,9 +32,12 @@
 
 \ifxetexorluatex%
   \RequirePackage{fontspec}
+
+  %Problem in texlive 2019
   \RequirePackage[cmintegrals,cmbraces]{newtxmath}
   \RequirePackage{ebgaramond-maths}  
   \defaultfontfeatures{Mapping=tex-text, Numbers=Lining}   
+
   % \setmainfont[Contextuals=NoAlternate]{EB Garamond}%lining vs OldStyle
   % \setmainfont[Contextuals=NoAlternate]{Optima}%lining vs OldStyle
   \setmainfont[Contextuals=NoAlternate]{Linux Biolinum}%lining vs OldStyle

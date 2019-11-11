@@ -1,0 +1,55 @@
+%-----------------------------------------------%
+%Asciimint Latex Package Extension, an style in toc
+% mostly borrowed from ....
+%-----------------------------------------------%
+
+\ProvidesPackage{asciimint_extension_toc}[2019/07/08 Shahryar]
+
+\newlength{\tocleft}
+\setlength{\tocleft}{3cm}
+
+\newlength{\tocsep}
+\setlength{\tocsep}{2em}
+
+
+\etocsetstyle{part}{\vspace{3ex}}{}{{\makebox[0pt][r]
+                              {\rmfamily\footnotesize\textcolor{lightgray}{\textsc{part}}\  \textcolor{black}{\LARGE\rmfamily\etocnumber}\hspace{\tocsep}}%\bfseries %\partname
+                     {\textsc{\LARGE\etocname}}\kern1em\relax\textbf{\color{black}\etocpage}\par}}{}
+
+% to avoid possible line breaks between chapter (or part) name and page number
+% replace \quad by \kern1em\relax
+
+\etocsetstyle{chapter}{}{\vspace{1.5\baselineskip}}{ \etocifnumbered%\vspace{1.5\baselineskip}
+%							\vspace{2ex} %
+%                             \makebox[0pt][r]
+%                               {{\scshape\small\color{gray}\chaptername}\ \etocnumber\hspace{\tocsep}}}
+%%                             {\ifcase\TEMP
+%%                              \def\TEMP{1}\or\def\TEMP{2}%
+%%                              \makebox[0pt][r]
+%%                                  {\parbox[t]{\dimexpr\tocleft-\tocsep\relax}
+%%                                   {\raggedleft Introductory\\ \strut \chaptername}%
+%%                                   \hspace{\tocsep}}\fi
+%%                              }%
+%%							}%
+%                              {{\etocname\kern1em\relax\color{red}\etocpage}}\par%\textbf
+%                             \etocifnumbered{}{\vspace{2ex}}}{\vspace{1.5\baselineskip}}
+                             {\makebox[0pt][r]
+                               {{\rmfamily\footnotesize\textcolor{lightgray}{\textsc{chapter}}}\ \etocnumber\hspace{\tocsep}}}
+                             {%\ifcase\TEMP
+                              %\def\TEMP{1}\or\def\TEMP{2}%
+                              %\makebox[0pt][r]
+                              %    {\parbox[t]{\dimexpr\tocleft-\tocsep\relax}
+                              %     {\raggedleft Introductory\\ \strut \chaptername}%
+                              %     \hspace{\tocsep}}\fi
+                              }\etocname\kern1em\relax\textbf{\textcolor{black}{\etocpage}}\par
+                             \etocifnumbered{}{\vspace{2ex}}}{\vspace{1.5\baselineskip}}
+
+
+\etocsetstyle{section}{}{}{\makebox[0pt][r]{\hspace{\tocsep}}%
+                           \etocnumber\hspace{\tocsep}\etocname\kern1em{\textbf{\textcolor{black}{\etocpage}}}\par}{}
+
+\etocsettocstyle {\begin{fullwidth}\noindent{\LARGE \contentsname}\par %\sffamily
+                  \thispagestyle{empty}%
+%                  \noindent\rule{\dimexpr\tocleft-\tocsep}{1pt}
+                  \par\vspace{3ex}%
+                  \leftskip\tocleft\parindent0pt\def\TEMP{0}}{\end{fullwidth}}

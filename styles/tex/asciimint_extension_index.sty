@@ -1,0 +1,139 @@
+%-----------------------------------------------%
+%Asciimint Latex Package Extension, creating index for authors, titles, and journals
+% mostly borrowed from https://www.texdev.net/2010/03/08/biblatex-numbered-citations-as-footnotes/
+%-----------------------------------------------%
+
+\ProvidesPackage{asciimint_hack_index}[2019/07/08 Shahryar]
+
+
+%I do this in the asciimint.sty, so I skip it here. No idea if double robustify makes a proboem
+% \RequirePackage{etoolbox}
+% Recommendation by:
+% https://tex.stackexchange.com/questions/507853/leavevmodeifvmode-undefined-for-xindy-texindy?answertab=active#tab-top  
+% \robustify\enspace
+% \robustify\TeX
+
+
+
+%------------------------
+% index things
+%------------------------
+	%setup index
+	\RenewDocumentCommand \amIndex { O{Index} }%
+	{%
+		\PackageWarning{AsciiMint}{amIndex started \DTMnow}%
+		% \chapter*{#1}
+		\ifboolexpr{bool{amIsTufte}}{%
+			\begin{fullwidth}%
+				% \printindex%[\indexname]%\indexname
+				% \printindex[\jobname]%[\indexname]%\indexname
+				\printindex[author]%
+				\printindex[title]%
+				\printindex[journaltitle]%
+			\end{fullwidth}%
+		}{%
+			%\chapter*{#1}
+			% \message{Printindex, author, title, and the rest}
+			% \printindex%[\indexname]%
+			\printindex[author]%
+			\printindex[title]%
+			\printindex[journaltitle]%
+			}%
+		\PackageWarning{AsciiMint}{amIndex finished \DTMnow}%
+	}
+
+
+		% \begin{filecontents*}{general.xdy}
+		% 	(require "tex/inputenc/utf8.xdy")
+		% 	(require "texindy.xdy")
+			
+		% 	(require "page-ranges.xdy")
+		% 	(require "book-order.xdy")
+		% 	(markup-index :open  "~n
+		% 	\begin{theindex}
+		% 		\providecommand*\lettergroupDefault[1]{}
+		% 		\providecommand*\lettergroup[1]{%
+		% 			\textsf{#1}
+		% 			\nopagebreak
+		% 		}
+		% 		~n"
+		% 		:close "~n~n\end{theindex}~n"
+		% 	:tree)
+		% \end{filecontents*}
+		
+		\begin{filecontents*}{author.xdy}
+		(require "tex/inputenc/utf8.xdy")
+		(require "texindy.xdy")
+		
+		(require "page-ranges.xdy")
+		(require "book-order.xdy")
+		(markup-index :open  "~n
+		\begin{theindex}
+			\providecommand*\lettergroupDefault[1]{}
+			\makeatletter
+			\providecommand*\leavevmodeifvmode{\leavevmode@ifvmode}
+			\makeatother
+			\renewcommand*\lettergroup[1]{%
+			\textsc{\Large#1}
+			\nopagebreak
+			}
+			~n"
+			:close "~n~n\end{theindex}~n"
+		:tree)
+		\end{filecontents*}
+			
+		\begin{filecontents*}{title.xdy}
+		(require "tex/inputenc/utf8.xdy")
+		(require "texindy.xdy")
+		
+		(require "page-ranges.xdy")
+		(require "book-order.xdy")
+		(markup-index :open  "~n
+		\begin{theindex}
+			\providecommand*\lettergroupDefault[1]{}
+			\makeatletter
+			\providecommand*\leavevmodeifvmode{\leavevmode@ifvmode}
+			\makeatother
+			\renewcommand*\lettergroup[1]{%
+			\textsc{\Large#1}
+			% #1
+				\nopagebreak
+			}
+		~n"
+			:close "~n~n\end{theindex}~n"
+		:tree)
+		\end{filecontents*}
+
+				
+		\begin{filecontents*}{journaltitle.xdy}
+			(require "tex/inputenc/utf8.xdy")
+			(require "texindy.xdy")
+			
+			(require "page-ranges.xdy")
+			(require "book-order.xdy")
+			(markup-index :open  "~n
+			\begin{theindex}
+				\providecommand*\lettergroupDefault[1]{}
+				\makeatletter
+				\providecommand*\leavevmodeifvmode{\leavevmode@ifvmode}
+				\makeatother
+				\renewcommand*\lettergroup[1]{%
+				\textsc{\Large#1}
+					% #1
+					\nopagebreak
+				}
+				~n"
+				:close "~n~n\end{theindex}~n"
+			:tree)
+			\end{filecontents*}
+		
+		
+	\indexsetup{level=\chapter*,toclevel=chapter}%,noclearpage
+	%this does not have a name=, so it is the default index(?)
+	\makeindex[intoc, title={Index: General}, options=-M general  -C utf8]% , options=-M general  -C utf8  , options=-M default  -C utf8 in toc,generalstyle  -L english -C utf8 -M lang/english/utf8 
+	% \makeindex[intoc, title={Index: General}, options=-M \jobname  -C utf8]% , options=-M general  -C utf8  , options=-M default  -C utf8 in toc,generalstyle  -L english -C utf8 -M lang/english/utf8 
+	\makeindex[intoc, name=author, title={Index: Authors}, options=-M author  -C utf8 ]%-L english -C utf8 -M lang/english/utf8 
+	\makeindex[intoc,  name=title, title={Index: Titles}, columns=1, options=-M title  -C utf8 ]%-L english -C utf8 -M lang/english/utf8 
+	\makeindex[intoc,  name=journaltitle, title={Index: Journals, Books, and other Sources}, columns=1, options=-M journaltitle  -C utf8 ]%-L english -C utf8 -M lang/english/utf8 
+%------------------------
+

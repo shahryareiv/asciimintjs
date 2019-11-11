@@ -1,0 +1,464 @@
+%-----------------------------------------------%
+%Asciimint Latex Package Extension, citation index, inline fullcite, superscript citations with author-year on margine, colored gray
+% mostly borrowed from https://www.texdev.net/2010/03/08/biblatex-numbered-citations-as-footnotes/
+%-----------------------------------------------%
+
+\ProvidesPackage{asciimint_hack_biblatex}[2019/07/08 Shahryar]
+
+\ExecuteBibliographyOptions{
+  % For "style=numeric-comp" I have used PassOptionsToPackage
+  citetracker=true,%permits ifciteseen to work
+  sorting=none,% used by the hack
+  autocite=superscript,%superscript foottext
+  indexing=true,%cite
+  autopunct=true,
+  block=space%
+  }%backref=true
+\DeclareAutoPunctuation{.,;:!?}	
+
+
+%I do this in the asciimint.sty, so I skip it here. No idea if double robustify makes a proboem
+% \RequirePackage{etoolbox}
+% Recommendation by:
+% https://tex.stackexchange.com/questions/507853/leavevmodeifvmode-undefined-for-xindy-texindy?answertab=active#tab-top  
+% \robustify\enspace
+% \robustify\TeX
+
+
+
+% Break line after Uppercase or Lowercase in a long URL
+% From here:https://tex.stackexchange.com/questions/134191/line-breaks-of-long-urls-in-biblatex-bibliography
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+
+
+%\bibliographystyle{\bibliographyStyle} % plainnat
+
+% \RequirePackage[side, marginal,ragged,stable]{footmisc}% para --- side, marginal
+\RequirePackage{footnote}
+\makesavenoteenv{figure}% saves footnotes in figure for outside
+\makesavenoteenv{figure*}% 
+\makesavenoteenv{table}% 
+\makesavenoteenv{table*}% 
+\makesavenoteenv{quote}% 
+\makesavenoteenv{amBlockQuote}% 
+% \RequirePackage{bigfoot}	%[perpage]
+	
+\makeatletter
+
+%------------------------------------------------------------------------------------------------------------
+% A hack to fix problem of citation in figure captions to make them like normal sidenotes
+% from here https://tex.stackexchange.com/questions/292721/tufte-latex-biblatex-citations-in-captions
+%------------------------------------------------------------------------------------------------------------
+
+
+  % \long\def\@caption#1[#2]#3{%
+  %   \expandafter\ifx\csname if@capstart\expandafter\endcsname
+  %                   \csname iftrue\endcsname
+  %     \global\let\@currentHref\hc@currentHref
+  %   \else
+  %     \hyper@makecurrent{\@captype}%
+  %   \fi
+  %   \@ifundefined{NR@gettitle}{%
+  %     \def\@currentlabelname{#2}%
+  %   }{%
+  %     \NR@gettitle{#2}%
+  %   }%
+  %   \par\addcontentsline{\csname ext@#1\endcsname}{#1}{%
+  %     \protect\numberline{\csname the#1\endcsname}{\ignorespaces #2}%
+  %   }%
+  %   \begingroup
+  %     \toggletrue{blx@footnote}%
+  %     \@parboxrestore
+  %     \if@minipage
+  %       \@setminipage
+  %     \fi
+  %     \@tufte@caption@font\@tufte@caption@justification%
+  %     \expandafter\ifx\csname if@capstart\expandafter\endcsname
+  %                     \csname iftrue\endcsname
+  %       \global\@capstartfalse
+  %       %\@makecaption{\csname fnum@#1\endcsname}{\ignorespaces#3}%
+  %       \noindent\csname fnum@#1\endcsname: \ignorespaces#3%
+  %     \else
+  %       %\@makecaption{\csname fnum@#1\endcsname}{%
+  %       \noindent\csname fnum@#1\endcsname:
+  %         \ignorespaces
+  %         \ifHy@nesting
+  %           \expandafter\hyper@@anchor\expandafter{\@currentHref}{#3}%
+  %         \else
+  %           \Hy@raisedlink{%
+  %             \expandafter\hyper@@anchor\expandafter{%
+  %               \@currentHref
+  %             }{\relax}%
+  %           }%
+  %           #3%
+  %         \fi
+  %       %}%
+  %     \fi
+  %     \par
+  %   \endgroup
+  % }
+
+  % \renewcommand\@footnotetext[2][0pt]{%
+  % % F1
+  %   \marginpar{%
+  %   % \marginnote{%
+  % % F2  
+  %     \hbox{}\vspace*{#1}%
+  %     \def\baselinestretch {\setspace@singlespace}%
+  %     \reset@font\footnotesize%
+  %     \@tufte@margin@par% use parindent and parskip settings for marginal text
+  %     \vspace*{-1\baselineskip}\noindent%
+  %     \protected@edef\@currentlabel{%
+  %        \csname p@footnote\endcsname\@thefnmark%
+  %     }%
+  %     \color@begingroup%
+  %        \toggletrue{blx@footnote}%
+  %        \@makefntext{%
+  %          \ignorespaces#2%
+  %        }%
+  %     \color@endgroup%
+  %   }%
+  % }%
+
+
+
+%------------------------------------------------------------------------------------------------------------
+% \makeatother
+
+
+
+
+%------------------------------------------------------------------------------------------------------------
+%  indexing
+%------------------------------------------------------------------------------------------------------------
+
+
+	%Modify biblatex commands for a desired indexing
+
+	% \makeatletter
+	% \@ifpackageloaded{biblatex_legacy}
+	%   {\DeclareIndexNameFormat{default}{%
+	%      \usebibmacro{index:name}{\index[author]}{#1}{#3}{#5}{#7}}}
+	%   {\DeclareIndexNameFormat{default}{%
+	%      \usebibmacro{index:name}{\index[author]}
+	%        {\namepartfamily}
+	%        {\namepartgiven}
+	%        {\namepartprefix}
+	%        {\namepartsuffix}}}
+	% \makeatother
+		
+	% \DeclareIndexNameFormat{default}{%
+	%   \usebibmacro{index:name}
+	%     {\index}%nameindex names
+	%     {\namepartfamily}
+	%     {\namepartgiven}
+	%     {\namepartprefix}
+	%     {\namepartsuffix}
+	% }
+  
+  
+
+
+
+
+	\DeclareIndexNameFormat{author}{%
+		\usebibmacro{index:name}
+			{\index[author]}%nameindex
+			{\namepartfamily}
+			{\namepartgiven}
+			{\namepartprefix}
+			{\namepartsuffix}
+	}
+
+	\DeclareIndexFieldFormat{indextitle}{%indextitle
+		\usebibmacro{index:title}{\index[title]}{{\textendash}\enspace\textnormal{#1}}}%textnormal changes it back from italic 
+
+
+	% Publishing Journal ?	
+	\DeclareIndexFieldFormat{journaltitle}{%
+		% \usebibmacro{journal}
+		{\index[journaltitle]{#1}}}
+		\DeclareIndexFieldFormat{maintitle}{%
+		% \usebibmacro{book}
+		{\index[journaltitle]{#1}}}
+		\DeclareIndexFieldFormat{booktitle}{%
+		% \usebibmacro{book}
+		{\index[journaltitle]{#1}}}
+
+
+
+
+	\renewbibmacro*{citeindex}{%
+		% \ifboolexpr{ test {\ifciteindex} and not test {\iffootnote} }
+		\ifciteindex%
+			{\indexnames{labelname}%
+				\indexfield{indextitle}%
+				\indexfield{journaltitle}%		 
+				\indexfield{maintitle}%		 booktitle
+				\indexfield{booktitle}%		 booktitle
+				}{}%
+	}
+	\renewbibmacro*{bibindex}{%
+		\ifbibindex%
+			{\indexnames{author}%
+			\indexnames{editor}%
+			\indexnames{editora}%
+			\indexnames{editorb}%
+			\indexnames{editorc}%
+			\indexfield{indextitle}}%
+			{}
+	}
+	% \RenewDocumentCommand\amIndex{O{Index}}
+	% {
+	% 	\message{Asciimint: printing \indexname and other indices}
+	% 	\ifboolexpr{bool{amIsTufte}}{
+	% 		\begin{fullwidth}
+	% 			\printindex[\indexname]%\indexname
+	% 			\printindex[author]%
+	% 			\printindex[title]%
+	% 		\end{fullwidth}
+	% 	}{
+	% 	%\chapter*{#1}
+	% 	% \message{Printindex, author, title, and the rest}
+	% 	\printindex[\indexname]
+	% 	\printindex[author]
+	% 	\printindex[title]
+
+	% 	}
+	% }
+%------------------------------------------------------------------------------------------------------------
+
+
+
+%------------------------------------------------------------------------------------------------------------
+%  indexing
+%------------------------------------------------------------------------------------------------------------
+
+
+	\DeclareCiteCommand{\fullcite}
+		{\usebibmacro{prenote}}
+		{\clearfield{url}%
+		\clearfield{pages}%
+		\clearfield{pagetotal}%
+		\clearfield{edition}%
+		\clearfield{labelyear}%
+		\usedriver
+			{\DeclareNameAlias{sortname}{default}}
+			{\thefield{entrytype}}}
+		{\multicitedelim}
+		{\usebibmacro{postnote}}
+
+
+%------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+	
+%------------------------------------------------------------------------------------------------------------
+
+  % \makeatletter
+
+
+  \DeclareCiteCommand{\notefullcite}[\mkbibbrackets]
+    {\usebibmacro{cite:init}%
+    \usebibmacro{prenote}%
+    }%
+    {\usebibmacro{citeindex}%
+    \usebibmacro{notefullcite}%
+    \usebibmacro{cite:comp}%
+    }%
+    {}%
+    {\usebibmacro{cite:dump}%
+    \usebibmacro{postnote}%
+    }%
+
+  \newbibmacro*{notefullcite}{%
+    \ifciteseen
+      {}
+      {\footnotetext[\thefield{labelnumber}]{%
+        \usedriver{}{\thefield{entrytype}}.}}%
+  }
+
+        
+
+  \DeclareCiteCommand{\supercite}[\mkbibcolouredsuperscript]%\cbx@superscript
+    {\usebibmacro{cite:init}%
+    \let\multicitedelim=\supercitedelim
+    \iffieldundef{prenote}
+      {}
+      {\BibliographyWarning{Ignoring prenote argument}}%
+    \iffieldundef{postnote}
+      {}
+      {\BibliographyWarning{Ignoring postnote argument}}}
+    {\usebibmacro{citeindex}%
+    \usebibmacro{supercite}%
+    \usebibmacro{cite:comp}}
+    {}
+    {\usebibmacro{cite:dump}}
+
+
+
+
+
+  % \renewcommand\@footnotetext[2][0pt]{% From tufte class footnotetext, we need to redo because footmisc has changed it already
+  %   \marginpar{%
+  %     \hbox{}\vspace*{#1}%
+  %     \def\baselinestretch {\setspace@singlespace}%
+  %     \reset@font\footnotesize%
+  %     \@tufte@margin@par% use parindent and parskip settings for marginal text
+  %     \vspace*{-1\baselineskip}\noindent%
+  %     \protected@edef\@currentlabel{%
+  %       \csname p@footnote\endcsname\@thefnmark%
+  %     }%
+  %     \color@begingroup%
+  %       \@makefntext{%
+  %         \ignorespaces#2%
+  %       }%
+  %     \color@endgroup%
+  %   }%
+  % }%
+
+  
+
+
+  \ExplSyntaxOn 
+  \tl_new:N \g_stolenmargincontent_tl
+  \tl_new:N \l_temp_tl
+  
+  \NewDocumentCommand{\amAppendMarginContent}{m}{
+    % #1 in append -
+    \tl_set:Nn \l_temp_tl { #1 \newline }
+    \tl_gput_right:NV \g_stolenmargincontent_tl \l_temp_tl%{ \newline{ }#1 }%
+    % Go- \g_stolenmargincontent_tl-Gone
+    % \footnote{\g_stolenmargincontent_tl}
+    % \message{in append \use:x #1}
+  }
+  \NewDocumentCommand{\amPrintMarginContent}{}{
+    % \begingroup%
+    % \renewcommand\thefootnote{}%
+    % \protect\footnotetext{\RaggedRight \g_stolenmargincontent_tl}%
+    % \addtocounter{footnote}{-1}%
+    % \endgroup%    
+  }
+  \NewDocumentCommand{\amResetMarginContent}{}{
+    % \tl_gset:Nn \g_stolenmargincontent_tl   {}
+    \tl_gclear_new:N \g_stolenmargincontent_tl 
+
+  }
+
+
+  \newbool{amIsInsideStolenMargin}
+  \boolfalse{amIsInsideStolenMargin}
+  % \DeclareDocumentEnvironment{amStolenMargin}{}
+  % {
+  %   \booltrue{amIsInsideStolenMargin}
+  % }
+  % {
+  %   \boolfalse{amIsInsideStolenMargin}
+  %   \amPrintMarginContent{}
+  %   % \amAuthorYearInMargin{\amPrintMarginContent}
+  %   \amResetMarginContent
+  % }
+  \ExplSyntaxOff
+
+\NewDocumentCommand{\amAuthorYearInMargin}{m}{%
+  \begingroup%
+  % \renewcommand\thefootnote{}\protect\footnote{#1}%
+  \renewcommand\thefootnote{}%
+  % \protect\footnotetext{#1}%
+  \protect\footnotetext{\RaggedRight#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup%
+}
+
+  % \newcommand\blfootnote[1]{%
+  %   \ifbool{amIsInsideStolenMargin}{%
+  %     % \message{Asciimint:\space inside\space amStolenMargin\space \thefield{entrykey}\space is\space stolen\space}%
+  %     % \message{In blfootnote: \noexpand#1}
+  %     % \amAppendMarginContent{#1}
+  %   }
+  %   {%
+  %     \amAuthorYearInMargin{#1}%
+  %   }  
+  % }
+  \newcommand\blfootnote[1]{%
+  \begingroup%
+  % \renewcommand\thefootnote{}\protect\footnote{#1}%
+  \renewcommand\thefootnote{}%
+  % \protect\footnotetext{#1}%
+  \protect\footnotetext{\RaggedRight#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup%
+  }
+
+  \ExplSyntaxOn  
+  \newbibmacro*{supercite}{%
+    \ifciteseen
+      {}
+      {%
+      % \ifbool{amIsInsideStolenMargin}
+      % {%
+      %   \message{Asciimint:\space inside\space amStolenMargin\space \thefield{entrykey}\space is\space stolen\space}%
+      %   \xappto\cbx@citehook{
+      %     \noexpand\amAppendMarginContent{\textcolor{amGrayCMYK}{\thefield{labelnumber}:}\newline}
+      %   }
+
+      %   \message{Asciimint:\space postponed\space \thefield{entrykey}\space}%
+      %   % \amAppendMarginContent{{\textcolor{amGrayCMYK}{\bibsentence\thefield{labelnumber}:\addspace\bibhyperref[\thefield{entrykey}]{\citeauthor*{\thefield{entrykey}}~\citeyear{\thefield{entrykey}}}}\newline}}
+      %   % \amAppendMarginContent{\bibsentence\thefield{labelnumber}:\addspace\bibhyperref[\thefield{entrykey}]{\citeauthor*{\thefield{entrykey}}~\citeyear{\thefield{entrykey}}}\newline}
+      %   % \amAppendMarginContent{\bibsentence\thefield{labelnumber}:\addspace\bibhyperref[\thefield{entrykey}]{\citeauthor*{\thefield{entrykey}}~\citeyear{\thefield{entrykey}}}}
+      %   % \amAppendMarginContent{\bibsentence\thefield{entrykey}\newline}
+      %   % \expandafter\gdef\RenewDocumentCommand{\amStolenMarginContent}{}{Something}
+
+      % }%end of amIsInsideStolenMargin true
+      % {%amIsInsideStolenMargin false
+      % \dim_compare:nTF {\amRightMargin>=\amEnoughMarginWidth}%
+      % {%true, margin exists
+      %\message{Asciimint:\space Citation\space \thefield{entrykey}\space as\space margin\space footnote,\space with\space right-margin\space \the\amRightMargin and left-margin\space \the\amLeftMargin marginparwidth(\the\marginparwidth)\space linewidth(\the\linewidth)\space textwidth(\the\textwidth)\space amFullWidthLength(\the\amFullWidthLength).}%
+      \xappto\cbx@citehook{%
+              % \noexpand\footnotetext[\thefield{labelnumber}]{%
+              % \noexpand\marginnote{%
+              % \noexpand\footnotetextCite{}{%
+              % \noexpand\amAside{%
+              \noexpand\blfootnote{%
+              % \noexpand\sidenote[\thefield{labelnumber}][]{%
+              % \noexpand\marginnote[]{%
+              % \noexpand\@sidenotetext{%
+              % \noexpand\@footnotetext{%
+              % \noexpand\marginpar{%
+              % \footnotesize%
+              \textcolor{amGrayCMYK}{\bibsentence\thefield{labelnumber}:\addspace\bibhyperref[\thefield{entrykey}]{\citeauthor*{\thefield{entrykey}}~\citeyear{\thefield{entrykey}}}}%
+              }%
+          }%
+      % }%end of dim_compare true
+      % {%false, margin does not exists
+      %   \message{Asciimint:\space I\space avoided\space citation\space \thefield{entrykey}\space as\space margin\space footnote,\space because\space amFullWidthLength(\the\amFullWidthLength)\space was\space larger\space or\space the\space same\space as\space textwidth(\the\textwidth).}
+      % }%end of dim_compare flase
+      % }%end of amIsInsideStolenMargin false
+      }%end of citeseen false
+  }
+  \ExplSyntaxOff
+
+  \newrobustcmd{\mkbibcolouredsuperscript}[1]{%
+      \cbx@superscript{\textcolor{amGrayCMYK}{#1}}%
+  }
+
+  \newrobustcmd{\cbx@superscript}[1]{%
+    \mkbibsuperscript{#1}%
+    \cbx@citehook%
+    \global\let\cbx@citehook=\empty%
+  }
+
+  \let\cbx@citehook=\empty
+
+ 
+
+
+
+
+%------------------------------------------------------------------------------------------------------------
+\makeatother
