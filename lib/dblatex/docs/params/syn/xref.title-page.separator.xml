@@ -1,3 +1,0 @@
-<xsl:param name="xref.title-page.separator">
-  <xsl:text> </xsl:text>
-</xsl:param>

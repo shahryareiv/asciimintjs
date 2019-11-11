@@ -1,0 +1,41 @@
+Installation:
+============
+
+`fribidixetex' uses the `fribidi' library and can be
+installed on any operating system. 
+
+Hopefully, the `fribidixetex' binary will be included
+in TeXLive and so you do not need to compile
+it yourself.
+
+
+
+Instructions to compile `fribidixetex` on Mac OSX:
+=====================================
+
+  1) Install `xcode'.
+  2) Install `homebrew': http://brew.sh
+  3) Install `fribidi': brew install fribidi
+  4) Install `autoconf': brew install autoconf
+  5) Install `automake': brew install automake
+  6) Install `pkg-config': brew install pkg-config
+  7) sh autogen.sh
+  8) ./configure
+  9) make
+
+
+
+
+Instructions to compile `fribidixetex` on Linux (Debian/Ubuntu
+distributions) contributed by Ali Majdzadeh Kouhbani:
+=============================================
+
+  1) Install `build-essential'
+  2) Install `gcc '
+  3) Install `pkg-config'
+  4) Install `autoconf'
+  5) Install `automake'
+  6) Install `libfribidi-dev'
+  7) sh ./autogen.sh
+  8) ./configure
+  9) make

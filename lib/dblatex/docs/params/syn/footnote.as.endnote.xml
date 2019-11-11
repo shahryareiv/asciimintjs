@@ -1,1 +1,0 @@
-<xsl:param name="footnote.as.endnote" select="0"/>

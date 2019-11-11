@@ -1,0 +1,1 @@
+src/fribidixetex-ignore.o: src/fribidixetex-ignore.c

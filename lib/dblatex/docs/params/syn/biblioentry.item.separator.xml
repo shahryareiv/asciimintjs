@@ -1,1 +1,0 @@
-<xsl:param name="biblioentry.item.separator">, </xsl:param>

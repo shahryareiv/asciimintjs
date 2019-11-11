@@ -1,1 +1,0 @@
-<xsl:param name="component.label.includes.part.label" select="0"/>

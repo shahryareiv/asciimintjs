@@ -1,7 +1,0 @@
-<!ELEMENT mapping 	(map+)>
-<!ELEMENT map EMPTY>
-<!ATTLIST map 
-  key   CDATA	#REQUIRED
-  text  CDATA	#REQUIRED
->
-

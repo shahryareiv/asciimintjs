@@ -1,1 +1,0 @@
-<xsl:param name="appendix.autolabel" select="1"/>
