@@ -25,7 +25,7 @@
     "npm": "^6.13.4",
     "npm-check-updates": "^3.1.8",
     "path": "^0.12.7",
-    "sanitize-html": "^1.20.1",
+    "sanitize-html": "^2.3.2",
     "saxon-stream": "^0.2.3",
     "streamqueue": "^1.1.2",
     "tracer": "^0.9.8",
