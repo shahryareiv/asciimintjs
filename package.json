@@ -35,7 +35,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-cached": "^1.1.1",
     "gulp-debug": "^4.0.0",
     "gulp-exec": "^3.0.2",
